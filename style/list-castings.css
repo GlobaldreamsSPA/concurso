@@ -1,0 +1,41 @@
+#casting-container {
+	position: relative;
+	background: url('../img/bg-pattern2.1.png');
+	min-height: 400px;
+}
+
+.list-castings h1 {
+	border-bottom: 1px solid black;
+	border-width: 50%;
+}
+
+#image {
+	width: 350px;
+	height: 200px;
+	background-image: url('http://lorempixel.com/350/200/sports');
+}
+
+#start-end{
+	background-color: white;
+	opacity: 0.4;
+	position: relative;
+	bottom: -170px;
+	left: -20px;
+}
+
+#start-end li{
+	display: inline;
+	opacity: 1;
+}
+
+#start-time{
+	position: relative;
+	color: white;
+	font-weight: bold;
+}
+
+#end-time{
+	position: relative;
+	right: -100px;
+	color: white;
+}

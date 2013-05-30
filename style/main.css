@@ -1,0 +1,758 @@
+/* Color pagina */
+body 
+{ 
+	background: white !important;
+
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+a:link {text-decoration: none}
+
+a:visited {text-decoration: none}
+
+a:hover {	text-decoration: underline}
+
+#variable{min-height: 1180px;}
+
+
+/*bg like and dilike vote button */
+
+.vote
+{
+	display: inline-block;
+	*display: inline;
+	/* IE7 inline-block hack */
+
+	*zoom: 1;
+	padding: 4px 14px;
+	margin-bottom: 0;
+	font-size: 14px;
+	line-height: 20px;
+	*line-height: 20px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	color:#969696;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	*background-color: #e6e6e6;
+	/* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	border: 1px solid #bbbbbb;
+	*border: 0;
+	border-bottom-color: #a2a2a2;
+	*margin-left: .3em;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+
+}
+
+.upvote
+{
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-moz-border-top-left-radius: 4px;
+	-moz-border-bottom-left-radius: 4px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.upvote:hover
+{
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #5bb75b;
+	background-image: -moz-linear-gradient(top, #62c462, #51a351);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+	background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+	background-image: -o-linear-gradient(top, #62c462, #51a351);
+	background-image: linear-gradient(to bottom, #62c462, #51a351);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+	border-color: #51a351 #51a351 #387038;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	*background-color: #51a351;
+	/* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+
+	color:white;
+	text-decoration: none !important;
+}
+
+.downvote
+{
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-moz-border-top-right-radius: 4px;
+	-moz-border-bottom-right-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	margin-left: -5px;
+}
+
+.downvote:hover
+{
+	
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #da4f49;
+	background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+	background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+	background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+	background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+	border-color: #bd362f #bd362f #802420;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	*background-color: #bd362f;
+	/* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	
+
+	color:white;
+	text-decoration: none !important;
+}
+
+.vote:hover .greyvote
+{
+	display:none;
+}
+
+.whitevote
+{
+	display:none;
+}
+
+.vote:hover .whitevote
+{
+	display:inline;
+}
+
+/* formato links sociales pagina principal*/
+.social_container{
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+
+-webkit-box-shadow: -1px -1px 13px rgba(50, 50, 50, 0.35);
+-moz-box-shadow:    -1px -1px 13px rgba(50, 50, 50, 0.35);
+box-shadow:         -1px -1px 13px rgba(50, 50, 50, 0.35);
+
+
+background: #ffffff; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk5JSIgc3RvcC1jb2xvcj0iI2RhZDlkOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+background: -moz-linear-gradient(top,  #ffffff 0%, #dad9d9 99%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(99%,#dad9d9)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffffff 0%,#dad9d9 99%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffffff 0%,#dad9d9 99%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffffff 0%,#dad9d9 99%); /* IE10+ */
+background: linear-gradient(to bottom,  #ffffff 0%,#dad9d9 99%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dad9d9',GradientType=0 ); /* IE6-8 */
+
+padding-left: 7%;
+padding-right: 5%;
+margin-right: 5%;
+margin-left: 5%;
+padding-bottom: 5%;
+}
+
+ .fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe {
+    width: 100% !important;
+}
+
+/* formato tabs home page*/
+.home_tabs
+{
+	-webkit-border-radius: 10px 10px 0 0; 
+	-moz-border-radius: 10px 10px 0 0; 
+	border-radius: 10px 10px 0 0; 
+
+	font-size:120%;
+	color: #979797 !important;
+	border-bottom: 1px solid #ddd !important;
+
+	background-color: rgba(100%, 50%, 0%, 0) !important;
+
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-8 */
+
+
+}
+.active .home_tabs
+{
+	color: #1097db !important;
+	border-bottom: 1px solid #efefef !important;
+}
+
+/* formato eslogan*/
+
+.slogan
+{
+	font-style:italic;
+	font-family: Georgia, serif;
+}
+
+/* formato tabs menu*/
+
+.menu
+{
+	text-align: center;
+    cursor: pointer;
+    padding-right:1%;
+    padding-left:1%;
+    padding-top: 4%;
+    margin-right: -2%; 
+    border-right: 1px solid #3c3c3c !important;
+
+}
+
+.menu:hover
+{
+	background-color: #2c2c2c !important;
+	height:100%;
+	text-decoration: none !important;
+	color: white !important;
+}
+
+
+
+/* Play que aparece sobre imagen de video*/
+.fade_new {
+   opacity: 1;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+   }
+
+.image { position: relative; background-color: black;}
+.hoverimage { width:16%; position: absolute; top: 40%; left: 44%; display: none; }
+.image:hover .hoverimage { display: block;}
+.image:hover .fade_new{opacity: 0.35;}
+
+/* Modal donde aparece el video de youtube*/
+#playermodal{
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  margin: -14% 0 0 -25%;
+  padding-top: 1%; 
+  padding-bottom: 1%; 
+  width: 70% !important;
+}
+
+#playermodal .modal-body
+{
+	max-height: 600px !important;
+}
+
+/* Modal donde aparece el video del spot en el home*/
+#spotmodal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -18% 0 0 -25%;
+  padding-top: 1%; 
+  padding-bottom: 1%; 
+  width: 50% !important;
+}
+
+#spotmodal .modal-body
+{
+	max-height: 600px !important;
+}
+
+
+/* Modal donde aparece el video de youtube sin descripción*/
+#playermodal_simple{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -18% 0 0 -25%;
+  padding-top: 1%; 
+  padding-bottom: 1%; 
+  width: 50% !important;
+}
+
+#playermodal_simple .modal-body
+{
+	max-height: 600px !important;
+}
+
+/* Modal para agregar video */
+#add_video{
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  margin: -17% 0 0 -25%;
+  padding-top: 1%; 
+  padding-bottom: 1%; 
+  width: 70% !important;
+}
+
+#add_video .modal-body
+{
+	max-height: 600px !important;
+}
+
+.MBT-readmore{ 
+background:#1097db; 
+text-align:right; 
+cursor:pointer; 
+color:#fff; 
+margin-top: 10px;
+margin-bottom:10px; 
+margin-right: 10px;
+float:right; 
+border:2px solid #ddd; 
+padding:5px; 
+-moz-border-radius:6px; 
+-webkit-border-radius:6px; 
+font:bold 11px sans-serif; 
+} 
+.MBT-readmore:hover{ 
+font:bold 11px sans-serif; 
+color:#fff; 
+}
+
+.chzn-container .chzn-results {
+max-height: 200px !important;
+overflow-y: auto;
+}
+
+.profile-content{
+	overflow-y: scroll;
+	min-height: 180px;
+}
+
+/* Font mensaje hunter */
+
+div.hunter_msj
+{
+	margin-top: 20%; 
+	margin-left:20%;
+	color:#f7f6f6; 
+	max-width: 60%; 
+	text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.7);
+}
+
+/* Fondo Contenido */
+div.content
+{
+	background: url('../img/bg_viddon.png') no-repeat;
+	background-size: 100% auto;
+}
+
+/* Fondo Login Hunter , quienes somos*/
+
+div.content_lh
+{
+	background: url('../img/bg_viddon.png') !important;
+	-webkit-background-size: cover !important;	
+	background-size: cover !important;
+}
+
+/*Estilo del boton superior*/
+#login-button-image {
+	width: 100%;
+}
+
+#login-button {
+	width: 100%;
+}
+
+#login-button-container{
+	position: relative;
+	top: -5px;
+	height: 22px !important;
+}
+
+/* Estilo del logo */
+
+img.image-logo 
+{
+	position: relative;
+	top: -7px;
+	height: 32px !important;
+
+}
+
+
+
+/* posicion paginacion pagina principal*/
+ul#pagination_bt
+{
+	position:relative;
+	left: 4%;
+}
+
+
+/* espacios estandar utilizados para separar contenido en la pagina*/
+
+div.space05
+{
+	min-height: 10px;
+}
+
+div.space1
+{
+	min-height: 20px;
+}
+
+div.space2
+{
+	min-height: 30px;
+}
+
+div.space4
+{
+	min-height: 60px;
+}
+
+#upperhalf
+{
+    vertical-align: middle;
+	font-size: 12px;
+}
+
+
+/*  Header con logo pagina */
+#lowerhalf
+{
+	background: white;
+	min-height: 70px;
+}
+
+
+/* Formato color titulos perfil	*/
+h1.profile-title{
+	font-family: "profile_font";
+	color: #3E3D40;
+	font-size: 40px;
+	margin-bottom: 2px;
+}
+
+#profile 
+{
+	font-weight: normal !important;
+	color: #1097db;
+}
+		
+/* posicion imagen usuario */
+img.user_image
+{
+	margin-top: 32px;
+	min-width: 60%;
+	max-width: 100%;
+}
+		
+
+
+.what-is h1
+{
+	color: black;
+	margin-bottom: 30px;
+}
+
+.what-is p
+{
+	color: black;
+	text-align: justify;
+	font-size: 18px;
+	line-height: 25px;
+}
+
+/*posicion dummy imagen en formulario new*/
+div#image_upload
+{
+	position:relative;
+	top: 20px;
+	left:2%;
+}
+
+img#image_casting
+{
+	position:relative;
+	width: 100%;
+}
+
+/* Color plateado perfil */
+#content div.row-fluid
+{	
+	position: relative;
+	background: url('../img/test_bg.png');
+	max-width: 98%;
+	left: 10px;
+}
+		
+/* Formato tags talentos */
+li.taglist {
+	display: inline;
+	border-color: #BDBDBD;
+	background-color: #FFFFFF;
+}
+		
+/* Formato parrafos justificados */
+div.justify
+{ 
+	text-align : justify;
+	max-height: 120px;
+}
+
+
+/* formato videos pagina principal*/
+div#main_videos
+{
+	margin-left: 3%;
+	width: 45%;
+	display: block;
+}
+
+
+
+div#main_videos_list
+{
+	margin-left: 2%;
+	width: 30.7%;
+	display: block;
+}
+
+div#main_casting
+{
+	margin-left: 3%;
+	width: 30%;
+	display: block;
+}
+
+div.video_text_main
+{
+	position: relative;
+	left: -2.5%;
+	top: -25px;
+	background: white !important;
+	box-shadow: 01px 01px 01px #E2E2E2; 
+}
+
+.home-video-title
+{
+	color: #6699CC;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+span.home-video-author
+{
+	font-size: 12px;
+	color: #979797;
+	font-weight: bold;
+}
+
+.home-video-author
+{
+	font-size: 12px;
+	position: relative;
+	top: -10px;
+	color: #646464;
+	font-weight: bold;
+}
+
+a.home-video-author:hover
+{
+	color: #6699CC;
+}
+
+
+.fb-button
+{
+	margin-top: 15px;
+}
+
+div.row_text_main
+{
+	position:relative;
+	top: -05px;
+	margin-top: 0;
+	height: 75px;
+}
+span.arrow {
+	position: relative;
+	width: 0;
+	height: 0;
+	top: -30px;
+	left: 40px;
+	bottom: 0;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid white;
+	z-index: 12;
+}
+
+div.black_line{
+	
+	border-bottom: 2px solid black;
+}
+
+img.user_image_main_page
+{
+	position: relative;
+	margin-top: 15%;
+	left: 4%;
+	max-height: 80%;
+	max-width: 80%;
+}
+
+img.hunter_casting_logo_detail
+{
+	position: relative;
+	margin-top: 15%;
+	left: 4%;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+ul.skills-list
+{
+	margin-top: 10px;
+	margin-left: 0;
+}
+
+ul.skills-list li
+{
+	display: inline;
+	padding-right: 4%;
+	padding-left: 3%;
+
+	background: url('../img/tags.jpg');
+	background-size: 100% 100%;
+}
+
+ul.skills-list li a
+{
+	color: #f7f6f6;
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.7);
+	text-decoration: none;
+}
+
+/*Estilo titulo video del perfil*/
+div.video-title
+{
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+div.fb-like
+{
+	margin-bottom: 10px;
+}
+
+div.button-home-page
+{
+	margin-left: 20px; 
+}
+
+
+/* Formato links en la parte superior del header */
+
+#headercontent
+{
+	background: #1a1a1a !important;
+}
+
+#headercontent li 
+{
+	display: inline; 
+}
+
+#headercontent a:link 
+{
+	color: #d4d4d4;
+}
+
+#headercontent a:visited 
+{
+	color: #d4d4d4;
+}
+
+#headercontent a:hover 
+{
+	color: #d4d4d4;
+}
+
+
+/* Estilo para el texto del usuario logeado en el sistema */
+.welcome-login {
+	font-size: 12px;
+	color: white !important;
+	font-weight: bold;
+}
+
+.welcome-login a{
+	font-size: 12px;
+	color: white !important;
+	font-weight: bold;
+}
+
+/* menu hunter*/
+.orange{
+	font-size: 12px;
+}
+
+.orange .active a,
+.orange .active a:hover {
+    background-color: #6699CC;
+}
+
+
+/* footer Stuff */
+footer
+{
+	background: #1a1a1a;
+	min-height: 90px;
+	position: relative;
+	bottom: 0;
+	padding-top: 30px;
+}
+
+footer ul
+{
+	list-style-type: none;
+	display: inline;
+}
+
+
+footer #que-es-viddon, #siguenos, #contacto li p
+{
+	color: black;
+	font-size: 17px;
+}
+
+
+
+
+footer #contacto li ul li p 
+{
+	font-size: 14px;
+}
