@@ -14,7 +14,7 @@
 			<div class="span3">
 				<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">	
 					<div style="margin:7%;">
-						<h3 id="profile"> Estado Castings </h3>
+						<h3 id="profile"> Estado Concursos </h3>
 						<?php foreach ($castings_dash as $casting) {?>
 							
 						
