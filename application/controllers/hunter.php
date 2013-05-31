@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form','security'));
-		$this->load->model(array('hunter_model', 'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model','custom_questions_model','custom_options_model'));
+		$this->load->model(array('hunter_model', 'prize_categories_model' ,'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model','custom_questions_model','custom_options_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		
 	}
@@ -90,13 +90,15 @@ class Hunter extends CI_Controller {
 	   	 	$temp[-1]= "--  Seleccionar Todos  --";
 			$temp[-2]= "--     Vaciar Campo    --";
 
-			$args["skills"]=	$temp + $skills = $this->skills_model->get_skills();
-			$args["filtros"] = array("-1" => "Todos","-2" => "Limpiar",1 => "Color de Pelo",2 =>"Color de Ojos",3 =>"Color de Piel",4 =>"Edad",5 =>"Estatura",6 =>"Contextura");
-				
-			$args["hunters"]= $temp + array("hunter1","hunter2","hunter3","hunter4");
-			$args["age_list"] = $temp + array(0=>"10 a&ntildeos o menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"25-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 a&ntildeos o m&aacutes");	
+			$prizes =  $this->prize_categories_model->select("name");
+			$counter=0;
+			foreach ($prizes as $prize) {
+				$args["prizes"][$counter] = $prize["name"];
+				$counter = $counter +1 ;
+			}
 
-			
+			$args["prizes"] = $temp + $args["prizes"];
+
 	   	 	//Setear mensajes
 			$this->form_validation->set_message('required', 
 				'Este dato es requerido para publicar el casting.');
@@ -123,15 +125,14 @@ class Hunter extends CI_Controller {
 					$casting['description'] = $this->input->post('description');
 					$casting['apply_url'] = $this->input->post('apply_url');
 
-					/*
-					$casting['skills'] = "";
+					$casting['prizes'] = "";
 					$flag = FALSE;
-					foreach ($this->input->post('skills') as $skill) {
+					foreach ($this->input->post('prizes') as $skill) {
 						if($flag)
-							$casting['skills']=$casting['skills']."-";//le pego el guion
-						$casting['skills'] = $casting['skills'].$skill;
+							$casting['prizes'] = $casting['prizes']."-";//le pego el guion
+						$casting['prizes'] = $casting['prizes'].$skill;
 						$flag =TRUE;
-					}*/
+					}
 					
 					
 					$casting['category'] = $this->input->post('category');

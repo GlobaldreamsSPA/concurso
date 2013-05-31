@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 		$this->load->helper(array('url', 'form'));
 
 		//Modelos
-		$this->load->model(array('videos_model','video_votes_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
+		$this->load->model(array('videos_model','prize_categories_model','video_votes_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
 	
 	}
 
@@ -18,95 +18,46 @@ class Home extends CI_Controller {
 
 	public function index($page=1)
 	{
-
-		/* Codigo para hacer feed, esta a medias
-
-		$rss = new DOMDocument();
-		$rss->load('http://www.viddon.com/blog/?cat=23&feed=rss2');
-		
-		$feed = array();
-		foreach ($rss->getElementsByTagName('item') as $node) 
-		{
-			array_push($feed, $item);
-		}
-		
-		*/
 		$args = array();
 		
 		$args["get_uri"] ="";
 		
 		if(isset($_GET["search_terms"]))
 		{
-			
-			$args["get_uri"] = "/?search_terms=".str_replace(' ', '+', $_GET["search_terms"])."&order=".$_GET["order"]."&category=".$_GET["category"];
+
+			$args["get_uri"] = "/?search_terms=".str_replace(' ', '+', $_GET["search_terms"])."&prize=".$_GET["prize"]."&category=".$_GET["category"];
 			$args["search_values"]=$_GET;
 
-			$video_list = $this->videos_model->search_videos($_GET, $page, 9);
+			$args["contest_list"] = $this->castings_model->get_castings_search($_GET, $page, 9);
 			
-			$args["chunks"]=ceil($this->videos_model->count_search_videos($_GET) / 9);
+			$args["chunks"]=ceil(count($this->castings_model->get_castings_search($_GET)) / 9);
 		}
 		else
 		{
 			$args["search_values"]["search_terms"] = NULL;
-			$args["search_values"]["order"] = NULL;
-			$args["search_values"]["category"] = NULL;
-			$video_list = $this->videos_model->get_videos($page, 9);
-			$args["chunks"]=ceil($this->videos_model->count() / 9);
-
-
-		}
-
-		$args["video_list"] = array();
-		
-		foreach ($video_list as $video_data)
-		{
-			
-			$user_data= $this->user_model->select($video_data["2"]);
-			if($user_data['image_profile']!=0)
-				$user_data['image_profile'] = $this->photos_model->get_name($user_data['image_profile']);
-
-			$video_votes= $this->videos_model->get_votes($video_data["4"]);
-			array_push($video_data,$user_data["name"],$user_data["image_profile"], $user_data["last_name"],$video_votes[0]["upvotes"],$video_votes[0]["downvotes"]);
-			array_push($args["video_list"], $video_data);
-		}
-    
-		
-		$args["tags"]=	$this->skills_model->get_skills();
-		
-		
+			$args["search_values"]["prize"] = NULL;
+			$args["search_values"]["category"] = NULL;		
+			$args["contest_list"]  = $this->castings_model->get_castings_search($args["search_values"],$page, 9);
+			$args["chunks"]=ceil(count($this->castings_model->get_castings_search($args["search_values"])) / 9);
+		}		
+    			
 		$args["page"]=$page;
 		
-		$query= $this->user_model->participants();
-		$ranking= array();
-		foreach ($query->result() as $row)
-		{
 
-	
-			
-			$item["likes"] = $row->likes;
-	
+		$args["castings"] = $this->castings_model->get_castings(NULL, 1, 1, 0);
 
-			$item["id"] = $row->id;
-			$item["tags"] = $this->skills_model->get_user_skills($item["id"]);
-			sort($item["tags"]);
-			$item["image"] = $this->user_model->get_image_profile($row->id);
-			$item["image"] = $this->photos_model->get_name($item["image"]);
-			$item["video_id"] = $this->user_model->get_main_video_id($row->id);
-			$item["video_id_y"] = $this->videos_model->get_main_video($item["video_id"]);
- 			$item["video_title"] =$item["video_id_y"]["title"];
- 			$item["video_description"] =$item["video_id_y"]["description"];
- 			$item["video_reproductions"] = $item["video_id_y"]["reproductions"];
- 			$item["video_id_y"] = $item["video_id_y"]["link"]; 			
- 			$item["first_name"]= $row->name;
-			$item["last_name"]= $row->last_name;
-			$item["bio"] = $row->bio;
-			$item["video"] = $row->id_main_video;
-			$ranking[] = $item;
+		$prizes =  $this->prize_categories_model->select("name");
+		$counter=0;
+
+		foreach ($prizes as $prize) {
+			$args["prizes"][$counter] = $prize["name"];
+			$counter = $counter +1 ;
 		}
-		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1, 0);
-		$args["ranking"] = $ranking;
-    	$args["order_options"]= array("" => "", "creation_date" => "Los más nuevos", "votes" => "Los más votados", "reproductions" => "Los más vistos");
-		$args["category_options"]= array(""=>"","1"=>"Canto","2"=>"Actuación","3"=>"Humor","5"=>"Cover","6"=>"Instrumentos","7"=>"Danza","9"=>"Música","10"=>"Grupo","8"=>"Otros");
+
+		$args["prizes"] = array(""=>"") + $args["prizes"];
+		$args['categories'] = array(""=>"")+$this->casting_categories_model->get_casting_categories();
+		
+
 		$args["content"] = "home/home_view";
 		$args["inner_args"] = NULL;
 		$this->load->view('template',$args);

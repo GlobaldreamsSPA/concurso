@@ -267,13 +267,11 @@
 				?>
 
 				
-				<?php /* ?>
-				<h5>Habilidades</h5>
+				<h5>Premios</h5>
 				<?php 
 				
-				echo form_multiselect('skills[]', $skills,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona los tags...'");
+				echo form_multiselect('prizes[]', $prizes,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona los premios...'");
 				?>
-				<?php */ ?>
 				
 				<h5>Descripci&oacuten o llamado a postular</h5>
 				<textarea class="rich_textarea" name="description"> </textarea>

@@ -121,7 +121,7 @@ class Castings_model extends CI_Model
 
     function get_castings($hunter_id=NULL, $cant=NULL, $page=NULL, $status=NULL, $categories=NULL)
     {
-    	$this->db->select('id, title, image, end_date, status, entity_id, category, max_applies');
+    	$this->db->select('*');
         
         if(!is_null($hunter_id))
             $this->db->where('entity_id', $hunter_id);
@@ -174,6 +174,63 @@ class Castings_model extends CI_Model
         return $results;
     }
 
+    function get_castings_search($search,$page=NULL,$cant=NULL)
+    {
+        $this->db->select('*');
+        
+        $this->db->where('status', 0);
+        
+        if($search["category"] != "" && !is_null($search["category"]))
+            $this->db->where('category', $search["category"]);
+                
+        if($search["prize"] != "" && !is_null($search["prize"]))
+            $this->db->like('prizes',$prize);        
+        
+        if($search["search_terms"] && !is_null($search["search_terms"]))
+        {
+            $search_value = array();
+            $search_value = explode(' ', $search_terms);
+            $flag = FALSE;
+            $where="";
+            foreach ($search_value as $iter) 
+            {
+                if($flag)
+                    $where= $where." OR `title` LIKE '%".$iter."%'"; 
+                else
+                    $where = "(`title` LIKE '%".$iter."%'";
+
+                $flag =TRUE;
+            }
+            $where= $where.")";
+
+            $this->db->where($where);
+        }
+        
+
+        if(!is_null($page) && !is_null($cant))
+            $query = $this->db->get('castings', $cant, ($page-1)*$cant);
+        else
+            $query = $this->db->get('castings');
+
+                
+        $results = $query->result_array();
+
+
+
+        foreach($results as &$casting)
+        {
+            //Almacenar los dias que quedan
+            $casting = $this->_days($casting);
+
+            //Entregar las rutas de las imagenes
+            $casting = $this->_routes($casting ,TRUE);
+
+            //Entregar estado del casting
+            $casting['status'] = $this->_get_status($casting);
+        }
+
+        return $results;
+    }
 
     function get_castings_especific($ids_query,$status=NULL)
     {
