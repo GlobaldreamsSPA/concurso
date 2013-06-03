@@ -31,8 +31,25 @@
 							<div style="margin-left:10%; margin-top:30px; height: 250px; width: 80%;" id="myCarousel" class="carousel slide">
 							<!-- Carousel items -->
 								<div class="carousel-inner">
-									<?php foreach($castings as $casting){ ?>
-								    <div class="active item">
+									<?php 
+									$flag = true;
+									foreach($castings as $casting){ 
+
+										if($flag)
+										{
+									?>
+									   		<div class="active item">
+								    <?php 
+									
+										}
+										else
+										{
+									?>
+											<div class="item">
+									<?php 
+										}
+										$flag=false;
+									?>
 										<img style="width:100%; height:100%;" id="image_casting" src=<?php echo $casting['image']?> >
 									</div>
 									<?php } ?>

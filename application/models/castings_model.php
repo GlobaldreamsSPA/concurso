@@ -227,6 +227,14 @@ class Castings_model extends CI_Model
 
             //Entregar estado del casting
             $casting['status'] = $this->_get_status($casting);
+
+            $this->db->select('name');
+            $this->db->from('entities');
+            $this->db->where('id', $casting['entity_id']);
+            $result = $this->db->get();
+            $hunter = $result->first_row('array');
+            $casting['entity'] = $hunter['name'];
+      
         }
 
         return $results;

@@ -247,10 +247,10 @@ padding-bottom: 5%;
    -webkit-transition: opacity .25s ease-in-out;
    }
 
-.image { position: relative; background-color: black;}
-.hoverimage { width:16%; position: absolute; top: 40%; left: 44%; display: none; }
-.image:hover .hoverimage { display: block;}
-.image:hover .fade_new{opacity: 0.35;}
+.image { position: relative; background-color: white;}
+.fade_new{opacity: 0.85;}
+
+.image:hover .fade_new{opacity: 1;}
 
 /* Modal donde aparece el video de youtube*/
 #playermodal{

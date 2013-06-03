@@ -257,6 +257,44 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
+	public function contest()
+	{
+		if(isset($_GET['id']))
+		{
+			$categories = $this->casting_categories_model->get_casting_categories();
+
+			$args['id_casting'] = $_GET['id'];		
+			$args['title'] = $_GET['title'];		
+			$args['entity'] = $_GET['entity'];
+			$args['days'] = $_GET['days'];	
+			$args['logo'] = $_GET['logo'];		
+			$args['description'] = $_GET['description'];	
+			$args['full_image'] = $_GET['full_image'];
+			$args['category'] = $categories[$_GET['category']];	
+			$args['aply_url'] = $_GET['aply_url'];	
+			$args['entity_id'] = $_GET['entity_id'];	
+			
+
+			$args['prizes'] = split("-", $_GET['prizes']);	
+
+
+			$prizes =  $this->prize_categories_model->select("name");
+			$prizes_temp= array();
+			
+			$counter=0;
+			foreach ($prizes as $prize) {
+				$prizes_temp[$counter] = $prize["name"];
+				$counter = $counter +1 ;
+			}
+
+			foreach ($args['prizes'] as &$prize) {
+				$prize = $prizes_temp[$prize];
+			}
+
+
+			$this->load->view('home/contest_modal',$args);
+		}
+	}
 
 	public function video()
 	{

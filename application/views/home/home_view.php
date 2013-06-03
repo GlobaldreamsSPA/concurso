@@ -107,10 +107,9 @@
 								?>
 								<div id="main_videos_list" class='span4'>
 									<div class="space1"></div>
-									<a href="#" data-target="#playermodal" data-toggle="modal">							
+									<a href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='. urlencode($contest["title"]).'&entity='. urlencode($contest["entity"]).'&days='. urlencode($contest["days"]).'&logo='. urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]) ?>" data-target="#playermodal" data-toggle="modal">							
 										<div class="image">
 											<img class="fade_new" src="<?php echo $contest['full_image']; ?>" alt=""/>
-										    <img class="hoverimage" src="<?php echo HOME.'/img/player_arrow.png'; ?>" alt="" />
 										</div>
 									</a>
 									<span class="arrow"></span>
