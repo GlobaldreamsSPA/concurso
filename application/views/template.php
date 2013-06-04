@@ -30,6 +30,7 @@
 
 	<link href="<?php echo base_url()?>style/main.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/bootstrap.css" rel="stylesheet">
+	<link href="<?php echo base_url()?>style/flat-ui.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/jquery.dataTables.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/jquery.cleditor.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/list-castings.css" rel="stylesheet">
@@ -70,107 +71,77 @@
 		
 	<div id="fb-root"></div>
 
-	<div class="navbar-fixed-top" id="headercontent">
-	    <div id="upperhalf">
-		    <div class="row-fluid" >
-		    	<div style="padding-top: 1%;" class="span2">
-					<a href="<?php echo HOME?>"  style="margin-left: 40px;"title="Volver a la P&aacute;ina Principal">
-						<img class="image-logo" src="<?php echo base_url(); ?>img/logo.png"/>
-					</a>
-				</div>
-				<div style="padding-top: 1%;" class="span2 header-text-left">
-					<a href="<?php echo HOME?>/home/what_is" class="slogan" style="margin-left: -60px;">
-						Donde el talento es descubierto
-					</a>
-				</div>
-				
-				<div  class="span6 offset2">
-					<?php
+	<div class="navbar navbar-static-top" id="headercontent">
+		<?php
 					
-						/*verificacion usuario postulante*/
-						$id = $this->session->userdata('id');
+			$id = $this->session->userdata('id');
 
-						if($this->session->userdata('name') != FALSE)
-						{
-							$user = $this->session->userdata('name')." ".$this->session->userdata('last_name');
-						}
-						else if($this->session->userdata('email') != FALSE)
-						{
-							$user = $this->session->userdata('email');
-						}
-						else
-							$user = "";
-						
-						/*verificacion ususario hunter*/
-						$id_h = $this->session->userdata('logged_in');				
-						if($id_h)
-						{
-							$name = $this->session->userdata('logged_in');
-							$name= $name["name"];
-						}
-						
-						if($id)
-						{
-							echo "<div class='span4 offset2'>";
-								echo "<a href='".base_url()."home' style='padding-top:6%' class='span6 menu'>";
-									echo "Pagina Principal";
-								echo "</a>";
-								echo "<a href='".base_url()."home/what_is' style='padding-top: 6%' class='span6 menu'>";
-									echo "Quienes Somos";
-								echo "</a>";
-							echo "</div>";
-							echo "<div style='margin-top:2%;' class='span6'>";						
-							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesi&oacuten)');
-							echo "</div>";
-						}
-						
-						elseif ($id_h) 
-						{
-							echo "<div class='span4 offset2'>";
-								echo "<a href='".base_url()."home' style='padding-top:6%' class='span6 menu'>";
-									echo "Pagina Principal";
-								echo "</a>";
-								echo "<a href='".base_url()."home/what_is' style='padding-top:6%' class='span6 menu'>";
-									echo "Quienes Somos";
-								echo "</a>";
-							echo "</div>";
-							echo "<div style='margin-top:2%;' class='span6'>";														
-								echo "<li class='welcome-login'> Bienvenido ".anchor('hunter', $name).' '.anchor('hunter/logout',' (Cerrar sesi&oacuten)');
-							echo "</div>";
-						
-						}
-						else
-						{
-							echo "<div class='span6 offset2'>";
-								echo "<a href='".base_url()."home' class='span4 menu'>";
-									echo "Pagina Principal";
-								echo "</a>";
-								echo "<a href='".base_url()."home/what_is' class='span4 menu'>";
-									echo "Quienes Somos";
-								echo "</a>";
-								echo "<a href='".base_url()."home/login_hunter' class='span4 menu'>";
-									echo "Cazatalentos";
-								echo "</a>";
-							echo "</div>";
+			if($id)
+			{
+				$user = $this->session->userdata('name')." ".$this->session->userdata('last_name');
+			}
+			
+			/*verificacion ususario hunter*/
+			$id_h = $this->session->userdata('logged_in');	
+
+			if($id_h)
+			{
+				$name = $this->session->userdata('logged_in');
+				$name= $name["name"];
+			}
+		?>
+		<div class="navbar-inner">
+		    <div class="container" >
+		    	<a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+		    	<a class="brand" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>">Ganando.cl</a>
+
+				<div class="nav-collapse collapse navbar-responsive-collapse">
+                    <ul class="nav">
+						<?php
+							echo "<li>".anchor('home', 'Home')."</li>";
+							echo "<li>".anchor('home/what_is', '¿Que es?')."</li>";
+							if(!$id && !$id_h)
+								echo "<li>".anchor('home/login_hunter', 'Empresas')."</li>";
+             	   		?>
+             	   </ul>
+
+             	   <ul class="nav pull-right">
+	            	   	<?php
+							if($id)
+							{
+								echo "<li>".anchor('user', $user)."</li>";
+								echo "<li>".anchor('user/logout','Cerrar sesi&oacuten')."</li>";
+
+							}
 							
-						}
-					
-						if(!$id && !$id_h)
-						{
-							$login_url = HOME."/user/fb_login";
-							echo "<div style='padding-top: 2.3%;' id='login-button-container' class='span4'>";
-							echo "<a href='".$login_url."' id='login-button'>";
-							echo "<img style='margin-left: -8%;' id='login-button-image' src='".HOME."/img/fb-login.png' />";
-							echo "</a>";
-							echo "</div>";
-						}
-					
-					?>				
-				</div>
-				
+							elseif ($id_h) 
+							{	
+								echo "<li>".anchor('hunter', $name)."</li>";
+								echo "<li>".anchor('hunter/logout','Cerrar sesi&oacuten')."</li>";						
+							}
+						
+							if(!$id && !$id_h)
+							{ 
+							?>
+								<li class="dropdown">
+                        			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Iniciar sesi&oacute;n <b class="caret"></b></a>
+		                        <ul class="dropdown-menu">
+		                     	<?php    
+									echo "<li>".anchor('user/fb_login', "<img src='".HOME."/img/fb-login.png' />")."</li>";
+		                        ?>
+		                        </ul>
+		                      </li>
+							<?php 
+							}
+						?>	
+					</ul>             
+                </div>
 		    </div>	
-	    </div>
-		
+		</div>
 		
 	</div>
 
@@ -263,6 +234,23 @@
 				});
 			});
 		
+      	if($("#contestmodal").length > 0)
+      	{
+	      	$("a[data-target=#contestmodal]").click(function(ev) {
+			    ev.preventDefault();
+			    var target = $(this).attr("href");
+
+			    // load the url and show modal on success
+			    $("#contestmodal .modal-body").load(target, function() { 
+			         $("#contestmodal").modal("show"); 
+			    });
+			});
+
+			jQuery(".modal-backdrop, #playermodal .close, #contestmodal .btn").live("click", function() {
+	        jQuery("#contestmodal iframe").attr("src", null);
+			});
+		}
+
       	if($("#playermodal").length > 0)
       	{
 	      	$("a[data-target=#playermodal]").click(function(ev) {
@@ -280,33 +268,6 @@
 			});
 		}
 
-      	if($("#playermodal_simple").length > 0)
-      	{
-	      	$("a[data-target=#playermodal_simple]").click(function(ev) {
-			    ev.preventDefault();
-			    var target = $(this).attr("href");
-
-			    // load the url and show modal on success
-			    $("#playermodal_simple .modal-body").load(target, function() { 
-			         $("#playermodal_simple").modal("show"); 
-			    });
-			});
-
-			jQuery(".modal-backdrop, #playermodal_simple .close, #playermodal_simple .btn").live("click", function() {
-	        jQuery("#playermodal_simple iframe").attr("src", null);
-			});
-		}
-
-		if($("#spotmodal").length > 0)
-      	{
-
-
-			jQuery(".modal-backdrop, #spotmodal .close, #spotmodal .btn").live("click", function() {
-	        var url = $('#spotiframe').attr('src');
-			$('#spotiframe').attr('src', '');
-			$('#spotiframe').attr('src', url);
-			});
-		}
 
 		if($("#dp1").length > 0)
 			$(function(){

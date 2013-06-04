@@ -176,37 +176,6 @@ padding-bottom: 5%;
     width: 100% !important;
 }
 
-/* formato tabs home page*/
-.home_tabs
-{
-	-webkit-border-radius: 10px 10px 0 0; 
-	-moz-border-radius: 10px 10px 0 0; 
-	border-radius: 10px 10px 0 0; 
-
-	font-size:120%;
-	color: #979797 !important;
-	border-bottom: 1px solid #ddd !important;
-
-	background-color: rgba(100%, 50%, 0%, 0) !important;
-
-	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-8 */
-
-
-}
-.active .home_tabs
-{
-	color: #1097db !important;
-	border-bottom: 1px solid #efefef !important;
-}
-
 /* formato eslogan*/
 
 .slogan
@@ -267,23 +236,6 @@ padding-bottom: 5%;
 {
 	max-height: 600px !important;
 }
-
-/* Modal donde aparece el video del spot en el home*/
-#spotmodal{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin: -18% 0 0 -25%;
-  padding-top: 1%; 
-  padding-bottom: 1%; 
-  width: 50% !important;
-}
-
-#spotmodal .modal-body
-{
-	max-height: 600px !important;
-}
-
 
 /* Modal donde aparece el video de youtube sin descripción*/
 #playermodal_simple{
@@ -358,12 +310,7 @@ div.hunter_msj
 	text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.7);
 }
 
-/* Fondo Contenido */
-div.content
-{
-	background: url('../img/bg_viddon.png') no-repeat;
-	background-size: 100% auto;
-}
+
 
 /* Fondo Login Hunter , quienes somos*/
 
@@ -445,6 +392,13 @@ div.space4
 	min-height: 70px;
 }
 
+
+/* Fondo Contenido */
+div.content
+{
+	background: url('../img/bg_viddon.png') no-repeat;
+	background-size: 100% auto;
+}
 
 /* Formato color titulos perfil	*/
 h1.profile-title{
@@ -686,20 +640,7 @@ div.button-home-page
 	display: inline; 
 }
 
-#headercontent a:link 
-{
-	color: #d4d4d4;
-}
 
-#headercontent a:visited 
-{
-	color: #d4d4d4;
-}
-
-#headercontent a:hover 
-{
-	color: #d4d4d4;
-}
 
 
 /* Estilo para el texto del usuario logeado en el sistema */

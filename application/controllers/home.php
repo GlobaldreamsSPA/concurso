@@ -64,74 +64,6 @@ class Home extends CI_Controller {
 	}
 
 
-	public function casting_list($page = 1,$actual_categories = -2)//el actual es un string de categorias
-	{
-		$args = array();
-		
-		$args["actual_categories_url"] = $actual_categories;
-
-		if($actual_categories!=-2)
-		{			
-			$args["actual_categories"] = explode("_",$actual_categories);//PARAMETROS FILTRO URL
-			$args["chunks"]=ceil($this->castings_model->count_castings(NULL,0,$args["actual_categories"])/9);						
-			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, 0, $args["actual_categories"]);
-		}else
-		{
-			$args["chunks"]=ceil($this->castings_model->count_castings(NULL,0)/9);			
-			$args["actual_categories"] = $actual_categories;			
-				
-			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, 0, NULL);		
-		}		
-		
-		$args["categories_cant"] = $this->casting_categories_model->get_casting_categories_cant();//cuantas categorias
-		$args["categories"] = $this->casting_categories_model->get_casting_categories();//carga la lista de categorias
-		
-	
-		$temp[-1]= "--  Seleccionar Todos  --";
-		$temp[-2]= "--     Vaciar Campo    --";
-		
-		$args["categories"] = $temp + $args["categories"];
-		
-		$args["page"]=$page;
-
-		$args['content']='home/castings_list';
-		$args["inner_args"]=NULL;
-		
-		$this->load->view('template',$args);
-	}
-
-	public function likes_update()
-	{
-
-		$query= $this->user_model->participants();
-		foreach ($query->result() as $row)
-		{
-
-	
-			$url = "http://www.viddon.com/user/index/".$row->id;
-			$fqlResult = json_decode(file_get_contents("http://api.facebook.com/method/fql.query?query=select+total_count+from+link_stat+where+url='$url'&format=json"));
-
-			$data["likes"] = $fqlResult[0]->total_count;
-			$data["id"] = $row->id;
-
-	
-			$data["name"]= $row->name." ".$row->last_name;
-
-			$this->user_model->update_likes($data);
-
-			echo "NOMBRE: ".$data["name"];
-			echo "<br>";
-			echo "ID: ".$data["id"];
-			echo "<br>";
-			echo "LIKES: ".$data["likes"];
-			echo "<br>";
-			echo "<br>";
-
-
-		}
-
-	}
-
 	public function video_reproductions_update()
 	{
 
@@ -319,23 +251,6 @@ class Home extends CI_Controller {
 		}
 	}
 
-	public function video_ranking()
-	{
-		if(isset($_GET['id']))
-		{
-			$args['id_video'] = $_GET['id'];		
-			$args['title'] = $_GET['title'];			
-			$args['iduser'] = $_GET['iduser'];
-			$args['id_bdd_video'] = $_GET['id_bdd'];
-			$args['video_reproductions'] = $_GET['video_reproductions'];
-			$args['description'] = $_GET['description'];
-			$votes = $this->videos_model->get_votes($args['id_bdd_video']);	
-			$args['upvotes'] = $votes[0]['upvotes'];	
-			$args['downvotes'] = $votes[0]['downvotes'];	
-		
-			$this->load->view('home/video_modal_ranking',$args);
-		}
-	}
 
 	public function terms()
 	{
@@ -344,6 +259,7 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
+	/* HAY Q OBTENER FUNCIONES DE ACA AUN; LUEGO BORRAR*/
 	public function casting_detail($id)
 	{
 		if(is_numeric($id))
@@ -407,6 +323,8 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
+
+	/* HAY Q OBTENER FUNCIONES DE ACA AUN; LUEGO BORRAR*/
 	public function apply_casting($id_casting)
 	{
 		if($this->session->userdata('id'))

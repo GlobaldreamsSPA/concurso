@@ -1,230 +1,107 @@
-<script>
-	$(document).ready(function() {
-		$('#rankingdatatable').dataTable( {
-			"aaSorting": [[ 2, "desc" ]]
-		} );
-	} );
-
-	var tag = document.createElement('script');
-
-	tag.src = "https://www.youtube.com/iframe_api";
-	var firstScriptTag = document.getElementsByTagName('script')[0];
-	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-	var player;
-	function onYouTubeIframeAPIReady() {
-	  player = new YT.Player('spotiframe');
-	}
-
-</script>
-
-<div class="modal fade hide" id="playermodal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade hide" id="contestmodal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div style="padding: 0px;" class="modal-body">
-	</div>
-</div>
-
-<div class="modal fade hide" id="playermodal_simple" tabindex="-1" role="dialog" aria-hidden="true">
-	<div style="padding: 0px;" class="modal-body">
-	</div>
-</div>
-
-<div class="modal fade hide" id="spotmodal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div style="padding: 0px;" class="modal-body">
-		<a class="close" style="margin-right:3%;" data-dismiss="modal"><i class="icon-remove"></i></a>  
-		<div style="padding:5%; text-align: center">
-			<iframe id="spotiframe" width="100%" height="300px" src="http://www.youtube.com/embed/HrtEzkemBgY?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe> 
-		</div>
 	</div>
 </div>
 
 <div class="content" id="content">
 	<div class="space4"></div>
 	<div class="space4"></div>
-
-	<div class="container-fluid">
+	<div class="space4"></div>
+	<div class="space4"></div>
 		<div class="row">
-			<div class= "span8" id="variable">
-		  		<div style="border-radius: 5px; margin-left:3%;"  class="row-fluid">
-		  			<div style="padding-top:1.5%; border-top-left-radius: 5px; border-top-right-radius: 5px; padding-bottom:1.5%; background:url(<?php echo HOME."/img/bgslide.png" ?>)">
-			  			<div style="margin-left: 1.5%; width: 97%; margin-bottom:0px;" id="myCarousel" class="carousel slide">
-							<!-- Carousel items -->
-							<div class="carousel-inner">
-							    <div class="active item">
-							    	<a href="#spotmodal" data-toggle="modal" onclick='player.playVideo()'>	
-				  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/bgspot.jpg" ?>">
-				  					</a>
-								</div>
-								<div class="item">
-							    	<a href="<?php echo base_url().'user/fb_login'; ?>">	
-				  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/home_viddon_graphic.jpg" ?>">
-				  					</a>
-								</div>
-							</div>
-							<!-- Carousel nav -->
-							<a style="margin-top:2%;" class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-							<a style="margin-top:2%;" class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="space2"></div>
-
-				<div style="border-radius: 5px; margin-left:3%;"  class="row-fluid">
+				<div style="margin-left:1.2%;"  class="row-fluid">
 					<div class="space05"></div>
-
-					<ul  class="nav nav-tabs">
-						<li class="active"><a class="home_tabs" href="#contest" data-toggle="tab">Concursos</a></li>
-					</ul>
-
-					<div class="tab-content">
-
-						<!-- CONCURSOS-->
-						<div class="tab-pane active" id="contest">		
-				  			<div style="margin-left:3%;" class="row">
-					  			<?php echo form_open('home',array('method' => 'get', 'class' => 'form-inline')); ?>
-				  					<div style="margin-top:15px;" class="span3">
-										<input id='filter' style='width:95%;' placeholder="Busca por t&iacute;tulo" name="search_terms" value="<?php echo $search_values["search_terms"] ?>"></input>
-									</div>
-									<div class="span7" style="margin-top:15px; margin-left:0 !important;">
-																				
-										<?php echo form_dropdown("category",$categories,$search_values["category"],'data-placeholder="Categorías" class="chzn-select-deselect" style="width:38%;"') ?>
-										<?php echo form_dropdown("prize",$prizes,$search_values["prize"],'data-placeholder="Premios" class="chzn-select-deselect" style="width:42%;"') ?>
-									
-									</div>
-									<div style="margin-top:15px; text-align:right;" class="span2">
-										<input type="submit"  id="filter_button" class="btn btn-info" value="Buscar"/>
-									</div>
-								</form>
+		  			<div style="margin-left:3%;" class="row">
+			  			<?php echo form_open('home',array('method' => 'get', 'class' => 'form-inline')); ?>
+		  					<div style="margin-top:15px;" class="span3">
+								<input type="text" id='filter' style='width:95%;' placeholder="Busca por t&iacute;tulo" name="search_terms" value="<?php echo $search_values["search_terms"] ?>"></input>
 							</div>
-					
+							<div class="span7" style="margin-top:15px; margin-left:0 !important;">
+																		
+								<?php echo form_dropdown("category",$categories,$search_values["category"],'data-placeholder="Categorías" class="chzn-select-deselect" style="width:38%;"') ?>
+								<?php echo form_dropdown("prize",$prizes,$search_values["prize"],'data-placeholder="Premios" class="chzn-select-deselect" style="width:42%;"') ?>
+							
+							</div>
+							<div style="margin-top:15px; text-align:right;" class="span2">
+								<input type="submit"  id="filter_button" class="btn btn-info" value="Buscar"/>
+							</div>
+						</form>
+					</div>
+			
 
-							<?php
-							$i=0; 
-							foreach ($contest_list as $contest) {
-								$i++;
-								if(($i-1)%3 == 0 or $i==1) 
-									echo "<div style='margin-left: 1px;' class='row'>";
-								?>
-								<div id="main_videos_list" class='span4'>
-									<div class="space1"></div>
-									<a href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='. urlencode($contest["title"]).'&entity='. urlencode($contest["entity"]).'&days='. urlencode($contest["days"]).'&logo='. urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]) ?>" data-target="#playermodal" data-toggle="modal">							
-										<div class="image">
-											<img class="fade_new" src="<?php echo $contest['full_image']; ?>" alt=""/>
-										</div>
-									</a>
-									<span class="arrow"></span>
-									<div class="container video_text_main span12">
-										<div class="space1"></div>
-										<div class="row row_text_main">
-											<div class="span10 offset1">
-												<div style="margin-bottom: 20px;" class="home-video-title"><?php echo $contest["title"]; ?></div>
-												<span class="home-video-author">Publicado por Ganando.cl</span>
-												<?php /* <img class='user_image_main_page' src='<?php echo $contest["logo"]; ?>'/> */ ?>
-											</div>
-										</div>
+					<?php
+					$i=0; 
+					foreach ($contest_list as $contest) {
+						$i++;
+						if(($i-1)%3 == 0 or $i==1) 
+							echo "<div style='margin-left: 1px;' class='row'>";
+						?>
+						<div id="main_videos_list" class='span4'>
+							<div class="space1"></div>
+							<a href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='. urlencode($contest["title"]).'&entity='. urlencode($contest["entity"]).'&days='. urlencode($contest["days"]).'&logo='. urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]) ?>" data-target="#contestmodal" data-toggle="modal">							
+								<div class="image">
+									<img class="fade_new" src="<?php echo $contest['full_image']; ?>" alt=""/>
+								</div>
+							</a>
+							<span class="arrow"></span>
+							<div class="container video_text_main span12">
+								<div class="space1"></div>
+								<div class="row row_text_main">
+									<div class="span10 offset1">
+										<div style="margin-bottom: 20px;" class="home-video-title"><?php echo $contest["title"]; ?></div>
+										<span class="home-video-author">Publicado por Ganando.cl</span>
+										<?php /* <img class='user_image_main_page' src='<?php echo $contest["logo"]; ?>'/> */ ?>
 									</div>
 								</div>
-							<?php 
-								if($i%3 == 0 || $i == count($contest_list)) 
-									echo "</div>"; 
-							}
-
-							if(count($contest_list)==0)
-							{
-								?>
-									<div style='margin-left:3%;' class="row">
-										<div class="space4"></div>
-										No se encontraron resultados.
-										<div class="space4"></div>
-									</div>
-							
-								<?php
-							}
-
-							?>
-			
-							<div class="row">
-								<div class="space1"></div>
-								<div class="pagination">  
-								  <ul id="pagination_bt">
-								    <li <?php if($page==1) echo "class=disabled";?>><a <?php if($page!=1) echo "href='".base_url()."home/index/".($page-1).$get_uri."'";?>>Prev</a></li>  
-									<?php
-									$pag_size = 16; 
-									$margen = $pag_size/2;
-									
-									$begin_pag = $page - $margen;
-									if($begin_pag < 0) $begin_pag = 1;
-									
-									$end_pag = $page + $margen;
-									if($end_pag > $chunks) $end_pag = $chunks;
-									
-									for($i = $begin_pag; $i <= $end_pag; $i++){ 
-										?>
-										<li <?php if($page==$i) echo "class=disabled";?>><a <?php if($page!=$i) echo "href='".base_url()."home/index/".$i.$get_uri."'";?> > <?php echo $i; ?></a></li>  
-									<?php 
-									} 
-									?>
-								    <li <?php if($page==$chunks) echo "class=disabled";?>><a <?php if($page!=$chunks) echo "href='".base_url()."home/index/".($page+1).$get_uri."'";?>>Next</a></li>
-								     
-								  </ul>  
-								</div>  
-								<div class="space1"></div>	
-							</div>	
+							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div class="span4">
-			  	<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">
-			  		<div class="space1"></div>
-			  		<h2 id="profile"  style="font-weight:bold;">Concursos Destacados</h3>
-			  		<?php foreach($castings as $casting){ ?>
-			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
-		  					<img style="margin-top: 7%; width: 84%; " src="<?php echo $casting['image']; ?>">
-		  				</a>
-		  			<?php } ?>
-					<div class= "space2"></div>
+					<?php 
+						if($i%3 == 0 || $i == count($contest_list)) 
+							echo "</div>"; 
+					}
+
+					if(count($contest_list)==0)
+					{
+						?>
+							<div style='margin-left:3%;' class="row">
+								<div class="space4"></div>
+								No se encontraron resultados.
+								<div class="space4"></div>
+							</div>
 					
-					<div class="social_container">
-						<div class="space05"></div>
-						<h4 id="profile"> Buscanos en Redes Sociales</h4>
-					
-						<div class="row">
-							<div class="span3">
-								<a href="https://twitter.com/ViddonCom" target=”_blank”>
-			  						<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_t.png"; ?>">
-			  					</a>
-			  				</div>
-			  				<div class="span3">	
-			  					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl" target=”_blank”>
-			  						<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_f.png"; ?>">
-			  					</a>
-			  				</div>
-			  				<div class="span3">	
-			  					<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_y.png"; ?>">
-			  				</div>
-			  				<div class="span3">	
-			  					<a  href="http://www.viddon.com/blog" target=”_blank”>
-			  						<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_w.png"; ?>">
-			  					</a>
-			  				</div>
-		  				</div>
-					</div>
+						<?php
+					}
 
-					<div class="space1"></div>
-
-
-					<div style="margin-left: 5%; margin-right: 5%;">
-						<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-					</div>
-
-					<div class= "space2"></div>
-
-
+					?>
+	
+					<div class="row">
+						<div class="space1"></div>
+						<div class="pagination">  
+						  <ul id="pagination_bt">
+						    <li class="previous" <?php if($page==1) echo "class=disabled";?>><a <?php if($page!=1) echo "href='".base_url()."home/index/".($page-1).$get_uri."'";?>>Prev</a></li>  
+							<?php
+							$pag_size = 16; 
+							$margen = $pag_size/2;
+							
+							$begin_pag = $page - $margen;
+							if($begin_pag < 0) $begin_pag = 1;
+							
+							$end_pag = $page + $margen;
+							if($end_pag > $chunks) $end_pag = $chunks;
+							
+							for($i = $begin_pag; $i <= $end_pag; $i++){ 
+								?>
+								<li <?php if($page==$i) echo "class=disabled";?>><a <?php if($page!=$i) echo "href='".base_url()."home/index/".$i.$get_uri."'";?> > <?php echo $i; ?></a></li>  
+							<?php 
+							} 
+							?>
+						    <li class="next" <?php if($page==$chunks) echo "class=disabled";?>><a <?php if($page!=$chunks) echo "href='".base_url()."home/index/".($page+1).$get_uri."'";?>>Next</a></li>
+						     
+						  </ul>  
+						</div>  
+						<div class="space1"></div>	
+					</div>	
 				</div>
-			</div>	
 		</div>
-  	</div>
   	<div class="space4"></div> 	
 </div>
