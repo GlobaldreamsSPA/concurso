@@ -106,6 +106,9 @@ class Hunter extends CI_Controller {
 			//Setear reglas
 			$this->form_validation->set_rules('title', 'Titulo', 'required');
 			$this->form_validation->set_rules('description', 'Descripcion', 'required');
+			$this->form_validation->set_rules('steps', 'Pasos', 'required');
+			$this->form_validation->set_rules('prizes_description', 'Descripcion Premios', 'required');
+			$this->form_validation->set_rules('bases', 'Bases', 'required');
 			$this->form_validation->set_rules('image', 'Imagen', 'callback_check_upload[logo]');
 			$this->form_validation->set_rules('max_applies', 'Meta Postulantes', 'required|numeric');
 
@@ -120,9 +123,15 @@ class Hunter extends CI_Controller {
 				{
 					//Guardar los datos a la BD
 					$casting['title'] = $this->input->post('title');
-					$casting['start_date'] = $this->input->post('start-date');
-					$casting['end_date'] = $this->input->post('end-date');
+					$start_date_temp = split("/", $this->input->post('start-date'));
+					$casting['start_date']= $start_date_temp[2]."-".$start_date_temp[1]."-".$start_date_temp[0];
+					$end_date_temp = split("/", $this->input->post('end-date'));
+					$casting['end_date'] = $end_date_temp[2]."-".$end_date_temp[1]."-".$end_date_temp[0];
 					$casting['description'] = $this->input->post('description');
+					$casting['bases'] = $this->input->post('bases');
+					$casting['steps'] = $this->input->post('steps');
+					$casting['prizes_description'] = $this->input->post('prizes_description');
+
 					$casting['apply_url'] = $this->input->post('apply_url');
 
 					$casting['prizes'] = "";

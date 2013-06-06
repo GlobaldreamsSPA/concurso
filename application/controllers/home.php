@@ -54,8 +54,8 @@ class Home extends CI_Controller {
 			$counter = $counter +1 ;
 		}
 
-		$args["prizes"] = array(""=>"") + $args["prizes"];
-		$args['categories'] = array(""=>"")+$this->casting_categories_model->get_casting_categories();
+		$args["prizes"] = array(""=>"Elige tipo de premio") + $args["prizes"];
+		$args['categories'] = array(""=>"Elige categoria de concurso")+$this->casting_categories_model->get_casting_categories();
 		
 
 		$args["content"] = "home/home_view";

@@ -237,20 +237,51 @@ padding-bottom: 5%;
 	max-height: 600px !important;
 }
 
-/* Modal donde aparece el video de youtube sin descripción*/
-#playermodal_simple{
+#contestmodal{
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 40%;
+  left: 40%;
   margin: -18% 0 0 -25%;
   padding-top: 1%; 
   padding-bottom: 1%; 
-  width: 50% !important;
+  width: 70% !important;
+  border-radius: 0;
+
 }
 
-#playermodal_simple .modal-body
+#contestmodal .modal-body
 {
-	max-height: 600px !important;
+	max-height: 100% !important;
+}
+
+/* tags*/
+
+.tag
+{
+	font-size:11px !important; 
+	padding:1% !important;
+	margin-right:1% !important; 
+	margin-top:1% !important; 
+	border-radius:0 !important;
+}
+
+/* Select estilo flat*/
+.styled select {
+   background: transparent;
+   width: 150px;
+   padding-left: 5%;
+   font-size: 16px;
+   border: 1px solid white;
+   height: 41px;
+    -webkit-appearance: none;
+} 
+
+
+.styled{
+   width: 120px;
+   height: 41px;
+   overflow: hidden;
+   background: url('../img/sort_desc_disabled.png') no-repeat 96% 35% white;
 }
 
 /* Modal para agregar video */

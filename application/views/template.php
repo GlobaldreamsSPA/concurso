@@ -33,12 +33,9 @@
 	<link href="<?php echo base_url()?>style/flat-ui.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/jquery.dataTables.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/jquery.cleditor.css" rel="stylesheet">
-	<link href="<?php echo base_url()?>style/list-castings.css" rel="stylesheet">
-	<link href="<?php echo base_url()?>style/list-view.css" rel="stylesheet">
-	<link href="<?php echo base_url()?>style/publish-view.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/uniform.default.css" rel="stylesheet"/>
-	<link href="<?php echo base_url()?>style/datepicker.css" rel="stylesheet"/>
 	<link href="<?php echo base_url()?>style/chosen.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 
 	<script type="text/javascript">
@@ -60,12 +57,12 @@
 
 <body>
  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>	
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
  	<script src="<?php echo base_url()?>js/chosen.jquery.js"></script>
 	<script src="<?php echo base_url()?>js/bootstrap.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.cleditor.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.uniform.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.dataTables.js"></script>
-	<script src="<?php echo base_url()?>js/bootstrap-datepicker.js"></script>	
 	<script src="<?php echo base_url()?>js/chosen.jquery.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.ba-resize.js"></script>
 		
@@ -271,14 +268,12 @@
 
 		if($("#dp1").length > 0)
 			$(function(){
-				window.prettyPrint && prettyPrint();
-				$("#dp1").datepicker();
+				$("#dp1").datepicker({ dateFormat: "dd/mm/yy" });
 			});
 		
 		if($("#dp2").length > 0)
 			$(function(){
-				window.prettyPrint && prettyPrint();
-				$("#dp2").datepicker();
+				$("#dp2").datepicker({ dateFormat: "dd/mm/yy" });
 			});
 
 		if($(".carousel").length > 0)

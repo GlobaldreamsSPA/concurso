@@ -229,23 +229,23 @@
 			<div style="margin-left:15px;">
 				
 				
-				<?php $today = new DateTime(date('Y-m-d')); ?>
+				<?php $today = new DateTime(date('d/m/Y')); ?>
 				<h5>Fecha de inicio</h5>
-				<input type="text" class="span3" value="<?php echo $today->format('Y-m-d'); ?>" id="dp1" data-date-format="yyyy-mm-dd" name="start-date">
+				<input type="text" style="width: 30%;" value="<?php echo $today->format('d/m/Y'); ?>" id="dp1" data-date-format="d/m/y" name="start-date">
 				<h5>Fecha de t&eacutermino</h5>
-				<input type="text" class="span3" value="<?php echo $today->format('Y-m-d'); ?>" id="dp2" data-date-format="yyyy-mm-dd" name="end-date">
+				<input type="text" style="width: 30%;" value="<?php echo $today->format('d/m/Y'); ?>" id="dp2" data-date-format="d/m/y" name="end-date">
 					
 				<h5>T&iacutetulo</h5>
-				<input type="text" name="title" class="span5" placeholder="Ingrese el t&iacute;tulo del Concurso">
+				<input type="text" name="title" style="width: 40%;" placeholder="Ingrese el t&iacute;tulo del Concurso">
 				<?php echo form_error('title'); ?>
 
 
 				<h5>Meta Postulantes</h5>
-				<input type="text" name="max_applies" class="span5" placeholder="Ingresa Cantidad" value="<?php if(isset($update_values)) echo $update_values["max_applies"]; else echo set_value('max_applies');?>">
+				<input type="text" name="max_applies" style="width: 40%;" placeholder="Ingresa Cantidad" value="<?php if(isset($update_values)) echo $update_values["max_applies"]; else echo set_value('max_applies');?>">
 				<?php echo form_error('max_applies'); ?>
 	
 				<h5>URL Postulaci&oacute;n</h5>
-				<input type="text" name="apply_url" class="span5" placeholder="Ingresa URL">
+				<input type="text" name="apply_url" style="width: 40%;" placeholder="Ingresa URL">
 				
 
 				<h5>Categor&iacutea</h5>
@@ -274,8 +274,20 @@
 				?>
 				
 				<h5>Descripci&oacuten o llamado a postular</h5>
-				<textarea class="rich_textarea" name="description"> </textarea>
+				<textarea class="span3" name="description"> </textarea>
 				<?php echo form_error('description'); ?>
+
+				<h5>Pasos para Postular</h5>
+				<textarea class="span3" name="steps"> </textarea>
+				<?php echo form_error('steps'); ?>
+
+				<h5>Premios del concurso</h5>
+				<textarea class="span3" name="prizes_description"> </textarea>
+				<?php echo form_error('prizes_description'); ?>
+
+				<h5>Bases del concurso</h5>
+				<textarea class="span3" name="bases"> </textarea>
+				<?php echo form_error('bases'); ?>
 
 				<div class="space1"></div>
 				<?php /* ?> 

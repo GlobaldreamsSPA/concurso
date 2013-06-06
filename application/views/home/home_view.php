@@ -17,13 +17,15 @@
 								<input type="text" id='filter' style='width:95%;' placeholder="Busca por t&iacute;tulo" name="search_terms" value="<?php echo $search_values["search_terms"] ?>"></input>
 							</div>
 							<div class="span7" style="margin-top:15px; margin-left:0 !important;">
-																		
-								<?php echo form_dropdown("category",$categories,$search_values["category"],'data-placeholder="Categorías" class="chzn-select-deselect" style="width:38%;"') ?>
-								<?php echo form_dropdown("prize",$prizes,$search_values["prize"],'data-placeholder="Premios" class="chzn-select-deselect" style="width:42%;"') ?>
-							
+								<div class="styled span5" style="margin-left: 2%;">										
+									<?php echo form_dropdown("category",$categories,$search_values["category"],'data-placeholder="Categorías" style="width:100%;"') ?>
+								</div>
+								<div class="styled span5">
+									<?php echo form_dropdown("prize",$prizes,$search_values["prize"],'data-placeholder="Premios" id="test2" style="width:100%;"') ?>
+								</div>
 							</div>
 							<div style="margin-top:15px; text-align:right;" class="span2">
-								<input type="submit"  id="filter_button" class="btn btn-info" value="Buscar"/>
+								<input type="submit"  id="filter_button" class="btn btn-info" value="BUSCAR CONCURSOS"/>
 							</div>
 						</form>
 					</div>
