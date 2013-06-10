@@ -184,7 +184,7 @@ class Castings_model extends CI_Model
             $this->db->where('category', $search["category"]);
                 
         if($search["prize"] != "" && !is_null($search["prize"]))
-            $this->db->like('prizes',$prize);        
+            $this->db->like('prizes',$search["prize"]);        
         
         if($search["search_terms"] && !is_null($search["search_terms"]))
         {

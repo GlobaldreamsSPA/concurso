@@ -1028,8 +1028,8 @@ h6 {
   color: #1abc9c;
 }
 .navbar .nav li.dropdown.open > .dropdown-toggle .caret {
-  border-bottom-color: #1abc9c !important;
-  border-top-color: #1abc9c !important;
+  border-bottom-color: #1abc9c;
+  border-top-color: #1abc9c;
 }
 .navbar .nav li.dropdown.open .dropdown-menu {
   opacity: 1;

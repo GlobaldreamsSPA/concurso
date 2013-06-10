@@ -87,16 +87,16 @@
 				$name= $name["name"];
 			}
 		?>
-		<div class="navbar-inner">
+		<div class="navbar-inner" style="background-color: #E67E22">
 		    <div class="container" >
 		    	<a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-		    	<a class="brand" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>">Ganando.cl</a>
+		    	<a class="brand" style="background-color:#D35400; height:40px; margin-left:1% !important; position: absolute; color: #ECF0F1" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>"> <div class="span5"><div id="star-five"></div></div> <div class="span7">Ganando.cl</div></a>
 
-				<div class="nav-collapse collapse navbar-responsive-collapse">
+				<div style="margin-left:300px;" class="nav-collapse collapse navbar-responsive-collapse">
                     <ul class="nav">
 						<?php
 							echo "<li>".anchor('home', 'Home')."</li>";
@@ -128,7 +128,7 @@
                         			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Iniciar sesi&oacute;n <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
 		                     	<?php    
-									echo "<li>".anchor('user/fb_login', "<img src='".HOME."/img/fb-login.png' />")."</li>";
+									echo "<li>".anchor('user/fb_login', "<img style='margin-left:7px;' src='".HOME."/img/fb-login.png' />")."</li>";
 		                        ?>
 		                        </ul>
 		                      </li>

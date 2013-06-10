@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		error_reporting(0);
+		//error_reporting(0);
 
 		$this->load->helper(array('url', 'form'));
 
@@ -40,7 +40,7 @@ class Home extends CI_Controller {
 			$args["contest_list"]  = $this->castings_model->get_castings_search($args["search_values"],$page, 9);
 			$args["chunks"]=ceil(count($this->castings_model->get_castings_search($args["search_values"])) / 9);
 		}		
-    			
+    	
 		$args["page"]=$page;
 		
 
@@ -54,8 +54,8 @@ class Home extends CI_Controller {
 			$counter = $counter +1 ;
 		}
 
-		$args["prizes"] = array(""=>"Elige tipo de premio") + $args["prizes"];
-		$args['categories'] = array(""=>"Elige categoria de concurso")+$this->casting_categories_model->get_casting_categories();
+		$args["prizes"] = array(""=>"Elige: tipo de premio") + $args["prizes"];
+		$args['categories'] = array(""=>"Elige: categoria de concurso")+$this->casting_categories_model->get_casting_categories();
 		
 
 		$args["content"] = "home/home_view";
@@ -195,21 +195,25 @@ class Home extends CI_Controller {
 		{
 			$categories = $this->casting_categories_model->get_casting_categories();
 
+			
 			$args['id_casting'] = $_GET['id'];		
 			$args['title'] = $_GET['title'];		
 			$args['entity'] = $_GET['entity'];
 			$args['days'] = $_GET['days'];	
 			$args['logo'] = $_GET['logo'];		
-			$args['description'] = $_GET['description'];	
+			$args['description'] = $_GET['description'];
+			$args['steps'] = $_GET['steps'];	
+			$args['prizes_description'] = $_GET['prizes_description'];	
+			$args['bases'] = $_GET['bases'];		
 			$args['full_image'] = $_GET['full_image'];
 			$args['category'] = $categories[$_GET['category']];	
-			$args['aply_url'] = $_GET['aply_url'];	
+			$args['category_id'] = $_GET['category'];
+			$args['apply_url'] = $_GET['apply_url'];	
 			$args['entity_id'] = $_GET['entity_id'];	
+			$args['prizes'] = explode("-", $_GET['prizes']);	
+			$prizes_id = $args['prizes'];
+
 			
-
-			$args['prizes'] = split("-", $_GET['prizes']);	
-
-
 			$prizes =  $this->prize_categories_model->select("name");
 			$prizes_temp= array();
 			
@@ -219,10 +223,11 @@ class Home extends CI_Controller {
 				$counter = $counter +1 ;
 			}
 
-			foreach ($args['prizes'] as &$prize) {
-				$prize = $prizes_temp[$prize];
-			}
+			foreach ($args['prizes'] as &$prize) 
+				if($prize!="")
+					$prize = $prizes_temp[$prize];
 
+			$args['prizes'] = array_combine($prizes_id ,$args['prizes']);
 
 			$this->load->view('home/contest_modal',$args);
 		}

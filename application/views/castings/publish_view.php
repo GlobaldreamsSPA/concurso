@@ -229,11 +229,10 @@
 			<div style="margin-left:15px;">
 				
 				
-				<?php $today = new DateTime(date('d/m/Y')); ?>
 				<h5>Fecha de inicio</h5>
-				<input type="text" style="width: 30%;" value="<?php echo $today->format('d/m/Y'); ?>" id="dp1" data-date-format="d/m/y" name="start-date">
+				<input type="text" style="width: 30%;" id="dp1" name="start-date">
 				<h5>Fecha de t&eacutermino</h5>
-				<input type="text" style="width: 30%;" value="<?php echo $today->format('d/m/Y'); ?>" id="dp2" data-date-format="d/m/y" name="end-date">
+				<input type="text" style="width: 30%;" id="dp2" name="end-date">
 					
 				<h5>T&iacutetulo</h5>
 				<input type="text" name="title" style="width: 40%;" placeholder="Ingrese el t&iacute;tulo del Concurso">
@@ -253,7 +252,7 @@
 					<?php
 						foreach($categories as $cat)
 						{
-							echo "<option value=".$cat.">".$cat."</option>";
+							echo "<option value='".$cat."'>".$cat."</option>";
 						}
 					?>
 				</select>
