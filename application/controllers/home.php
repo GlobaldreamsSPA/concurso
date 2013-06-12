@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		//error_reporting(0);
+		error_reporting(0);
 
 		$this->load->helper(array('url', 'form'));
 
@@ -208,7 +208,13 @@ class Home extends CI_Controller {
 			$args['full_image'] = $_GET['full_image'];
 			$args['category'] = $categories[$_GET['category']];	
 			$args['category_id'] = $_GET['category'];
-			$args['apply_url'] = $_GET['apply_url'];	
+			if( !in_array($args['category_id'],array(1,2,3)))
+				$args['apply_url'] = $_GET['apply_url'];
+			else
+			{
+				$args['apply_url'] = null;
+			}	
+			
 			$args['entity_id'] = $_GET['entity_id'];	
 			$args['prizes'] = explode("-", $_GET['prizes']);	
 			$prizes_id = $args['prizes'];

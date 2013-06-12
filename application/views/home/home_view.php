@@ -1,7 +1,23 @@
-<div class="modal fade hide" id="contestmodal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div style="padding: 0px;" class="modal-body">
-	</div>
-</div>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+// Support for AJAX loaded modal window.
+// Focuses on first input textbox after it loads the window.
+$('[data-toggle="modal"]').click(function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+	
+	$.get(url, function(data) {
+		$('<div id="contestmodal" class="modal hide fade">' + data + '</div>').modal();
+	}).success(function() { $('input:text:visible:first').focus(); });
+});
+	
+});
+
+</script>
+
+
 
 <div class="content home" id="content">
 	<div class="space4"></div>
@@ -43,7 +59,7 @@
 					?>
 					<div id="main_videos_list" class='span4'>
 						<div class="space1"></div>
-						<a href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='. urlencode($contest["title"]).'&entity='. urlencode($contest["entity"]).'&days='. urlencode($contest["days"]).'&logo='. urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]) ?>" data-target="#contestmodal" data-toggle="modal">							
+						<a href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='.urlencode($contest["title"]).'&entity='.urlencode($contest["entity"]).'&days='.urlencode($contest["days"]).'&logo='.urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]) ?>" data-toggle="modal">							
 							<div class="image">
 								<img class="fade_new" src="<?php echo $contest['full_image']; ?>" alt=""/>
 							</div>

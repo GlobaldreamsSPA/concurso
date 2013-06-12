@@ -229,11 +229,13 @@
 			<div style="margin-left:15px;">
 				
 				
+				
+
 				<h5>Fecha de inicio</h5>
 				<input type="text" style="width: 30%;" id="dp1" name="start-date">
 				<h5>Fecha de t&eacutermino</h5>
 				<input type="text" style="width: 30%;" id="dp2" name="end-date">
-					
+
 				<h5>T&iacutetulo</h5>
 				<input type="text" name="title" style="width: 40%;" placeholder="Ingrese el t&iacute;tulo del Concurso">
 				<?php echo form_error('title'); ?>

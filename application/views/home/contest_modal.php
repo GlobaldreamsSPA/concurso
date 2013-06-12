@@ -1,5 +1,7 @@
 <script type="text/javascript">
 
+	$('body').css('overflow', 'hidden');
+
     var state_des = true;
     $("#des").click(function () {
 
@@ -126,6 +128,22 @@
   
 		state_ste = !state_ste;
     });
+
+
+
+	$(".modal-backdrop, .close, .btn-primary").bind("click", function() {
+	    $("#contestmodal").fadeOut(500, function () {
+			$(this).remove();
+		});
+	    $(".modal-backdrop").fadeOut(500, function () {
+			$(this).remove();
+		});
+
+		$('body').css('overflow', 'visible');
+
+	});
+
+
 	
 </script>
 
@@ -207,7 +225,7 @@
 	</div>
 </div>
 <div style="margin-right:2%;" class="row">
-	<a class="btn btn-primary pull-right" href="#">CONCURSAR</a>
+	<a class="btn btn-primary pull-right" target="_blank" href="<?php echo $apply_url; ?>">CONCURSAR</a>
 </div>
 
 <div id="text-des" style="display:none;">

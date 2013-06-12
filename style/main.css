@@ -5,10 +5,6 @@ body
 
 }
 
-body.modal-open {
-    overflow: hidden;
-}
-
 a:link {text-decoration: none}
 
 a:visited {text-decoration: none}

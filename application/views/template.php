@@ -38,25 +38,10 @@
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 
-	<script type="text/javascript">
-	var fb_param = {};
-	fb_param.pixel_id = '6007047054806';
-	fb_param.value = '0.00';
-	(function(){
-	  var fpw = document.createElement('script');
-	  fpw.async = true;
-	  fpw.src = '//connect.facebook.net/en_US/fp.js';
-	  var ref = document.getElementsByTagName('script')[0];
-	  ref.parentNode.insertBefore(fpw, ref);
-	})();
-	</script>
-	<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/offsite_event.php?id=6007047054806&amp;value=0" /></noscript>
-
-
 </head>
 
 <body>
- 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>	
+ 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>	
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
  	<script src="<?php echo base_url()?>js/chosen.jquery.js"></script>
 	<script src="<?php echo base_url()?>js/bootstrap.js"></script>
@@ -243,8 +228,8 @@
 			    });
 			});
 
-			jQuery(".modal-backdrop, #playermodal .close, #contestmodal .btn").live("click", function() {
-	        jQuery("#contestmodal iframe").attr("src", null);
+			jQuery(".modal-backdrop, #contestmodal .close, #contestmodal .btn").live("click", function() {
+	        jQuery("#contestmodal").remove();
 			});
 		}
 
@@ -281,56 +266,7 @@
 		  		interval: 7000
 			});
 		
-		/* comentarios perfil usuario*/
-		function get()
-		{
-			var input = $('#comment').val();
-			 
-			if ( $('#comment').val() == '' )
-			{
-				alert('Debes escribir un comentario antes de Enviarlo. Intenta nuevamente');
-			}
-			else
-			{
-				document.getElementById('comment').setAttribute('disabled','');
-				document.getElementById('post1').getElementsByTagName('input')[0].setAttribute('disabled', '');
-				
-				var xmlhttp;
-
-				if (window.XMLHttpRequest)
-				{
-				  	xmlhttp = new XMLHttpRequest();
-				}
-				else
-				{
-				  	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				}
-				xmlhttp.onreadystatechange=function()
-				{
-					if (xmlhttp.readyState==4 && xmlhttp.status==200)
-					{
-						response = xmlhttp.responseText;
-						if (response == 0)
-						{
-							alert('Para comentar debes estar registrado en Viddon. Inténtalo nuevemente.');
-						}
-						else if(response == 2)
-						{
-				    		$('#post1').prepend('<img src="../img/profile/user.jpg" width="40px" height="40px"style="display:inline;float:left;">&nbsp;'+'<span style="color:gray;font-family:times new roman;"> Usuario </span> &nbsp;'+ input + '<br/><br/> <hr>');
-				    		$('#comment').val('');
-				    	}
-					}
-				}
-				
-				xmlhttp.open("POST", "<?php echo HOME ?>/user/comments", false);
-				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				xmlhttp.send("comment=" + input);
-			}
-
-			document.getElementById('comment').removeAttribute('disabled');
-			document.getElementById('post1').getElementsByTagName('input')[0].removeAttribute('disabled');
-		}
-		 
+	
 		if($(".chzn-select").length > 0)
 			$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true});
    		
