@@ -5,12 +5,12 @@ class Home extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		error_reporting(0);
+		//error_reporting(0);
 
 		$this->load->helper(array('url', 'form'));
 
 		//Modelos
-		$this->load->model(array('videos_model','prize_categories_model','video_votes_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
+		$this->load->model(array('videos_model','share_detail_model','prize_categories_model','video_votes_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
 	
 	}
 
@@ -55,7 +55,7 @@ class Home extends CI_Controller {
 		}
 
 		$args["prizes"] = array(""=>"Elige: tipo de premio") + $args["prizes"];
-		$args['categories'] = array(""=>"Elige: categoria de concurso")+$this->casting_categories_model->get_casting_categories();
+		$args['categories'] = array(""=>"Elige: tipo de concurso")+$this->casting_categories_model->get_casting_categories();
 		
 
 		$args["content"] = "home/home_view";
@@ -212,7 +212,24 @@ class Home extends CI_Controller {
 				$args['apply_url'] = $_GET['apply_url'];
 			else
 			{
-				$args['apply_url'] = null;
+				if($args['category_id']==2)
+				{
+					$share_data= $this->share_detail_model->select('*',array('casting_id'=>$args['id_casting']));
+					$share_data =$share_data[0];
+					$args['apply_url'] = "https://www.facebook.com/dialog/feed?
+									  app_id=374106952676336&
+									  link=".$_GET['apply_url']."&
+									  picture=".urlencode(HOME.CASTINGS_SHARE_PATH.$share_data['image'])."&
+									  name=".urlencode($share_data['title'])."&
+									  caption=".$_GET['apply_url']."&
+									  description=".urlencode($share_data['description'])."&
+									  redirect_uri=".HOME;
+				
+
+				}
+				else
+					$args['apply_url'] = null;
+			
 			}	
 			
 			$args['entity_id'] = $_GET['entity_id'];	

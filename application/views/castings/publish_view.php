@@ -14,6 +14,15 @@
 				$("#trivia").css("display", "");
 			}
 
+			if(tag != "Compartir")
+			{
+				$(".sharer_questions").css("display", "none");
+			}
+			else
+			{
+				$(".sharer_questions").css("display", "");
+			}
+
 		}
 
 		function get_index_value()
@@ -238,14 +247,10 @@
 	
 	<div class="span8 offset1 user-profile-right">
 			
-		<script type="text/javascript">
-			
-		</script>
-			
 		<div class="space1"></div>
 		<div class="space1"></div>
 		<?php echo form_open_multipart('hunter/publish', array('class' => 'form-horizontal')); ?>
-			<legend><h3 class="profile-title"> Publicar un nuevo Concurso </h3></legend>
+			<legend><h1> Publicar un nuevo Concurso </h1></legend>
 			<div style="margin-left:15px;">
 				
 				<h5>Tipo de Concurso</h5>
@@ -306,10 +311,9 @@
 
 				<div class="space1"></div>
 
-				<!-- IMPORTANTE MAQUETA FORMULARIO-->
 				<div id="trivia" style="height:250px; overflow-y:scroll; padding: 1%; display: none;">
 						<div class="span8">
-				    		<h3> Preguntas Personalizadas</h3>
+				    	<legend><h3> Preguntas Personalizadas</h3></legend>
 
 						</div>
 
@@ -355,6 +359,22 @@
 			        <div class="space2">
 			        </div>
 		    	</div>
+
+		    	<div class="sharer_questions" style="display:none;">
+
+			    	<legend><h3> Campos del link para compartir</h3></legend>
+
+			    	<h5>Descripci&oacuten</h5>
+					<textarea class="span3" name="share_description"> </textarea>
+
+					<h5>Titulo</h5>
+					<input type="text" name="share_title" style="width: 40%;" placeholder="Escribe titulo del link" />
+				
+					<h5>Imagen del link</h5>
+					<?php echo form_upload(array('name' => 'share_image','class'=> 'file')); ?>
+
+
+			    </div>
 
 				<button style="margin-top: 2%;"type="submit" class="btn btn-primary">Publicar Concurso</button>
 

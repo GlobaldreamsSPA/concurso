@@ -270,15 +270,6 @@
 		if($(".chzn-select").length > 0)
 			$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true});
    		
-		if($(".file").length > 0)
-			$(function () 
-			{
-				
-				 $(".file").each(function () {
-					$(this).uniform()
-					
-			      });
-			});
 
 			
 	    

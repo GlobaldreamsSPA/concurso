@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form','security'));
-		$this->load->model(array('hunter_model', 'prize_categories_model' ,'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model','custom_questions_model','custom_options_model'));
+		$this->load->model(array('hunter_model','share_detail_model', 'prize_categories_model' ,'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model','custom_questions_model','custom_options_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		
 	}
@@ -152,6 +152,30 @@ class Hunter extends CI_Controller {
 
 					$casting_id = $this->castings_model->insert($casting);
 					
+					if($casting['category'] == 2)
+					{
+						$share_data["description"] = $this->input->post('share_description');
+						$share_data["title"] = $this->input->post('title');
+
+						$form_file_name = 'share_image';
+						$images = array(
+							array(
+								'path' => realpath(APPPATH.'..'.CASTINGS_SHARE_PATH),
+								'width'=> 270,
+								'height' => 230
+							)
+						);
+
+						$share_filename = $this->_upload_image($casting_id, $images, $form_file_name);
+
+						$share_data["image"] = $share_filename;
+						$share_data["casting_id"] =$casting_id;
+
+						$this->share_detail_model->insert($share_data);
+
+
+					}
+
 					
 					//Procesan/insertan las preguntas
 					$question_head= "question_";
