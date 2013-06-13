@@ -1,5 +1,21 @@
 <!-- CARGO EL MODAL-->
-	<script>
+	<script type="text/javascript">
+
+		function show_trivia_options()
+		{
+			tag = $("#type_contest option:selected").text();
+
+			if(tag != "Trivia")
+			{
+				$("#trivia").css("display", "none");
+			}
+			else
+			{
+				$("#trivia").css("display", "");
+			}
+
+		}
+
 		function get_index_value()
 		{
 			var select = document.getElementById('modal-body').getElementsByTagName('select')[0];
@@ -222,14 +238,25 @@
 	
 	<div class="span8 offset1 user-profile-right">
 			
+		<script type="text/javascript">
+			
+		</script>
+			
 		<div class="space1"></div>
 		<div class="space1"></div>
 		<?php echo form_open_multipart('hunter/publish', array('class' => 'form-horizontal')); ?>
 			<legend><h3 class="profile-title"> Publicar un nuevo Concurso </h3></legend>
 			<div style="margin-left:15px;">
 				
-				
-				
+				<h5>Tipo de Concurso</h5>
+				<select id="type_contest" class="span5" name="category" onchange="show_trivia_options()">
+					<?php
+						foreach($categories as $cat)
+						{
+							echo "<option value='".$cat."'>".$cat."</option>";
+						}
+					?>
+				</select>
 
 				<h5>Fecha de inicio</h5>
 				<input type="text" style="width: 30%;" id="dp1" name="start-date">
@@ -247,19 +274,7 @@
 	
 				<h5>URL Postulaci&oacute;n</h5>
 				<input type="text" name="apply_url" style="width: 40%;" placeholder="Ingresa URL">
-				
-
-				<h5>Categor&iacutea</h5>
-				<select class="span5" name="category">
-					<?php
-						foreach($categories as $cat)
-						{
-							echo "<option value='".$cat."'>".$cat."</option>";
-						}
-					?>
-				</select>
-				
-				
+						
 				<h5>Imagen para mostrar</h5>
 				<?php echo form_upload(array('name' => 'logo','class'=> 'file')); ?>
 				<?php
@@ -267,7 +282,6 @@
 					echo form_error('image');
 				?>
 
-				
 				<h5>Premios</h5>
 				<?php 
 				
@@ -291,10 +305,9 @@
 				<?php echo form_error('bases'); ?>
 
 				<div class="space1"></div>
-				<?php /* ?> 
 
 				<!-- IMPORTANTE MAQUETA FORMULARIO-->
-				<div style="height:250px; overflow-y:scroll; padding: 1%;">
+				<div id="trivia" style="height:250px; overflow-y:scroll; padding: 1%; display: none;">
 						<div class="span8">
 				    		<h3> Preguntas Personalizadas</h3>
 
@@ -342,8 +355,6 @@
 			        <div class="space2">
 			        </div>
 		    	</div>
-			     
-			    <?php */ ?>
 
 				<button style="margin-top: 2%;"type="submit" class="btn btn-primary">Publicar Concurso</button>
 
