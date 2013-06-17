@@ -227,6 +227,8 @@ class Home extends CI_Controller {
 				
 
 				}
+				elseif($args['category_id']==1)
+					$args['apply_url'] = "video";
 				else
 					$args['apply_url'] = null;
 			

@@ -130,8 +130,73 @@
     });
 
 
+    var close_elements= ".modal-backdrop, .close";
+    var toggle = true;
 
-	$(".modal-backdrop, .close, .btn-primary").bind("click", function() {
+	if ($("#contest-link").attr("href") == 'video') 
+		{
+			$('#contest-link').click(function (event)
+			{
+			    event.preventDefault();
+			    if (toggle) {
+			    
+			    $(".upload-content").css("display","inline");
+	            $("#contestmodal").css("overflow","hidden");
+
+	            $("#des").animate({
+	                width: "1%"
+	            }, 1000);
+
+	            $("#pri").animate({
+	                width: "1%",
+	            }, 1000);
+
+	            $("#bas").animate({
+	                width: "1%",
+	            }, 1000);
+
+	            $("#ste").animate({
+	                width: "1%",
+	            }, 1000, function(){
+	            	$(".upload-content").css("z-index","0");
+				});
+				
+
+		        } else {
+		        	$(".upload-content").css("z-index","-1");
+
+		            $("#des").animate({
+		                width: "27%"
+		            }, 1000);
+
+		            $("#pri").animate({
+		                width: "27%",
+		            }, 1000);
+
+		            $("#bas").animate({
+		                width: "27%",
+		            }, 1000);
+
+		            $("#ste").animate({
+		                width: "27%",
+		            }, 1000, function(){
+	            	$(".upload-content").css("display","none");
+					});
+
+		           	$("#contestmodal").css("overflow","visible");
+
+		        }
+
+
+		       	toggle=!toggle;
+			});
+		}else
+		{
+			close_elements = close_elements + ", .btn-primary";
+		}
+
+
+	$(close_elements).bind("click", function() {
 	    $("#contestmodal").fadeOut(500, function () {
 			$(this).remove();
 		});
@@ -144,13 +209,14 @@
 	});
 
 
-	
+
 </script>
+
 
 
 <div style="margin-left:10px;" class="row">
 	<div class="span11">
-	<h2 style="text-align: center; position:relative; z-index: -1;" id="profile">	<?php echo $title; ?> </h2>
+	<h2 class="modal-title" style="text-align: center; position:relative; z-index: -1;" id="profile">	<?php echo $title; ?> </h2>
 	</div>
 	<div class="span1">
 		<h2><a class="close" data-dismiss="modal"><span class="fui-cross"></span></a> </h2>
@@ -192,40 +258,93 @@
 
 
 	</div>
-	<div class="span7" style="height:420px;">
-		<div id="des" style="position:absolute; width:27%; height:200px; background-color:#3498DB">
+	<div class="span7" id="info-contest" style="height:420px;">
+		<div id="des">
 			<h3 style="text-align: center; margin-top:80px; color:#ffffff;">
 				Descripci&oacute;n
 			</h3>
 			<div id="des-text" style="color:#ffffff; padding:5%; font-size:15px;">
 			</div>
 		</div>
-		<div id="pri" style="right:1.5%; position:absolute; width:27%; height:200px; background-color:#2ECC71">
+		<div id="pri">
 			<h3 style="text-align: center; margin-top:80px; color:#ffffff;">
 				Premios
 			</h3>
 			<div id="pri-text" style="color:#ffffff; padding:5%; font-size:15px;">
 			</div>
 		</div>
-		<div id="bas"  style="position:absolute; width:27%; height:200px; bottom:15%; background-color:#F39C12">
+		<div id="bas">
 			<h3 style="text-align: center; margin-top:80px; color:#ffffff;">
 				¿Puedo Concursar?
 			</h3>
 			<div id="bas-text" style="color:#ffffff; padding:5%; font-size:15px;">
 			</div>
 		</div>
-		<div id="ste" style="right:1.5%;  position:absolute;  width:27%; height:200px; bottom:15%; background-color:#F1C40F">
+		<div id="ste">
 			<h3 style="text-align: center; margin-top:80px; color:#ffffff;">
 				¿Como Concursar?
 			</h3>
 			<div id="ste-text" style="color:#ffffff; padding:5%; font-size:15px;">
 			</div>
 		</div>
-
+		
+		<?php if($apply_url == "video") 
+			{ 
+		?>
+			<div class="upload-content" style="display:none; z-index: -1; margin-left: 1.5%; margin-right: 3%; position:absolute;">
+				<ul class="nav nav-tabs">
+				  <li class="active"><a href="#enlazar" data-toggle="tab">Desde Youtube</a></li>
+				  <li><a href="#pc" data-toggle="tab">Desde tu PC</a></li>
+				</ul>
+				
+				<div class="tab-content">
+				  <div class="tab-pane active" id="enlazar">
+				  	<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
+				  		<div style="padding:2%;"class="row">
+					  		<div class="span12">	
+								<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL video" value="" required="required">											
+								<div class="space1"></div>
+								<div style="margin-top: 1%; font-size: 95%;"class="justify">
+										Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   
+										<ul>
+											<li>http://www.youtube.com/watch?v=LautYzjYv3A</li>
+											<li>http://youtu.be/LautYzjYv3A</li>
+										</ul>
+								</div>
+								<button type="submit" class="btn btn-primary">Subir</button>
+		
+							</div>
+				  		</div>
+				  	</form>
+				  </div>
+					<div class="tab-pane" id="pc">
+						<form id="video_upload_form" action="<?php echo HOME.'/subevideo/subir_video'?>" method="post">
+							<div style="padding:2%;"class="row">
+								<div class="span12">
+								<input type="file" class="file" name="userfile" size="20" required="required"/><br />	
+								<div class="space1"></div>
+								<div style="margin-top: 2%; font-size: 95%;" >
+									Para utilizar este medio de subida de videos, tienes que tener en cuenta:
+									<ul style="margin-top:1px;">
+									<li>El tamaño máximo de los videos debe ser de 20 mb.</li>
+									<li>Si no sabes como disminuir el tamaño de tu video, ingresa a <a href="http://video.online-convert.com/es/convertir-a-flv" target="_blank">este link</a>.</li>
+									<li>Se paciente al momento de subir tu video, el formulario se redirigirá automáticamente.</li>
+									<ul>
+								</div>
+								<button type="submit" class="btn btn-primary">Subir</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="justify" style="-webkit-box-shadow: 3px 3px 2px rgba(50, 50, 50, 0.43); -moz-box-shadow:    3px 3px 2px rgba(50, 50, 50, 0.43); box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.43);background-color:#e5e5e5; padding:1%; font-size:82%;">*Si tienes una cuenta de gmail te recomendamos intentar subir tu video utilizando Youtube, para luego enlazarlo (pestaña "desde youtube"), desde el siguiente enlace: <a href="http://www.youtube.com/upload" target="_blank">Youtube Upload</a>. Si tienes algún problema, <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a>.</div>
+			</div>
+		<?php
+			} 
+		?>
 	</div>
 </div>
 <div style="margin-right:2%;" class="row">
-	<a class="btn btn-primary pull-right" target="_blank" href="<?php echo $apply_url; ?>">CONCURSAR</a>
+	<a id="contest-link" class="btn btn-primary pull-right" target="_blank" href="<?php echo $apply_url; ?>">CONCURSAR</a>
 </div>
 
 <div id="text-des" style="display:none;">
