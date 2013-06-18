@@ -14,8 +14,6 @@ class Home extends CI_Controller {
 	
 	}
 
-
-
 	public function index($page=1)
 	{
 		$args = array();
@@ -38,11 +36,10 @@ class Home extends CI_Controller {
 			$args["search_values"]["prize"] = NULL;
 			$args["search_values"]["category"] = NULL;		
 			$args["contest_list"]  = $this->castings_model->get_castings_search($args["search_values"],$page, 9);
-			$args["chunks"]=ceil(count($this->castings_model->get_castings_search($args["search_values"])) / 9);
+			$args["chunks"] = ceil(count($this->castings_model->get_castings_search($args["search_values"])) / 9);
 		}		
     	
 		$args["page"]=$page;
-		
 
 		$args["castings"] = $this->castings_model->get_castings(NULL, 1, 1, 0);
 
@@ -51,7 +48,7 @@ class Home extends CI_Controller {
 
 		foreach ($prizes as $prize) {
 			$args["prizes"][$counter] = $prize["name"];
-			$counter = $counter +1 ;
+			$counter = $counter + 1;
 		}
 
 		$args["prizes"] = array(""=>"Elige: tipo de premio") + $args["prizes"];
@@ -90,9 +87,7 @@ class Home extends CI_Controller {
 			echo "reproducciones: ".$data["views"];
 			echo "<br>";
 			echo "<br>";
-
 		}
-
 	}
 
 	public function video_creation_date_update()
@@ -173,8 +168,6 @@ class Home extends CI_Controller {
 			$this->contact_model->insert($data);
 
 			$args["flag"]=true;
-
-			
 		}
 
 		$args['content'] = 'home/login_hunter';
@@ -184,7 +177,7 @@ class Home extends CI_Controller {
 
 	public function what_is()
 	{
-		$args['content'] = 'home/what_is';		
+		$args['content'] = 'home/what_is';	
 		$args["inner_args"]=NULL;
 		$this->load->view('template',$args);
 	}
@@ -194,7 +187,6 @@ class Home extends CI_Controller {
 		if(isset($_GET['id']))
 		{
 			$categories = $this->casting_categories_model->get_casting_categories();
-
 			
 			$args['id_casting'] = $_GET['id'];		
 			$args['title'] = $_GET['title'];		
@@ -227,11 +219,37 @@ class Home extends CI_Controller {
 				
 
 				}
-				elseif($args['category_id']==1)
+				elseif($args['category_id'] == 1)
 					$args['apply_url'] = "video";
+				elseif($args['category_id'] == 3)
+				{
+					$args['apply_url'] = "trivia";
+
+					//Aca se recuperan las preguntas personalizadas
+					$custom_questions = $this->custom_questions_model->getQuestionsBy($args['id_casting']);
+					$custom_options = array();
+
+					if($custom_questions != 0)
+					{
+						for($i =0; $i < count($custom_questions); $i++)
+						{
+							$custom_options[$i] = array('id' => $custom_questions[$i]['id'], 'type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
+							$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
+
+							if((!$opciones == 0))
+							{
+								//hay opciones
+								foreach ($opciones as $option) {
+									$custom_options[$i]['options'][] = array('id' => $option['id'], 'option' => $option['option']);	
+								}
+							}
+						}
+
+						$args['custom_options'] = $custom_options;
+					}
+				}
 				else
 					$args['apply_url'] = null;
-			
 			}	
 			
 			$args['entity_id'] = $_GET['entity_id'];	
@@ -273,9 +291,7 @@ class Home extends CI_Controller {
 			$args['video_reproductions'] = $_GET['video_reproductions'];	
 			$votes = $this->videos_model->get_votes($args['id_bdd_video']);
 			$args['upvotes'] = $votes[0]['upvotes'];	
-			$args['downvotes'] = $votes[0]['downvotes'];	
-						
-
+			$args['downvotes'] = $votes[0]['downvotes'];
 
 			$this->load->view('home/video_modal',$args);
 		}

@@ -15,7 +15,6 @@ class Hunter extends CI_Controller {
 	{
 		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
-			
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
 			$args["castings"]= $this->castings_model->get_castings($hunter_id, null, null, 0);
@@ -135,18 +134,24 @@ class Hunter extends CI_Controller {
 					$casting['apply_url'] = $this->input->post('apply_url');
 
 					$casting['prizes'] = "";
+
 					$flag = FALSE;
+					
 					foreach ($this->input->post('prizes') as $skill) {
 						if($flag)
 							$casting['prizes'] = $casting['prizes']."-";//le pego el guion
 						$casting['prizes'] = $casting['prizes'].$skill;
-						$flag =TRUE;
+						$flag = TRUE;
 					}
 					
-					
 					$casting['category'] = $this->input->post('category');
-					//convierto la "categoria a su id correspondiente"
 					$casting['category'] = $this->casting_categories_model->get_id_by_name($casting['category']);
+
+					if(strcmp($this->input->post('category'), 'Trivia') == 0)
+					{
+						$casting['apply_url'] = 'trivia';
+					}
+
 					$casting['max_applies'] = $this->input->post('max_applies');
 					$casting['entity_id'] = $hunter_id;
 
@@ -376,7 +381,6 @@ class Hunter extends CI_Controller {
 		}
 		else
 			redirect(HOME);
-
 	}
 
 	
@@ -475,7 +479,7 @@ class Hunter extends CI_Controller {
 			}
 			
 			//------------------------------>
-			$this->load->view('template', $args);	
+			$this->load->view('template', $args);
 		}
 		else
 			redirect(HOME);
@@ -553,10 +557,6 @@ class Hunter extends CI_Controller {
 				else
 					$args["age_range"] = null;
 
-					
- 
-
-
 				if($id_applicants!=0)				
 				{
 					$all_data_postulation_data= $id_applicants;
@@ -601,7 +601,9 @@ class Hunter extends CI_Controller {
 				$args["age_range"] = null;
 
 			}
+
 			$args["page"] = $page;
+
 			if($id_applicants!= 0)
 			{
 				//define si se puede finalizar el casting o no(toma el array anterior(sin filtrar) como parametro)

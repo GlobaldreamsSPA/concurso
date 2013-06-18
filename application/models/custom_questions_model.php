@@ -22,7 +22,7 @@ class Custom_questions_model extends CI_Model
 			return $query->result_array();
 	}
 	
-	function getQuestionsBy($id_casting,$by=NULL)
+	function getQuestionsBy($id_casting, $by=NULL)
 	{
 		$this->db->select('*');
 		if(!is_null($by))

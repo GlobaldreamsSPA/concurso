@@ -12,7 +12,7 @@
 
         if (state_des) {
             $("#des").animate({
-                height: 410,
+                height: 411,
                 width: "55%"
             }, 1000);
             $("#des-text").append($("#text-des").html());
@@ -44,7 +44,7 @@
 
         if (state_pri) {
             $("#pri").animate({
-                height: 410,
+                height: 411,
                 width: "55%"
             }, 1000);
             $("#pri-text").append($("#text-pri").html());
@@ -75,7 +75,7 @@
 
         if (state_bas) {
             $("#bas").animate({
-                height: 410,
+                height: 411,
                 width: "55%"
             }, 1000);
             $("#bas-text").append($("#text-bas").html());
@@ -107,7 +107,7 @@
 
         if (state_ste) {
             $("#ste").animate({
-                height: 410,
+                height: 411,
                 width: "55%"
             }, 1000);
             $("#ste-text").append($("#text-ste").html());
@@ -133,7 +133,7 @@
     var close_elements= ".modal-backdrop, .close";
     var toggle = true;
 
-	if ($("#contest-link").attr("href") == 'video') 
+	if ($("#contest-link").attr("href") == 'video' || $("#contest-link").attr("href") == 'trivia') 
 		{
 			$('#contest-link').click(function (event)
 			{
@@ -186,7 +186,6 @@
 		           	$("#contestmodal").css("overflow","visible");
 
 		        }
-
 
 		       	toggle=!toggle;
 			});
@@ -288,20 +287,20 @@
 			</div>
 		</div>
 		
-		<?php if($apply_url == "video") 
-			{ 
+		<?php
+			if(strcmp($apply_url, "video") == 0) 
+			{
 		?>
 			<div class="upload-content" style="display:none; z-index: -1; margin-left: 1.5%; margin-right: 3%; position:absolute;">
 				<ul class="nav nav-tabs">
 				  <li class="active"><a href="#enlazar" data-toggle="tab">Desde Youtube</a></li>
 				  <li><a href="#pc" data-toggle="tab">Desde tu PC</a></li>
 				</ul>
-				
 				<div class="tab-content">
 				  <div class="tab-pane active" id="enlazar">
 				  	<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
 				  		<div style="padding:2%;"class="row">
-					  		<div class="span12">	
+					  		<div class="span12">
 								<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL video" value="" required="required">											
 								<div class="space1"></div>
 								<div style="margin-top: 1%; font-size: 95%;"class="justify">
@@ -339,7 +338,61 @@
 				<div class="justify" style="-webkit-box-shadow: 3px 3px 2px rgba(50, 50, 50, 0.43); -moz-box-shadow:    3px 3px 2px rgba(50, 50, 50, 0.43); box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.43);background-color:#e5e5e5; padding:1%; font-size:82%;">*Si tienes una cuenta de gmail te recomendamos intentar subir tu video utilizando Youtube, para luego enlazarlo (pestaña "desde youtube"), desde el siguiente enlace: <a href="http://www.youtube.com/upload" target="_blank">Youtube Upload</a>. Si tienes algún problema, <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a>.</div>
 			</div>
 		<?php
-			} 
+			}
+			if(strcmp($apply_url, "trivia") == 0)
+			{
+		?>
+			<div class="upload-content" style="display:none; z-index: -1; margin-left: 1.5%; margin-right: 3%; position:absolute;">
+				<?php
+					if($custom_options != FALSE)
+					{
+						for($i=0; $i < count($custom_options); $i++) {
+							echo "<div style='padding-left:3%'class='row'";
+							if(strcmp($custom_options[$i]['type'], 'text') == 0)
+							{
+								//Pregunta va h5 y texto es textarea
+								echo "<h5>".$custom_options[$i]['text']."</h5>";
+								echo "<br>";
+								echo "<textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 97%; margin-top: 15px;' placeholder='La respuesta del postulante iría acá'></textarea>";
+							}
+							if(strcmp($custom_options[$i]['type'], 'select') == 0)
+							{
+								//Pregunta va h5 y se crea un select con varios options
+								echo "<h5>".$custom_options[$i]['text']."</h5>";
+								echo "<br>"; 
+								echo "<br>";
+
+								echo "<select name='custom_select_answer_".$custom_options[$i]['id']."'>";
+								foreach ($custom_options[$i]['options'] as $option)
+								{
+									echo "<option value='".$option['id']."'>".$option['option']."</option>";
+								}
+								echo "</select>";
+							}
+							if(strcmp($custom_options[$i]['type'], 'multiselect') == 0)
+							{
+								//Pregunta va h5 y se crea un select chozen
+								echo "<h5>".$custom_options[$i]['text']."</h5>";
+								echo "<br>";
+								echo "<br>";
+
+
+								$options =  array();
+								foreach ($custom_options[$i]['options'] as $option)
+								{
+									$options[$option['id']] = $option['option'];
+								}
+
+								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $temp+$options ,NULL,"class='chzn-select chosen_filter' style='width:300px;' data-placeholder='Selecciona tus respuestas..'");
+							}
+							echo "</div>";
+
+						}
+					}
+				?>
+			</div>
+		<?php		
+			}
 		?>
 	</div>
 </div>
