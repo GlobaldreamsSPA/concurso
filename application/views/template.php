@@ -53,7 +53,7 @@
 		
 	<div id="fb-root"></div>
 
-	<div class="navbar navbar-static-top" id="headercontent">
+	<div class="navbar navbar-fixed-top" id="headercontent">
 		<?php
 					
 			$id = $this->session->userdata('id');
@@ -79,7 +79,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-		    	<a class="brand" style="background-color:#D35400; height:40px; margin-left:1% !important; position: absolute; color: #ECF0F1" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>"> <div class="span5"><div id="star-five"></div></div> <div class="span7">Ganando.cl</div></a>
+		    	<a class="brand" style="background-color:#D35400; height:40px; margin-left:1% !important; position: absolute; color: #ECF0F1" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>"> 	<img style="margin-top:-15px;"src="<?php echo HOME."/img/logo.png"; ?>" /></a>
 
 				<div style="margin-left:300px;" class="nav-collapse collapse navbar-responsive-collapse">
                     <ul class="nav">
@@ -124,7 +124,7 @@
                 </div>
 		    </div>	
 		</div>
-		
+		<div class="color_line"></div>
 	</div>
 
 	<?php $this->load->view($content,$inner_args); ?>
@@ -431,17 +431,17 @@
 	</script>
 </body>
 
+<div class="color_line"></div>
 <footer>
-
-
+<div class="space2"></div>
 <div class"row">
-	<div class="span8 offset3"><p style="color: #7d7d7d;">GlobalDreams SPA | Publica tus castings <a href="<?php echo base_url();?>home/login_hunter">con nosotros</a> | Lee los <a href="<?php echo base_url();?>docs/terms.pdf">T&eacuterminos y condiciones</a> | <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
+	<div class="span8 offset3"><p style="color: #ECF0F1;">GlobalDreams SPA | Publica tus castings <a href="<?php echo base_url();?>home/login_hunter">con nosotros</a> | Lee los <a href="<?php echo base_url();?>docs/terms.pdf">T&eacuterminos y condiciones</a> | <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
 </div>
 <div class="row">
 	<div class="span8 offset3">
 		<div class="row">
 				<div class="span11 offset1" style="margin-top: -3px;">
-					<a style="margin-left: 30px; text-decoration: none; color: #7d7d7d;" class="second">Viddon &copy; 2013 | Todos los derechos reservados</a>
+					<a style="margin-left: 30px; text-decoration: none; color: #ECF0F1;" class="second">Viddon &copy; 2013 | Todos los derechos reservados</a>
 					<a style="margin-left: 20px;" href="https://twitter.com/ViddonCom" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
 					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
 					<div style="margin-left: 10px;" class="fb-like" data-href="https://www.facebook.com/pages/Viddoncom/499177723428347" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>				
@@ -450,4 +450,6 @@
 		</div>
 	</div>
 </div>
+<div class="space2"></div>
+
 </footer>

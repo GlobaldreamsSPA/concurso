@@ -107,199 +107,62 @@ class User extends CI_Controller {
 
 	public function index($id = NULL, $first_time = FALSE)
 	{
-		$args = array();
+		if($this->session->userdata('id') == FALSE)
+			redirect(HOME);
+
+		$id = $this->session->userdata('id');
 		$public = FALSE;
-
-		if($this->session->userdata('id') === FALSE || ($id != NULL && $id != $this->session->userdata('id')))
-		{
-			if(is_null($id))
-				redirect(HOME);
-
-			$public = TRUE;
-			$castings = $this->castings_model->get_castings(NULL, 2, 1, 0);
-		}
-		else
-		{
-			
-			$id = $this->session->userdata('id');
-			$public = FALSE;
-			$castings= null;
-
-		}
-
-		$args = $this->user_model->select($id);
-
-		if($args['image_profile']!=0)
-			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		
+		$args = $this->user_model->select($id);
+		if($args['image_profile'] != 0)
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		else
 			$args['image_profile_name'] = 0;
 
-		$args["castings"]= $castings;
-
-
-		$temp[-1]= "--  Seleccionar Todos  --";
-		$temp[-2]= "--     Vaciar Campo    --";
-		$args["video_categories_list"] = $temp+$this->video_categories_model->get();		
-		$args['public'] = $public;
-		$args["tags"] = $this->skills_model->get_user_skills($id);
-		$args["user"] = $this->user_model->welcome_name($id);
-		$args["photos"] = $this->photos_model->get_photos($id);
-		
-	
-		//PROCESA SUBIDA DE VIDEO A GALERIA
-		if(isset($_POST["url_ytb"]))
-		{
-			if(strpos($_POST["url_ytb"], 'youtu.be') === FALSE)
-			{
-				$code_link = array();
-				$code_link = parse_url($_POST["url_ytb"], PHP_URL_QUERY);
-				$link = array();
-
-				parse_str($code_link, $link);
-
-				if(isset($link['v']))
-				{
-					if((strlen ($link['v']) == 11))
-					{
-
-						$video_categories = $_POST['video_categories'];
-
-						$temp="";
-						$flag=0;
-						foreach ($video_categories as $value) 
-						{
-							if($flag==0)
-								$temp= $value;
-							else
-								$temp= $temp."-".$value;
-
-							$flag=$flag+1;
-						}
-
-						$video_categories = $temp;
-					
-						$video_to_save = array(
-						'title' => $_POST["name_ytb"],
-						'link' => $link['v'],
-						'type' => 'youtube',
-						'description' => $_POST["description_ytb"],
-						'user_id' => $id,
-						'categories' => $video_categories
-						);
-						//Insertar estos datos
-						$first = $this->videos_model->insert($video_to_save);
-						if($first != 0)
-							$this->user_model->set_main_video($id,$first);
-
-						if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/video_gallery/');
-					}
-					else
-						redirect(HOME.'/user/video_gallery/');
-				}
-			}
-			else
-			{
-				$code_link = array();
-				$code_link = explode ('/', $_POST["url_ytb"] );
-
-				$link = end ($code_link);
-
-				if(strlen ($link) == 11)
-				{
-
-					$video_categories = $_POST['video_categories'];
-
-					$temp="";
-					$flag=0;
-					foreach ($video_categories as $value) 
-					{
-						if($flag == 0)
-							$temp= $value;
-						else
-							$temp= $temp."-".$value;
-
-						$flag=$flag+1;
-					}
-
-					$video_categories = $temp;
-
-					$video_to_save = array(
-					'title' => $_POST["name_ytb"],
-					'link' => $link,
-					'type' => 'youtube',
-					'description' => $_POST["description_ytb"],
-					'user_id' => $id,
-					'categories' => $video_categories
-					);
-					//Insertar estos datos
-					$first = $this->videos_model->insert($video_to_save);
-					if($first != 0)
-						$this->user_model->set_main_video($id,$first);
-
-					if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/video_gallery/');
-				}
-				else
-					redirect(HOME.'/user/video_gallery/');
-				
-				
-			}
-			
-		}
-		//PROCESA SUBIDA DE FOTO A GALERIA
-		if(isset($_POST["url_photo"]) && strcmp("", $_POST["url_photo"]) != 0)
-	    {
-			$this->_upload_url_photo($id);
-		    if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) 
-		    redirect(HOME.'/user/photo_gallery/');
-	    }
-	    elseif (isset($_FILES['upload_photo']) && strcmp("", $_FILES['upload_photo']['name']) != 0) {
-		    $this->_upload_image($id);
-		    if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) 
-		    	redirect(HOME.'/user/photo_gallery/');
-	    }
-
-
-
-		
-		//Si el usuario tiene un video, setear los elementos siguientes, si no, no.
-		if($this->videos_model->verify_videos($id) != 0)
-		{
-			$id_main_vid = $this->user_model->get_main_video_id($id);
-
-			if(!is_null($id_main_vid) && ($video = $this->videos_model->get_main_video($id_main_vid)))
-			{
-				//$video = $this->videos_model->get_main_video($id_main_vid); //saca el video principal
-				$args['video_ID']=$video["link"];
-				$args["video_title"] = $video["title"];
-				$args["video_description"] = $video["description"];
-				$args["video_reproductions"] = $video["reproductions"];
-				$args["id_bdd_video"] = $video["id"];
-				$args["upvotes"] = $video["upvotes"];
-				$args["downvotes"] = $video["downvotes"];			
-			}else
-			{
-				$video = $this->videos_model->get_video($id); //saca el primer video registrado
-				$args['video_ID']=$video["link"];
-				$args["video_title"] = $video["title"];
-				$args["video_description"] = $video["description"];
-				$args["video_reproductions"] = $video["reproductions"];
-				$args["id_bdd_video"] = $video["id"];
-				$args["upvotes"] = $video["upvotes"];
-				$args["downvotes"] = $video["downvotes"];
-				
-			}
-			
-		}
-		else//si no tiene videos, seteo lo que se necesite
-		{
-				
-		}
 		$args["content"]="applicants/applicants_template";
-		$inner_args["applicant_content"]="applicants/user_profile";
+		$inner_args["applicant_content"]="applicants/active_casting_list";
 		$args["inner_args"]=$inner_args;
-		//El usuario hace click en postular al concurso
+		$args['public'] = $public;
+			
+		if($this->input->post("del-apply"))
+		{
+			$this->applies_model->delete($this->input->post("del-apply"));
+		}
+		
+		$castings_id = $this->applies_model->get_applicant_applies($id);
+		
+		$apply_id_dictionary= array();
+		
+		
 
+		if($castings_id != 0)
+		{
+			foreach ($castings_id as $temp) {
+				$apply_id_dictionary[$temp['casting_id']]=$temp["id"];
+			}
+			$args['castings'] = $this->castings_model->get_castings_especific($castings_id,array("0"));
+			
+			$args["tags"]=	$this->skills_model->get_skills();
+
+			foreach($args['castings'] as &$casting)
+			{
+			
+				if(isset($casting["skills"]))
+				{
+					$tags_id= explode('-', $casting["skills"]);
+					$tags_id_temp=array();
+					foreach ($tags_id as $tag) {
+						array_push($tags_id_temp, $args["tags"][$tag]);
+					}
+					$casting["tags"]=$tags_id_temp;
+				}
+				$casting["apply_id"]=$apply_id_dictionary[$casting["id"]];
+			}			
+		}
+		
+
+
+		
 		if($this->videos_model->verify_videos($id) != 1)
 		{
 			$args["postulation_flag"]=false;
@@ -308,12 +171,176 @@ class User extends CI_Controller {
 		else {
 			$args["postulation_flag"]=true;
 		}
+		
+		$args["user_id"] = $this->session->userdata('id');
+		
+		
 
-
-		$args['first_time'] = $first_time;
-		$args["user_id"] = $id;
-		$this->load->view('template',$args);
+		$this->load->view('template', $args);
 	}
+
+
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		$this->facebook->destroySession();
+		redirect(HOME);
+	}
+	
+	public function edit($user_id=null)
+	{
+		$this->load->library('form_validation');
+
+		if($this->session->userdata('id') === FALSE)
+			redirect(HOME);
+		else
+		{
+			//Setear mensajes
+			$this->form_validation->set_message('required', 'Este campo es obligatorio');
+			$this->form_validation->set_message('valid_email', 'Este campo debe ser un correo v&aacute;lido');
+
+			//Setear reglas
+			$this->form_validation->set_rules('name', 'Nombre', 'required');
+			$this->form_validation->set_rules('last_name', 'Apellido', 'required');
+			$this->form_validation->set_rules('email', 'Correo', 'required|valid_email');
+			$this->form_validation->set_rules('bio', 'Bio', 'required');
+			$this->form_validation->set_rules('skills', 'Habilidades', 'required');
+		
+			if ($this->form_validation->run() == FALSE)
+			{
+				//No paso todas las validaciones
+			}
+			
+			else
+			{
+				//Guardar los datos de usuario
+				$profile['id'] = $this->session->userdata('id');
+				$profile['name'] = $this->input->post('name');
+				$profile['last_name'] = $this->input->post('last_name');
+				$profile['email'] = $this->input->post('email');
+				$profile['bio'] = $this->input->post('bio');
+				$profile['skills']  = $this->input->post('skills');
+				
+				//ingresar los datos a la base de datos
+				$this->user_model->update($profile);
+				
+				//Ahora linkear las habilidades del usuario
+				$this->skills_model->link_skills($profile);
+
+				redirect(HOME.'/user');
+			}
+
+			//Talentos del usuario
+			
+			$skills = $this->skills_model->get_skills();
+
+			$args = array(
+				'skills' => $skills
+				);
+				
+			$args["content"]="applicants/applicants_template";
+			$inner_args["applicant_content"]="applicants/new";
+			$args["inner_args"]=$inner_args;
+
+			$args["postulation_flag"] = false;
+			$args["postulation_message"] = "Necesitas Tener Videos para poder postular";
+
+
+			if(isset($user_id) && is_numeric($user_id))
+			{
+				$id = $this->session->userdata('id');
+				$temp= array();
+				$temp=$this->user_model->select($user_id);
+				$args = array_merge ( $args, $temp);
+		
+				if($this->videos_model->verify_videos($id) == 1)
+					$args["postulation_flag"]=true;
+				
+				$args["user_id"] = $this->session->userdata('id');
+				
+
+				$args["update_values"]=$this->user_model->select($user_id);
+
+				if($args['update_values']['image_profile'] != 0)
+					$args['image_profile_name'] = $this->photos_model->get_name($args['update_values']['image_profile']);
+				else
+					$args['image_profile_name'] = 0;
+
+				$args["update_user_skills"]= $this->skills_model->get_user_skills_id($user_id);
+
+			}
+			
+
+			//Cargar el formulario(sino se ve desde área publica)
+			$args['public'] = FALSE;
+			$this->load->view('template', $args);
+		}
+	}
+
+
+	function results_casting($id = NULL)
+	{
+		if($this->session->userdata('id') == FALSE)
+			redirect(HOME);
+
+		$id = $this->session->userdata('id');
+		$public = FALSE;
+
+		$args = $this->user_model->select($id);
+		if($args['image_profile'] != 0)
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		else
+			$args['image_profile_name'] = 0;
+		
+		$args["content"]="applicants/applicants_template";
+		$inner_args["applicant_content"]="applicants/results_casting_list";
+		$args["inner_args"]=$inner_args;
+		$args['public'] = $public;
+		
+		$castings_id = $this->applies_model->get_applicant_applies($id);
+		
+		$apply_status_dictionary=array("0"=>"Pendiente","1"=>"Aceptado","2"=>"Rechazado");
+		
+		$apply_id_dictionary= array();
+			
+		
+
+		if($castings_id != 0)
+		{
+			foreach ($castings_id as $temp) 
+				$apply_id_dictionary[$temp['casting_id']]=$apply_status_dictionary[$temp["state"]];
+			
+			$args['castings'] = $this->castings_model->get_castings_especific($castings_id,array("1","2"));
+						
+			foreach($args['castings'] as &$casting)
+			{						
+				$casting["apply_status"]=$apply_id_dictionary[$casting["id"]];
+			}			
+		}
+		
+		
+		if($this->videos_model->verify_videos($id) != 1)
+		{
+			$args["postulation_flag"]=false;
+			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
+		}
+		else {
+			$args["postulation_flag"]=true;
+		}
+		
+		$args["user_id"] = $this->session->userdata('id');
+		
+		
+
+		$this->load->view('template', $args);
+		
+	}
+
+	
+
+	/* IMPORTANTE FUNCIONES PARA SUBIR IMAGENES; SON UTILES PARA CONCURSO DE SUBIDA DE IMAGENES
+	O FOTOS.
 
 	private function _upload_url_photo($id)
   	{
@@ -360,38 +387,38 @@ class User extends CI_Controller {
 	    }
  	}
 
-private function _upload_image($id)
-  {
-    $images_path = realpath(LOCAL_GALLERY);
-    
-    //obtener la extension del archivo
-    $type = explode('/', $_FILES['upload_photo']['type']);
-    $ultimo_indicador = $this->photos_model->get_last_indicator($id);
-    $img_name = $id."_".($ultimo_indicador+1).".".$type[1];
-    
-    $config = array(
-      'allowed_types' => 'jpg|jpeg|gif|png',
-      'upload_path' => $images_path,
-      'file_name' => $img_name,
-      'overwrite' => TRUE,
-      'max_size' => 2048,
-      'remove_spaces' =>TRUE
-    );
-    
-    $this->upload->initialize($config);
-    
-    if(!$this->upload->do_upload('upload_photo'))
-    {
-      print_r($this->upload->display_errors());
-    }
+	private function _upload_image($id)
+	{
+	    $images_path = realpath(LOCAL_GALLERY);
+	    
+	    //obtener la extension del archivo
+	    $type = explode('/', $_FILES['upload_photo']['type']);
+	    $ultimo_indicador = $this->photos_model->get_last_indicator($id);
+	    $img_name = $id."_".($ultimo_indicador+1).".".$type[1];
+	    
+	    $config = array(
+	      'allowed_types' => 'jpg|jpeg|gif|png',
+	      'upload_path' => $images_path,
+	      'file_name' => $img_name,
+	      'overwrite' => TRUE,
+	      'max_size' => 2048,
+	      'remove_spaces' =>TRUE
+	    );
+	    
+	    $this->upload->initialize($config);
+	    
+	    if(!$this->upload->do_upload('upload_photo'))
+	    {
+	      print_r($this->upload->display_errors());
+	    }
 
-    $photo_to_save = array(
-      'name' => $img_name,
-      'user_id' => $id
-      );
-    
-    $this->photos_model->insert($photo_to_save);
-}
+	    $photo_to_save = array(
+	      'name' => $img_name,
+	      'user_id' => $id
+	      );
+	    
+	    $this->photos_model->insert($photo_to_save);
+	}
 
 	public function photo_gallery($ope=NULL,$id_photo_objetivo=NULL) //TODO: TERMINAR
 	{
@@ -479,395 +506,6 @@ private function _upload_image($id)
 		$this->load->view('template',$args);
 	}
 
-
-	public function video_gallery($id=null,$page=1,$ope=NULL,$id_video_objetivo=NULL)
-	{
-		if($this->session->userdata('id') == FALSE && is_null($id))
-			redirect(HOME);
-
-		$args = array();
-		
-		if(!is_null($id) && ($this->session->userdata('id') == FALSE || $id != $this->session->userdata('id')))
-		{	
-			$args = $this->user_model->select($id);
-			$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1, 0);
-			$args['public'] = TRUE;
-			$args['id_main_video'] =$this->user_model->get_main_video_id($id);
-
-		}
-		else
-		{
-			$id = $this->session->userdata('id');
-			$args = $this->user_model->select($id);
-			$args['public'] = FALSE;
-
-			//proceso la operación de actualización del video $_POST['id_editando']
-			if(isset($_POST['id_editando']))
-			{
-				//agregar validaciones aquí
-				$video_categories = $_POST['video_categories_edit'];
-
-				$temp="";
-				$flag=0;
-				foreach ($video_categories as $value) 
-				{
-					if($flag == 0)
-						$temp= $value;
-					else
-						$temp= $temp."-".$value;
-
-					$flag=$flag+1;
-				}
-
-				$video_categories = $temp;
-
-				$this->videos_model->update($_POST['id_editando'],$_POST['nombre_video_edit'],$_POST['description_video_edit'],$video_categories);
-				redirect(HOME."/user/video_gallery"); //vuelve a cargar
-			}
-
-			if($this->videos_model->verify_videos($id) != 1)
-			{
-				$args["postulation_flag"]=false;
-				$args["postulation_message"]="Necesitas Tener Videos para poder postular";
-			}
-			else {
-				$args["postulation_flag"]=true;
-			}
-
-			$args['id_main_video'] =$this->user_model->get_main_video_id($id);
-
-
-			if(!is_null($ope))
-			{
-				switch($ope){
-					case 1://HACER MAIN
-						if(!is_null($id_video_objetivo) && !is_null($id) && is_numeric($id_video_objetivo))
-						{
-							$this->user_model->set_main_video($id,$id_video_objetivo);
-							redirect(HOME."/user/video_gallery");			
-						}
-						break;
-					case 2://ELIMINAR
-						if(!is_null($id_video_objetivo) && !is_null($id) && is_numeric($id_video_objetivo))
-						{
-							if($args['id_main_video'] == $id_video_objetivo)
-								$this->user_model->set_main_video($id);
-							$this->videos_model->delete($id_video_objetivo);	
-							redirect(HOME."/user/video_gallery");		
-						}
-						break;
-				} 
-			}
-		}
-		
-		
-		if($args['image_profile'] != 0)
-			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
-		else
-			$args['image_profile_name'] = 0;
-
-		
-		//AHORA OBTENGO LOS ELEMENTOS NECESARIOS PARA LA GALERIA
-		$args['videos'] = $this->videos_model->get_videos_by_user($id,$page);
-
-		foreach ($args['videos'] as &$video)
-			$video[5]=explode("-",$video[5]);
-		
-		$args['page']=$page;
-		$args["chunks"]=ceil($this->videos_model->count_videos_by_user($id)/8);	
-		
-		$temp[-1]= "--  Seleccionar Todos  --";
-		$temp[-2]= "--     Vaciar Campo    --";
-		$args["video_categories_list"] = $temp+$this->video_categories_model->get();
-
-		
-		$args["content"]="applicants/applicants_template";
-		$inner_args["applicant_content"]="applicants/video_gallery";
-		$args["inner_args"]=$inner_args;
-		$args["user_id"] = $id;
-		
-		$this->load->view('template',$args);
-	}
-
-	public function logout()
-	{
-		$this->session->sess_destroy();
-		$this->facebook->destroySession();
-		redirect(HOME);
-	}
-	
-	public function edit($user_id=null)
-	{
-		$this->load->library('form_validation');
-
-		if($this->session->userdata('id') === FALSE)
-			redirect(HOME);
-		else
-		{
-			//Setear mensajes
-			$this->form_validation->set_message('required', 'Este campo es obligatorio');
-			$this->form_validation->set_message('valid_email', 'Este campo debe ser un correo v&aacute;lido');
-
-			//Setear reglas
-			$this->form_validation->set_rules('name', 'Nombre', 'required');
-			$this->form_validation->set_rules('last_name', 'Apellido', 'required');
-			$this->form_validation->set_rules('email', 'Correo', 'required|valid_email');
-			$this->form_validation->set_rules('bio', 'Bio', 'required');
-			$this->form_validation->set_rules('skills', 'Habilidades', 'required');
-		
-			if ($this->form_validation->run() == FALSE)
-			{
-				//No paso todas las validaciones
-			}
-			
-			else
-			{
-				//Guardar los datos de usuario
-				$profile['id'] = $this->session->userdata('id');
-				$profile['name'] = $this->input->post('name');
-				$profile['last_name'] = $this->input->post('last_name');
-				$profile['email'] = $this->input->post('email');
-				$profile['bio'] = $this->input->post('bio');
-				$profile['skills']  = $this->input->post('skills');
-				/*
-				$profile['sex'] = $this->input->post('sex');
-				$profile['age'] = $this->input->post('age');
-				$profile['height'] = $this->input->post('height');
-				$profile['color_skin'] = $this->input->post('color_skin');
-				$profile['color_eye'] = $this->input->post('color_eyes');
-				$profile['color_hair'] = $this->input->post('color_hair');
-				$profile['build'] = $this->input->post('build');
-				*/
-
-				//ingresar los datos a la base de datos
-				$this->user_model->update($profile);
-				
-				//Ahora linkear las habilidades del usuario
-				$this->skills_model->link_skills($profile);
-
-				/*
-				//Por ultimo subir la foto
-				if($this->check_upload('') == TRUE)
-					$this->_upload_image($profile['id']);
-
-				if($this->check_upload('') == TRUE && (isset($user_id) && is_numeric($user_id)))
-					$this->_upload_image($profile['id']);
-
-				*/
-
-				redirect(HOME.'/user');
-			}
-
-			//Talentos del usuario
-			
-			$skills = $this->skills_model->get_skills();
-			/*
-			//Edad del usuario
-			$age = array();
-
-			for($i=100; $i>=1; $i--)
-			{
-				$age[$i] = $i;
-			}
-			
-			for($i=250; $i>=50; $i--)
-			{
-				$height[$i] = $i;
-			}
-
-			
-			$sex= array(0=>"Femenino", 1 =>"Masculino");
-			$skin= array(0=>"Blanca",1=>"Morena", 2 =>"Negra");
-			$eyes= array(0=>"Verde",1=>"Azul", 2 =>"Gris",3=>"Casta&ntilde;o",4=>"Ambar",5=>"Pardos");
-			$hair= array(0=>"Casta&ntilde;o",1=>"Negro", 2 =>"Rubio",3=>"Blanco",4=>"Gris",5=>"Colorin",6=>"Otros");
-			$build= array(0=>"Delgado",1=>"Normal",2=>"Grueso",3=>"Atletico");
-			*/
-
-			$args = array(
-				'skills' => $skills/*,
-				'age' => $age,
-				'height' => $height,
-				'eyes' => $eyes,
-				'skin' => $skin,
-				'hair' => $hair,
-				'sex'  => $sex,
-				'build' => $build*/
-				);
-				
-			$args["content"]="applicants/applicants_template";
-			$inner_args["applicant_content"]="applicants/new";
-			$args["inner_args"]=$inner_args;
-
-			$args["postulation_flag"] = false;
-			$args["postulation_message"] = "Necesitas Tener Videos para poder postular";
-
-
-			if(isset($user_id) && is_numeric($user_id))
-			{
-				$id = $this->session->userdata('id');
-				$temp= array();
-				$temp=$this->user_model->select($user_id);
-				$args = array_merge ( $args, $temp);
-		
-				if($this->videos_model->verify_videos($id) == 1)
-					$args["postulation_flag"]=true;
-				
-				$args["user_id"] = $this->session->userdata('id');
-				
-
-				$args["update_values"]=$this->user_model->select($user_id);
-
-				if($args['update_values']['image_profile'] != 0)
-					$args['image_profile_name'] = $this->photos_model->get_name($args['update_values']['image_profile']);
-				else
-					$args['image_profile_name'] = 0;
-
-				$args["update_user_skills"]= $this->skills_model->get_user_skills_id($user_id);
-
-			}
-			
-
-			//Cargar el formulario(sino se ve desde área publica)
-			$args['public'] = FALSE;
-			$this->load->view('template', $args);
-		}
-	}
-
-
-
-	function active_casting_list($id = NULL)
-	{
-		if($this->session->userdata('id') == FALSE)
-			redirect(HOME);
-
-		$id = $this->session->userdata('id');
-		$public = FALSE;
-		
-		$args = $this->user_model->select($id);
-		if($args['image_profile'] != 0)
-			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
-		else
-			$args['image_profile_name'] = 0;
-
-		$args["content"]="applicants/applicants_template";
-		$inner_args["applicant_content"]="applicants/active_casting_list";
-		$args["inner_args"]=$inner_args;
-		$args['public'] = $public;
-			
-		if($this->input->post("del-apply"))
-		{
-			$this->applies_model->delete($this->input->post("del-apply"));
-		}
-		
-		$castings_id = $this->applies_model->get_applicant_applies($id);
-		
-		$apply_id_dictionary= array();
-		
-		
-
-		if($castings_id != 0)
-		{
-			foreach ($castings_id as $temp) {
-				$apply_id_dictionary[$temp['casting_id']]=$temp["id"];
-			}
-			$args['castings'] = $this->castings_model->get_castings_especific($castings_id,array("0"));
-			
-			$args["tags"]=	$this->skills_model->get_skills();
-
-			foreach($args['castings'] as &$casting)
-			{
-			
-				if(isset($casting["skills"]))
-				{
-					$tags_id= explode('-', $casting["skills"]);
-					$tags_id_temp=array();
-					foreach ($tags_id as $tag) {
-						array_push($tags_id_temp, $args["tags"][$tag]);
-					}
-					$casting["tags"]=$tags_id_temp;
-				}
-				$casting["apply_id"]=$apply_id_dictionary[$casting["id"]];
-			}			
-		}
-		
-
-
-		
-		if($this->videos_model->verify_videos($id) != 1)
-		{
-			$args["postulation_flag"]=false;
-			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
-		}
-		else {
-			$args["postulation_flag"]=true;
-		}
-		
-		$args["user_id"] = $this->session->userdata('id');
-		
-		
-
-		$this->load->view('template', $args);
-		
-	}
-
-	function results_casting($id = NULL)
-	{
-		if($this->session->userdata('id') == FALSE)
-			redirect(HOME);
-
-		$id = $this->session->userdata('id');
-		$public = FALSE;
-
-		$args = $this->user_model->select($id);
-		if($args['image_profile'] != 0)
-			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
-		else
-			$args['image_profile_name'] = 0;
-		
-		$args["content"]="applicants/applicants_template";
-		$inner_args["applicant_content"]="applicants/results_casting_list";
-		$args["inner_args"]=$inner_args;
-		$args['public'] = $public;
-		
-		$castings_id = $this->applies_model->get_applicant_applies($id);
-		
-		$apply_status_dictionary=array("0"=>"Pendiente","1"=>"Aceptado","2"=>"Rechazado");
-		
-		$apply_id_dictionary= array();
-			
-		
-
-		if($castings_id != 0)
-		{
-			foreach ($castings_id as $temp) 
-				$apply_id_dictionary[$temp['casting_id']]=$apply_status_dictionary[$temp["state"]];
-			
-			$args['castings'] = $this->castings_model->get_castings_especific($castings_id,array("1","2"));
-						
-			foreach($args['castings'] as &$casting)
-			{						
-				$casting["apply_status"]=$apply_id_dictionary[$casting["id"]];
-			}			
-		}
-		
-		
-		if($this->videos_model->verify_videos($id) != 1)
-		{
-			$args["postulation_flag"]=false;
-			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
-		}
-		else {
-			$args["postulation_flag"]=true;
-		}
-		
-		$args["user_id"] = $this->session->userdata('id');
-		
-		
-
-		$this->load->view('template', $args);
-		
-	}
-
 	function check_upload($image)
 	{
 		if($_FILES['image_profile']['error'] == 4)
@@ -880,4 +518,6 @@ private function _upload_image($id)
 			return TRUE;
 		}
 	}
+
+	*/
 }

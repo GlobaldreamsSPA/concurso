@@ -10,7 +10,7 @@ $('[data-toggle="modal"]').click(function(e) {
 	
 	$.get(url, function(data) {
 		$('<div id="contestmodal" class="modal hide fade">' + data + '</div>').modal();
-	}).success(function() { $('input:text:visible:first').focus(); });
+	}).success(function() { $('.modal-title').focus(); });
 });
 	
 });
@@ -20,7 +20,6 @@ $('[data-toggle="modal"]').click(function(e) {
 
 
 <div class="content home" id="content">
-	<div class="space4"></div>
 	<div class="space4"></div>
 	<div class="space4"></div>
 	<div class="space4"></div>
@@ -44,7 +43,7 @@ $('[data-toggle="modal"]').click(function(e) {
 							</div>
 						</div>
 						<div style="margin-top:15px; text-align:right;" class="span2">
-							<input type="submit"  id="filter_button" class="btn btn-info" value="BUSCAR CONCURSOS"/>
+							<input type="submit"  id="filter_button" class="btn btn-primary" value="BUSCAR CONCURSOS"/>
 						</div>
 					</form>
 				</div>

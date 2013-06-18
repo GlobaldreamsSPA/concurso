@@ -5,11 +5,48 @@ body
 
 }
 
-a:link {text-decoration: none}
+/* estilo elementos modal concurso*/
 
-a:visited {text-decoration: none}
 
-a:hover {	text-decoration: underline}
+#des{
+	position:absolute; 
+	width:27%; 
+	height:200px; 
+	background-color:#3498DB
+}
+
+#pri
+{
+	right:1.5%; 
+	position:absolute; 
+	width:27%; 
+	height:200px; 
+	background-color:#2ECC71
+}
+
+#bas
+{
+	position:absolute; 
+	width:27%; 
+	height:200px; 
+	bottom:15%; 
+	background-color:#F39C12
+}
+
+#ste
+{
+	right:1.5%;  
+	position:absolute;  
+	width:27%; 
+	height:200px; 
+	bottom:15%; 
+	background-color:#F1C40F
+}
+
+/*links*/
+a:link {text-decoration: none !important} 
+
+a:visited {text-decoration: none !important}
 
 #variable{min-height: 1180px;}
 
@@ -343,9 +380,9 @@ padding-bottom: 5%;
    width: 150px;
    padding-left: 5%;
    font-size: 16px;
-   border: 1px solid #E74C3C;
+   border: 1px solid #E67E22;
    color: white;
-   background: url('../img/sort_desc_disabled.png') no-repeat 96% 35% #E74C3C;
+   background: url('../img/sort_desc_disabled.png') no-repeat 96% 35% #E67E22;
    height: 41px;
     -webkit-appearance: none;
 } 
@@ -500,7 +537,7 @@ div.space4
 /* Fondo pagina principal */
 div.home
 {
-	border-top: 30px solid white;	
+	margin-top: 80px;
 	background: url('../img/bg_ganando.png') no-repeat;
 	background-size: 100% auto;
 }
@@ -610,8 +647,7 @@ div.video_text_main
 	position: relative;
 	left: -2.5%;
 	top: -20px;
-	background:  #E74C3C  !important;
-	box-shadow: 01px 01px 01px #E2E2E2; 
+	background:  #E67E22  !important;
 }
 
 .home-video-title
@@ -619,7 +655,7 @@ div.video_text_main
 	color: white;
 	font-size: 15px;
 	font-weight: bold;
-	text-shadow: -3px 0 #C0392B, 0 3px #C0392B, 3px 0 #C0392B, 0 -3px #C0392B;
+	text-shadow: -3px 0 #D35400, 0 3px #D35400, 3px 0 #D35400, 0 -3px #D35400;
 
 }
 
@@ -646,7 +682,7 @@ span.arrow {
 	bottom: 0;
 	border-left: 12px solid transparent;
 	border-right: 12px solid transparent;
-	border-bottom: 12px solid #E74C3C;
+	border-bottom: 12px solid #E67E22;
 	z-index: 12;
 }
 
@@ -757,11 +793,9 @@ div.button-home-page
 /* footer Stuff */
 footer
 {
-	background: #1a1a1a;
-	min-height: 90px;
+	background-color: #E67E22 !important;
 	position: relative;
 	bottom: 0;
-	padding-top: 30px;
 }
 
 footer ul
@@ -777,7 +811,12 @@ footer #que-es-viddon, #siguenos, #contacto li p
 	font-size: 17px;
 }
 
-
+.color_line
+{
+	width:100%; 
+	height: 4px; 
+	background: url('../img/lineacolor.jpg');
+}
 
 
 footer #contacto li ul li p 
