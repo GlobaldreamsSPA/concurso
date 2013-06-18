@@ -154,9 +154,6 @@ class Castings_model extends CI_Model
         else
             $query = $this->db->get('castings');
 
-		
-
-		
         $results = $query->result_array();
 
         foreach($results as &$casting)

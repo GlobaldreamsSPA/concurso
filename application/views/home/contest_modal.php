@@ -376,17 +376,15 @@
 								echo "<br>";
 								echo "<br>";
 
-
 								$options =  array();
 								foreach ($custom_options[$i]['options'] as $option)
 								{
 									$options[$option['id']] = $option['option'];
 								}
 
-								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $temp+$options ,NULL,"class='chzn-select chosen_filter' style='width:300px;' data-placeholder='Selecciona tus respuestas..'");
+								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width:300px;' data-placeholder='Selecciona tus respuestas..'");
 							}
 							echo "</div>";
-
 						}
 					}
 				?>
