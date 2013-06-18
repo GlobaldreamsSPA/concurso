@@ -287,45 +287,46 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	/* HAY Q OBTENER FUNCIONES DE ACA AUN; LUEGO BORRAR*/
 	public function casting_detail($id)
 	{
-		if(is_numeric($id))
+		$args["casting"] = $this->castings_model->get_full_casting($id);
+		
+		$args["temp"][-1]= "--  Seleccionar Todos  --";
+		$args["temp"][-2]= "--     Vaciar Campo    --";
+		
+		if(strcmp($args["casting"]["category"], "3") == 0)
 		{
-			$args["casting"] = $this->castings_model->get_full_casting($id);
-			$args["casting"]["applies"] = $this->applies_model->get_applies_cant($id);
-			
-			$args["temp"][-1]= "--  Seleccionar Todos  --";
-			$args["temp"][-2]= "--     Vaciar Campo    --";
-			
-			//carga las preguntas custom de este casting
-			$custom_questions = $this->custom_questions_model->getQuestionsBy($id);
-			$custom_options = array();
-			if($custom_questions != 0)
-				for($i =0; $i < count($custom_questions); $i++)
-				{
-					$custom_options[$i] = array('id' => $custom_questions[$i]['id'], 'type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
-					$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
 
-					if((!$opciones == 0))
-					{
-						//hay opciones
-						foreach ($opciones as $option) {
-							$custom_options[$i]['options'][] = array('id' => $option['id'], 'option' => $option['option']);	
-						}
+		//carga las preguntas custom de este casting
+		$custom_questions = $this->custom_questions_model->getQuestionsBy($id);
+		$custom_options = array();
+
+		if($custom_questions != 0)
+			for($i =0; $i < count($custom_questions); $i++)
+			{
+				$custom_options[$i] = array('id' => $custom_questions[$i]['id'], 'type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
+				$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
+
+				if((!$opciones == 0))
+				{
+					//hay opciones
+					foreach ($opciones as $option) {
+						$custom_options[$i]['options'][] = array('id' => $option['id'], 'option' => $option['option']);	
 					}
 				}
-
-			else
-				$custom_options = FALSE;
-
-			$args['custom_options'] = $custom_options;
+			}
+		else
+			$custom_options = FALSE;
 		}
-
 		
+		
+
+		$args['custom_options'] = $custom_options;
+
+		/*
 		if($this->session->userdata('msj'))
 		{
-			$args["postulation_message"]=$this->session->userdata('msj');		
+			$args["postulation_message"]=$this->session->userdata('msj');	
 			$this->session->unset_userdata('msj');
 		}
 		
@@ -344,6 +345,8 @@ class Home extends CI_Controller {
 			}
 			$args["tags"]=$tags_id_temp;
 		}
+
+		*/
 		
 		$args["content"]="home/casting_detail";
 		$args["inner_args"]=NULL;

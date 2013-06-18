@@ -269,7 +269,7 @@
 				<input type="text" style="width: 30%;" id="dp2" name="end-date">
 
 				<h5>T&iacutetulo</h5>
-				<input type="text" name="title" style="width: 40%;" placeholder="Ingrese el t&iacute;tulo del Concurso">
+				<input type="text" name="title" style="width: 40%;" placeholder="Ingrese un t&iacute;tulo llamativo">
 				<?php echo form_error('title'); ?>
 
 
@@ -280,7 +280,7 @@
 				<h5>URL Postulaci&oacute;n</h5>
 				<input type="text" name="apply_url" style="width: 40%;" placeholder="Ingresa URL">
 						
-				<h5>Imagen para mostrar</h5>
+				<h5>Imagen para mostrar (ésta es la imagen descriptiva)</h5>
 				<?php echo form_upload(array('name' => 'logo','class'=> 'file')); ?>
 				<?php
 					echo form_hidden('image','');
