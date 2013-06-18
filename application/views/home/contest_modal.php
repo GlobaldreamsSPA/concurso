@@ -2,135 +2,57 @@
 
 	$('body').css('overflow', 'hidden');
 
-    var state_des = true;
-    $("#des").click(function () {
+	/* Funcion de la animacion de la informacion del concurso, de modo que al hacer click em
+	uno de los bloques se ocultan los otros */
+	var contest_information_animation = function (event) 
+	{
+			
+		$(event.data.target).css("z-index","0");
+		$(event.data.div1).css("z-index","-1");
+		$(event.data.div2).css("z-index","-1");
+		$(event.data.div3).css("z-index","-1");
 
-		$("#des").css("z-index","0");
-		$("#pri").css("z-index","-1");
-		$("#bas").css("z-index","-1");
-		$("#ste").css("z-index","-1");
-
-        if (state_des) {
-            $("#des").animate({
-                height: 411,
+        if (event.data.state) {
+            $(event.data.target).animate({
+                height: 410,
                 width: "55%"
             }, 1000);
-            $("#des-text").append($("#text-des").html());
+            $(event.data.target_text).append($(event.data.source_text).html());
         } else {
-            $("#des").animate({
+            $(event.data.target).animate({
                 height: 200,
                 width: "27%"
             }, 1000, function(){
-				$("#pri").css("z-index","0");
-				$("#bas").css("z-index","0");
-				$("#ste").css("z-index","0");
+				$(event.data.div1).css("z-index","0");
+				$(event.data.div2).css("z-index","0");
+				$(event.data.div3).css("z-index","0");
 				}
             );
-            $("#des-text").empty();
+            $(event.data.target_text).empty();
  
 
         }
+  		event.data.state = !event.data.state;
+
+    };
+
+    var state_des = true;
+	$("#des").click({target: '#des', div1: '#pri', div2: '#bas', div3: '#ste', state: state_des,target_text: '#des-text', source_text: '#text-des'},contest_information_animation);
+
   
-		state_des = !state_des;
-    });
+	var state_pri = true;
+	$("#pri").click({target: '#pri', div1: '#des', div2: '#bas', div3: '#ste', state: state_pri,target_text: '#pri-text', source_text: '#text-pri'},contest_information_animation);
+  	
+  	var state_bas = true;
+	$("#bas").click({target: '#bas', div1: '#des', div2: '#pri', div3: '#ste', state: state_bas,target_text: '#bas-text', source_text: '#text-bas'},contest_information_animation);
+  	
+  	var state_ste = true;
+	$("#ste").click({target: '#ste', div1: '#des', div2: '#pri', div3: '#bas', state: state_ste,target_text: '#ste-text', source_text: '#text-ste'},contest_information_animation);
+  	
 
-    var state_pri = true;
-    $("#pri").click(function () {
+	/* Animacion tipo telon de cine para los concursos de video y trivia*/
 
-		$("#des").css("z-index","-1");
-		$("#pri").css("z-index","0");
-		$("#bas").css("z-index","-1");
-		$("#ste").css("z-index","-1");
-
-        if (state_pri) {
-            $("#pri").animate({
-                height: 411,
-                width: "55%"
-            }, 1000);
-            $("#pri-text").append($("#text-pri").html());
-        } else {
-            $("#pri").animate({
-                height: 200,
-                width: "27%"
-            }, 1000, function(){
-				$("#des").css("z-index","0");
-				$("#bas").css("z-index","0");
-				$("#ste").css("z-index","0");
-				}
-            );
-            $("#pri-text").empty();
-              
-        }
-  
-		state_pri = !state_pri;
-    });
-	
-	var state_bas = true;
-    $("#bas").click(function () {
-
-		$("#des").css("z-index","-1");
-		$("#pri").css("z-index","-1");
-		$("#bas").css("z-index","0");
-		$("#ste").css("z-index","-1");
-
-        if (state_bas) {
-            $("#bas").animate({
-                height: 411,
-                width: "55%"
-            }, 1000);
-            $("#bas-text").append($("#text-bas").html());
-
-        } else {
-            $("#bas").animate({
-                height: 200,
-                width: "27%"
-            }, 1000, function(){
-				$("#des").css("z-index","0");
-				$("#pri").css("z-index","0");
-				$("#ste").css("z-index","0");
-				}
-            );
-            $("#bas-text").empty();
-          
-        }
-  
-		state_bas = !state_bas;
-    });
-
-    var state_ste = true;
-    $("#ste").click(function () {
-
-		$("#des").css("z-index","-1");
-		$("#pri").css("z-index","-1");
-		$("#bas").css("z-index","-1");
-		$("#ste").css("z-index","0");
-
-        if (state_ste) {
-            $("#ste").animate({
-                height: 411,
-                width: "55%"
-            }, 1000);
-            $("#ste-text").append($("#text-ste").html());
-
-        } else {
-            $("#ste").animate({
-                height: 200,
-                width: "27%"
-            }, 1000, function(){
-				$("#des").css("z-index","0");
-				$("#pri").css("z-index","0");
-				$("#bas").css("z-index","0");
-				}
-            );
-            $("#ste-text").empty();
-
-        }
-  
-		state_ste = !state_ste;
-    });
-
-
-    var close_elements= ".modal-backdrop, .close";
+    var close_elements= ".modal-backdrop, .close"; /* variable que maneja los elementos que ocacionan que se cierre el modal*/
     var toggle = true;
 
 	if ($("#contest-link").attr("href") == 'video' || $("#contest-link").attr("href") == 'trivia') 
@@ -191,9 +113,10 @@
 			});
 		}else
 		{
-			close_elements = close_elements + ", .btn-primary";
+			close_elements = close_elements + ", .btn-primary"; /* si el concurso no es de tipo trivia o video se cierra el modal al presionar concursar*/
 		}
 
+	/* Funcion que maneja el cierre del modal*/
 
 	$(close_elements).bind("click", function() {
 	    $("#contestmodal").fadeOut(500, function () {
