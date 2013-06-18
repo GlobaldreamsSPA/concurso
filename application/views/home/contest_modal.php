@@ -141,7 +141,7 @@
 			    if (toggle) {
 			    
 			    $(".upload-content").css("display","inline");
-	            $("#contestmodal").css("overflow","hidden");
+	            $("#contestmodal").css("overflow-x","hidden");
 
 	            $("#des").animate({
 	                width: "1%"
@@ -291,7 +291,7 @@
 			if(strcmp($apply_url, "video") == 0) 
 			{
 		?>
-			<div class="upload-content" style="display:none; z-index: -1; margin-left: 1.5%; margin-right: 3%; position:absolute;">
+			<div class="upload-content">
 				<ul class="nav nav-tabs">
 				  <li class="active"><a href="#enlazar" data-toggle="tab">Desde Youtube</a></li>
 				  <li><a href="#pc" data-toggle="tab">Desde tu PC</a></li>
@@ -342,18 +342,19 @@
 			if(strcmp($apply_url, "trivia") == 0)
 			{
 		?>
-			<div class="upload-content" style="display:none; z-index: -1; margin-left: 1.5%; margin-right: 3%; position:absolute;">
+			<div class="upload-content">
 				<?php
 					if($custom_options != FALSE)
 					{
-						for($i=0; $i < count($custom_options); $i++) {
+						for($i=0; $i < count($custom_options); $i++) 
+						{
 							echo "<div style='padding-left:3%'class='row'";
 							if(strcmp($custom_options[$i]['type'], 'text') == 0)
 							{
 								//Pregunta va h5 y texto es textarea
 								echo "<h5>".$custom_options[$i]['text']."</h5>";
 								echo "<br>";
-								echo "<textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 97%; margin-top: 15px;' placeholder='La respuesta del postulante iría acá'></textarea>";
+								echo "<textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 70%; margin-top: 15px;' placeholder='La respuesta del postulante iría acá'></textarea>";
 							}
 							if(strcmp($custom_options[$i]['type'], 'select') == 0)
 							{
@@ -382,12 +383,16 @@
 									$options[$option['id']] = $option['option'];
 								}
 
-								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width:300px;' data-placeholder='Selecciona tus respuestas..'");
+								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width: 90%;' data-placeholder='Selecciona tus respuestas..'");
 							}
 							echo "</div>";
 						}
 					}
 				?>
+				<!-- Este script es para convertir los multiselects en chozen selects -->
+				<script type="text/javascript">
+					$(".chzn-select").chosen();
+				</script>
 			</div>
 		<?php		
 			}

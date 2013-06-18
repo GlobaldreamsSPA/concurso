@@ -43,6 +43,19 @@ body
 	background-color:#F1C40F
 }
 
+/* Estilo para los contenedores de informacion al hacer click en Concursar en los modales */
+.upload-content {
+	display: none;
+	z-index: -1; 
+	margin-left: 1.5%; 
+	margin-right: 3%; 
+	position: absolute;
+	width: 50%;
+	height: 412px;
+	overflow: scroll;
+}
+/* Estilo para los contenedores de informacion al hacer click en Concursar en los modales */
+
 /*links*/
 a:link {text-decoration: none !important} 
 

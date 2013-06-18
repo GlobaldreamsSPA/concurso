@@ -30,8 +30,6 @@ class Hunter extends CI_Controller {
 		else
 			redirect(HOME);
 	}
-	
-	
 
 	function verifylogin()
  	{
