@@ -39,7 +39,6 @@
     var state_des = true;
 	$("#des").click({target: '#des', div1: '#pri', div2: '#bas', div3: '#ste', state: state_des,target_text: '#des-text', source_text: '#text-des'},contest_information_animation);
 
-  
 	var state_pri = true;
 	$("#pri").click({target: '#pri', div1: '#des', div2: '#bas', div3: '#ste', state: state_pri,target_text: '#pri-text', source_text: '#text-pri'},contest_information_animation);
   	
@@ -129,7 +128,6 @@
 		$('body').css('overflow', 'visible');
 
 	});
-
 
 
 </script>
@@ -326,6 +324,8 @@
 	<a id="contest-link" class="btn btn-primary pull-right" target="_blank" href="<?php echo $apply_url; ?>">CONCURSAR</a>
 </div>
 
+
+<!-- Texto oculto de las descripciones-->
 <div id="text-des" style="display:none;">
 	<?php echo $description; ?>
 </div>

@@ -200,6 +200,7 @@ class Home extends CI_Controller {
 			$args['full_image'] = $_GET['full_image'];
 			$args['category'] = $categories[$_GET['category']];	
 			$args['category_id'] = $_GET['category'];
+			
 			if( !in_array($args['category_id'],array(1,2,3)))
 				$args['apply_url'] = $_GET['apply_url'];
 			else
@@ -302,73 +303,6 @@ class Home extends CI_Controller {
 	{
 		$args['content'] = 'home/terms';		
 		$args["inner_args"]=NULL;
-		$this->load->view('template',$args);
-	}
-
-	public function casting_detail($id)
-	{
-		$args["casting"] = $this->castings_model->get_full_casting($id);
-		
-		$args["temp"][-1]= "--  Seleccionar Todos  --";
-		$args["temp"][-2]= "--     Vaciar Campo    --";
-		
-		if(strcmp($args["casting"]["category"], "3") == 0)
-		{
-
-		//carga las preguntas custom de este casting
-		$custom_questions = $this->custom_questions_model->getQuestionsBy($id);
-		$custom_options = array();
-
-		if($custom_questions != 0)
-			for($i =0; $i < count($custom_questions); $i++)
-			{
-				$custom_options[$i] = array('id' => $custom_questions[$i]['id'], 'type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
-				$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
-
-				if((!$opciones == 0))
-				{
-					//hay opciones
-					foreach ($opciones as $option) {
-						$custom_options[$i]['options'][] = array('id' => $option['id'], 'option' => $option['option']);	
-					}
-				}
-			}
-		else
-			$custom_options = FALSE;
-		}
-		
-		
-
-		$args['custom_options'] = $custom_options;
-
-		/*
-		if($this->session->userdata('msj'))
-		{
-			$args["postulation_message"]=$this->session->userdata('msj');	
-			$this->session->unset_userdata('msj');
-		}
-		
-		$gender_interpreter= array("Ambos","Masculino","Femenino");		
-		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1, 0);
-		if(isset($args["casting"]['sex']))
-			$args["casting"]['sex'] = $gender_interpreter[$args["casting"]['sex']]; 
-
-		if(isset($args["casting"]["skills"]))
-		{
-			$args["tags"]=	$this->skills_model->get_skills();
-			$tags_id= explode('-', $args["casting"]["skills"]);
-			$tags_id_temp=array();
-			foreach ($tags_id as $tag) {
-				array_push($tags_id_temp, $args["tags"][$tag]);
-			}
-			$args["tags"]=$tags_id_temp;
-		}
-
-		*/
-		
-		$args["content"]="home/casting_detail";
-		$args["inner_args"]=NULL;
-
 		$this->load->view('template',$args);
 	}
 
