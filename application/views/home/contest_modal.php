@@ -39,6 +39,7 @@
     var state_des = true;
 	$("#des").click({target: '#des', div1: '#pri', div2: '#bas', div3: '#ste', state: state_des,target_text: '#des-text', source_text: '#text-des'},contest_information_animation);
 
+  
 	var state_pri = true;
 	$("#pri").click({target: '#pri', div1: '#des', div2: '#bas', div3: '#ste', state: state_pri,target_text: '#pri-text', source_text: '#text-pri'},contest_information_animation);
   	
@@ -48,6 +49,8 @@
   	var state_ste = true;
 	$("#ste").click({target: '#ste', div1: '#des', div2: '#pri', div3: '#bas', state: state_ste,target_text: '#ste-text', source_text: '#text-ste'},contest_information_animation);
   	
+
+	/* Animacion tipo telon de cine para los concursos de video y trivia*/
 
 	/* Animacion tipo telon de cine para los concursos de video y trivia*/
 
@@ -64,22 +67,25 @@
 			    $(".upload-content").css("display","inline");
 	            $("#contestmodal").css("overflow-x","hidden");
 
+	            var width_boxes = "0.3%";
+
 	            $("#des").animate({
-	                width: "1%"
+	                width: width_boxes
 	            }, 1000);
 
 	            $("#pri").animate({
-	                width: "1%",
+	                width: width_boxes,
 	            }, 1000);
 
 	            $("#bas").animate({
-	                width: "1%",
+	                width: width_boxes,
 	            }, 1000);
 
 	            $("#ste").animate({
-	                width: "1%",
+	                width: width_boxes,
 	            }, 1000, function(){
 	            	$(".upload-content").css("z-index","0");
+	            	$('#contest-link').text("VOLVER");
 				});
 				
 
@@ -102,20 +108,19 @@
 		                width: "27%",
 		            }, 1000, function(){
 	            	$(".upload-content").css("display","none");
+	            	$('#contest-link').text("CONCURSAR");
 					});
 
 		           	$("#contestmodal").css("overflow","visible");
-
 		        }
 
 		       	toggle=!toggle;
 			});
 		}else
 		{
-			close_elements = close_elements + ", .btn-primary"; /* si el concurso no es de tipo trivia o video se cierra el modal al presionar concursar*/
+			close_elements = close_elements + ", .btn-primary";
 		}
 
-	/* Funcion que maneja el cierre del modal*/
 
 	$(close_elements).bind("click", function() {
 	    $("#contestmodal").fadeOut(500, function () {
@@ -274,15 +279,14 @@
 							{
 								//Pregunta va h5 y texto es textarea
 								echo "<h5>".$custom_options[$i]['text']."</h5>";
-								echo "<br>";
 								echo "<textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 70%; margin-top: 15px;' placeholder='La respuesta del postulante iría acá'></textarea>";
+								echo "<div class='space05'></div>";
 							}
 							if(strcmp($custom_options[$i]['type'], 'select') == 0)
 							{
 								//Pregunta va h5 y se crea un select con varios options
 								echo "<h5>".$custom_options[$i]['text']."</h5>";
-								echo "<br>"; 
-								echo "<br>";
+								echo "<div class='space05'></div>";
 
 								echo "<select name='custom_select_answer_".$custom_options[$i]['id']."'>";
 								foreach ($custom_options[$i]['options'] as $option)
@@ -290,13 +294,13 @@
 									echo "<option value='".$option['id']."'>".$option['option']."</option>";
 								}
 								echo "</select>";
+								echo "<div class='space05'></div>";
 							}
 							if(strcmp($custom_options[$i]['type'], 'multiselect') == 0)
 							{
 								//Pregunta va h5 y se crea un select chozen
 								echo "<h5>".$custom_options[$i]['text']."</h5>";
-								echo "<br>";
-								echo "<br>";
+								echo "<div class='space05'></div>";
 
 								$options =  array();
 								foreach ($custom_options[$i]['options'] as $option)
@@ -304,7 +308,8 @@
 									$options[$option['id']] = $option['option'];
 								}
 
-								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width: 90%;' data-placeholder='Selecciona tus respuestas..'");
+								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width: 327px;' data-placeholder='Selecciona tus respuestas..'");
+								echo "<div class='space1'></div>";
 							}
 							echo "</div>";
 						}
