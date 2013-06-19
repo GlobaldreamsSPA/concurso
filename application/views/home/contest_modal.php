@@ -2,7 +2,7 @@
 
 	$('body').css('overflow', 'hidden');
 
-	/* Funcion de la animacion de la informacion del concurso, de modo que al hacer click em
+	/* Funcion de la animacion de la informacion del concurso, de modo que al hacer click en
 	uno de los bloques se ocultan los otros */
 	var contest_information_animation = function (event) 
 	{
@@ -29,7 +29,6 @@
 				}
             );
             $(event.data.target_text).empty();
- 
 
         }
   		event.data.state = !event.data.state;
@@ -48,9 +47,6 @@
   	
   	var state_ste = true;
 	$("#ste").click({target: '#ste', div1: '#des', div2: '#pri', div3: '#bas', state: state_ste,target_text: '#ste-text', source_text: '#text-ste'},contest_information_animation);
-  	
-
-	/* Animacion tipo telon de cine para los concursos de video y trivia*/
 
 	/* Animacion tipo telon de cine para los concursos de video y trivia*/
 
@@ -272,6 +268,8 @@
 				<?php
 					if($custom_options != FALSE)
 					{
+						echo "<h3 class='demo-panel-title'>Responde las siguientes preguntas</h3>";
+
 						for($i=0; $i < count($custom_options); $i++) 
 						{
 							echo "<div style='padding-left:3%'class='row'";
@@ -308,13 +306,15 @@
 									$options[$option['id']] = $option['option'];
 								}
 
-								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width: 327px;' data-placeholder='Selecciona tus respuestas..'");
+								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width: 313px;' data-placeholder='Selecciona tus respuestas..'");
 								echo "<div class='space1'></div>";
 							}
 							echo "</div>";
 						}
+					echo form_submit("", "CONCURSAR", "id='apply-link' class='btn btn-primary pull-left' target='_blank' style='margin-left: 25%'");
 					}
 				?>
+				
 				<!-- Este script es para convertir los multiselects en chozen selects -->
 				<script type="text/javascript">
 					$(".chzn-select").chosen();

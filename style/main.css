@@ -46,11 +46,10 @@ body
 /* Estilo para los contenedores de informacion al hacer click en Concursar en los modales */
 .upload-content {
 	display: none;
-	z-index: -1; 
-	margin-left: 1.5%; 
-	margin-right: 3%; 
+	z-index: -1;
 	position: absolute;
-	width: 53%;
+	margin-left: 7%;
+	width: 47.6%;
 	height: 412px;
 	overflow: scroll;
 }
