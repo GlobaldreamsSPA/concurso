@@ -127,7 +127,7 @@ a:visited {text-decoration: none !important}
 
 .navbar .nav li a:hover
 {
-	text-shadow: -3px 0 #D35400, 0 3px #D35400, 3px 0 #D35400, 0 -3px #D35400;
+	text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;
 	font-size: 18px !important;
 }
 
@@ -668,7 +668,7 @@ div.video_text_main
 	color: white;
 	font-size: 15px;
 	font-weight: bold;
-	text-shadow: -3px 0 #D35400, 0 3px #D35400, 3px 0 #D35400, 0 -3px #D35400;
+	text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;
 
 }
 

@@ -57,69 +57,89 @@
     var close_elements= ".modal-backdrop, .close"; /* variable que maneja los elementos que ocacionan que se cierre el modal*/
     var toggle = true;
 
-	if ($("#contest-link").attr("href") == 'video' || $("#contest-link").attr("href") == 'trivia') 
+	if($(".upload-content").length > 0)
+	{
+		$('#contest-link').click(function (event)
 		{
-			$('#contest-link').click(function (event)
-			{
-			    event.preventDefault();
-			    if (toggle) {
-			    
-			    $(".upload-content").css("display","inline");
-	            $("#contestmodal").css("overflow-x","hidden");
+		    event.preventDefault();
+		    if (toggle) {
+		    
+		    $(".upload-content").css("display","inline");
+            $("#contestmodal").css("overflow-x","hidden");
+            
 
-	            var width_boxes = "0.3%";
+            var width_boxes = "0.3%";
+
+            $("#des").animate({
+                width: width_boxes
+            }, 1000);
+
+            $("#pri").animate({
+                width: width_boxes,
+            }, 1000);
+
+            $("#bas").animate({
+                width: width_boxes,
+            }, 1000);
+
+            $("#ste").animate({
+                width: width_boxes,
+            }, 1000, function(){
+            	$(".upload-content").css("z-index","0");
+            	$('#contest-link').text("VOLVER");
+            	$('#contest-link').removeClass('btn-primary');
+            	$('#contest-link').addClass('btn-info');
+			});
+			
+
+	        } else {
+	        	$(".upload-content").css("z-index","-1");
 
 	            $("#des").animate({
-	                width: width_boxes
+	                width: "27%"
 	            }, 1000);
 
 	            $("#pri").animate({
-	                width: width_boxes,
+	                width: "27%",
 	            }, 1000);
 
 	            $("#bas").animate({
-	                width: width_boxes,
+	                width: "27%",
 	            }, 1000);
 
 	            $("#ste").animate({
-	                width: width_boxes,
-	            }, 1000, function(){
-	            	$(".upload-content").css("z-index","0");
-	            	$('#contest-link').text("VOLVER");
-				});
-				
-
-		        } else {
-		        	$(".upload-content").css("z-index","-1");
-
-		            $("#des").animate({
-		                width: "27%"
-		            }, 1000);
-
-		            $("#pri").animate({
-		                width: "27%",
-		            }, 1000);
-
-		            $("#bas").animate({
-		                width: "27%",
-		            }, 1000);
-
-		            $("#ste").animate({
-		                width: "27%",
-		            }, 1000, function(){
+	                width: "27%",
+	            }, 1000, function()
+	            {
 	            	$(".upload-content").css("display","none");
 	            	$('#contest-link').text("CONCURSAR");
-					});
+	            	$('#contest-link').removeClass('btn-info');
+	            	$('#contest-link').addClass('btn-primary');
+				});
 
-		           	$("#contestmodal").css("overflow","visible");
-		        }
+	           	$("#contestmodal").css("overflow","visible");
+	        }
 
-		       	toggle=!toggle;
-			});
-		}else
-		{
-			close_elements = close_elements + ", .btn-primary";
-		}
+	       	toggle=!toggle;
+		});
+	}
+
+	if((($("#contest-link").attr("href") == 'video' || $("#contest-link").attr("href") == 'trivia') && !($(".upload-content").length > 0)) ||  $("#contest-link").attr("href") == 'none')
+	{
+			
+
+		$('#contest-link').attr('rel','tooltip');
+		$('#contest-link').attr('data-original-title','Debes iniciar sesión para participar');
+		$('#contest-link').tooltip();
+
+		$('#contest-link').click(function(event){
+	         event.preventDefault();
+	      });
+
+	}
+		
+	if(!($("#contest-link").attr("href") == 'video' || $("#contest-link").attr("href") == 'trivia' || $("#contest-link").attr("href") == 'none'))
+		close_elements = close_elements + ", .btn-primary";
 
 
 	$(close_elements).bind("click", function() {
@@ -214,7 +234,7 @@
 		</div>
 		
 		<?php
-			if(strcmp($apply_url, "video") == 0) 
+			if(strcmp($apply_url, "video") == 0 && $logged_in) 
 			{
 		?>
 			<div class="upload-content">
@@ -265,7 +285,7 @@
 			</div>
 		<?php
 			}
-			if(strcmp($apply_url, "trivia") == 0)
+			elseif(strcmp($apply_url, "trivia") == 0 && $logged_in)
 			{
 		?>
 			<div class="upload-content">
@@ -323,6 +343,7 @@
 		<?php		
 			}
 		?>
+			
 	</div>
 </div>
 <div style="margin-right:2%;" class="row">

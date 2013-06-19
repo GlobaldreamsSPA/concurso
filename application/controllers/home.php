@@ -201,24 +201,31 @@ class Home extends CI_Controller {
 			$args['category'] = $categories[$_GET['category']];	
 			$args['category_id'] = $_GET['category'];
 			
+
+			$args['logged_in'] = $this->session->userdata('id');
+
 			if( !in_array($args['category_id'],array(1,2,3)))
 				$args['apply_url'] = $_GET['apply_url'];
 			else
 			{
 				if($args['category_id']==2)
 				{
-					$share_data= $this->share_detail_model->select('*',array('casting_id'=>$args['id_casting']));
-					$share_data =$share_data[0];
-					$args['apply_url'] = "https://www.facebook.com/dialog/feed?
-									  app_id=374106952676336&
-									  link=".$_GET['apply_url']."&
-									  picture=".urlencode(HOME.CASTINGS_SHARE_PATH.$share_data['image'])."&
-									  name=".urlencode($share_data['title'])."&
-									  caption=".$_GET['apply_url']."&
-									  description=".urlencode($share_data['description'])."&
-									  redirect_uri=".HOME;
-				
-
+					if($args['logged_in'])
+					{
+						$share_data= $this->share_detail_model->select('*',array('casting_id'=>$args['id_casting']));
+						$share_data =$share_data[0];
+						$args['apply_url'] = "https://www.facebook.com/dialog/feed?
+										  app_id=374106952676336&
+										  link=".$_GET['apply_url']."&
+										  picture=".urlencode(HOME.CASTINGS_SHARE_PATH.$share_data['image'])."&
+										  name=".urlencode($share_data['title'])."&
+										  caption=".$_GET['apply_url']."&
+										  description=".urlencode($share_data['description'])."&
+										  redirect_uri=".HOME;
+					
+					}
+					else
+						$args['apply_url'] = "none";
 				}
 				elseif($args['category_id'] == 1)
 					$args['apply_url'] = "video";
