@@ -2,8 +2,26 @@
 
 	$('body').css('overflow', 'hidden');
 
-	/* Funcion de la animacion de la informacion del concurso, de modo que al hacer click em
+	/* Funcion de la animacion de la informacion del concurso, de modo que al hacer click en
 	uno de los bloques se ocultan los otros */
+	var contest_information_animation_onmouseleave = function(event)
+	{
+		if(event.data.state == false)
+		{
+			$(event.data.target).animate({
+	                height: 200,
+	                width: "27%"
+	            }, 1000, function(){
+					$(event.data.div1).css("z-index","0");
+					$(event.data.div2).css("z-index","0");
+					$(event.data.div3).css("z-index","0");
+					}
+	            );
+	        $(event.data.target_text).empty();
+	        event.data.state = !event.data.state;
+	    }
+	}
+
 	var contest_information_animation = function (event) 
 	{
 			
@@ -29,28 +47,26 @@
 				}
             );
             $(event.data.target_text).empty();
- 
 
         }
   		event.data.state = !event.data.state;
-
     };
 
-    var state_des = true;
-	$("#des").click({target: '#des', div1: '#pri', div2: '#bas', div3: '#ste', state: state_des,target_text: '#des-text', source_text: '#text-des'},contest_information_animation);
+    var stade_des = {target: '#des', div1: '#pri', div2: '#bas', div3: '#ste', state: true, target_text: '#des-text', source_text: '#text-des'};
+	$("#des").click(stade_des, contest_information_animation);
+	$("#des").mouseleave(stade_des, contest_information_animation_onmouseleave);
 
-  
-	var state_pri = true;
-	$("#pri").click({target: '#pri', div1: '#des', div2: '#bas', div3: '#ste', state: state_pri,target_text: '#pri-text', source_text: '#text-pri'},contest_information_animation);
-  	
-  	var state_bas = true;
-	$("#bas").click({target: '#bas', div1: '#des', div2: '#pri', div3: '#ste', state: state_bas,target_text: '#bas-text', source_text: '#text-bas'},contest_information_animation);
-  	
-  	var state_ste = true;
-	$("#ste").click({target: '#ste', div1: '#des', div2: '#pri', div3: '#bas', state: state_ste,target_text: '#ste-text', source_text: '#text-ste'},contest_information_animation);
-  	
+	var state_pri = {target: '#pri', div1: '#des', div2: '#bas', div3: '#ste', state: true, target_text: '#pri-text', source_text: '#text-pri'};
+	$("#pri").click(state_pri, contest_information_animation);
+	$("#pri").mouseleave(state_pri, contest_information_animation_onmouseleave);
 
-	/* Animacion tipo telon de cine para los concursos de video y trivia*/
+  	var state_bas = {target: '#bas', div1: '#des', div2: '#pri', div3: '#ste', state: true, target_text: '#bas-text', source_text: '#text-bas'};
+	$("#bas").click(state_bas, contest_information_animation);
+  	$("#bas").mouseleave(state_bas, contest_information_animation_onmouseleave);
+
+  	var state_ste = {target: '#ste', div1: '#des', div2: '#pri', div3: '#bas', state: true, target_text: '#ste-text', source_text: '#text-ste'};
+	$("#ste").click(state_ste, contest_information_animation);
+	$("#ste").mouseleave(state_ste, contest_information_animation_onmouseleave);
 
 	/* Animacion tipo telon de cine para los concursos de video y trivia*/
 
@@ -292,6 +308,8 @@
 				<?php
 					if($custom_options != FALSE)
 					{
+						echo "<h3 class='demo-panel-title'>Responde las siguientes preguntas</h3>";
+
 						for($i=0; $i < count($custom_options); $i++) 
 						{
 							echo "<div style='padding-left:3%'class='row'";
@@ -328,13 +346,15 @@
 									$options[$option['id']] = $option['option'];
 								}
 
-								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width: 327px;' data-placeholder='Selecciona tus respuestas..'");
+								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width: 313px;' data-placeholder='Selecciona tus respuestas..'");
 								echo "<div class='space1'></div>";
 							}
 							echo "</div>";
 						}
+					echo form_submit("", "CONCURSAR", "id='apply-link' class='btn btn-primary pull-left' target='_blank' style='margin-left: 25%'");
 					}
 				?>
+				
 				<!-- Este script es para convertir los multiselects en chozen selects -->
 				<script type="text/javascript">
 					$(".chzn-select").chosen();
