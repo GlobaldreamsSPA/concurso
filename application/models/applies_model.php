@@ -176,7 +176,8 @@ class Applies_model extends CI_Model
 			$apply = array(
 					'observation' => '',
 					'user_id' => $user_id,
-					'casting_id' => $casting_id
+					'casting_id' => $casting_id,
+					'state' => 0
 				);
 
 			$this->db->insert('applies', $apply);
@@ -184,31 +185,6 @@ class Applies_model extends CI_Model
 			//Obtener el max id de apply
 			$this->db->select_max('id');
 			$apply_result = $this->db->get('applies')->first_row('array');
-
-			
-			$this->db->select('id_main_video');
-			$this->db->where('id', $user_id);
-			$main_id_result = $this->db->get('users')->first_row('array'); //obtiene id_main_video
-			if(!is_null($main_id_result['id_main_video']))//si no es null
-			{
-				$videos_result = array("id" => $main_id_result['id_main_video']);
-			}
-			else
-			{
-				//sino buscar el id del primer video del usuario
-				$this->db->select_min('id');
-				$this->db->where('user_id', $user_id);
-				$videos_result = $this->db->get('videos')->first_row('array');
-					
-			}
-			
-			//Ahora crear el videos_applies
-			$videos_applies = array(
-					'apply_id' => $apply_result['id'],
-					'video_id' => $videos_result['id']
-				);
-
-			$this->db->insert('videos_applies', $videos_applies);
 
 			return $apply_result['id'];
 		}

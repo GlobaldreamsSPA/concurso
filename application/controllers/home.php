@@ -313,6 +313,47 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
+	public function apply_trivia($id)
+	{
+		$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
+
+		if($apply_id !== FALSE)
+		{
+			$postulation_message = "Postulaci&oacute;n Exitosa.";
+			
+			//Ahora guardas las preguntas custom
+			foreach($this->input->post() as $post_data_name => $post_data_answ)
+			{
+				$data = explode("_", $post_data_name);
+				echo "<br>";
+				if(strcmp($data[1], "text") == 0 || strcmp($data[1], "select") == 0)
+				{
+					$answers['custom_questions_id'] = $data[3];
+					
+					if(strcmp($post_data_answ, "") != 0)
+						$answers['answer'] = $post_data_answ;
+					else
+						$answers['answer'] = "omite";
+
+					$this->custom_answers_model->save($answers, $apply_id);
+				}
+				if(strcmp($data[1], "multiselect") == 0)
+				{
+					$answers['custom_questions_id'] = $data[3];
+					$answers['answer'] = "";
+					
+					foreach ($post_data_answ as $answ) {
+						if(strcmp($answ,"") != 0)
+							$answers['answer'] = $answers['answer'].$answ.", ";
+					}
+					
+					$answers['answer'] = substr($answers['answer'], 0, -2);
+					$this->custom_answers_model->save($answers, $apply_id);
+				}
+			}
+		}
+	}
+
 
 	/* HAY Q OBTENER FUNCIONES DE ACA AUN; LUEGO BORRAR*/
 	public function apply_casting($id_casting)
