@@ -309,7 +309,7 @@ class Home extends CI_Controller {
 	public function terms()
 	{
 		$args['content'] = 'home/terms';		
-		$args["inner_args"]=NULL;
+		$args["inner_args"] = NULL;
 		$this->load->view('template',$args);
 	}
 
@@ -319,7 +319,7 @@ class Home extends CI_Controller {
 
 		if($apply_id !== FALSE)
 		{
-			$postulation_message = "Postulaci&oacute;n Exitosa.";
+			$apply_message = "¡Felicitaciones! Ya estás participando en el";
 			
 			//Ahora guardas las preguntas custom
 			foreach($this->input->post() as $post_data_name => $post_data_answ)
@@ -351,6 +351,12 @@ class Home extends CI_Controller {
 					$this->custom_answers_model->save($answers, $apply_id);
 				}
 			}
+
+		$args["content"] = "home/home_view";
+		$args["inner_args"] = NULL;
+		$args["apply_message"] = $apply_message;
+		$this->load->view('template', $args);
+
 		}
 	}
 

@@ -18,6 +18,31 @@ $('[data-toggle="modal"]').click(function(e) {
 </script>
 
 
+<!-- Muestra este mensaje, en caso de postular a un concurso de forma exitosa o fallida. -->
+<div id="postulation-result" class="modal hide fade in">
+<div class="modal-header">
+<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a> 
+</div>
+<div class="modal-body">
+<h4>Aviso</h4>
+<p><?php if(isset($postulation_message)) echo $postulation_message; ?></p>              
+</div>
+<div class="modal-footer">
+<?php echo anchor(HOME,'Volver al Home',"class='btn btn-primary'"); ?>
+<a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+</div>
+</div>
+
+<?php if(isset($postulation_message)){ ?>
+<script type="text/javascript">
+
+  $('#postulation-result').modal({
+    show: true
+  });
+</script>
+<?php } ?>
+
+
 
 <div class="content home" id="content">
 	<div class="space4"></div>
