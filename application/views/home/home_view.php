@@ -92,9 +92,19 @@ $('[data-toggle="modal"]').click(function(e) {
 						<div class="container video_text_main span12">
 							<div class="space1"></div>
 							<div class="row row_text_main">
-								<div class="span10 offset1">
+								<div class="span9 offset1">
 									<div style="margin-bottom: 20px;" class="home-video-title"><?php echo $contest["title"]; ?></div>
 									<span class="home-video-author">Publicado por Ganando.cl</span>
+								</div>
+								<div class="span2">
+									<?php 
+										if($contest["info_only"])
+										{
+									?>
+											<img style="position:absolute; bottom:-6%; right:0; height:127%; width:26%;" src="<?php echo HOME.'/img/info.png'; ?>"/>
+									<?php
+										}
+									?>
 								</div>
 							</div>
 						</div>

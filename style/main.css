@@ -7,6 +7,35 @@ body
 
 /* estilo elementos modal concurso*/
 
+.contest-close
+{
+	padding-right:10px; 
+	opacity:0.6 !important; 
+	color:white !important;
+}
+
+.contest-close:hover
+{
+	opacity:0.8 !important; 
+}
+
+.contest-close-container
+{
+	background-color:#3498DB; 
+	margin-top:10px; 
+	height:40px; 
+	width:11.8% !important; 
+	margin-left:-1px !important;
+}
+
+.contest-title
+{
+	background-color:#3498DB; 
+	text-align: center; 
+	position:relative; 
+	z-index:-1; 
+	color:white !important;
+}
 
 #des{
 	position:absolute; 
@@ -289,12 +318,6 @@ padding-bottom: 5%;
 
 
 /* Play que aparece sobre imagen de video*/
-.fade_new {
-   opacity: 1;
-   transition: opacity .25s ease-in-out;
-   -moz-transition: opacity .25s ease-in-out;
-   -webkit-transition: opacity .25s ease-in-out;
-   }
 
 .image { position: relative; background-color: white;}
 .fade_new{opacity: 0.85;}

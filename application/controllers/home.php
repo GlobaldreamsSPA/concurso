@@ -41,8 +41,13 @@ class Home extends CI_Controller {
     	
 		$args["page"]=$page;
 
-		$args["castings"] = $this->castings_model->get_castings(NULL, 1, 1, 0);
+		foreach ($args["contest_list"] as &$element) {
+			if(!in_array($element["category"],array(1,2,3)))
+				$element["info_only"]= true;
+			else
+				$element["info_only"]= false;
 
+		}
 		$prizes =  $this->prize_categories_model->select("name");
 		$counter=0;
 

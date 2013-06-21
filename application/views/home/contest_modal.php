@@ -1,9 +1,184 @@
-<div style="margin-left:10px;" class="row">
+<script type="text/javascript">
+
+	$('body').css('overflow', 'hidden');
+
+	/* Funcion de la animacion de la informacion del concurso, de modo que al hacer click en
+	uno de los bloques se ocultan los otros */
+	var contest_information_animation_onmouseleave = function(event)
+	{
+		if(event.data.state == false)
+		{
+			$(event.data.target).animate({
+	                height: 200,
+	                width: "27%"
+	            }, 1000, function(){
+					$(event.data.div1).css("z-index","0");
+					$(event.data.div2).css("z-index","0");
+					$(event.data.div3).css("z-index","0");
+					}
+	            );
+	        $(event.data.target_text).empty();
+	        event.data.state = !event.data.state;
+	    }
+	}
+
+	var contest_information_animation = function (event) 
+	{
+			
+		$(event.data.target).css("z-index","0");
+		$(event.data.div1).css("z-index","-1");
+		$(event.data.div2).css("z-index","-1");
+		$(event.data.div3).css("z-index","-1");
+
+        if (event.data.state) {
+            $(event.data.target).animate({
+                height: 410,
+                width: "55%"
+            }, 1000);
+            $(event.data.target_text).append($(event.data.source_text).html());
+        } else {
+            $(event.data.target).animate({
+                height: 200,
+                width: "27%"
+            }, 1000, function(){
+				$(event.data.div1).css("z-index","0");
+				$(event.data.div2).css("z-index","0");
+				$(event.data.div3).css("z-index","0");
+				}
+            );
+            $(event.data.target_text).empty();
+
+        }
+  		event.data.state = !event.data.state;
+    };
+
+    var stade_des = {target: '#des', div1: '#pri', div2: '#bas', div3: '#ste', state: true, target_text: '#des-text', source_text: '#text-des'};
+	$("#des").click(stade_des, contest_information_animation);
+	$("#des").mouseleave(stade_des, contest_information_animation_onmouseleave);
+
+	var state_pri = {target: '#pri', div1: '#des', div2: '#bas', div3: '#ste', state: true, target_text: '#pri-text', source_text: '#text-pri'};
+	$("#pri").click(state_pri, contest_information_animation);
+	$("#pri").mouseleave(state_pri, contest_information_animation_onmouseleave);
+
+  	var state_bas = {target: '#bas', div1: '#des', div2: '#pri', div3: '#ste', state: true, target_text: '#bas-text', source_text: '#text-bas'};
+	$("#bas").click(state_bas, contest_information_animation);
+  	$("#bas").mouseleave(state_bas, contest_information_animation_onmouseleave);
+
+  	var state_ste = {target: '#ste', div1: '#des', div2: '#pri', div3: '#bas', state: true, target_text: '#ste-text', source_text: '#text-ste'};
+	$("#ste").click(state_ste, contest_information_animation);
+	$("#ste").mouseleave(state_ste, contest_information_animation_onmouseleave);
+
+	/* Animacion tipo telon de cine para los concursos de video y trivia*/
+
+    var close_elements= ".modal-backdrop, .close"; /* variable que maneja los elementos que ocacionan que se cierre el modal*/
+    var toggle = true;
+
+	if($(".upload-content").length > 0)
+	{
+		$('#contest-link').click(function (event)
+		{
+		    event.preventDefault();
+		    if (toggle) {
+		    
+		    $(".upload-content").css("display","inline");
+            $("#contestmodal").css("overflow-x","hidden");
+            
+
+            var width_boxes = "0.3%";
+
+            $("#des").animate({
+                width: width_boxes
+            }, 1000);
+
+            $("#pri").animate({
+                width: width_boxes,
+            }, 1000);
+
+            $("#bas").animate({
+                width: width_boxes,
+            }, 1000);
+
+            $("#ste").animate({
+                width: width_boxes,
+            }, 1000, function(){
+            	$(".upload-content").css("z-index","0");
+            	$('#contest-link').text("VOLVER");
+            	$('#contest-link').removeClass('btn-primary');
+            	$('#contest-link').addClass('btn-info');
+			});
+			
+
+	        } else {
+	        	$(".upload-content").css("z-index","-1");
+
+	            $("#des").animate({
+	                width: "27%"
+	            }, 1000);
+
+	            $("#pri").animate({
+	                width: "27%",
+	            }, 1000);
+
+	            $("#bas").animate({
+	                width: "27%",
+	            }, 1000);
+
+	            $("#ste").animate({
+	                width: "27%",
+	            }, 1000, function()
+	            {
+	            	$(".upload-content").css("display","none");
+	            	$('#contest-link').text("CONCURSAR");
+	            	$('#contest-link').removeClass('btn-info');
+	            	$('#contest-link').addClass('btn-primary');
+				});
+
+	           	$("#contestmodal").css("overflow","visible");
+	        }
+
+	       	toggle=!toggle;
+		});
+	}
+
+	if((($("#contest-link").attr("href") == 'video' || $("#contest-link").attr("href") == 'trivia') && !($(".upload-content").length > 0)) ||  $("#contest-link").attr("href") == 'none')
+	{
+			
+
+		$('#contest-link').attr('rel','tooltip');
+		$('#contest-link').attr('data-original-title','Debes iniciar sesión para participar');
+		$('#contest-link').tooltip();
+
+		$('#contest-link').click(function(event){
+	         event.preventDefault();
+	      });
+
+	}
+		
+	if(!($("#contest-link").attr("href") == 'video' || $("#contest-link").attr("href") == 'trivia' || $("#contest-link").attr("href") == 'none'))
+		close_elements = close_elements + ", .btn-primary";
+
+
+	$(close_elements).bind("click", function() {
+	    $("#contestmodal").fadeOut(500, function () {
+			$(this).remove();
+		});
+	    $(".modal-backdrop").fadeOut(500, function () {
+			$(this).remove();
+		});
+
+		$('body').css('overflow', 'visible');
+
+	});
+
+
+</script>
+
+<div style="margin-left:10px; margin-right:10px;" class="row">
 	<div class="span11">
-	<h2 class="modal-title" style="text-align: center; position:relative; z-index: -1;" id="profile">	<?php echo $title; ?> </h2>
+		<h2 class="contest-title" >	<?php echo $title; ?> </h2>
 	</div>
-	<div class="span1">
-		<h2><a class="close" data-dismiss="modal"><span class="fui-cross"></span></a> </h2>
+	<div class="span1 contest-close-container">
+		<h2><a class="close contest-close" data-dismiss="modal"><span class="fui-cross"></span></a> </h2>
 	</div>
 </div>
 <div style="margin-left:10px; margin-top:2%; margin-bottom:2%; height: 90%;" class="row">
@@ -211,179 +386,3 @@
 <div id="text-ste" style="display:none;">
 	<?php echo $steps; ?>
 </div>
-
-
-<script type="text/javascript">
-
-	$('body').css('overflow', 'hidden');
-
-	/* Funcion de la animacion de la informacion del concurso, de modo que al hacer click en
-	uno de los bloques se ocultan los otros */
-	var contest_information_animation_onmouseleave = function(event)
-	{
-		if(event.data.state == false)
-		{
-			$(event.data.target).animate({
-	                height: 200,
-	                width: "27%"
-	            }, 1000, function(){
-					$(event.data.div1).css("z-index","0");
-					$(event.data.div2).css("z-index","0");
-					$(event.data.div3).css("z-index","0");
-					}
-	            );
-	        $(event.data.target_text).empty();
-	        event.data.state = !event.data.state;
-	    }
-	}
-
-	var contest_information_animation = function (event) 
-	{
-			
-		$(event.data.target).css("z-index","0");
-		$(event.data.div1).css("z-index","-1");
-		$(event.data.div2).css("z-index","-1");
-		$(event.data.div3).css("z-index","-1");
-
-        if (event.data.state) {
-            $(event.data.target).animate({
-                height: 410,
-                width: "55%"
-            }, 1000);
-            $(event.data.target_text).append($(event.data.source_text).html());
-        } else {
-            $(event.data.target).animate({
-                height: 200,
-                width: "27%"
-            }, 1000, function(){
-				$(event.data.div1).css("z-index","0");
-				$(event.data.div2).css("z-index","0");
-				$(event.data.div3).css("z-index","0");
-				}
-            );
-            $(event.data.target_text).empty();
-
-        }
-  		event.data.state = !event.data.state;
-    };
-
-    var stade_des = {target: '#des', div1: '#pri', div2: '#bas', div3: '#ste', state: true, target_text: '#des-text', source_text: '#text-des'};
-	$("#des").click(stade_des, contest_information_animation);
-	$("#des").mouseleave(stade_des, contest_information_animation_onmouseleave);
-
-	var state_pri = {target: '#pri', div1: '#des', div2: '#bas', div3: '#ste', state: true, target_text: '#pri-text', source_text: '#text-pri'};
-	$("#pri").click(state_pri, contest_information_animation);
-	$("#pri").mouseleave(state_pri, contest_information_animation_onmouseleave);
-
-  	var state_bas = {target: '#bas', div1: '#des', div2: '#pri', div3: '#ste', state: true, target_text: '#bas-text', source_text: '#text-bas'};
-	$("#bas").click(state_bas, contest_information_animation);
-  	$("#bas").mouseleave(state_bas, contest_information_animation_onmouseleave);
-
-  	var state_ste = {target: '#ste', div1: '#des', div2: '#pri', div3: '#bas', state: true, target_text: '#ste-text', source_text: '#text-ste'};
-	$("#ste").click(state_ste, contest_information_animation);
-	$("#ste").mouseleave(state_ste, contest_information_animation_onmouseleave);
-
-	/* Animacion tipo telon de cine para los concursos de video y trivia*/
-
-    var close_elements= ".modal-backdrop, .close"; /* variable que maneja los elementos que ocacionan que se cierre el modal*/
-    var toggle = true;
-
-	if($(".upload-content").length > 0)
-	{
-		$('#contest-link').click(function (event)
-		{
-		    event.preventDefault();
-		    if (toggle) {
-		    
-		    $(".upload-content").css("display","inline");
-            $("#contestmodal").css("overflow-x","hidden");
-            
-
-            var width_boxes = "0.3%";
-
-            $("#des").animate({
-                width: width_boxes
-            }, 1000);
-
-            $("#pri").animate({
-                width: width_boxes,
-            }, 1000);
-
-            $("#bas").animate({
-                width: width_boxes,
-            }, 1000);
-
-            $("#ste").animate({
-                width: width_boxes,
-            }, 1000, function(){
-            	$(".upload-content").css("z-index","0");
-            	$('#contest-link').text("VOLVER");
-            	$('#contest-link').removeClass('btn-primary');
-            	$('#contest-link').addClass('btn-info');
-			});
-			
-
-	        } else {
-	        	$(".upload-content").css("z-index","-1");
-
-	            $("#des").animate({
-	                width: "27%"
-	            }, 1000);
-
-	            $("#pri").animate({
-	                width: "27%",
-	            }, 1000);
-
-	            $("#bas").animate({
-	                width: "27%",
-	            }, 1000);
-
-	            $("#ste").animate({
-	                width: "27%",
-	            }, 1000, function()
-	            {
-	            	$(".upload-content").css("display","none");
-	            	$('#contest-link').text("CONCURSAR");
-	            	$('#contest-link').removeClass('btn-info');
-	            	$('#contest-link').addClass('btn-primary');
-				});
-
-	           	$("#contestmodal").css("overflow","visible");
-	        }
-
-	       	toggle=!toggle;
-		});
-	}
-
-	if((($("#contest-link").attr("href") == 'video' || $("#contest-link").attr("href") == 'trivia') && !($(".upload-content").length > 0)) ||  $("#contest-link").attr("href") == 'none')
-	{
-			
-
-		$('#contest-link').attr('rel','tooltip');
-		$('#contest-link').attr('data-original-title','Debes iniciar sesión para participar');
-		$('#contest-link').tooltip();
-
-		$('#contest-link').click(function(event){
-	         event.preventDefault();
-	      });
-
-	}
-		
-	if(!($("#contest-link").attr("href") == 'video' || $("#contest-link").attr("href") == 'trivia' || $("#contest-link").attr("href") == 'none'))
-		close_elements = close_elements + ", .btn-primary";
-
-
-	$(close_elements).bind("click", function() {
-	    $("#contestmodal").fadeOut(500, function () {
-			$(this).remove();
-		});
-	    $(".modal-backdrop").fadeOut(500, function () {
-			$(this).remove();
-		});
-
-		$('body').css('overflow', 'visible');
-
-	});
-
-
-</script>
