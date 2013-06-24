@@ -140,7 +140,7 @@
 		});
 	}
 
-	if((($("#contest-link").attr("href") == 'video' || $("#contest-link").attr("href") == 'trivia') && !($(".upload-content").length > 0)) ||  $("#contest-link").attr("href") == 'none')
+	if((($("#contest-link").attr("href") == 'photo' || $("#contest-link").attr("href") == 'trivia') && !($(".upload-content").length > 0)) ||  $("#contest-link").attr("href") == 'none')
 	{
 			
 
@@ -154,7 +154,7 @@
 
 	}
 		
-	if(!($("#contest-link").attr("href") == 'video' || $("#contest-link").attr("href") == 'trivia' || $("#contest-link").attr("href") == 'none'))
+	if(!($("#contest-link").attr("href") == 'photo' || $("#contest-link").attr("href") == 'trivia' || $("#contest-link").attr("href") == 'none'))
 		close_elements = close_elements + ", .btn-primary";
 
 
@@ -169,6 +169,19 @@
 		$('body').css('overflow', 'visible');
 
 	});
+
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            $('#img_prev')
+	            .attr('src', e.target.result);
+	        };
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
 
 
 </script>
@@ -248,55 +261,28 @@
 		</div>
 		
 		<?php
-			if(strcmp($apply_url, "video") == 0 && $logged_in) 
+			if(strcmp($apply_url, "photo") == 0 && $logged_in) 
 			{
 		?>
-			<div class="upload-content video-content">
-				<ul class="nav nav-tabs">
-				  <li class="active"><a href="#enlazar" data-toggle="tab">Desde Youtube</a></li>
-				  <li><a href="#pc" data-toggle="tab">Desde tu PC</a></li>
-				</ul>
-				<div class="tab-content">
-				  <div class="tab-pane active" id="enlazar">
-				  	<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
-				  		<div style="padding:2%;"class="row">
-					  		<div class="span12">
-								<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL video" value="" required="required">											
-								<div class="space1"></div>
-								<div style="margin-top: 1%; font-size: 95%;"class="justify">
-										Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   
-										<ul>
-											<li>http://www.youtube.com/watch?v=LautYzjYv3A</li>
-											<li>http://youtu.be/LautYzjYv3A</li>
-										</ul>
-								</div>
-								<button type="submit" class="btn btn-primary">Subir</button>
-		
-							</div>
-				  		</div>
-				  	</form>
-				  </div>
-					<div class="tab-pane" id="pc">
-						<form id="video_upload_form" action="<?php echo HOME.'/subevideo/subir_video'?>" method="post">
-							<div style="padding:2%;"class="row">
-								<div class="span12">
-								<input type="file" class="file" name="userfile" size="20" required="required"/><br />	
-								<div class="space1"></div>
-								<div style="margin-top: 2%; font-size: 95%;" >
-									Para utilizar este medio de subida de videos, tienes que tener en cuenta:
-									<ul style="margin-top:1px;">
-									<li>El tamaño máximo de los videos debe ser de 20 mb.</li>
-									<li>Si no sabes como disminuir el tamaño de tu video, ingresa a <a href="http://video.online-convert.com/es/convertir-a-flv" target="_blank">este link</a>.</li>
-									<li>Se paciente al momento de subir tu video, el formulario se redirigirá automáticamente.</li>
-									<ul>
-								</div>
-								<button type="submit" class="btn btn-primary">Subir</button>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="justify" style="-webkit-box-shadow: 3px 3px 2px rgba(50, 50, 50, 0.43); -moz-box-shadow:    3px 3px 2px rgba(50, 50, 50, 0.43); box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.43);background-color:#e5e5e5; padding:1%; font-size:82%;">*Si tienes una cuenta de gmail te recomendamos intentar subir tu video utilizando Youtube, para luego enlazarlo (pestaña "desde youtube"), desde el siguiente enlace: <a href="http://www.youtube.com/upload" target="_blank">Youtube Upload</a>. Si tienes algún problema, <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a>.</div>
-			</div>
+			 <form id="photo_upload_form" enctype="multipart/form-data"  action="<?php echo HOME.'/home/apply_photo/'.$id_casting;?>" method="post">
+		        <div class="upload-content photo-content span6">
+		         <h3 id="myModalLabel">Sube tu Foto</h3>
+		            <div>  
+			            <div style="margin-left: -10px; margin-top: -20px;" id="image_upload">
+				              <?php echo form_upload(array('name' => 'upload_photo','id' => 'upload_photo','class'=> 'file','onchange'=>'readURL(this);')); ?>
+			
+			            </div>
+			            <div class="space2"></div>
+						
+						<div class="photo-container">
+							<img id="img_prev" style="max-height:250px; max-width:100%;"src="<?php echo HOME.'/img/dummy_galeria_fotos.png'; ?>" alt="your image" />
+						</div>
+			            <div class="space1"></div>  
+		            </div>
+		          <button type="submit" class="btn btn-primary pull-right">CONCURSAR</button>
+		    	</div>
+		    </form>
+
 		<?php
 			}
 			elseif(strcmp($apply_url, "trivia") == 0 && $logged_in)
@@ -366,7 +352,7 @@
 	</div>
 </div>
 <div style="margin-right:2%;" class="row">
-	<a id="contest-link" class="btn btn-primary pull-right" target="_blank" href="<?php echo $apply_url; ?>">CONCURSAR</a>
+	<a id="contest-link" class="btn btn-primary pull-right" <?php if(!isset($target)) echo 'target="_blank"';?> href="<?php echo $apply_url; ?>">CONCURSAR</a>
 </div>
 
 

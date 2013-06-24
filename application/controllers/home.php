@@ -6,11 +6,11 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		//error_reporting(0);
-
-		$this->load->helper(array('url', 'form'));
+		$this->load->library(array('upload', 'image_lib'));
+		$this->load->helper(array('url', 'file', 'form'));
 
 		//Modelos
-		$this->load->model(array('videos_model','share_apply_model','share_detail_model','prize_categories_model','video_votes_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
+		$this->load->model(array('share_apply_model','share_detail_model','prize_categories_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
 	
 	}
 
@@ -229,13 +229,13 @@ class Home extends CI_Controller {
 										  caption=".$_GET['apply_url']."&
 										  description=".urlencode($share_data['description'])."&
 										  redirect_uri=".HOME."/home/apply_share/".$args['id_casting'];
-					
+						$args['target'] = true;
 					}
 					else
 						$args['apply_url'] = "none";
 				}
 				elseif($args['category_id'] == 1)
-					$args['apply_url'] = "video";
+					$args['apply_url'] = "photo";
 				elseif($args['category_id'] == 3)
 				{
 					$args['apply_url'] = "trivia";
@@ -377,80 +377,72 @@ class Home extends CI_Controller {
 			if($apply_id !== FALSE)
 			{
 				$this->share_apply_model->insert(array('apply_id'=>$apply_id,'post_id'=>$_GET['post_id']));
-				$apply_message = "¡Felicitaciones! Ya estás participando en el";
-			
+				$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
+				$this->index(1, $success_message);
 			}
-			redirect(HOME."/home");
+			else
+				redirect(HOME."/home");
 		}
 		else
 			redirect(HOME."/home");
 	}
 
-	/* HAY Q OBTENER FUNCIONES DE ACA AUN; LUEGO BORRAR*/
-	public function apply_casting($id_casting)
+	public function apply_photo($id)
 	{
-		if($this->session->userdata('id'))
+		if($this->session->userdata('id') && $_FILES['upload_photo']['error'] != 4)
 		{
-			if($this->session->userdata('type'))
+			$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
+
+			if($apply_id !== FALSE && $this->_upload_image($this->session->userdata('id'),$id))
 			{
-				if($this->castings_model->check_status_active($id_casting))			
-				{
-					if ($this->videos_model->verify_videos($this->session->userdata('id')) != 0) 
-					{
-						$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id_casting);
-
-						if($apply_id !== FALSE)
-						{
-							$postulation_message = "Postulaci&oacute;n Exitosa.";
-							//Ahora guardas las preguntas custom
-							foreach($this->input->post() as $post_data_name => $post_data_answ)
-							{
-								$data = explode("_", $post_data_name);
-								echo "<br>";
-								var_dump($data);
-								if(strcmp($data[1], "text") == 0 || strcmp($data[1], "select") == 0)
-								{
-									$answers['custom_questions_id'] = $data[3];
-									
-									if(strcmp($post_data_answ, "") != 0)
-										$answers['answer'] = $post_data_answ;
-									else
-										$answers['answer'] = "omite";
-
-									$this->custom_answers_model->save($answers, $apply_id);
-								}
-								if(strcmp($data[1], "multiselect") == 0)
-								{
-									$answers['custom_questions_id'] = $data[3];
-									$answers['answer'] = "";
-									
-									foreach ($post_data_answ as $answ) {
-										if(strcmp($answ,"") != 0)
-											$answers['answer'] = $answers['answer'].$answ.", ";
-									}
-									
-									$answers['answer'] = substr($answers['answer'], 0, -2);
-									$this->custom_answers_model->save($answers, $apply_id);
-								}
-							}
-						}
-						else
-							$postulation_message = "Ya Postulaste a este Casting.";
-					}
-					else
-						$postulation_message = "No tienes un video para poder postular.";
-				}
-				else
-					$postulation_message = "Casting no activo";
+				
+				$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
+				$this->index(1, $success_message);
 			}
 			else
-				$postulation_message = "No eres un postulante.";
-				
+				redirect(HOME."/home");
 		}
-		else 
-			$postulation_message = "Debes iniciar sesi&oacute;n";
-				
-		$this->session->set_userdata('msj', $postulation_message);
-		redirect(HOME."/home/casting_detail/".$id_casting);
+		else
+			redirect(HOME."/home");
 	}
+
+
+	private function _upload_image($id_user,$id_casting)
+	{
+	    $images_path = realpath(APPPATH.CONTEST_PHOTO_DIR);
+	    
+	    //obtener la extension del archivo
+	    $type = explode('/', $_FILES['upload_photo']['type']);
+	    $img_name = $id_user."_".$id_casting.".".$type[1];
+	    
+	    $config = array(
+			'allowed_types' => 'jpg|jpeg|gif|png',
+			'upload_path' => $images_path,
+			'file_name' => $img_name,
+			'overwrite' => TRUE,
+			'max_size' => 2048,
+			'remove_spaces' =>TRUE
+	    );
+	    
+	    $this->upload->initialize($config);
+	    
+	    if(!$this->upload->do_upload('upload_photo'))
+	    	return false;
+	    else
+	    {
+	    	$photo_to_save = array(
+			'name' => $img_name,
+			'description' => "Foto Concurso",
+			'user_id' => $id_user,
+			'casting_id' => $id_casting
+			);
+
+			$this->photos_model->insert($photo_to_save);
+			return true;
+	    }
+  
+
+	}
+
+
 }
