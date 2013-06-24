@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form','security'));
-		$this->load->model(array('hunter_model','share_detail_model', 'prize_categories_model' ,'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model','custom_questions_model','custom_options_model'));
+		$this->load->model(array('hunter_model','share_detail_model', 'prize_categories_model' ,'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model','skills_model','custom_questions_model','custom_options_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		
 	}
@@ -612,23 +612,12 @@ class Hunter extends CI_Controller {
 				foreach($id_applicants as $id)
 				{
 					$applicant_info = $this->user_model->select_applicant($id['user_id']);
-					
-					if($this->user_model->has_main_video($id['user_id']))//Si tiene seteado el video principal
-					{
-						$video_info = $this->videos_model->get_applied_video_applicant($id['user_id'],$args["id_casting"]);//obtiene el video con el que se postuló
-					}
-					else //sino carga el primer video de los agregados
-					{
-						$video_info = $this->videos_model->get_video_applicant($id['user_id']);//saca primer video que tenga registrado
-					}
-
+						
 					if($applicant_info['image_profile']!=0)
 						$applicant_info['image_profile'] = $this->photos_model->get_name($applicant_info['image_profile']);
 				
 					$applicant_info["apply_id"]= $id["id"]; 
 					$applicant_info["apply_state"]= $id["state"];
-					$applicant_info['tags'] = $this->skills_model->get_user_skills($id['user_id']);
-					$applicant_info['video_id'] =array_pop($video_info);
 					array_push($args["applicants"],$applicant_info);
 				}				
 			}

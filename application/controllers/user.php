@@ -11,12 +11,10 @@ class User extends CI_Controller {
 		
 		$this->load->model('user_model');
 		$this->load->model('applies_model');
-		$this->load->model('videos_model');
 		$this->load->model('skills_model');
 		$this->load->model('castings_model');
 		$this->load->model('photos_model');
 		$this->load->model('likes_model');
-		$this->load->model('video_categories_model');
 		$this->load->model('education_model');
 
 		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
@@ -160,20 +158,8 @@ class User extends CI_Controller {
 			}			
 		}
 		
-
-
-		
-		if($this->videos_model->verify_videos($id) != 1)
-		{
-			$args["postulation_flag"]=false;
-			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
-		}
-		else {
-			$args["postulation_flag"]=true;
-		}
 		
 		$args["user_id"] = $this->session->userdata('id');
-		
 		
 
 		$this->load->view('template', $args);
@@ -243,10 +229,7 @@ class User extends CI_Controller {
 			$inner_args["applicant_content"]="applicants/new";
 			$args["inner_args"]=$inner_args;
 
-			$args["postulation_flag"] = false;
-			$args["postulation_message"] = "Necesitas Tener Videos para poder postular";
-
-
+	
 			if(isset($user_id) && is_numeric($user_id))
 			{
 				$id = $this->session->userdata('id');
@@ -254,8 +237,6 @@ class User extends CI_Controller {
 				$temp=$this->user_model->select($user_id);
 				$args = array_merge ( $args, $temp);
 		
-				if($this->videos_model->verify_videos($id) == 1)
-					$args["postulation_flag"]=true;
 				
 				$args["user_id"] = $this->session->userdata('id');
 				
@@ -318,16 +299,7 @@ class User extends CI_Controller {
 				$casting["apply_status"]=$apply_id_dictionary[$casting["id"]];
 			}			
 		}
-		
-		
-		if($this->videos_model->verify_videos($id) != 1)
-		{
-			$args["postulation_flag"]=false;
-			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
-		}
-		else {
-			$args["postulation_flag"]=true;
-		}
+
 		
 		$args["user_id"] = $this->session->userdata('id');
 		
@@ -342,83 +314,6 @@ class User extends CI_Controller {
 	/* IMPORTANTE FUNCIONES PARA SUBIR IMAGENES; SON UTILES PARA CONCURSO DE SUBIDA DE IMAGENES
 	O FOTOS.
 
-	private function _upload_url_photo($id)
-  	{
-	    $list = explode('.', $_POST['url_photo']);
-	    $type = array_pop($list);
-
-	    $allowed_types = array('jpg','jpeg','gif','png');
-	    $allowed = FALSE;
-
-	    for ($i=0; $i < count($allowed_types); $i++) { 
-		    if(strcmp($type, $allowed_types[$i]) == 0)
-		    {
-			    $allowed = TRUE;
-			    break;
-		    }
-	    }
-
-	    if($allowed == TRUE)
-	    {
-	      $ultimo_indicador = $this->photos_model->get_last_indicator($id);
-	      
-	      $parts = array();
-	      
-	      $temporal = parse_url($_POST["url_photo"]);
-	      
-	      $url = $_POST["url_photo"];
-	      $img_name = $id."_".($ultimo_indicador+1).".".$type;
-	      $img = LOCAL_GALLERY.$img_name;
-	      $parts = explode("/", $temporal['path']);
-	      
-	      
-	      file_put_contents($img,file_get_contents($url));//GUARDA LA IMAGEN
-	    
-	      $photo_to_save = array(
-	        'name' => $img_name,
-	        'user_id' => $id
-	        );
-	      
-	      $this->photos_model->insert($photo_to_save);//INSERTA REGISTRO EN BASE DE DATOS , TABLA "photos"
-	    }
-	    else
-	    {
-	      return;
-	    }
- 	}
-
-	private function _upload_image($id)
-	{
-	    $images_path = realpath(LOCAL_GALLERY);
-	    
-	    //obtener la extension del archivo
-	    $type = explode('/', $_FILES['upload_photo']['type']);
-	    $ultimo_indicador = $this->photos_model->get_last_indicator($id);
-	    $img_name = $id."_".($ultimo_indicador+1).".".$type[1];
-	    
-	    $config = array(
-	      'allowed_types' => 'jpg|jpeg|gif|png',
-	      'upload_path' => $images_path,
-	      'file_name' => $img_name,
-	      'overwrite' => TRUE,
-	      'max_size' => 2048,
-	      'remove_spaces' =>TRUE
-	    );
-	    
-	    $this->upload->initialize($config);
-	    
-	    if(!$this->upload->do_upload('upload_photo'))
-	    {
-	      print_r($this->upload->display_errors());
-	    }
-
-	    $photo_to_save = array(
-	      'name' => $img_name,
-	      'user_id' => $id
-	      );
-	    
-	    $this->photos_model->insert($photo_to_save);
-	}
 
 	public function photo_gallery($ope=NULL,$id_photo_objetivo=NULL) //TODO: TERMINAR
 	{
@@ -504,19 +399,6 @@ class User extends CI_Controller {
 		
 		
 		$this->load->view('template',$args);
-	}
-
-	function check_upload($image)
-	{
-		if($_FILES['image_profile']['error'] == 4)
-		{
-			$this->form_validation->set_message('check_upload', 'Ups, deber subir un archivo antes de continuar.');
-			return FALSE;
-		}
-		else
-		{
-			return TRUE;
-		}
 	}
 
 	*/

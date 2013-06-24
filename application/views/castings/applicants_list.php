@@ -107,19 +107,7 @@
 										</div>
 									</row>
 									<row>
-										<div class="space2"></div>
-										<?php
-											if(isset($applicant['tags'])&& !empty($applicant['tags']) )
-												{
-											  		echo '<ul style="font-size: 8px;" class="skills-list">';
-											  		foreach ($applicant['tags'] as $tag) {
-													echo '<li> <a href="#">'.$tag.'</a></li>';
-												}
-												echo '</ul>';
-											}
-											else
-												echo '<div class="space1"></div>'
-										?>
+										<div class="space4"></div>				
 									</row>
 									
 									<row>
