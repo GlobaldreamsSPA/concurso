@@ -35,6 +35,7 @@
 	<link href="<?php echo base_url()?>style/jquery.cleditor.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/uniform.default.css" rel="stylesheet"/>
 	<link href="<?php echo base_url()?>style/chosen.css" rel="stylesheet"/>
+	<link href="<?php echo base_url()?>style/jquery.countdown.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 
@@ -50,6 +51,7 @@
 	<script src="<?php echo base_url()?>js/jquery.dataTables.js"></script>
 	<script src="<?php echo base_url()?>js/chosen.jquery.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.ba-resize.js"></script>
+	<script src="<?php echo base_url()?>js/jquery.countdown.js"></script>
 		
 	<div id="fb-root"></div>
 

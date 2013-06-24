@@ -96,8 +96,9 @@ $('[data-toggle="modal"]').click(function(e) {
 									<span class="home-video-author">Publicado por Ganando.cl</span>
 									<div class="space05"></div>
 									<div class="home-video-countdown">
-										<label class="inline">39h 59m 34s</label>
-									</div>	
+										<div class="countdown">
+										</div>
+									</div>
 								</div>
 								<div class="span2">
 									<?php 
@@ -130,6 +131,10 @@ $('[data-toggle="modal"]').click(function(e) {
 				}
 
 				?>
+
+				<script type="text/javascript">
+					$(".countdown").countdown({until: new Date(2013, 06, 25, 23, 59, 59)});			
+				</script>
 
 				<div class="row">
 					<div class="space1"></div>
