@@ -96,7 +96,9 @@ $('[data-toggle="modal"]').click(function(e) {
 									<span class="home-video-author">Publicado por Ganando.cl</span>
 									<div class="space05"></div>
 									<div class="home-video-countdown">
-										<div class="countdown">
+										<?php $date = explode("-", $contest["end_date"]); $date[1] = $date[1] -1; ?>
+										<div id="<?php echo 'countdown'.$i; ?>">
+											<?php echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00)}); </script>"; ?>
 										</div>
 									</div>
 								</div>
@@ -131,10 +133,6 @@ $('[data-toggle="modal"]').click(function(e) {
 				}
 
 				?>
-
-				<script type="text/javascript">
-					$(".countdown").countdown({until: new Date(2013, 06, 25, 23, 59, 59)});			
-				</script>
 
 				<div class="row">
 					<div class="space1"></div>
