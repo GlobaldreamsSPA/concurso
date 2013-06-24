@@ -97,7 +97,7 @@ body
 	margin-left: 7%;
 	width: 47.6%;
 	height: 412px;
-	overflow: scroll;
+	overflow-y: auto;
 }
 /* Estilo para los contenedores de informacion al hacer click en Concursar en los modales */
 
@@ -109,8 +109,6 @@ a:visited {text-decoration: none !important}
 #variable{min-height: 1180px;}
 
 /*navbar colores de los items*/
-
-
 
 .navbar .nav li a
 {
@@ -663,6 +661,21 @@ span.home-video-author
 	font-size: 12px;
 	color: #ECF0F1;
 	font-weight: bold;
+}
+
+div.home-video-countdown
+{
+	width: 60%;
+	height: 33px;
+	color: white;
+	background: url("../img/reloj_arena.png") no-repeat left bottom;
+	margin-bottom: 2%;
+}
+
+div.home-video-countdown label
+{
+	padding-left: 20%;
+	padding-top: 2%;
 }
 
 div.row_text_main

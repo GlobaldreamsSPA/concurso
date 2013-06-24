@@ -92,8 +92,12 @@ $('[data-toggle="modal"]').click(function(e) {
 							<div class="space1"></div>
 							<div class="row row_text_main">
 								<div class="span9 offset1">
-									<div style="margin-bottom: 20px;" class="home-video-title"><?php echo $contest["title"]; ?></div>
+									<div style="margin-bottom: 0.5%;" class="home-video-title"><?php echo $contest["title"]; ?></div>
 									<span class="home-video-author">Publicado por Ganando.cl</span>
+									<div class="space05"></div>
+									<div class="home-video-countdown">
+										<label class="inline">39h 59m 34s</label>
+									</div>	
 								</div>
 								<div class="span2">
 									<?php 
