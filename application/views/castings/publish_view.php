@@ -138,7 +138,6 @@
 
 		function change_event(event)
 		{
-			console.log(event);
 			//Capturar el evento al presionar tab o keydown
 			if((event.charCode == 0 && event.keyCode == 9) || (navigator.userAgent.indexOf('Chrome') != -1 && event.charCode == 0 && event.keyCode == 40))
 			{
@@ -249,7 +248,7 @@
 			
 		<div class="space1"></div>
 		<div class="space1"></div>
-		<?php echo form_open_multipart('hunter/publish', array('class' => 'form-horizontal')); ?>
+		<?php echo form_open_multipart('hunter/publish', array('class' => 'form-horizontal', 'onsubmit' => "return confirm('¿Está seguro que desea publicar el concurso?')")); ?>
 			<legend><h1> Publicar un nuevo Concurso </h1></legend>
 			<div style="margin-left:15px;">
 				

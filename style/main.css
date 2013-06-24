@@ -43,6 +43,12 @@ body
 	background-color:#F1C40F
 }
 
+/* Estilo del modal que muestra un mensaje de felicitaciones al postular a un concurso */
+#postulation-result
+{
+	margin-top: -10% !important;
+}
+
 /* Estilo para los contenedores de informacion al hacer click en Concursar en los modales */
 .upload-content {
 	display: none;

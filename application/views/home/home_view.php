@@ -25,15 +25,14 @@ $('[data-toggle="modal"]').click(function(e) {
 </div>
 <div class="modal-body">
 <h4>Aviso</h4>
-<p><?php if(isset($postulation_message)) echo $postulation_message; ?></p>              
+<p><?php if(isset($success_message)) echo $success_message; ?></p>              
 </div>
 <div class="modal-footer">
-<?php echo anchor(HOME,'Volver al Home',"class='btn btn-primary'"); ?>
-<a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+<a href="#" class="btn btn-primary" data-dismiss="modal">Cerrar</a>
 </div>
 </div>
 
-<?php if(isset($postulation_message)){ ?>
+<?php if(isset($success_message)){ ?>
 <script type="text/javascript">
 
   $('#postulation-result').modal({

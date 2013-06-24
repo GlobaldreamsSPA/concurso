@@ -14,7 +14,7 @@ class Home extends CI_Controller {
 	
 	}
 
-	public function index($page=1)
+	public function index($page=1, $success_message = NULL)
 	{
 		$args = array();
 		
@@ -54,6 +54,8 @@ class Home extends CI_Controller {
 		$args["prizes"] = array(""=>"Elige: tipo de premio") + $args["prizes"];
 		$args['categories'] = array(""=>"Elige: tipo de concurso")+$this->casting_categories_model->get_casting_categories();
 		
+		if(!is_null($success_message))
+			$args["success_message"] = $success_message;
 
 		$args["content"] = "home/home_view";
 		$args["inner_args"] = NULL;
@@ -319,7 +321,7 @@ class Home extends CI_Controller {
 
 		if($apply_id !== FALSE)
 		{
-			$apply_message = "¡Felicitaciones! Ya estás participando en el";
+			$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
 			
 			//Ahora guardas las preguntas custom
 			foreach($this->input->post() as $post_data_name => $post_data_answ)
@@ -352,11 +354,8 @@ class Home extends CI_Controller {
 				}
 			}
 
-		$args["content"] = "home/home_view";
-		$args["inner_args"] = NULL;
-		$args["apply_message"] = $apply_message;
-		$this->load->view('template', $args);
-
+		$this->index(1, $success_message);
+		
 		}
 	}
 
