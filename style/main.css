@@ -7,6 +7,35 @@ body
 
 /* estilo elementos modal concurso*/
 
+.contest-close
+{
+	padding-right:10px; 
+	opacity:0.6 !important; 
+	color:white !important;
+}
+
+.contest-close:hover
+{
+	opacity:0.8 !important; 
+}
+
+.contest-close-container
+{
+	background-color:#3498DB; 
+	margin-top:10px; 
+	height:40px; 
+	width:11.8% !important; 
+	margin-left:-1px !important;
+}
+
+.contest-title
+{
+	background-color:#3498DB; 
+	text-align: center; 
+	position:relative; 
+	z-index:-1; 
+	color:white !important;
+}
 
 #des{
 	position:absolute; 
@@ -54,6 +83,17 @@ body
 	display: none;
 	z-index: -1;
 	position: absolute;
+
+}
+
+.video-content
+{
+	padding-left: 2%;
+	padding-right: 3.5%;	
+}
+
+
+.trivia-content {
 	margin-left: 7%;
 	width: 47.6%;
 	height: 412px;
@@ -67,59 +107,6 @@ a:link {text-decoration: none !important}
 a:visited {text-decoration: none !important}
 
 #variable{min-height: 1180px;}
-
-/* css para la estrella*/
-
-#star-five {
-   margin-top: 7px;
-   margin-right: 30px;
-   position: relative;
-   display: block;
-   color: #ECF0F1;
-   width: 0px;
-   height: 0px;
-   border-right:  35px solid transparent;
-   border-bottom: 24px  solid #ECF0F1;
-   border-left:   35px solid transparent;
-   -moz-transform:    rotate(35deg);
-   -webkit-transform: rotate(35deg);
-   -ms-transform:     rotate(35deg);
-   -o-transform:      rotate(35deg);
-}
-#star-five:before {
-   border-bottom: 28px solid #ECF0F1;
-   border-left: 11px solid transparent;
-   border-right: 11px solid transparent;
-   position: absolute;
-   height: 0;
-   width: 0;
-   top: -15px;
-   left: -23px;
-   display: block;
-   content: '';
-   -webkit-transform: rotate(-35deg);
-   -moz-transform:    rotate(-35deg);
-   -ms-transform:     rotate(-35deg);
-   -o-transform:      rotate(-35deg);
-
-}
-#star-five:after {
-   position: absolute;
-   display: block;
-   color: #ECF0F1;
-   top: 3px;
-   left: -37px;
-   width: 0px;
-   height: 0px;
-   border-right: 35px solid transparent;
-   border-bottom: 24px solid #ECF0F1;
-   border-left: 35px solid transparent;
-   -webkit-transform: rotate(-70deg);
-   -moz-transform:    rotate(-70deg);
-   -ms-transform:     rotate(-70deg);
-   -o-transform:      rotate(-70deg);
-   content: '';
-}
 
 /*navbar colores de los items*/
 
@@ -337,12 +324,6 @@ padding-bottom: 5%;
 
 
 /* Play que aparece sobre imagen de video*/
-.fade_new {
-   opacity: 1;
-   transition: opacity .25s ease-in-out;
-   -moz-transition: opacity .25s ease-in-out;
-   -webkit-transition: opacity .25s ease-in-out;
-   }
 
 .image { position: relative; background-color: white;}
 .fade_new{opacity: 0.85;}

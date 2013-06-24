@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 		$this->load->helper(array('url', 'form'));
 
 		//Modelos
-		$this->load->model(array('videos_model','share_detail_model','prize_categories_model','video_votes_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
+		$this->load->model(array('videos_model','share_apply_model','share_detail_model','prize_categories_model','video_votes_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
 	
 	}
 
@@ -41,8 +41,13 @@ class Home extends CI_Controller {
     	
 		$args["page"]=$page;
 
-		$args["castings"] = $this->castings_model->get_castings(NULL, 1, 1, 0);
+		foreach ($args["contest_list"] as &$element) {
+			if(!in_array($element["category"],array(1,2,3)))
+				$element["info_only"]= true;
+			else
+				$element["info_only"]= false;
 
+		}
 		$prizes =  $this->prize_categories_model->select("name");
 		$counter=0;
 
@@ -223,7 +228,7 @@ class Home extends CI_Controller {
 										  name=".urlencode($share_data['title'])."&
 										  caption=".$_GET['apply_url']."&
 										  description=".urlencode($share_data['description'])."&
-										  redirect_uri=".HOME;
+										  redirect_uri=".HOME."/home/apply_share/".$args['id_casting'];
 					
 					}
 					else
@@ -317,48 +322,69 @@ class Home extends CI_Controller {
 
 	public function apply_trivia($id)
 	{
-		$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
+		if($this->session->userdata('id'))
+		{	
+			$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
 
-		if($apply_id !== FALSE)
-		{
-			$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
-			
-			//Ahora guardas las preguntas custom
-			foreach($this->input->post() as $post_data_name => $post_data_answ)
+			if($apply_id !== FALSE)
 			{
-				$data = explode("_", $post_data_name);
-				echo "<br>";
-				if(strcmp($data[1], "text") == 0 || strcmp($data[1], "select") == 0)
+				$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
+				
+				//Ahora guardas las preguntas custom
+				foreach($this->input->post() as $post_data_name => $post_data_answ)
 				{
-					$answers['custom_questions_id'] = $data[3];
-					
-					if(strcmp($post_data_answ, "") != 0)
-						$answers['answer'] = $post_data_answ;
-					else
-						$answers['answer'] = "omite";
+					$data = explode("_", $post_data_name);
+					echo "<br>";
+					if(strcmp($data[1], "text") == 0 || strcmp($data[1], "select") == 0)
+					{
+						$answers['custom_questions_id'] = $data[3];
+						
+						if(strcmp($post_data_answ, "") != 0)
+							$answers['answer'] = $post_data_answ;
+						else
+							$answers['answer'] = "omite";
 
-					$this->custom_answers_model->save($answers, $apply_id);
-				}
-				if(strcmp($data[1], "multiselect") == 0)
-				{
-					$answers['custom_questions_id'] = $data[3];
-					$answers['answer'] = "";
-					
-					foreach ($post_data_answ as $answ) {
-						if(strcmp($answ,"") != 0)
-							$answers['answer'] = $answers['answer'].$answ.", ";
+						$this->custom_answers_model->save($answers, $apply_id);
 					}
-					
-					$answers['answer'] = substr($answers['answer'], 0, -2);
-					$this->custom_answers_model->save($answers, $apply_id);
+					if(strcmp($data[1], "multiselect") == 0)
+					{
+						$answers['custom_questions_id'] = $data[3];
+						$answers['answer'] = "";
+						
+						foreach ($post_data_answ as $answ) {
+							if(strcmp($answ,"") != 0)
+								$answers['answer'] = $answers['answer'].$answ.", ";
+						}
+						
+						$answers['answer'] = substr($answers['answer'], 0, -2);
+						$this->custom_answers_model->save($answers, $apply_id);
+					}
 				}
-			}
 
-		$this->index(1, $success_message);
-		
+			$this->index(1, $success_message);
+			}
 		}
+		else	
+			redirect(HOME."/home");
 	}
 
+	public function apply_share($id)
+	{
+		if($this->session->userdata('id') && isset($_GET['post_id']))
+		{
+			$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
+
+			if($apply_id !== FALSE)
+			{
+				$this->share_apply_model->insert(array('apply_id'=>$apply_id,'post_id'=>$_GET['post_id']));
+				$apply_message = "¡Felicitaciones! Ya estás participando en el";
+			
+			}
+			redirect(HOME."/home");
+		}
+		else
+			redirect(HOME."/home");
+	}
 
 	/* HAY Q OBTENER FUNCIONES DE ACA AUN; LUEGO BORRAR*/
 	public function apply_casting($id_casting)

@@ -173,14 +173,12 @@
 
 </script>
 
-
-
-<div style="margin-left:10px;" class="row">
+<div style="margin-left:10px; margin-right:10px;" class="row">
 	<div class="span11">
-	<h2 class="modal-title" style="text-align: center; position:relative; z-index: -1;" id="profile">	<?php echo $title; ?> </h2>
+		<h2 class="contest-title" >	<?php echo $title; ?> </h2>
 	</div>
-	<div class="span1">
-		<h2><a class="close" data-dismiss="modal"><span class="fui-cross"></span></a> </h2>
+	<div class="span1 contest-close-container">
+		<h2><a class="close contest-close" data-dismiss="modal"><span class="fui-cross"></span></a> </h2>
 	</div>
 </div>
 <div style="margin-left:10px; margin-top:2%; margin-bottom:2%; height: 90%;" class="row">
@@ -253,7 +251,7 @@
 			if(strcmp($apply_url, "video") == 0 && $logged_in) 
 			{
 		?>
-			<div class="upload-content">
+			<div class="upload-content video-content">
 				<ul class="nav nav-tabs">
 				  <li class="active"><a href="#enlazar" data-toggle="tab">Desde Youtube</a></li>
 				  <li><a href="#pc" data-toggle="tab">Desde tu PC</a></li>
@@ -305,7 +303,7 @@
 			{
 		?>
 		<form action="<?php echo HOME.'/home/apply_trivia/'.$id_casting; ?>" method="POST">
-			<div class="upload-content">
+			<div class="upload-content trivia-content">
 				<?php
 					if($custom_options != FALSE)
 					{
