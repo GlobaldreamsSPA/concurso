@@ -183,6 +183,10 @@
 	    }
 	}
 
+	$(".photo-container").bind("click", function() {
+	    $('#upload_photo').trigger('click');
+	});
+
 
 </script>
 

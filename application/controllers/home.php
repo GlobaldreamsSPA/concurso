@@ -363,6 +363,11 @@ class Home extends CI_Controller {
 
 			$this->index(1, $success_message);
 			}
+			else
+			{
+				$success_message = "Ya estás participado en el concurso, sólo puedes postular una vez";
+				$this->index(1, $success_message);
+			}
 		}
 		else	
 			redirect(HOME."/home");
@@ -381,7 +386,10 @@ class Home extends CI_Controller {
 				$this->index(1, $success_message);
 			}
 			else
-				redirect(HOME."/home");
+			{
+				$success_message = "Ya estás participado en el concurso, sólo puedes postular una vez";
+				$this->index(1, $success_message);
+			}
 		}
 		else
 			redirect(HOME."/home");
@@ -400,7 +408,10 @@ class Home extends CI_Controller {
 				$this->index(1, $success_message);
 			}
 			else
-				redirect(HOME."/home");
+			{
+				$success_message = "Ya estás participado en el concurso, sólo puedes postular una vez";
+				$this->index(1, $success_message);
+			}
 		}
 		else
 			redirect(HOME."/home");
