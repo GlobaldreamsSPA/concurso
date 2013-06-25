@@ -183,6 +183,37 @@
 	    }
 	}
 
+	$("#trivia-upload-form").submit(function(){
+
+		var error = false;
+		var elements = $('.control-group textarea');
+
+		for(var i=0; i < elements.length; i++)
+		{
+			if(elements[i].value == "")
+			{
+				error = true;
+
+				div = $('.control-group')[i];
+				div.className = div.className + " error";
+
+				label = $('.control-group label')[i];
+				label.style.display = "block";
+				label.style.marginTop = "0";
+				label.style.color = "#E74C3C";
+			}
+		}
+
+		if(error)
+			return false;
+
+		/*
+		if($(".search-choice").length == 0)
+		{
+			return false;
+		}
+		*/
+	});
 
 </script>
 
@@ -288,7 +319,7 @@
 			elseif(strcmp($apply_url, "trivia") == 0 && $logged_in)
 			{
 		?>
-		<form action="<?php echo HOME.'/home/apply_trivia/'.$id_casting; ?>" method="POST">
+		<form id="trivia-upload-form" action="<?php echo HOME.'/home/apply_trivia/'.$id_casting; ?>" method="POST">
 			<div class="upload-content trivia-content">
 				<?php
 					if($custom_options != FALSE)
@@ -298,13 +329,15 @@
 						for($i=0; $i < count($custom_options); $i++) 
 						{
 							echo "<div style='padding-left:3%'class='row'";
+
 							if(strcmp($custom_options[$i]['type'], 'text') == 0)
 							{
-								//Pregunta va h5 y texto es textarea
 								echo "<h5>".$custom_options[$i]['text']."</h5>";
-								echo "<textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 70%; margin-top: 15px;' placeholder='La respuesta del postulante iría acá'></textarea>";
+								echo "<div class='control-group'><textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 70%; margin-top: 15px;' placeholder='La respuesta del postulante iría acá'></textarea>";
+								echo "<label style='display: none; font-size: 12px; margin-left: 5px; margin-top: -2.4%;'>Este campo es requerido</label></div>";
 								echo "<div class='space05'></div>";
 							}
+
 							if(strcmp($custom_options[$i]['type'], 'select') == 0)
 							{
 								//Pregunta va h5 y se crea un select con varios options
@@ -319,6 +352,7 @@
 								echo "</select>";
 								echo "<div class='space05'></div>";
 							}
+
 							if(strcmp($custom_options[$i]['type'], 'multiselect') == 0)
 							{
 								//Pregunta va h5 y se crea un select chozen
@@ -332,6 +366,7 @@
 								}
 
 								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width: 313px;' data-placeholder='Selecciona tus respuestas..'");
+								echo "<label style='display: none; font-size: 12px; margin-left: 1%;'>Este campo es requerido</label>";
 								echo "<div class='space1'></div>";
 							}
 							echo "</div>";
