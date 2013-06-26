@@ -204,17 +204,24 @@
 			}
 		}
 
+		var elements = $('.chzn-choices');
+		
+		for(var i=0; i < elements.length; i++)
+		{
+			length = elements[i].getElementsByClassName('search-choice').length;
+			if(length == 0)
+			{
+				error = true;
+				label = $('.chozen-control-group label')[i];
+				label.style.display = "block";	
+				label.style.color = "#E74C3C";
+			}
+		}
+
 		if(error)
 			return false;
-
-		/*
-		if($(".search-choice").length == 0)
-		{
-			return false;
-		}
-		*/
 	});
-	
+
 	$(".photo-container").bind("click", function() {
 	    $('#upload_photo').trigger('click');
 	});
@@ -369,8 +376,8 @@
 									$options[$option['id']] = $option['option'];
 								}
 
-								echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width: 313px;' data-placeholder='Selecciona tus respuestas..'");
-								echo "<label style='display: none; font-size: 12px; margin-left: 1%;'>Este campo es requerido</label>";
+								echo "<div class='chozen-control-group'>".form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width: 313px;' data-placeholder='Selecciona tus respuestas..'");
+								echo "<label style='display: none; font-size: 12px; margin-left: 1%;'>Este campo es requerido</label></div>";
 								echo "<div class='space1'></div>";
 							}
 							echo "</div>";
