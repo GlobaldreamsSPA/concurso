@@ -1,3 +1,9 @@
+<script type="text/javascript">
+	$(function() {
+		$( ".accordion" ).accordion();
+	});
+</script>
+
 <div class="row-fluid">		
   	<div class="span3 user-profile-left">
 		<div class="row">
@@ -15,7 +21,7 @@
 		</div>
 		<div class="space2"></div>
 		<div class="row">
-    		<div style="padding-left:5%; padding-right:1%;"class="span10">
+    		<div class="span10">
     			<ul class="nav nav-pills nav-stacked">
 					<li class="active"><a> <i class="icon-th-large"></i> Postulaciones Activas</a></li>											
 					<li><a href="<?php echo HOME.'/user/results_casting'?>"> <i class=" icon-star"></i> Resultados de Concursos</a></li>											
@@ -25,11 +31,13 @@
 			</div>
 		</div>
 	</div>
-			    
+	
+
+
     <div class="span8 offset1 user-profile-right">
-    		
-		<legend><h1>Postulaciones Activas a Concursos</h1></legend>
-		
+    	
+			<h1>Postulaciones Activas a Concursos</h1>
+
 		<?php 							
 		if(isset($castings))
 			foreach($castings as $casting){ ?>
@@ -62,33 +70,28 @@
 				<div class="row">
 					<div class="span6">
 						<div class="space05"></div>
-
-						<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
-							<img style='height:100%; width: 100%;' src="<?php echo $casting['image'] ?>"/>
-						</a>
+						<img style='height:100%; width: 100%;' src="<?php echo $casting['image'] ?>"/>
 					</div>
 					<div style="padding-left: 1%;" class="span6 list-view-applies-desc">
 						<div class="space05"></div>
-						<div class="row">
-							<h4 id="profile">Descripci&oacuten:</h4>
-							<div>
-								<?php echo  substr(strip_tags($casting['description']),0,140)."..." ?>
+						<div class="row accordion">
+							<h3>Descripci&oacuten</h3>
+							<div style="font-size:12px;">
+								<?php echo  $casting['description']; ?>
 							</div>
-						</div>
-						<div class="space1"></div>
-						<div class="row">
-								<h4 id="profile">Tags:</h4>
-								<?php
-											if(isset($casting['tags']))
-								    		{
-									    		echo '<ul class="skills-list">';
-									    		foreach ($casting['tags'] as $tag) {
-													echo '<li> <a href="#">'.$tag.'</a></li>';
-												}
-												echo '</ul>';
-											}
-								?>
-						</div>									
+							<h3>Pasos del Concurso</h3>
+							<div style="font-size:12px;">
+								<?php echo  $casting['steps']; ?>
+							</div>
+							<h3>Bases</h3>
+							<div style="font-size:12px;">
+								<?php echo  $casting['bases']; ?>
+							</div>
+							<h3>Premios</h3>
+							<div style="font-size:12px;">
+								<?php echo  $casting['prizes_description']; ?>
+							</div>
+						</div>							
 					</div>
 				</div>
 				

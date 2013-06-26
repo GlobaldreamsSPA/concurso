@@ -103,7 +103,7 @@ class User extends CI_Controller {
     }
 
 
-	public function index($id = NULL, $first_time = FALSE)
+	public function index($id = NULL)
 	{
 		if($this->session->userdata('id') == FALSE)
 			redirect(HOME);
