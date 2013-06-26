@@ -220,6 +220,8 @@
 
 		if(error)
 			return false;
+		else
+			return true;
 	});
 
 	$(".photo-container").bind("click", function() {
