@@ -5,6 +5,9 @@ body
 
 }
 
+input[type=file]{
+	line-height: 9% !important;
+}
 
 .ui-accordion-header 
 {
@@ -133,8 +136,8 @@ body
 	display: none;
 	font-size: 12px;
 	color: #E74C3C;
-	margin-top: 4%;
-	margin-bottom: -6% !important;
+	margin-top: 2%;
+	margin-bottom: -7% !important;
 }
 
 .photo-content

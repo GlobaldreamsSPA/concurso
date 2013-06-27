@@ -395,6 +395,8 @@ class Home extends CI_Controller {
 			redirect(HOME."/home");
 	}
 
+	
+
 	public function apply_photo($id)
 	{
 		if($this->session->userdata('id') && $_FILES['upload_photo']['error'] != 4)
