@@ -86,6 +86,15 @@ body
 
 }
 
+/* Estilo para el mensaje de error en el modal de Sube tu Imagen */
+.error-label {
+	display: none;
+	font-size: 12px;
+	color: #E74C3C;
+	margin-top: 4%;
+	margin-bottom: -6% !important;
+}
+
 .photo-content
 {
 	padding-left: 3%;
