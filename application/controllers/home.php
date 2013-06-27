@@ -428,7 +428,6 @@ class Home extends CI_Controller {
 			redirect(HOME."/home");
 	}
 
-
 	private function _upload_image($id_user,$id_casting)
 	{
 	    $images_path = realpath(APPPATH.CONTEST_PHOTO_DIR);
@@ -462,9 +461,5 @@ class Home extends CI_Controller {
 			$this->photos_model->insert($photo_to_save);
 			return true;
 	    }
-  
-
 	}
-
-
 }
