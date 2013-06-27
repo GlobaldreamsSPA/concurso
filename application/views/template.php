@@ -433,8 +433,8 @@
 	</script>
 </body>
 
-<div class="color_line"></div>
 <footer>
+<div class="color_line"></div>
 <div class="space2"></div>
 <div class"row">
 	<div class="span8 offset3"><p style="color: #ECF0F1;">GlobalDreams SPA | Publica tus castings <a href="<?php echo base_url();?>home/login_hunter">con nosotros</a> | Lee los <a href="<?php echo base_url();?>docs/terms.pdf">T&eacuterminos y condiciones</a> | <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>

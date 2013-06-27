@@ -2,16 +2,32 @@
 
 $(document).ready(function() {
 	
-// Support for AJAX loaded modal window.
-// Focuses on first input textbox after it loads the window.
-$('[data-toggle="modal"]').click(function(e) {
-	e.preventDefault();
-	var url = $(this).attr('href');
-	
-	$.get(url, function(data) {
-		$('<div id="contestmodal" class="modal hide fade">' + data + '</div>').modal();
-	}).success(function() { $('.modal-title').focus(); });
-});
+	// Support for AJAX loaded modal window.
+	// Focuses on first input textbox after it loads the window.
+
+	var active = false;
+
+	$('[data-toggle="modal"]').click(function(e) {
+		e.preventDefault();
+
+		if (active) {
+        	return;
+    	}
+		active = true;
+
+		var url = $(this).attr('href');
+
+		$.get(url, function(data) {
+			$('<div id="contestmodal" class="modal hide fade">' + data + '</div>').modal();
+		}).success(function() { 
+			$('.modal-title').focus(); 
+
+			$(".modal-backdrop").on("remove", function () {
+			    active = false;
+			});
+		});
+
+	});
 	
 });
 
