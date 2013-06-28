@@ -62,8 +62,13 @@ class Home extends CI_Controller {
 		if(!is_null($success_message))
 			$args["success_message"] = $success_message;
 
-		$args["content"] = "home/home_view";
+
+
 		$args["inner_args"] = NULL;
+
+		$args["content"] = "home/home_view";
+
+
 		$this->load->view('template',$args);
 	}
 
@@ -153,7 +158,7 @@ class Home extends CI_Controller {
 	}
 
 
-	public function login_hunter()
+	public function company()
 	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -177,6 +182,8 @@ class Home extends CI_Controller {
 			$args["flag"]=true;
 		}
 
+		$args["company"]=true; /*Se setea para hacer seo distinto a la pagina para empresas*/
+
 		$args['content'] = 'home/login_hunter';
 		$args['inner_args'] = NULL;
 		$this->load->view('template',$args);
@@ -185,7 +192,8 @@ class Home extends CI_Controller {
 	public function what_is()
 	{
 		$args['content'] = 'home/what_is';	
-		$args["inner_args"]=NULL;
+		$args["inner_args"]=NULL; /*Se setea para hacer seo distinto*/
+		$args['about']= true;
 		$this->load->view('template',$args);
 	}
 

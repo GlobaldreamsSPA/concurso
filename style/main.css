@@ -5,6 +5,29 @@ body
 
 }
 
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -130px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+	height: 130px; /* .push must be the same height as .footer */
+}
+
+
+@font-face {
+    font-family: 'ganandofont'; /*a name to be used later*/
+    src: url('../fonts/soupofjustice.ttf'); /*URL to font*/
+}
+
+/* acordion cuenta usuario*/
 
 .ui-accordion-header 
 {
@@ -48,6 +71,24 @@ body
 }
 
 /* estilo elementos modal concurso*/
+
+
+#contestmodal{
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  margin: -18% 0 0 -25%;
+  padding-top: 1%; 
+  padding-bottom: 1%; 
+  width: 70% !important;
+  border-radius: 0;
+
+}
+
+#contestmodal .modal-body
+{
+	max-height: 100% !important;
+}
 
 .contest-close
 {
@@ -114,6 +155,16 @@ body
 	background-color:#F1C40F
 }
 
+.tag
+{
+	font-size:11px !important; 
+	padding:1% !important;
+	margin-right:1% !important; 
+	margin-top:1% !important; 
+	border-radius:0 !important;
+}
+
+
 /* Estilo del modal que muestra un mensaje de felicitaciones al postular a un concurso */
 #postulation-result
 {
@@ -174,14 +225,12 @@ body
 	height: 412px;
 	overflow-y: auto;
 }
-/* Estilo para los contenedores de informacion al hacer click en Concursar en los modales */
 
 /*links*/
 a:link {text-decoration: none !important} 
 
 a:visited {text-decoration: none !important}
 
-#variable{min-height: 1180px;}
 
 /*navbar colores de los items*/
 
@@ -229,223 +278,15 @@ a:visited {text-decoration: none !important}
 	background-color: transparent !important; 
 }
 
-/*bg like and dilike vote button */
-
-.vote
-{
-	display: inline-block;
-	*display: inline;
-	/* IE7 inline-block hack */
-
-	*zoom: 1;
-	padding: 4px 14px;
-	margin-bottom: 0;
-	font-size: 14px;
-	line-height: 20px;
-	*line-height: 20px;
-	text-align: center;
-	vertical-align: middle;
-	cursor: pointer;
-	color:#969696;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-	background-color: #f5f5f5;
-	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
-	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
-	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	*background-color: #e6e6e6;
-	/* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-	border: 1px solid #bbbbbb;
-	*border: 0;
-	border-bottom-color: #a2a2a2;
-	*margin-left: .3em;
-	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-
-}
-
-.upvote
-{
-	-webkit-border-top-left-radius: 4px;
-	-webkit-border-bottom-left-radius: 4px;
-	-moz-border-top-left-radius: 4px;
-	-moz-border-bottom-left-radius: 4px;
-	border-top-left-radius: 4px;
-	border-bottom-left-radius: 4px;
-}
-
-.upvote:hover
-{
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background-color: #5bb75b;
-	background-image: -moz-linear-gradient(top, #62c462, #51a351);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
-	background-image: -webkit-linear-gradient(top, #62c462, #51a351);
-	background-image: -o-linear-gradient(top, #62c462, #51a351);
-	background-image: linear-gradient(to bottom, #62c462, #51a351);
-	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
-	border-color: #51a351 #51a351 #387038;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	*background-color: #51a351;
-	/* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-
-	color:white;
-	text-decoration: none !important;
-}
-
-.downvote
-{
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-bottom-right-radius: 4px;
-	-moz-border-top-right-radius: 4px;
-	-moz-border-bottom-right-radius: 4px;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
-	margin-left: -5px;
-}
-
-.downvote:hover
-{
-	
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background-color: #da4f49;
-	background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
-	background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
-	background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
-	background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
-	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
-	border-color: #bd362f #bd362f #802420;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	*background-color: #bd362f;
-	/* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-	
-
-	color:white;
-	text-decoration: none !important;
-}
-
-.vote:hover .greyvote
-{
-	display:none;
-}
-
-.whitevote
-{
-	display:none;
-}
-
-.vote:hover .whitevote
-{
-	display:inline;
-}
-
-/* formato links sociales pagina principal*/
-.social_container{
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
-border-radius: 5px;
-
--webkit-box-shadow: -1px -1px 13px rgba(50, 50, 50, 0.35);
--moz-box-shadow:    -1px -1px 13px rgba(50, 50, 50, 0.35);
-box-shadow:         -1px -1px 13px rgba(50, 50, 50, 0.35);
 
 
-background: #ffffff; /* Old browsers */
-/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk5JSIgc3RvcC1jb2xvcj0iI2RhZDlkOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
-background: -moz-linear-gradient(top,  #ffffff 0%, #dad9d9 99%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(99%,#dad9d9)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #ffffff 0%,#dad9d9 99%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #ffffff 0%,#dad9d9 99%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #ffffff 0%,#dad9d9 99%); /* IE10+ */
-background: linear-gradient(to bottom,  #ffffff 0%,#dad9d9 99%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dad9d9',GradientType=0 ); /* IE6-8 */
-
-padding-left: 7%;
-padding-right: 5%;
-margin-right: 5%;
-margin-left: 5%;
-padding-bottom: 5%;
-}
-
- .fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe {
-    width: 100% !important;
-}
-
-/* formato eslogan*/
-
-.slogan
-{
-	font-style:italic;
-	font-family: Georgia, serif;
-}
-
-
-/* Play que aparece sobre imagen de video*/
+/* Hover imagen concurso*/
 
 .image { position: relative; background-color: white;}
 .fade_new{opacity: 0.85;}
 
 .image:hover .fade_new{opacity: 1;}
 
-/* Modal donde aparece el video de youtube*/
-#playermodal{
-  position: fixed;
-  top: 40%;
-  left: 40%;
-  margin: -14% 0 0 -25%;
-  padding-top: 1%; 
-  padding-bottom: 1%; 
-  width: 70% !important;
-}
-
-#playermodal .modal-body
-{
-	max-height: 600px !important;
-}
-
-#contestmodal{
-  position: fixed;
-  top: 40%;
-  left: 40%;
-  margin: -18% 0 0 -25%;
-  padding-top: 1%; 
-  padding-bottom: 1%; 
-  width: 70% !important;
-  border-radius: 0;
-
-}
-
-#contestmodal .modal-body
-{
-	max-height: 100% !important;
-}
-
-/* tags*/
-
-.tag
-{
-	font-size:11px !important; 
-	padding:1% !important;
-	margin-right:1% !important; 
-	margin-top:1% !important; 
-	border-radius:0 !important;
-}
 
 /* Select estilo flat*/
 .styled select {
@@ -466,21 +307,6 @@ padding-bottom: 5%;
    overflow: hidden;
 }
 
-/* Modal para agregar video */
-#add_video{
-  position: fixed;
-  top: 40%;
-  left: 40%;
-  margin: -17% 0 0 -25%;
-  padding-top: 1%; 
-  padding-bottom: 1%; 
-  width: 70% !important;
-}
-
-#add_video .modal-body
-{
-	max-height: 600px !important;
-}
 
 .MBT-readmore{ 
 background:#1097db; 
@@ -529,25 +355,11 @@ div.hunter_msj
 
 div.content_lh
 {
-	background: url('../img/bg_viddon.png') !important;
 	-webkit-background-size: cover !important;	
 	background-size: cover !important;
 }
 
-/*Estilo del boton superior*/
-#login-button-image {
-	width: 100%;
-}
 
-#login-button {
-	width: 100%;
-}
-
-#login-button-container{
-	position: relative;
-	top: -5px;
-	height: 22px !important;
-}
 
 /* Estilo del logo */
 
@@ -591,20 +403,6 @@ div.space4
 	min-height: 60px;
 }
 
-#upperhalf
-{
-    vertical-align: middle;
-	font-size: 12px;
-}
-
-
-/*  Header con logo pagina */
-#lowerhalf
-{
-	background: white;
-	min-height: 70px;
-}
-
 
 /* Fondo pagina principal */
 div.home
@@ -614,20 +412,7 @@ div.home
 	background-size: 100% auto;
 }
 
-/* Formato color titulos perfil	*/
-h1.profile-title{
-	font-family: "profile_font";
-	color: #3E3D40;
-	font-size: 40px;
-	margin-bottom: 2px;
-}
-
-#profile 
-{
-	font-weight: normal !important;
-	color: #1097db;
-}
-		
+	
 /* posicion imagen usuario */
 img.user_image
 {
@@ -638,34 +423,6 @@ img.user_image
 		
 
 
-.what-is h1
-{
-	color: black;
-	margin-bottom: 30px;
-}
-
-.what-is p
-{
-	color: black;
-	text-align: justify;
-	font-size: 18px;
-	line-height: 25px;
-}
-
-/*posicion dummy imagen en formulario new*/
-div#image_upload
-{
-	position:relative;
-	top: 20px;
-	left:2%;
-}
-
-img#image_casting
-{
-	position:relative;
-	width: 100%;
-}
-
 /* Color plateado perfil */
 #content div.row-fluid
 {	
@@ -674,51 +431,21 @@ img#image_casting
 	max-width: 98%;
 	left: 10px;
 }
-		
-/* Formato tags talentos */
-li.taglist {
-	display: inline;
-	border-color: #BDBDBD;
-	background-color: #FFFFFF;
-}
-		
-/* Formato parrafos justificados */
-div.justify
-{ 
-	text-align : justify;
-	max-height: 120px;
-}
 
 
-/* formato videos pagina principal*/
-div#main_videos
-{
-	margin-left: 3%;
-	width: 45%;
-	display: block;
-}
-
+/* formato concursos pagina principal*/
 
 
 div#main_videos_list
 {
-	margin-left: 2%;
-	width: 30.7%;
-	display: block;
-}
-
-div#main_casting
-{
-	margin-left: 3%;
-	width: 30%;
+	margin-left: 1.7%;
 	display: block;
 }
 
 div.video_text_main
 {
 	position: relative;
-	left: -2.5%;
-	top: -20px;
+	top: -17px;
 	background:  #E67E22  !important;
 }
 
@@ -747,13 +474,6 @@ div.home-video-countdown
 	margin-bottom: 2%;
 }
 
-/*
-.countdown
-{
-	
-	padding-top: 2%;
-}
-*/
 
 div.row_text_main
 {
@@ -766,7 +486,7 @@ span.arrow {
 	position: relative;
 	width: 0;
 	height: 0;
-	top: -30px;
+	top: -27px;
 	left: 40px;
 	bottom: 0;
 	border-left: 12px solid transparent;
@@ -775,19 +495,6 @@ span.arrow {
 	z-index: 12;
 }
 
-div.black_line{
-	
-	border-bottom: 2px solid black;
-}
-
-img.user_image_main_page
-{
-	position: relative;
-	margin-top: 15%;
-	left: 4%;
-	max-height: 80%;
-	max-width: 80%;
-}
 
 img.hunter_casting_logo_detail
 {
@@ -798,36 +505,8 @@ img.hunter_casting_logo_detail
 	max-width: 100%;
 }
 
-ul.skills-list
-{
-	margin-top: 10px;
-	margin-left: 0;
-}
 
-ul.skills-list li
-{
-	display: inline;
-	padding-right: 4%;
-	padding-left: 3%;
 
-	background: url('../img/tags.jpg');
-	background-size: 100% 100%;
-}
-
-ul.skills-list li a
-{
-	color: #f7f6f6;
-	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.7);
-	text-decoration: none;
-}
-
-/*Estilo titulo video del perfil*/
-div.video-title
-{
-	font-size: 18px;
-	font-weight: bold;
-	margin-bottom: 20px;
-}
 
 div.fb-like
 {
@@ -844,7 +523,7 @@ div.button-home-page
 
 #headercontent
 {
-	background: #1a1a1a !important;
+	background: #E67E22 !important;
 }
 
 #headercontent li 
@@ -855,18 +534,7 @@ div.button-home-page
 
 
 
-/* Estilo para el texto del usuario logeado en el sistema */
-.welcome-login {
-	font-size: 12px;
-	color: white !important;
-	font-weight: bold;
-}
 
-.welcome-login a{
-	font-size: 12px;
-	color: white !important;
-	font-weight: bold;
-}
 
 /* menu hunter*/
 .orange{
@@ -884,7 +552,8 @@ footer
 {
 	background-color: #E67E22 !important;
 	position: relative;
-	bottom: 0;
+	bottom: 0 !important;
+	height: 130px;
 }
 
 footer ul
@@ -893,11 +562,19 @@ footer ul
 	display: inline;
 }
 
-
-footer #que-es-viddon, #siguenos, #contacto li p
+footer a
 {
-	color: black;
-	font-size: 17px;
+	color: #F1C40F !important;
+}
+
+footer a:hover
+{
+	color: #F5D657 !important;
+}
+
+footer .span12
+{
+	text-align: center;
 }
 
 .color_line

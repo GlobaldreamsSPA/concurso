@@ -28,10 +28,155 @@ $(document).ready(function() {
 		});
 
 	});
+
+ 	    if($(this).width() < 930){
+	    	var collection = $(".responsive");
+			collection.each(function( ) {
+		     	if($(this).hasClass("span4")){
+					$(this).removeClass('span4');  
+					$(this).css('margin-left','19%');
+					$(this).css('margin-bottom','10%');
+					$(this).addClass("span8");
+				}
+			});
+
+		    $(".responsive-search").removeClass('span3');  
+		    $(".responsive-search").addClass("span12");
+		    $(".responsive-search").css('margin-left','2.5%');
+
+
+		    $(".responsive-select").removeClass('span7');  
+		    $(".responsive-select").addClass("span12");
+		    $(".responsive-select").css('margin-left','2.5%');
+
+
+		    $(".styled").removeClass('span5');  
+		    $(".styled").addClass("span6");
+
+		   	$(".responsive-button").removeClass('span2'); 
+		   	$(".responsive-button").addClass('span12'); 
+		   	$(".responsive-button").css('text-align','center');
+
+		   	$(".nav-collapse").css('margin-left','0');
+
+		   	
+	   }else if($(this).width() >= 930)
+	   {
+	   		var collection = $(".responsive");
+
+		     collection.each(function( ) {
+				 if(!$(this).hasClass("span4")){
+				    $(this).addClass("span4");
+					$(this).css('margin-left','1.7%');
+					$(this).css('margin-bottom','0');
+					$(this).removeClass("span8");
+				 }  
+			});
+		    $(".responsive-search").addClass('span3');  
+	    	$(".responsive-search").removeClass("span12");
+	    	$(".responsive-search").css('margin-left','0');
+
+	    	$(".responsive-select").addClass('span7');  
+	    	$(".responsive-select").removeClass("span12");
+	    	$(".responsive-select").css('margin-left','0');
+
+	    	$(".styled").addClass('span5');  
+	    	$(".styled").removeClass("span6");
+
+	    	$(".responsive-button").addClass('span2'); 
+		   	$(".responsive-button").removeClass('span12'); 
+		   	$(".responsive-button").css('text-align','inline');
+
+		    $(".nav-collapse").css('margin-left','300px');
+
+
+	   }
+
+	$(window).resize(function(){
+ 	    if($(this).width() < 930){
+	    	var collection = $(".responsive");
+			collection.each(function( ) {
+		     	if($(this).hasClass("span4")){
+					$(this).removeClass('span4');  
+					$(this).css('margin-left','19%');
+					$(this).css('margin-bottom','10%');
+					$(this).addClass("span8");
+				}
+			});
+
+		    $(".responsive-search").removeClass('span3');  
+		    $(".responsive-search").addClass("span12");
+		    $(".responsive-search").css('margin-left','2.5%');
+
+
+		    $(".responsive-select").removeClass('span7');  
+		    $(".responsive-select").addClass("span12");
+		    $(".responsive-select").css('margin-left','2.5%');
+
+
+		    $(".styled").removeClass('span5');  
+		    $(".styled").addClass("span6");
+
+		   	$(".responsive-button").removeClass('span2'); 
+		   	$(".responsive-button").addClass('span12'); 
+		   	$(".responsive-button").css('text-align','center');
+
+		   	$("#filter").css('font-size','20px');
+		    $("#prize").css('font-size','20px');
+		   	$("#category").css('font-size','20px');
+		    $("#filter_button").css('font-size','20px');
+
+
+
+		   	$(".nav-collapse").css('margin-left','0');
+
+		   	
+	   }else if($(this).width() >= 930)
+	   {
+	   		var collection = $(".responsive");
+
+		     collection.each(function( ) {
+				 if(!$(this).hasClass("span4")){
+				    $(this).addClass("span4");
+					$(this).css('margin-left','1.7%');
+					$(this).css('margin-bottom','0');
+					$(this).removeClass("span8");
+				 }  
+			});
+		    $(".responsive-search").addClass('span3');  
+	    	$(".responsive-search").removeClass("span12");
+	    	$(".responsive-search").css('margin-left','0');
+
+	    	$(".responsive-select").addClass('span7');  
+	    	$(".responsive-select").removeClass("span12");
+	    	$(".responsive-select").css('margin-left','0');
+
+	    	$(".styled").addClass('span5');  
+	    	$(".styled").removeClass("span6");
+
+	    	$(".responsive-button").addClass('span2'); 
+		   	$(".responsive-button").removeClass('span12'); 
+		   	$(".responsive-button").css('text-align','inline');
+
+		    $(".nav-collapse").css('margin-left','300px');
+
+		    $("#filter").css('font-size','16px');
+		    $("#prize").css('font-size','16px');
+		    $("#category").css('font-size','16px');
+		    $("#filter_button").css('font-size','16px');
+
+	   }
+	});
+
+
 	
 });
 
 </script>
+
+
+<h1 style="display:none">Como ganar, solo concursa en Ganando .cl</h1>
+<h1 style="display:none">Participa en los sorteos por premios en Ganando .cl</h1>
 
 
 <!-- Muestra este mensaje, en caso de postular a un concurso de forma exitosa o fallida. -->
@@ -71,18 +216,18 @@ $(document).ready(function() {
 				<div class="space2"></div>
 	  			<div style="margin-left:3%;" class="row">
 		  			<?php echo form_open('home',array('method' => 'get', 'class' => 'form-inline')); ?>
-	  					<div style="margin-top:15px;" class="span3">
+	  					<div style="margin-top:15px;" class="responsive-search span3">
 							<input type="text" id='filter' style='width:95%;' placeholder="Busca por t&iacute;tulo" name="search_terms" value="<?php echo $search_values["search_terms"] ?>"></input>
 						</div>
-						<div class="span7" style="margin-top:15px; margin-left:0 !important;">
-							<div class="styled span5" style="margin-left: 2%;">										
-								<?php echo form_dropdown("category",$categories,$search_values["category"],'data-placeholder="Categorías" style="width:100%;"') ?>
+						<div class="responsive-select span7" style="margin-top:15px; left:0 !important;">
+							<div class="styled span5">										
+								<?php echo form_dropdown("category",$categories,$search_values["category"],'data-placeholder="Categorías" id="category" style="width:100%;"') ?>
 							</div>
 							<div class="styled span5">
-								<?php echo form_dropdown("prize",$prizes,$search_values["prize"],'data-placeholder="Premios" id="test2" style="width:100%;"') ?>
+								<?php echo form_dropdown("prize",$prizes,$search_values["prize"],'data-placeholder="Premios" id="prize" style="width:100%;"') ?>
 							</div>
 						</div>
-						<div style="margin-top:15px; text-align:right;" class="span2">
+						<div style="margin-top:15px; right:2%;" class="responsive-button span2">
 							<input type="submit"  id="filter_button" class="btn btn-primary" value="BUSCAR CONCURSOS"/>
 						</div>
 					</form>
@@ -96,7 +241,7 @@ $(document).ready(function() {
 					if(($i-1)%3 == 0 or $i==1) 
 						echo "<div style='margin-left: 1px;' class='row'>";
 					?>
-					<div id="main_videos_list" class='span4'>
+					<div id="main_videos_list" class='responsive span4'>
 						<div class="space1"></div>
 						<a href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='.urlencode($contest["title"]).'&entity='.urlencode($contest["entity"]).'&days='.urlencode($contest["days"]).'&logo='.urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]) ?>" data-toggle="modal">							
 							<div class="image">
@@ -104,10 +249,10 @@ $(document).ready(function() {
 							</div>
 						</a>
 						<span class="arrow"></span>
-						<div class="container video_text_main span12">
+						<div class="video_text_main">
 							<div class="space1"></div>
 							<div class="row row_text_main">
-								<div class="span10 offset1">
+								<div style="margin-left:5%;"class="span11">
 									<div style="margin-bottom: 0.5%;" class="home-video-title"><?php echo $contest["title"]; ?></div>
 									<span class="home-video-author">Publicado por Ganando.cl</span>
 									<div class="space05"></div>
@@ -123,12 +268,13 @@ $(document).ready(function() {
 										if($contest["info_only"])
 										{
 									?>
-											<img style="position:absolute; bottom:-23%; right:0; height:142%; width:26%;" src="<?php echo HOME.'/img/info.png'; ?>"/>
+											<img style="position:absolute; bottom:-33%; right:0; height:156%; width:30%;" src="<?php echo HOME.'/img/info.png'; ?>"/>
 									<?php
 										}
 									?>
 								</div>
 							</div>
+							<div class="space1"></div>
 						</div>
 					</div>
 				<?php 
@@ -152,7 +298,7 @@ $(document).ready(function() {
 
 				<div class="row">
 					<div class="space1"></div>
-					<div class="pagination">  
+					<div class="pagination" style="text-align:center;">  
 					  <ul id="pagination_bt">
 					    <li class="previous" <?php if($page==1) echo "class=disabled";?>><a <?php if($page!=1) echo "href='".base_url()."home/index/".($page-1).$get_uri."'";?>>Prev</a></li>  
 						<?php

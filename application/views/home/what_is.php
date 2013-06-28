@@ -1,37 +1,79 @@
-<div class="content content_lh" id="content">
+<script type="text/javascript">
+	if($(this).width() < 930){
+		
+		$(".responsive-top").removeClass('span5');  
+		$(".responsive-top").removeClass('offset1');  
+		$(".responsive-top").addClass("row");
+		$(".responsive-top").css("padding-left","5%");
+		$(".responsive-top").css("padding-top","0");
+		$(".responsive-top").css("text-align","center");
+
+		$(".responsive-bottom").css("padding-top","10%");
+		$(".responsive-bottom").removeClass('span6');  
+		$(".responsive-bottom").addClass("row");
+
+
+    }else if($(this).width() >= 930)
+    {
+   		$(".responsive-top").addClass('span5');  
+		$(".responsive-top").addClass('offset1');  
+		$(".responsive-top").removeClass("row");
+		$(".responsive-top").css("padding-left","0");
+		$(".responsive-top").css("padding-top","6%");
+		$(".responsive-top").css("text-align","left");
+		
+		$(".responsive-bottom").css("padding-top","0");
+		$(".responsive-bottom").addClass('span6');  
+		$(".responsive-bottom").removeClass("row");
+
+    }
+
+	$(window).resize(function(){
+		if($(this).width() < 930){
+			
+			$(".responsive-top").removeClass('span5');  
+			$(".responsive-top").removeClass('offset1');  
+			$(".responsive-top").addClass("row");
+			$(".responsive-top").css("padding-left","5%");
+			$(".responsive-top").css("padding-top","0");
+			$(".responsive-top").css("text-align","center");
+
+			$(".responsive-bottom").css("padding-top","10%");
+			$(".responsive-bottom").removeClass('span6');  
+			$(".responsive-bottom").addClass("row");
+		   	
+		}else if($(this).width() >= 930)
+		{
+			$(".responsive-top").addClass('span5');  
+			$(".responsive-top").addClass('offset1');  
+			$(".responsive-top").removeClass("row");
+			$(".responsive-top").css("padding-left","0");
+			$(".responsive-top").css("padding-top","6%");
+			$(".responsive-top").css("text-align","left");
+
+			$(".responsive-bottom").css("padding-top","0");
+			$(".responsive-bottom").addClass('span6');  
+			$(".responsive-bottom").removeClass("row");
+
+		}
+	});
+
+</script>
+<div class="content_lh" id="content">
 	<div class="space4"></div>
 	<div class="space4"></div>
-		<div class="content-fluid">
-				<div class="row">
-					<div class="span11 offset1">
-						<div class="row-fluid ">
-							<div style="text-align:justify; padding-left: 5%; padding-top:4%" class="span5">
-								<h1 id="profile">&iquest;QU&Eacute; ES VIDDON?</h1>
-								<p style="margin-top:8%; line-height: 18px;">
-									VIDDON es una plataforma que pretende potenciar artistas emergentes de toda Latino&aacute;rica
-									y posteriormente del mundo entero. 
-									<ul>
-									<li style="margin-top:3%;">
-									En VIDDON, podr&aacute;s subir videos propios a la plataforma, 
-									y con esos videos, podr&aacute;n postular a distintas ofertas laborales ("casting") en Chile o en otros pa&iacute;ses
-									</li>
-									<li style="margin-top:2%;">
-									Tendras la posibilidad de que por ejemplo, si eres cantante, no viajes a otra regi&oacute;n u otro pais para una 
-									audici&oacute;n, si no que se realice dicha audici&oacute;n a traves de un video, de forma que ahorres en costos econ&oacute;micos 
-									y de tiempo.</li>
-									</ul> 
-								</p>
-								<p style="margin-top:8%; margin-bottom:10%">
-									No pierdas m&aacute;s tiempo y <a href="<?php echo base_url().'user/fb_login'; ?>">	 &uacute;nete a la revoluci&oacute;n del talento! </a>
-								</p>
-							</div>
-							<div style="padding: 5%; margin-top:2%;" class="span7">
-								<image style="height:100%;"src='<?php echo HOME; ?>/img/foto_login_hunter.png' />
-							</div>
-	
-						</div>
-					</div>
-				</div>
+	<div class="content-fluid">
+		<div class="row">
+			<div style="padding-top:6%" class="responsive-top span5 offset1">
+				<h1 style="color: #D35400; font-family: 'ganandofont'; font-size: 45px !important;" > QUE ES GANANDO.CL?</h1>
+				<p style="margin-top:8%; color: #D35400; line-height: 40px; font-family: 'ganandofont'; font-size: 26px;">
+					ES EL NUEVO PORTAL DONDE PODRAS ENCONTRAR MUCHOS CONCURSOS ENTRETENIDOS PARA PARTICIPAR. QUE ESTAS ESPERANDO, <a href="<?php echo base_url().'user/fb_login'; ?>">¡CONCURSA!</a>
+				</p>
+			</div>							
+			<div style="margin-top:2%; margin-left:3%; text-align:center;" class="responsive-bottom span6">
+				<image style="height:100%; border: 5px solid #D35400; "src='<?php echo HOME; ?>/img/foto_login_hunter.png' />
+			</div>			
 		</div>
-		<div class="space4"></div>
+	</div>
+	<div class="space4"></div>
 </div>
