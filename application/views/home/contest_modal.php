@@ -224,6 +224,16 @@
 			return true;
 	});
 
+	$('#photo_upload_form').submit(function(){
+		if($('#photo_upload_form input').val() == "")
+		{
+			$('#photo_upload_form .error-label')[0].style.display = "block";
+			return false;
+		}
+		return true;
+	});
+
+
 	$(".photo-container").bind("click", function() {
 	    $('#upload_photo').trigger('click');
 	});
@@ -316,6 +326,7 @@
 				              <?php echo form_upload(array('name' => 'upload_photo','id' => 'upload_photo','class'=> 'file','onchange'=>'readURL(this);')); ?>
 			
 			            </div>
+			            <label class="error-label">Debe subir una imagen antes de concursar</label>
 			            <div class="space2"></div>
 						
 						<div class="photo-container">
