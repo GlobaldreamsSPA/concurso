@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<meta charset="utf-8">	
@@ -90,7 +90,7 @@
 			?>
 			<div class="navbar-inner" style="background-color: #E67E22">
 			    <div class="container" >
-			    	<a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+			    	<a rel="nofollow" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
@@ -126,7 +126,7 @@
 								{ 
 								?>
 									<li class="dropdown">
-	                        			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Iniciar sesi&oacute;n <b class="caret"></b></a>
+	                        			<a rel="nofollow" href="#" class="dropdown-toggle" data-toggle="dropdown">Iniciar sesi&oacute;n <b class="caret"></b></a>
 			                        <ul class="dropdown-menu">
 			                     	<?php    
 										echo "<li>".anchor('user/fb_login', "<img style='margin-left:7px;' src='".HOME."/img/fb-login.png' />")."</li>";
@@ -151,7 +151,7 @@
 		<div class="color_line"></div>
 		<div class="space2"></div>
 		<div class"row">
-			<div class="span12"><p style="color: #ECF0F1;">GlobalDreams SPA | Publica tus concursos <a href="<?php echo base_url();?>home/login_hunter">con nosotros</a> | Lee los <a href="<?php echo base_url();?>docs/terms.pdf">t&eacuterminos y condiciones</a> | <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
+			<div class="span12"><p style="color: #ECF0F1;">GlobalDreams SPA | Publica tus concursos <a rel="nofollow" href="<?php echo base_url();?>home/login_hunter">con nosotros</a> | Lee los <a rel="nofollow" href="<?php echo base_url();?>docs/terms.pdf">t&eacuterminos y condiciones</a> | <a rel="nofollow" href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
 		</div>
 		<div class="row">
 			<div class="span12">
@@ -159,8 +159,8 @@
 						<div class="span11 offset1" style="margin-top: -3px;">
 							<p style="margin-left: 30px; text-decoration: none; color: #ECF0F1;" class="second">Ganando &copy; 2013 | Todos los derechos reservados | 
 							<a style="margin-left: 15 px;" href="https://twitter.com/ViddonCom" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
-							<a  href="https://www.facebook.com/ganandochile" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
-							<a style="top:6px;" class="fb-like" data-href="https://www.facebook.com/ganandochile" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></a>				
+							<a href="https://www.facebook.com/ganandochile" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
+							<a rel="nofollow" style="top:6px;" class="fb-like" data-href="https://www.facebook.com/ganandochile" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></a>				
 							</p>
 						</div>
 				</div>

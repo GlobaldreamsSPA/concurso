@@ -182,14 +182,14 @@ $(document).ready(function() {
 <!-- Muestra este mensaje, en caso de postular a un concurso de forma exitosa o fallida. -->
 <div id="postulation-result" class="modal hide fade in">
 <div class="modal-header">
-<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a> 
+<a class="close" rel="nofollow" data-dismiss="modal"><i class="icon-remove"></i></a> 
 </div>
 <div class="modal-body">
 <h4>Aviso</h4>
 <p><?php if(isset($success_message)) echo $success_message; ?></p>              
 </div>
 <div class="modal-footer">
-<a href="#" class="btn btn-primary" data-dismiss="modal">Cerrar</a>
+<a href="#" rel="nofollow" class="btn btn-primary" data-dismiss="modal">Cerrar</a>
 </div>
 </div>
 
@@ -243,7 +243,7 @@ $(document).ready(function() {
 					?>
 					<div id="main_videos_list" class='responsive span4'>
 						<div class="space1"></div>
-						<a href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='.urlencode($contest["title"]).'&entity='.urlencode($contest["entity"]).'&days='.urlencode($contest["days"]).'&logo='.urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]) ?>" data-toggle="modal">							
+						<a rel="nofollow" href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='.urlencode($contest["title"]).'&entity='.urlencode($contest["entity"]).'&days='.urlencode($contest["days"]).'&logo='.urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]) ?>" data-toggle="modal">							
 							<div class="image">
 								<img class="fade_new" src="<?php echo $contest['full_image']; ?>" alt=""/>
 							</div>
@@ -300,7 +300,7 @@ $(document).ready(function() {
 					<div class="space1"></div>
 					<div class="pagination" style="text-align:center;">  
 					  <ul id="pagination_bt">
-					    <li class="previous" <?php if($page==1) echo "class=disabled";?>><a <?php if($page!=1) echo "href='".base_url()."home/index/".($page-1).$get_uri."'";?>>Prev</a></li>  
+					    <li class="previous" <?php if($page==1) echo "class=disabled";?>><a rel="nofollow" <?php if($page!=1) echo "href='".base_url()."home/index/".($page-1).$get_uri."'";?>>Prev</a></li>  
 						<?php
 						$pag_size = 16; 
 						$margen = $pag_size/2;
@@ -313,11 +313,11 @@ $(document).ready(function() {
 						
 						for($i = $begin_pag; $i <= $end_pag; $i++){ 
 							?>
-							<li <?php if($page==$i) echo "class=disabled";?>><a <?php if($page!=$i) echo "href='".base_url()."home/index/".$i.$get_uri."'";?> > <?php echo $i; ?></a></li>  
+							<li <?php if($page==$i) echo "class=disabled";?>><a rel="nofollow" <?php if($page!=$i) echo "href='".base_url()."home/index/".$i.$get_uri."'";?> > <?php echo $i; ?></a></li>  
 						<?php 
 						} 
 						?>
-					    <li class="next" <?php if($page==$chunks) echo "class=disabled";?>><a <?php if($page!=$chunks) echo "href='".base_url()."home/index/".($page+1).$get_uri."'";?>>Next</a></li>
+					    <li class="next" <?php if($page==$chunks) echo "class=disabled";?>><a rel="nofollow" <?php if($page!=$chunks) echo "href='".base_url()."home/index/".($page+1).$get_uri."'";?>>Next</a></li>
 					     
 					  </ul>  
 					</div>  

@@ -67,7 +67,7 @@
 			<div style="padding-top:6%" class="responsive-top span5 offset1">
 				<h1 style="color: #D35400; font-family: 'ganandofont'; font-size: 45px !important;" > QUE ES GANANDO.CL?</h1>
 				<p style="margin-top:8%; color: #D35400; line-height: 40px; font-family: 'ganandofont'; font-size: 26px;">
-					ES EL NUEVO PORTAL DONDE PODRAS ENCONTRAR MUCHOS CONCURSOS ENTRETENIDOS PARA PARTICIPAR. QUE ESTAS ESPERANDO, <a href="<?php echo base_url().'user/fb_login'; ?>">¡CONCURSA!</a>
+					ES EL NUEVO PORTAL DONDE PODRAS ENCONTRAR MUCHOS CONCURSOS ENTRETENIDOS PARA PARTICIPAR. QUE ESTAS ESPERANDO, <a rel="nofollow" href="<?php echo base_url().'user/fb_login'; ?>">¡CONCURSA!</a>
 				</p>
 			</div>							
 			<div style="margin-top:2%; margin-left:3%; text-align:center;" class="responsive-bottom span6">
