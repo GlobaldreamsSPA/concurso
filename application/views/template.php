@@ -10,7 +10,7 @@
 		{ 
 	?>
 			<title>La pagina de concursos chilena, conoce Ganando .cl</title>
-			<meta name="description" content="La pagina de concursos chilena, conoce Ganando .cl">
+			<meta name="description" content="Concursa y gana muchos premios. Bienvenido a Ganando .cl">
 			<meta name="keywords" content="de concursos, a concursos, concurso de, sobre concurso, concurso chile">
 	<?php
 		} 
@@ -26,8 +26,8 @@
 		else
 		{
 	?>
-			<title>Todos los concursos para ganar ganar - Ganando .cl </title>
-			<meta name="description" content="Todos los concursos para ganar ganar - Ganando .cl">
+			<title>Todos los concursos para ganar - Ganando .cl </title>
+			<meta name="description" content="La pagina de concursos chilena, donde podrás participar por muchos premios. Conoce Ganando.cl">
 			<meta name="keywords" content="ganar ganar, gana, concurso, concursos, como ganar">
 	<?php
 		}
