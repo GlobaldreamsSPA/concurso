@@ -57,7 +57,15 @@ $(document).ready(function() {
 		   	$(".responsive-button").addClass('span12'); 
 		   	$(".responsive-button").css('text-align','center');
 
-		   	$(".nav-collapse").css('margin-left','0');
+		   	$("#filter").css('font-size','20px');
+		    $("#prize").css('font-size','20px');
+		   	$("#category").css('font-size','20px');
+		    $("#filter_button").css('font-size','20px');
+
+			$(".removable").removeClass("space4");
+			$(".resize-space").removeClass("space4");
+			$(".resize-space").addClass("space2");
+
 
 		   	
 	   }else if($(this).width() >= 930)
@@ -87,8 +95,14 @@ $(document).ready(function() {
 		   	$(".responsive-button").removeClass('span12'); 
 		   	$(".responsive-button").css('text-align','inline');
 
-		    $(".nav-collapse").css('margin-left','300px');
+		   	$("#filter").css('font-size','16px');
+		    $("#prize").css('font-size','16px');
+		    $("#category").css('font-size','16px');
+		    $("#filter_button").css('font-size','16px');
 
+			$(".removable").addClass("space4");
+			$(".resize-space").addClass("space4");
+			$(".resize-space").removeClass("space2");
 
 	   }
 
@@ -126,9 +140,10 @@ $(document).ready(function() {
 		   	$("#category").css('font-size','20px');
 		    $("#filter_button").css('font-size','20px');
 
+		    $(".removable").removeClass("space4");
+		    $(".resize-space").removeClass("space4");
+			$(".resize-space").addClass("space2");
 
-
-		   	$(".nav-collapse").css('margin-left','0');
 
 		   	
 	   }else if($(this).width() >= 930)
@@ -158,12 +173,16 @@ $(document).ready(function() {
 		   	$(".responsive-button").removeClass('span12'); 
 		   	$(".responsive-button").css('text-align','inline');
 
-		    $(".nav-collapse").css('margin-left','300px');
 
 		    $("#filter").css('font-size','16px');
 		    $("#prize").css('font-size','16px');
 		    $("#category").css('font-size','16px');
 		    $("#filter_button").css('font-size','16px');
+
+			$(".removable").addClass("space4");
+			$(".resize-space").addClass("space4");
+			$(".resize-space").removeClass("space2");
+
 
 	   }
 	});
@@ -209,8 +228,8 @@ $(document).ready(function() {
 	<div class="space4"></div>
 	<div class="space4"></div>
 	<div class="space4"></div>
-	<div class="space4"></div>
-	<div class="space4"></div>
+	<div class="resize-space space4"></div>
+	<div class="removable space4"></div>
 	<div class="row">
 			<div style="margin-left:1.2%;"  class="row-fluid">
 				<div class="space2"></div>

@@ -97,7 +97,7 @@
 	                </a>
 			    	<a class="brand" style="background-color:#D35400; border-radius: 0; height:40px; margin-left:1% !important; position: absolute; color: #ECF0F1" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>"> 	<img style="margin-top:-15px;"src="<?php echo HOME."/img/logogif.gif"; ?>" /></a>
 
-					<div style="margin-left: 260px !important; right: -40px !important;" class="nav-collapse collapse navbar-responsive-collapse">
+					<div class="nav-collapse collapse navbar-responsive-collapse">
 	                    <ul class="nav">
 							<?php
 								echo "<li>".anchor('home', 'Home')."</li>";
@@ -124,7 +124,7 @@
 							
 								if(!$id && !$id_h)
 								{   
-									echo "<li>".anchor('user/fb_login', "<img style='margin-right:10px;' src='".HOME."/img/fb-login.png' /> Iniciar sesi&oacute;n","style='padding-top:26px !important; padding-bottom:6px !important;' rel='nofollow' title='Iniciar sesión con facebook'")."</li>";
+									echo "<li>".anchor('user/fb_login', "<img style='margin-right:10px;' src='".HOME."/img/fb-login.png' /> Iniciar sesi&oacute;n"," id='fb-login' rel='nofollow' title='Iniciar sesión con facebook'")."</li>";
 			                       
 								}
 							?>	
@@ -163,6 +163,55 @@
 
 	<script type="text/javascript">
 	      
+
+		if($(this).width() < 930){
+	    			    
+
+		   	$(".nav-collapse").css('margin-left','0');
+		   	$(".nav-collapse").css('right','0');
+
+		   	$("#fb-login").css('padding-top','29px');
+		    $("#fb-login").css('padding-bottom','27px');
+
+
+		   	
+	   }else if($(this).width() >= 930)
+	   {
+	   		
+		    $(".nav-collapse").css('margin-left','260px');
+		    $(".nav-collapse").css('right','-40px');
+
+		    $("#fb-login").css('padding-top','26px');
+		    $("#fb-login").css('padding-bottom','6px');
+
+
+
+	   }
+
+		$(window).resize(function(){
+			if($(this).width() < 930){
+				    
+
+				$(".nav-collapse").css('margin-left','0');
+				$(".nav-collapse").css('right','0');
+
+				$("#fb-login").css('padding-top','29px');
+				$("#fb-login").css('padding-bottom','27px');
+
+
+			}else if($(this).width() >= 930)
+			{
+
+				$(".nav-collapse").css('margin-left','260px');
+				$(".nav-collapse").css('right','-40px');
+
+				$("#fb-login").css('padding-top','26px');
+				$("#fb-login").css('padding-bottom','6px');
+
+
+			}
+		});
+
 	    if($(".chzn-select").length > 0)
 			$(".chzn-select").chosen({no_results_text: "No se encontraron resultados"});
 		

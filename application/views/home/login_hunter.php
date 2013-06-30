@@ -20,52 +20,182 @@
 </script>
 <?php } ?>
 
+<script type="text/javascript">
+
+	if($(this).width() < 930){
+		
+		$(".responsive-top").removeClass('span6');  
+		$(".responsive-top").removeClass('offset1');  
+		$(".responsive-top").addClass("row");
+		$(".responsive-top").css("padding-left","5%");
+
+		$(".responsive-bottom").removeClass('span4');  
+		$(".responsive-bottom").removeClass('offset1'); 
+
+		$(".bottom-1").addClass('span8'); 
+		$(".bottom-1").addClass('offset2'); 
+		$(".bottom-1").css("margin-bottom","10%");
+		$(".bottom-1").css("margin-top","5%");
+
+
+		$(".bottom-2").addClass('span8'); 
+		$(".bottom-2").addClass('offset2'); 
+		$(".bottom-2").css("margin-bottom","5%");
+
+		$(".removable").removeClass("space4");
+
+	   	
+	}else if($(this).width() >= 930)
+	{
+
+		$(".responsive-top").addClass('span6');  
+		$(".responsive-top").addClass('offset1');  
+		$(".responsive-top").removeClass("row");
+		$(".responsive-top").css("padding-left","0");
+
+		$(".responsive-bottom").addClass('span4');  
+		$(".responsive-bottom").addClass('offset1'); 
+		
+		$(".bottom-1").removeClass('span8'); 
+		$(".bottom-1").removeClass('offset2'); 
+		$(".bottom-1").css("margin-bottom","0");
+		$(".bottom-1").css("margin-top","0");
+
+		$(".bottom-2").removeClass('span8'); 
+		$(".bottom-2").removeClass('offset2');    
+		$(".bottom-2").css("margin-bottom","0");
+		$(".removable").addClass("space4");
+
+
+	}
+
+	$(window).resize(function(){
+		if($(this).width() < 930){
+			
+			$(".responsive-top").removeClass('span6');  
+			$(".responsive-top").removeClass('offset1');  
+			$(".responsive-top").addClass("row");
+			$(".responsive-top").css("padding-left","5%");
+
+			$(".responsive-bottom").removeClass('span4');  
+			$(".responsive-bottom").removeClass('offset1'); 
+
+			$(".bottom-1").addClass('span8'); 
+			$(".bottom-1").addClass('offset2'); 
+			$(".bottom-1").css("margin-bottom","10%");
+			$(".bottom-1").css("margin-top","5%");
+
+
+			$(".bottom-2").addClass('span8'); 
+			$(".bottom-2").addClass('offset2'); 
+			$(".bottom-2").css("margin-bottom","5%");
+
+			$(".removable").removeClass("space4");
+
+		   	
+		}else if($(this).width() >= 930)
+		{
+
+			$(".responsive-top").addClass('span6');  
+			$(".responsive-top").addClass('offset1');  
+			$(".responsive-top").removeClass("row");
+			$(".responsive-top").css("padding-left","0");
+
+			$(".responsive-bottom").addClass('span4');  
+			$(".responsive-bottom").addClass('offset1'); 
+			
+			$(".bottom-1").removeClass('span8'); 
+			$(".bottom-1").removeClass('offset2'); 
+			$(".bottom-1").css("margin-bottom","0");
+			$(".bottom-1").css("margin-top","0");
+
+			$(".bottom-2").removeClass('span8'); 
+			$(".bottom-2").removeClass('offset2');    
+			$(".bottom-2").css("margin-bottom","0");
+			$(".removable").addClass("space4");
+	
+	
+		}
+	});
+
+</script>
 
 <div class="content content_lh" id="content">
 	<div class="space4"></div>
-	<div class="space4"></div>
+	<div class="removable space4"></div>
 	<div class="container-fluid">
 	  	<div class="row">
-	  		<div class="span8">
-	  			<div class="hunter_msj">
-					    <h2 >Bienvenidos Cazatalentos</h2>
-					    <h4>Descubre miles de artistas de los cuales encontrarás a la estrella que estás buscando</h4>
-			    </div>
+	  		<div class="responsive-top span6 offset1">
+	  			<div style="padding-top:6%;">
+				    <h1 style="color: #E67E22; text-align:center; font-family: 'ganandofont'; font-size: 55px !important;">Bienvenido </h1>
+				    <p style="margin-top:8%; text-align:center; color: #E67E22; line-height: 50px; font-family: 'ganandofont'; font-size: 30px;">Llega a miles de usuarios dispuestos a fomentar tu marca ¡Aumenta tu alcance! a un precio accesible. No volveras a ver los concursos de la misma manera.</p>
+		    	</div>
 	  		</div>
-	  		<div class="span3" id="variable" style="min-height: 0px !important; ">
-		  			<div class="row-fluid" style="border-radius: 5px; margin-left:8%">	
-		  				<h4 style="margin-left:10%;" id="profile">Ingreso Hunter</h4>
-				  		<?php echo form_open('hunter/verifylogin', array('class' => 'form-horizontal')); ?>
-							<div  style="text-align:center;">
-								<input style="width:75%;" name="email" value="<?php echo set_value('email'); ?>" type="text" id="inputEmail" placeholder="Email">
-								<?php echo form_error('email'); ?>
-								<div class="space05"></div>
-								<input style="width:45%;" name="password" value="<?php echo set_value('password'); ?>" type="password" id="inputPassword" placeholder="Password">
-								<button style="margin-left: 4%; width:25% !important;" type="submit" class="btn btn-primary">Entrar</button>
-							</div>
-							<?php echo form_error('password'); ?>
-						</form>
+	  		<div class="responsive-bottom span4 offset1" id="variable" style="min-height: 0px !important; ">
+		  			<div class="bottom-1">
+			  			<div class="row-fluid" style="border-radius: 5px; margin-left:8%">	
+			  				<div class="space05"></div>
+			  				<h3 style="padding-left:5%; background-color: #E67E22; color: #fff; text-align:center;">Ingreso Empresas</h3>
+			  				<div class="space05"></div>
+					  		<?php echo form_open('hunter/verifylogin', array('class' => 'form-horizontal')); ?>
+								<div style="text-align:right;" class="span6">
+									<input style="width:86%;" name="email" value="<?php echo set_value('email'); ?>" type="text" id="inputEmail" placeholder="Correo">
+									<?php echo form_error('email'); ?>
+									<div class="space1"></div>		            
+								</div>
+
+								<div style="margin-left:3.5%; text-align:left;" class="span6">   	
+									<input style="width:86%;" name="password" value="<?php echo set_value('password'); ?>" type="password" id="inputPassword" placeholder="Contraseña">
+									<?php echo form_error('password'); ?>
+									<div class="space1"></div>		            
+								</div>
+			        			<div class="span5" style="text-align:right;">
+									<label class="checkbox">
+								    	<input type="checkbox"> Recordar mis datos
+								    </label>							
+								</div>
+
+								<div class="span6 offset1" style="text-align:right; margin-right:5%;">
+									<button style="width:80% !important;" type="submit" class="btn btn-primary">INICIAR SESI&Oacute;N</button>
+									<div class="space1"></div>
+								</div>
+							</form>
+						</div>
 					</div>
 					<div class="space1"></div>
-					<div class="row-fluid" style="border-radius: 5px; margin-left:8%;">
-				  		<?php echo form_open('home/login_hunter', array('class' => 'form-horizontal')); ?>
-							<h4 style="margin-left:10%;" id="profile">Cont&aacutectanos</h4>
-							<div  style="text-align:center;">
-					            <input style="width:75%;" type="text" name="contact_name" id="input1" placeholder="Nombre" value="<?php echo set_value('contact_name'); ?>">
-								<?php echo form_error('contact_name'); ?>
-								<div class="space1"></div>		            
-					            <input style="width:75%;" type="text" name="contact_email" id="input2" placeholder="Correo" value="<?php echo set_value('contact_email'); ?>">
-								<?php echo form_error('contact_email'); ?>
-					           	<div class="space1"></div>
-					           	<textarea style="width:79%;" name="contact_message" id="input3" rows="7" class="span5" placeholder="Mensaje de Contacto"><?php echo set_value('contact_message'); ?></textarea>
-								<?php echo form_error('contact_message'); ?>
-							</div>
-							<div class="space1"></div>
-							<div style="text-align:right;">
-								<button style="margin-right:10%;   width:25% !important;" type="submit" class="btn btn-primary">Enviar</button>
-				        	</div>
-				        </form>
-			        </div>	
+					<div class="bottom-2">
+						<div class="row-fluid" style="border-radius: 5px; margin-left:8%;">
+					  		<?php echo form_open('home/login_hunter', array('class' => 'form-horizontal')); ?>
+								
+								<div class="space05"></div>
+				  				<h3 style="padding-left:5%; background-color: #E67E22; color: #fff; text-align:center;">Cont&aacute;ctanos</h3>
+				  				<div class="space05"></div>
+
+								<div style="text-align:right;" class="span6">
+						            <input style="width:86%;" type="text" name="contact_name" id="input1" placeholder="Nombre" value="<?php echo set_value('contact_name'); ?>">
+									<?php echo form_error('contact_name'); ?>
+									<div class="space1"></div>		            
+						            
+						        </div>
+						        <div style="margin-left:3.5%; text-align:left;" class="span6">   	
+						           	<input style="width:86%;" type="text" name="contact_email" id="input2" placeholder="Correo" value="<?php echo set_value('contact_email'); ?>">
+									<?php echo form_error('contact_email'); ?>
+						           	<div class="space1"></div>
+								</div>
+								<div style="text-align:right;" class="span9">
+									<textarea style="width: 87% !important;"  name="contact_message" id="input3" rows="2" placeholder="Mensaje de Contacto"><?php echo set_value('contact_message'); ?></textarea>
+									<?php echo form_error('contact_message'); ?>
+								</div>
+
+								<div class="span3" style="text-align:right;">
+									<button style="margin-right:5%; width: 80%; height:60px; font-size:25px;" type="submit" class="btn btn-primary"><span class="fui-mail"></span></button>
+				        		</div>
+				        		<div class="span12">
+									<div class="space1"></div>
+				        		</div>
+					        </form>
+				        </div>
+				    </div>	
 	  		</div>
 		</div>
   	</div>

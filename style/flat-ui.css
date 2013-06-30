@@ -1677,11 +1677,6 @@ textarea[class*="span"] {
   transition: color 0.25s linear;
   -webkit-backface-visibility: hidden;
 }
-.checkbox input,
-.radio input {
-  outline: none !important;
-  display: none;
-}
 .checkbox .icons,
 .radio .icons {
   color: #bdc3c7;
