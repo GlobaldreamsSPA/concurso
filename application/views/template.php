@@ -10,7 +10,7 @@
 		{ 
 	?>
 			<title>La pagina de concursos chilena, conoce Ganando .cl</title>
-			<meta name="description" content="Concursa y gana muchos premios. Bienvenido a Ganando .cl">
+			<meta name="description" content="Concursa y gana muchos premios. Bienvenido a Ganando.cl">
 			<meta name="keywords" content="de concursos, a concursos, concurso de, sobre concurso, concurso chile">
 	<?php
 		} 
@@ -27,16 +27,16 @@
 		{
 	?>
 			<title>Todos los concursos para ganar - Ganando .cl </title>
-			<meta name="description" content="La pagina de concursos chilena, donde podrás participar por muchos premios. Conoce Ganando.cl">
+			<meta name="description" content="La nueva pagina de concursos chilena, donde podrás participar por muchos premios. Conoce Ganando.cl">
 			<meta name="keywords" content="ganar ganar, gana, concurso, concursos, como ganar">
 	<?php
 		}
 	?>
 
 	<meta property="og:title" content="Ganando.cl - ¡Donde todos Ganan!"/>
-	<meta property="fb:app_id" content="374106952676336"/>
+	<meta property="fb:app_id" content="458089044282863"/>
 	<meta property="og:type" content="website" />
-	<meta property="og:description" content="La nueva plataforma online que llevará a toda la gente con talento al éxito, la revolución ya comienza!."/>
+	<meta property="og:description" content="La nueva pagina de concursos chilena, donde podrás participar por muchos premios. Conoce Ganando.cl"/>
 	<meta property="og:image" content="<?php echo HOME.'/img/logo.png'?>"/>
 
 
@@ -97,7 +97,7 @@
 	                </a>
 			    	<a class="brand" style="background-color:#D35400; border-radius: 0; height:40px; margin-left:1% !important; position: absolute; color: #ECF0F1" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>"> 	<img style="margin-top:-15px;"src="<?php echo HOME."/img/logogif.gif"; ?>" /></a>
 
-					<div style="margin-left:300px;" class="nav-collapse collapse navbar-responsive-collapse">
+					<div style="margin-left: 260px !important; right: -40px !important;" class="nav-collapse collapse navbar-responsive-collapse">
 	                    <ul class="nav">
 							<?php
 								echo "<li>".anchor('home', 'Home')."</li>";
@@ -123,17 +123,9 @@
 								}
 							
 								if(!$id && !$id_h)
-								{ 
-								?>
-									<li class="dropdown">
-	                        			<a rel="nofollow" href="#" class="dropdown-toggle" data-toggle="dropdown">Iniciar sesi&oacute;n <b class="caret"></b></a>
-			                        <ul class="dropdown-menu">
-			                     	<?php    
-										echo "<li>".anchor('user/fb_login', "<img style='margin-left:7px;' src='".HOME."/img/fb-login.png' />")."</li>";
-			                        ?>
-			                        </ul>
-			                      </li>
-								<?php 
+								{   
+									echo "<li>".anchor('user/fb_login', "<img style='margin-right:10px;' src='".HOME."/img/fb-login.png' /> Iniciar sesi&oacute;n","style='padding-top:26px !important; padding-bottom:6px !important;' rel='nofollow' title='Iniciar sesión con facebook'")."</li>";
+			                       
 								}
 							?>	
 						</ul>             

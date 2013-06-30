@@ -32,9 +32,6 @@
 		</div>
 	</div>
 	
-	<div class="span1" style="position:fixed; background: #fff; right:65%; margin-top: -20%; height: 5000px; ">
-	</div>
-
     <div class="span8 offset1 user-profile-right">
     	
 			<h1>Postulaciones Activas a Concursos</h1>

@@ -252,7 +252,7 @@ $(document).ready(function() {
 						<div class="video_text_main">
 							<div class="space1"></div>
 							<div class="row row_text_main">
-								<div style="margin-left:5%;"class="span11">
+								<div style="margin-left:6%;"class="span11">
 									<div style="margin-bottom: 0.5%;" class="home-video-title"><?php echo $contest["title"]; ?></div>
 									<span class="home-video-author">Publicado por Ganando.cl</span>
 									<div class="space05"></div>
@@ -317,7 +317,7 @@ $(document).ready(function() {
 						<?php 
 						} 
 						?>
-					    <li class="next" <?php if($page==$chunks) echo "class=disabled";?>><a rel="nofollow" <?php if($page!=$chunks) echo "href='".base_url()."home/index/".($page+1).$get_uri."'";?>>Next</a></li>
+					    <li class="next" <?php if($page==$chunks) echo "class=disabled";?>><a <?php if($page!=$chunks) echo "href='".base_url()."home/index/".($page+1).$get_uri."'";?>>Next</a></li>
 					     
 					  </ul>  
 					</div>  

@@ -258,38 +258,12 @@ a:visited {text-decoration: none !important}
 	font-size: 18px !important;
 }
 
-.navbar .nav li.dropdown > .dropdown-toggle .caret
+.navbar .nav li a:hover img
 {
-	border-bottom-color: #ECF0F1 !important;
-	border-top-color: #ECF0F1 !important;
+	border: 2px solid #466cb0;
+	margin-top: -4px !important;
 }
 
-.navbar .nav li.dropdown.open > .dropdown-toggle .caret
-{
-	border-bottom-color: #D35400 !important;
-	border-top-color: #D35400 !important;
-}
-
-.navbar .nav li.dropdown .dropdown-menu
-{
-	background-color: #E67E22 !important;
-}
-
-.navbar .nav li.dropdown .dropdown-menu:after
-{
-	border-bottom-color: #E67E22 !important;
-}
-
-.navbar .nav ul a:hover
-{
-	background-color: transparent !important; 
-
-}
-
-.navbar .nav ul li
-{
-	background-color: transparent !important; 
-}
 
 
 
