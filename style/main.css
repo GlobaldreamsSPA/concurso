@@ -27,6 +27,61 @@ html, body {
     src: url('../fonts/soupofjustice.ttf'); /*URL to font*/
 }
 
+
+/* perfil usuario*/
+
+.user-profile-right
+{
+	min-height: 1000px;
+	background: #ecf0f1;
+}
+
+.user-profile-left
+{
+	background: #ecf0f1;
+	margin-left: -0.3% !important; 
+
+}
+
+.top-div-left
+{
+	border-top-left-radius:10px; 
+	border-top-right-radius:10px;
+}
+
+.top-title-left
+{
+	margin-left: 0 !important;
+	text-align:center; 
+	padding-top:30px; 
+	padding-bottom:30px; 
+	background:#e67e22; 
+	color: #fff; 
+	border-top-left-radius:10px; 
+	border-top-right-radius:10px;
+}
+
+
+.top-div-right
+{
+	padding-left:3%; 
+	margin-left:2% !important;
+	border-top-left-radius:10px; 
+	border-top-right-radius:10px;
+}
+
+.top-title
+{
+	margin-left:-4.2% !important; 
+	text-align:center; 
+	padding-top:30px; 
+	padding-bottom:30px; 
+	background:#e67e22; 
+	color: #fff; 
+	border-top-left-radius:10px; 
+	border-top-right-radius:10px;
+}
+
 /* acordion cuenta usuario*/
 
 input[type=file]{
