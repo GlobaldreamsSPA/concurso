@@ -308,6 +308,15 @@ a:visited {text-decoration: none !important}
 
 /*navbar colores de los items*/
 
+.brand
+{
+	background-color:#D35400; 
+	border-radius: 0 !important; 
+	height:40px; 
+	margin-left:1% !important; 
+	position: absolute; 
+}
+
 .navbar .nav li a
 {
 	color: #ECF0F1 !important;
