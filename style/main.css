@@ -32,7 +32,7 @@ html, body {
 
 .user-profile-right
 {
-	min-height: 1000px;
+	min-height: 1000px !important;
 	background: #ecf0f1;
 }
 
@@ -53,8 +53,8 @@ html, body {
 {
 	margin-left: 0 !important;
 	text-align:center; 
-	padding-top:30px; 
-	padding-bottom:30px; 
+	padding-top: 15px; 
+	padding-bottom: 15px; 
 	background:#e67e22; 
 	color: #fff; 
 	border-top-left-radius:10px; 
@@ -74,8 +74,8 @@ html, body {
 {
 	margin-left:-4.2% !important; 
 	text-align:center; 
-	padding-top:30px; 
-	padding-bottom:30px; 
+	padding-top: 15px; 
+	padding-bottom: 15px; 
 	background:#e67e22; 
 	color: #fff; 
 	border-top-left-radius:10px; 

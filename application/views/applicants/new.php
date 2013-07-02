@@ -1,40 +1,43 @@
-<div class="row-fluid">		
-	<div class="span3 user-profile-left">
-		<div class="row">
-		<?php 
-
-
-			if(file_exists(APPPATH.'/../img/gallery/'.$image_profile_name) == TRUE)
-				echo "<img class='user_image' src='".HOME.'/img/gallery/'.$image_profile_name."'/>";
-			else
-				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
-			
-
-
-		?>
+<div class="row">		
+	<div class="span3 user-profile-left top-div-left">
+		<div class="row top-title-left" >
+			<h1>Perfil</h1>
 		</div>
-		<div class="space2"></div>
+
+
 		<div class="row">
-    		<div style="padding-left:5%; padding-right:1%;"class="span10">
+    		<div style="padding-left: 3%;" class="span10 offset1">
+    			<?php 
+
+
+					if(file_exists(APPPATH.'/../img/gallery/'.$image_profile_name) == TRUE)
+						echo "<img class='user_image' src='".HOME.'/img/gallery/'.$image_profile_name."'/>";
+					else
+						echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
+					
+				?>
+				<div class="space2"></div>
+
+
     			<ul class="nav nav-pills nav-stacked">
-					<li><a href="<?php echo HOME.'/user' ?>"> <i class="icon-th-large"></i> Postulaciones Activas</a></li>											
+					<li><a href="<?php echo HOME.'/user'?>"> <i class="icon-th-large"></i> Postulaciones Activas</a></li>											
 					<li><a href="<?php echo HOME.'/user/results_casting'?>"> <i class=" icon-star"></i> Resultados de Concursos</a></li>											
 					<li class="active"><a> <i class="icon-edit"></i> Editar Datos</a></li>	
 					<li><a href="<?php echo HOME."/user/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 				</ul>
 			</div>
-		</div>		
+		</div>
 	</div>
 
-
-    <div class="space2"></div>
 	<?php 
 	
 	echo form_open_multipart(); ?>
 
-	<!-- Texto -->
-	<div class="span8 offset1">
-		<legend><h3>Cu&eacutentanos Sobre T&iacute</h3></legend>
+    <div class="span9 user-profile-right top-div-right"> 	
+		<div class="row top-title" >
+			<h1>Edita tus datos personales</h1>
+		</div>
+
 		<div style="margin-left:15px;">
 			<div class="row">
 				<div class="span6">								
