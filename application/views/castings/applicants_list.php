@@ -110,11 +110,6 @@
 										<div class="space4"></div>				
 									</row>
 									
-									<row>
-							    		<p style="font-size: 12px; text-align:justify;">
-											<?php echo substr(strip_tags($applicant['bio']),0,140)."...";?>
-							    		</p>
-									</row>
 									
 									<row style="float: right;">
 										

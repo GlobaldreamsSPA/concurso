@@ -13,17 +13,19 @@
 
 		<div class="row">
     		<div style="padding-left: 3%;" class="span10 offset1">
-    			<?php 
+    			<div style="text-align:center;">
+					<?php 
 
 
-					if(file_exists(APPPATH.'/../img/gallery/'.$image_profile_name) == TRUE)
-						echo "<img class='user_image' src='".HOME.'/img/gallery/'.$image_profile_name."'/>";
-					else
-						echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
-					
+						if(file_exists(APPPATH.'/../img/gallery/'.$image_profile_name) == TRUE)
+							echo "<img class='user_image' src='".HOME.'/img/gallery/'.$image_profile_name."'/>";
+						else
+							echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
+						
 
 
-				?>
+					?>
+				</div>
 				<div class="space2"></div>
 
 

@@ -36,6 +36,12 @@ html, body {
 	background: #ecf0f1;
 }
 
+.user-profile-right-edit
+{
+	min-height: 528px !important;
+	background: #ecf0f1;
+}
+
 .user-profile-left
 {
 	background: #ecf0f1;
