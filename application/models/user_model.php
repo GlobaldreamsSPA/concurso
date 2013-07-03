@@ -17,7 +17,7 @@ class User_model extends CI_Model
 		
 	function participants()
 	{
-		$this->db->select('users.id,bio,likes,id_main_video,name,last_name');
+		$this->db->select('users.id,id_main_video,name,last_name');
 		$this->db->from('users');
 		$this->db->join('videos', 'users.id = user_id');
 		$this->db->distinct();
@@ -59,23 +59,12 @@ class User_model extends CI_Model
 				'name' => $profile['name'],
 				'email' => $profile['email'],
 				'last_name' => $profile['last_name'],
-				'bio' => $profile['bio']
 			);
 
 		$this->db->where('id', $profile['id']);
 		$this->db->update('users', $data);
 	}
 
-
-	function update_likes($data)
-	{
-		$info = array(
-				'likes' => $data['likes']
-			);
-
-		$this->db->where('id', $data['id']);
-		$this->db->update('users', $info);
-	}
 
 	function select($id)
 	{
@@ -91,7 +80,7 @@ class User_model extends CI_Model
 	function select_applicant($id)
 	{
 		//Rescatar los datos de la tabla usuario
-		$this->db->select('id, name, email, image_profile, bio');
+		$this->db->select('id, name, email, image_profile');
 		$this->db->from('users');
 		$this->db->where('id', $id);
 		$query = $this->db->get()->first_row('array');
@@ -137,25 +126,14 @@ class User_model extends CI_Model
 			$data['birth_date'] = date('Y-m-d', strtotime($data['birth_date']));
 			
 			
-		if(isset($fb_data['religion']))
-       		$data["religion"]=$fb_data['religion']; 
-   		
-   		if(isset($fb_data['political']))
-        	$data["political"]=$fb_data['political']; 
-
-    	if(isset($fb_data['bio']))
-        	$data["bio"] = $fb_data['bio']; 
-
+		
 	    if(isset($fb_data['hometown']))
 	     	$data["hometown"] = $fb_data['hometown']['name']; 
 
 	    if(isset($fb_data['location']))
 	      	$data["location"] = $fb_data['location']['name']; 
 
-	    if(isset($fb_data['relationship_status']))
-        	$data["relationship_status"] = $fb_data['relationship_status']; 
-
-	
+	   
 		$this->db->insert('users', $data);
 
 		return $this->db->insert_id();

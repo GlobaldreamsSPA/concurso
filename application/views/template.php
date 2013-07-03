@@ -95,7 +95,7 @@
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
 	                </a>
-			    	<a class="brand" style="background-color:#D35400; border-radius: 0; height:40px; margin-left:1% !important; position: absolute; color: #ECF0F1" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>"> 	<img style="margin-top:-15px;"src="<?php echo HOME."/img/logogif.gif"; ?>" /></a>
+			    	<a class="brand" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>"> 	<img style="margin-top:-15px;"src="<?php echo HOME."/img/logogif.gif"; ?>" /></a>
 
 					<div class="nav-collapse collapse navbar-responsive-collapse">
 	                    <ul class="nav">
@@ -150,7 +150,7 @@
 				<div class="row">
 						<div class="span11 offset1" style="margin-top: -3px;">
 							<p style="margin-left: 30px; text-decoration: none; color: #ECF0F1;" class="second">Ganando &copy; 2013 | Todos los derechos reservados | 
-							<a style="margin-left: 15 px;" href="https://twitter.com/ViddonCom" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
+							<a style="margin-left: 15 px;" href="https://twitter.com/ganandocl" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
 							<a href="https://www.facebook.com/ganandochile" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
 							<a rel="nofollow" style="top:6px;" class="fb-like" data-href="https://www.facebook.com/ganandochile" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></a>				
 							</p>
@@ -239,22 +239,6 @@
 			});
 		}
 
-      	if($("#playermodal").length > 0)
-      	{
-	      	$("a[data-target=#playermodal]").click(function(ev) {
-			    ev.preventDefault();
-			    var target = $(this).attr("href");
-
-			    // load the url and show modal on success
-			    $("#playermodal .modal-body").load(target, function() { 
-			         $("#playermodal").modal("show"); 
-			    });
-			});
-
-			jQuery(".modal-backdrop, #playermodal .close, #playermodal .btn").live("click", function() {
-	        jQuery("#playermodal iframe").attr("src", null);
-			});
-		}
 
 
 		if($("#dp1").length > 0)
@@ -290,40 +274,7 @@
 
 		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
     	
-    	if($("#grow").length > 0 && $("#variable").length > 0  )
-		{
-			if($('#variable').height() >= $('#grow').height() )
-			{
-				$('#grow').css({
-					'height': $('#variable').outerHeight()
-				});
 			    	
-			    jQuery('#variable').bind( 'resize', function(e) {
-						  
-					$('#grow').css({
-						    'height': $('#variable').outerHeight()
-					});
-				});
-			}else
-			{
-				$('#variable').css({
-					'height': $('#grow').outerHeight()
-				});
-			    	
-			    jQuery('#grow').bind( 'resize', function(e) {
-						  
-					$('#variable').css({
-						    'height': $('#grow').outerHeight()
-					});
-				});
-			}
-		}
-
-		$('.menu').css({
-			'height': $('#headercontent').outerHeight()
-		});
-			    	
-
 		
 		if($(".chosen_filter").length > 0)
 		{
@@ -363,36 +314,6 @@
 		}
 
 
-
-		var update_chosen_filter = function (event) 
-		{
-			
-			var regExp1 = new RegExp(event.data.regexp); 
-	        var result = regExp1.exec($(event.data.target).attr("href"));
-	        var temp = (""+result).substr(0,(""+result).length - 1);
-	        temp = temp.substr(0,temp.lastIndexOf('/')+1)
-	        var uri="";
-			
-			$("option",this).each(function () {
-				if(this.selected)
-			    	uri= uri + this.value +"_";
-			});
-			     
-			uri= uri.substr(0,uri.length - 1);
-			if(uri=="")
-				uri=-2;
-	        result = temp + uri + "/";
-			    
-			$(event.data.target).attr("href",$(event.data.target).attr("href").replace(regExp1,result));
-
-		};	
-
-		/* filtro en home/casting list */
-		if($("#filter").length > 0)
-		{
-			$("#filter").change({regexp: '/[0-9]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
-			$('#filter').trigger('change');
-		}
 		
 		var update_state_filter = function (event) 
 		{
@@ -414,17 +335,7 @@
 			$('#casting_status').trigger('change');
 		}
 
-
-
-		if($("iframe").attr('src').indexOf("youtube") >= 0){
-			$("iframe").each(function(){
-			  var ifr_source = $(this).attr('src');
-			  var wmode = "&wmode=opaque";
-			  $(this).attr('src',ifr_source+wmode);
-			});
-		}
-			    	    
-   
+			    	      
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

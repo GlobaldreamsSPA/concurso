@@ -27,9 +27,13 @@ class User extends CI_Controller {
 
 	public function fb_login(){
 
+		if(isset($_GET["error"]) && $_GET["error"] = "access_denied")
+			redirect(HOME);
+
         $userId = $this->facebook->getUser();
+        
         if($userId == 0){
-			$url = $this->facebook->getLoginUrl(array('scope'=>'email,user_location,user_hometown,user_education_history,user_birthday,user_relationships,user_religion_politics,user_about_me,user_likes','redirect_uri' => HOME.'/user/fb_login/'));
+			$url = $this->facebook->getLoginUrl(array('scope'=>'email,user_location,user_hometown,user_education_history,user_birthday,user_likes','redirect_uri' => HOME.'/user/fb_login/'));
 			redirect($url);
 		} else {
             $fb_id = $this->facebook->api('/me?fields=id');
@@ -197,25 +201,16 @@ class User extends CI_Controller {
 				$profile['name'] = $this->input->post('name');
 				$profile['last_name'] = $this->input->post('last_name');
 				$profile['email'] = $this->input->post('email');
-				$profile['bio'] = $this->input->post('bio');
-				$profile['skills']  = $this->input->post('skills');
 				
 				//ingresar los datos a la base de datos
 				$this->user_model->update($profile);
 				
-				//Ahora linkear las habilidades del usuario
-				$this->skills_model->link_skills($profile);
-
+				
 				redirect(HOME.'/user');
 			}
 
 			//Talentos del usuario
-			
-			$skills = $this->skills_model->get_skills();
-
-			$args = array(
-				'skills' => $skills
-				);
+		
 				
 			$args["content"]="applicants/applicants_template";
 			$inner_args["applicant_content"]="applicants/new";
@@ -301,97 +296,4 @@ class User extends CI_Controller {
 		
 	}
 
-	
-
-	/* IMPORTANTE FUNCIONES PARA SUBIR IMAGENES; SON UTILES PARA CONCURSO DE SUBIDA DE IMAGENES
-	O FOTOS.
-
-
-	public function photo_gallery($ope=NULL,$id_photo_objetivo=NULL) //TODO: TERMINAR
-	{
-		if($this->session->userdata('id') == FALSE)
-			redirect(HOME);
-
-		$args = array();
-		$public = FALSE;
-		$id_user = NULL;
-		
-		if($this->session->userdata('id') === FALSE || ($id_user != NULL && $id_user != $this->session->userdata('id')))
-			$public = TRUE;
-		else
-		{
-			$id = $this->session->userdata('id');
-			$public = FALSE;
-		}
-
-		$args = $this->user_model->select($id);
-		if($args['image_profile']!=0)
-			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
-		else
-			$args['image_profile_name'] = 0;
-
-		$args['public'] = $public;
-		$args["tags"] = $this->skills_model->get_user_skills($id);
-		$args["user"] = $this->user_model->welcome_name($id);
-
-		if($this->videos_model->verify_videos($id) != 1)
-		{
-			$args["postulation_flag"]=false;
-			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
-		}
-		else {
-			$args["postulation_flag"]=true;
-		}
-		
-		//AHORA OBTENGO LOS ELEMENTOS NECESARIOS PARA LA GALERIA
-		$args['image_profile'] =$this->user_model->get_image_profile($this->session->userdata('id'));
-		
-		
-		$args["content"]="applicants/applicants_template";
-		$inner_args["applicant_content"]="applicants/photo_gallery";
-		$args["inner_args"]=$inner_args;
-		$args["auxiliar"] = TRUE;
-		$args["user_id"] = $this->session->userdata('id');
-		
-		
-		//SACA LAS FOTOS DE LA GALERIA DE ESTE USUARIO
-		$args["photos"] = $this->photos_model->get_photos($args["user_id"]);
-		
-		
-		if(!is_null($ope))
-		{
-			
-			switch($ope){
-				case 1://HACER FOTO DE PERFIL
-					if(!is_null($id_photo_objetivo) && !is_null($args["user_id"]) && is_numeric($id_photo_objetivo))
-					{
-						$this->user_model->update_profile_image($id_photo_objetivo,$args["user_id"]);
-
-						redirect(HOME."/user/photo_gallery");			
-					}
-					break;
-				case 2://ELIMINAR
-					if(!is_null($id_photo_objetivo) && !is_null($args["user_id"]) && is_numeric($id_photo_objetivo))
-					{
-						if($args['image_profile'] == $id_photo_objetivo)//si borro la foto del perfil
-						{
-							$this->photos_model->purgar(0,$id_photo_objetivo);//se purga(unlink) la foto de la carpeta profile
-							$this->user_model-> update_profile_image(0,$args["user_id"]);//se setea NULL image_profile en users
-						}else
-						{
-							$this->photos_model->purgar(0,$id_photo_objetivo);//se purga(unlink) la foto de la carpeta gallery
-						}
-						
-						$this->photos_model->delete($id_photo_objetivo);	
-						redirect(HOME."/user/photo_gallery");		
-					}
-					break;
-			} 
-		}
-		
-		
-		$this->load->view('template',$args);
-	}
-
-	*/
 }
