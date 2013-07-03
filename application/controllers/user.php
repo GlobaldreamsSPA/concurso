@@ -106,7 +106,7 @@ class User extends CI_Controller {
 
     }
 
-	public function index($id = NULL)
+	public function index($id = NULL, $success_message = NULL)
 	{
 		if($this->session->userdata('id') == FALSE)
 			redirect(HOME);
@@ -119,6 +119,11 @@ class User extends CI_Controller {
 			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		else
 			$args['image_profile_name'] = 0;
+
+		if(!is_null($success_message))
+		{
+			$args["success_message"] = $success_message;
+		}
 
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/active_casting_list";

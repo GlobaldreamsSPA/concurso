@@ -197,32 +197,6 @@ $(document).ready(function() {
 <h1 style="display:none">Como ganar, solo concursa en Ganando .cl</h1>
 <h1 style="display:none">Participa en los sorteos por premios en Ganando .cl</h1>
 
-
-<!-- Muestra este mensaje, en caso de postular a un concurso de forma exitosa o fallida. -->
-<div id="postulation-result" class="modal hide fade in">
-<div class="modal-header">
-<a class="close" rel="nofollow" data-dismiss="modal"><i class="icon-remove"></i></a> 
-</div>
-<div class="modal-body">
-<h4>Aviso</h4>
-<p><?php if(isset($success_message)) echo $success_message; ?></p>              
-</div>
-<div class="modal-footer">
-<a href="#" rel="nofollow" class="btn btn-primary" data-dismiss="modal">Cerrar</a>
-</div>
-</div>
-
-<?php if(isset($success_message)){ ?>
-<script type="text/javascript">
-
-  $('#postulation-result').modal({
-    show: true
-  });
-</script>
-<?php } ?>
-
-
-
 <div class="content home" id="content">
 	<div class="space4"></div>
 	<div class="space4"></div>

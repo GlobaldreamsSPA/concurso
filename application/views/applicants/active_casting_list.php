@@ -53,12 +53,12 @@
 						</a>
 					</div>
 					<div class="span1" style="margin-top:1%;">
-						<form action="delete/" method="POST">
+						<form action="<?php echo site_url("casting/delete"); ?>" method="POST">
 							<button style="color:white; background: #e67e22;" class="btn" type="submit">
 								<span class="fui-cross"></span>
 							</button>
-							<input type="hidden" name="del-apply" value="<?php echo $casting["apply_id"] ?>"/>
-						</form>	
+							<input type="hidden" name="apply_id" value="<?php echo $casting["apply_id"] ?>"/>
+						</form>
 					</div>
 				</div>
 				<div class="row">

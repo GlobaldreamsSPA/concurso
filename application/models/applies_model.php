@@ -192,10 +192,60 @@ class Applies_model extends CI_Model
 			return FALSE;
 	}
 
-	function delete($apply_id)
+	function delete($apply_id, $user_id)
     {
-    	$this->db->delete('videos_applies', array('apply_id' => $apply_id));		
+    	/* Primero verificar la categoria del casting */
+    	
+    	//Rescatar el casting
+    	$this->db->select('*');
+    	$this->db->from('applies');
+    	$this->db->where('id', $apply_id);
+    	$query = $this->db->get();
+    	$apply = $query->first_row('array');
+    	$casting_id = $apply['casting_id'];
+
+    	//Rescatar la categoria del casting
+    	$this->db->select('*');
+    	$this->db->from('castings');
+    	$this->db->where('id', $casting_id);
+    	$query = $this->db->get();
+    	$casting = $query->first_row('array');
+    	$category = $casting['category'];
+
+    	//Si la categoria es 1, se borra la foto de la BD, de disco y el apply
+    	if(strcmp($category, "1") == 0)
+    	{
+    		//Buscar la foto y borrarla de disco
+    		$this->db->select('*');
+    		$this->db->from('photos');
+    		$this->db->where(array('user_id' => $user_id, 'casting_id' => $casting_id));
+    		$query = $this->db->get();
+    		$photo = $query->first_row('array');
+    		$photo_name = $photo['name'];
+
+    		//Borrar archivo de disco
+    		$photo_path = realpath(APPPATH.CONTEST_PHOTO_DIR.'/'.$photo_name);
+    		unset($photo_path);
+
+    		//Borrar la row de la BD
+    		$this->db->delete('photos', array('id' => $photo['id']));
+    	}
+
+    	//Se borra el apply share y el apply
+    	if(strcmp($category, "2") == 0)
+    	{
+    		$this->db->delete('share_apply', array('apply_id' => $apply_id));
+    	}
+
+    	//Se borran las custom answers y se borra el apply
+    	if(strcmp($category, "3") == 0)
+    	{
+    		$this->db->delete('custom_answers', array('apply_id' => $apply_id));
+    	}
+
+    	//Borrar el apply
     	$this->db->delete('applies', array('id' => $apply_id));
+    	return TRUE;
     }
 	
 	function set_accepted($apply_id,$observation)

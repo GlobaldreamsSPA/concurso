@@ -16,8 +16,6 @@ class Castings_model extends CI_Model
 	
 	function update($casting,$id)
     {
-    	
-
 		$this->db->where('id', $id);
 		$this->db->update('castings', $casting);
     }
