@@ -185,7 +185,7 @@ class Home extends CI_Controller {
 		$args["company"]=true; /*Se setea para hacer seo distinto a la pagina para empresas*/
 
 		$args['content'] = 'home/login_hunter';
-		$args['inner_args'] = NULL;
+		
 		$this->load->view('template',$args);
 	}
 
