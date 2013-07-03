@@ -1,6 +1,6 @@
 <script type="text/javascript">
 	$(function() {
-		$( ".accordion" ).accordion();
+		$( ".accordion" ).accordion({active: false});
 	});
 </script>
 
@@ -9,24 +9,15 @@
 		<div class="row top-title-left" >
 			<h1>Perfil</h1>
 		</div>
-
-
 		<div class="row">
     		<div style="padding-left: 3%;" class="span10 offset1">
     			<?php 
-
-
 					if(file_exists(APPPATH.'/../img/gallery/'.$image_profile_name) == TRUE)
 						echo "<img class='user_image' src='".HOME.'/img/gallery/'.$image_profile_name."'/>";
 					else
 						echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
-					
-
-
 				?>
 				<div class="space2"></div>
-
-
     			<ul class="nav nav-pills nav-stacked">
 					<li class="active"><a> <i class="icon-th-large"></i> Postulaciones Activas</a></li>											
 					<li><a href="<?php echo HOME.'/user/results_casting'?>"> <i class=" icon-star"></i> Resultados de Concursos</a></li>											
@@ -37,19 +28,15 @@
 		</div>
 	</div>
 	
-    <div  class="span9 user-profile-right top-div-right">
-    	
+    <div class="span9 user-profile-right top-div-right">
     	<div class="row top-title" >
 			<h1>Postulaciones Activas a Concursos</h1>
 		</div>
-
 		<div class="space1">
 		</div>
-
 		<?php 							
 		if(isset($castings))
 			foreach($castings as $casting){ ?>
-			
 				<div class="row">
 					<div style="margin-left:3%;" class="span1">
 						<img src="<?php echo $casting['logo'] ?>"/>
@@ -62,21 +49,18 @@
 					</div>
 					<div class="span1 offset1" style="margin-top:1%;" >
 						<a class="btn" style="color:white; background: #e67e22;" href="mailto:contacto@viddon.com">
-							<span class="fui-mail"></span>                                            
+							<span class="fui-mail"></span>                                         
 						</a>
 					</div>
-					
 					<div class="span1" style="margin-top:1%;">
-						<form action="" method="POST">
+						<form action="delete/" method="POST">
 							<button style="color:white; background: #e67e22;" class="btn" type="submit">
 								<span class="fui-cross"></span>
 							</button>
 							<input type="hidden" name="del-apply" value="<?php echo $casting["apply_id"] ?>"/>
-						</form>										
+						</form>	
 					</div>
-					
 				</div>
-				
 				<div class="row">
 					<div style="margin-left:3%;" class="span6">
 						<div class="space05"></div>
@@ -104,15 +88,8 @@
 						</div>							
 					</div>
 				</div>
-				
 				<div class="space4"></div>
-			
-			
 		<?php } ?>
-	
-		
-	
-		
 		<div class="space4"></div>	
 		<div class="space4"></div>						
 	</div>					

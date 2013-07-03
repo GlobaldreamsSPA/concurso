@@ -102,7 +102,6 @@ class User extends CI_Controller {
 
     }
 
-
 	public function index($id = NULL)
 	{
 		if($this->session->userdata('id') == FALSE)
@@ -130,8 +129,6 @@ class User extends CI_Controller {
 		$castings_id = $this->applies_model->get_applicant_applies($id);
 		
 		$apply_id_dictionary= array();
-		
-		
 
 		if($castings_id != 0)
 		{
@@ -158,14 +155,9 @@ class User extends CI_Controller {
 			}			
 		}
 		
-		
 		$args["user_id"] = $this->session->userdata('id');
-		
-
 		$this->load->view('template', $args);
 	}
-
-
 
 	public function logout()
 	{
