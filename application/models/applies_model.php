@@ -225,7 +225,7 @@ class Applies_model extends CI_Model
 
     		//Borrar archivo de disco
     		$photo_path = realpath(APPPATH.CONTEST_PHOTO_DIR.'/'.$photo_name);
-    		unset($photo_path);
+    		unlink($photo_path);
 
     		//Borrar la row de la BD
     		$this->db->delete('photos', array('id' => $photo['id']));
