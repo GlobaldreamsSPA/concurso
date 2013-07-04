@@ -11,7 +11,6 @@ class User extends CI_Controller {
 		
 		$this->load->model('user_model');
 		$this->load->model('applies_model');
-		$this->load->model('skills_model');
 		$this->load->model('castings_model');
 		$this->load->model('photos_model');
 		$this->load->model('likes_model');
@@ -81,7 +80,7 @@ class User extends CI_Controller {
 						);
 
 				$this->session->set_userdata($new_session_data);
-				$first_time = TRUE;
+				$success_message = "Bienvenido a Ganando.cl, ¡ahora puedes postular a los concursos propios del sitio! ";
             }
             else
             {
@@ -99,9 +98,9 @@ class User extends CI_Controller {
 				);
 
 				$this->session->set_userdata($new_session_data);
-				$first_time = FALSE;
+				$success_message = NULL;
             }
-            $this->index(NULL, $first_time);
+            $this->index(NULL, $success_message);
         }
 
     }
@@ -179,8 +178,6 @@ class User extends CI_Controller {
 			$this->form_validation->set_rules('name', 'Nombre', 'required');
 			$this->form_validation->set_rules('last_name', 'Apellido', 'required');
 			$this->form_validation->set_rules('email', 'Correo', 'required|valid_email');
-			$this->form_validation->set_rules('bio', 'Bio', 'required');
-			$this->form_validation->set_rules('skills', 'Habilidades', 'required');
 		
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -220,7 +217,6 @@ class User extends CI_Controller {
 				
 				$args["user_id"] = $this->session->userdata('id');
 				
-
 				$args["update_values"]=$this->user_model->select($user_id);
 
 				if($args['update_values']['image_profile'] != 0)
@@ -228,13 +224,11 @@ class User extends CI_Controller {
 				else
 					$args['image_profile_name'] = 0;
 
-				$args["update_user_skills"]= $this->skills_model->get_user_skills_id($user_id);
 
 			}
 			
 
 			//Cargar el formulario(sino se ve desde área publica)
-			$args['public'] = FALSE;
 			$this->load->view('template', $args);
 		}
 	}

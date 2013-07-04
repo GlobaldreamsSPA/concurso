@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 		$this->load->helper(array('url', 'file', 'form'));
 
 		//Modelos
-		$this->load->model(array('share_apply_model','share_detail_model','prize_categories_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
+		$this->load->model(array('share_apply_model','share_detail_model','prize_categories_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
 	
 	}
 

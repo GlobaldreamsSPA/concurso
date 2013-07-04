@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form','security'));
-		$this->load->model(array('hunter_model','share_detail_model', 'prize_categories_model' ,'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model','skills_model','custom_questions_model','custom_options_model'));
+		$this->load->model(array('hunter_model','share_detail_model', 'prize_categories_model' ,'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model','custom_questions_model','custom_options_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		
 	}

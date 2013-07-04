@@ -39,7 +39,7 @@
 		<div class="row top-title" >
 			<h1>Edita tus datos de contacto</h1>
 		</div>
-		<div class="space4"></div>
+		<div class="space2"></div>
 		<div style="margin-left:15px;">
 			<div class="row">
 				<div class="span6 offset3">								
@@ -69,11 +69,13 @@
 			<?php echo form_error('email'); ?>
 			</div>
 			<div class="space2"></div>														
-			
-			
-		</div>
-		
-
+			<div class="row">
+				<div class="span6 offset3">								
+					<button style="margin-right: -4%;" class="btn btn-primary pull-right" type="submit">GUARDAR</button>
+				</div>
+			</div>
+		</div>	
+		</form>
 	</div>
 
 </div>
