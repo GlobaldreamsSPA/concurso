@@ -22,6 +22,10 @@ class Casting extends User {
 				$success_message = "Tu postulación al concurso se ha borrado satisfactoriamente";
 				$this->index($this->session->userdata('id'), $success_message);
 			}
+			else
+			{
+				redirect(HOME);
+			}
 		}
 		else
 		{
