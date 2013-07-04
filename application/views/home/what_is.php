@@ -83,7 +83,8 @@
 				</p>
 			</div>							
 			<div style="margin-top:2%; margin-left:3%; text-align:center;" class="responsive-bottom span6">
-				<iframe id="player" type="text/html" style="border: 3px solid #E67E22;" width="87%" height="350" src="http://www.youtube.com/embed/GAWcdrSC1-k" frameborder="0" allowfullscreen></iframe>			
+				
+				<iframe style="border: 5px solid #E67E22;" width="85%" height="360px" src="http://www.youtube.com/embed/GAWcdrSC1-k?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe>
 
 			</div>		
 		</div>
