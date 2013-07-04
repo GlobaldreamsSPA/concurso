@@ -186,6 +186,9 @@ class Home extends CI_Controller {
 
 		$args['content'] = 'home/login_hunter';
 		
+		$args["inner_args"] = NULL;
+
+		
 		$this->load->view('template',$args);
 	}
 
