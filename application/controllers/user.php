@@ -146,20 +146,8 @@ class User extends CI_Controller {
 			}
 			$args['castings'] = $this->castings_model->get_castings_especific($castings_id,array("0"));
 			
-			$args["tags"]=	$this->skills_model->get_skills();
-
 			foreach($args['castings'] as &$casting)
-			{
-			
-				if(isset($casting["skills"]))
-				{
-					$tags_id= explode('-', $casting["skills"]);
-					$tags_id_temp=array();
-					foreach ($tags_id as $tag) {
-						array_push($tags_id_temp, $args["tags"][$tag]);
-					}
-					$casting["tags"]=$tags_id_temp;
-				}
+			{			
 				$casting["apply_id"]=$apply_id_dictionary[$casting["id"]];
 			}			
 		}
