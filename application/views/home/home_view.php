@@ -288,8 +288,10 @@ $(document).ready(function() {
 				}
 
 				?>
+				<div class="space4">
+				</div>
 
-				<div class="row">
+				<div class="row" style="display: none;">
 					<div class="space1"></div>
 					<div class="pagination" style="text-align:center;">  
 					  <ul id="pagination_bt">

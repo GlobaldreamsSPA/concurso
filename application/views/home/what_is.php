@@ -83,8 +83,9 @@
 				</p>
 			</div>							
 			<div style="margin-top:2%; margin-left:3%; text-align:center;" class="responsive-bottom span6">
-				<image style="height:100%; border: 5px solid #E67E22; "src='<?php echo HOME; ?>/img/foto_login_hunter.png' />
-			</div>			
+				<iframe id="player" type="text/html" style="border: 3px solid #E67E22;" width="87%" height="350" src="http://www.youtube.com/embed/GAWcdrSC1-k" frameborder="0" allowfullscreen></iframe>			
+
+			</div>		
 		</div>
 	</div>
 	<div class="space4"></div>

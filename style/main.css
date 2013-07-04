@@ -464,7 +464,7 @@ div.space4
 /* Fondo pagina principal */
 div.home
 {
-	margin-top: 80px;
+	margin-top: 50px;
 	background: url('../img/bg_ganando.png') no-repeat;
 	background-size: 100% auto;
 }
