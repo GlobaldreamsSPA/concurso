@@ -24,13 +24,12 @@
 
 	if($(this).width() < 930){
 		
-		$(".responsive-top").removeClass('span6');  
-		$(".responsive-top").removeClass('offset1');  
+		$(".responsive-top").removeClass('span7');  
 		$(".responsive-top").addClass("row");
 		$(".responsive-top").css("padding-left","5%");
+		$(".responsive-top").css("margin-left","0");
 
 		$(".responsive-bottom").removeClass('span4');  
-		$(".responsive-bottom").removeClass('offset1'); 
 
 		$(".bottom-1").addClass('span8'); 
 		$(".bottom-1").addClass('offset2'); 
@@ -48,13 +47,12 @@
 	}else if($(this).width() >= 930)
 	{
 
-		$(".responsive-top").addClass('span6');  
-		$(".responsive-top").addClass('offset1');  
+		$(".responsive-top").addClass('span7');  
 		$(".responsive-top").removeClass("row");
 		$(".responsive-top").css("padding-left","0");
+		$(".responsive-top").css("margin-left","7%");
 
 		$(".responsive-bottom").addClass('span4');  
-		$(".responsive-bottom").addClass('offset1'); 
 		
 		$(".bottom-1").removeClass('span8'); 
 		$(".bottom-1").removeClass('offset2'); 
@@ -72,13 +70,12 @@
 	$(window).resize(function(){
 		if($(this).width() < 930){
 			
-			$(".responsive-top").removeClass('span6');  
-			$(".responsive-top").removeClass('offset1');  
+			$(".responsive-top").removeClass('span7');  
 			$(".responsive-top").addClass("row");
 			$(".responsive-top").css("padding-left","5%");
+			$(".responsive-top").css("margin-left","0");
 
 			$(".responsive-bottom").removeClass('span4');  
-			$(".responsive-bottom").removeClass('offset1'); 
 
 			$(".bottom-1").addClass('span8'); 
 			$(".bottom-1").addClass('offset2'); 
@@ -96,13 +93,12 @@
 		}else if($(this).width() >= 930)
 		{
 
-			$(".responsive-top").addClass('span6');  
-			$(".responsive-top").addClass('offset1');  
+			$(".responsive-top").addClass('span7');  
 			$(".responsive-top").removeClass("row");
 			$(".responsive-top").css("padding-left","0");
+			$(".responsive-top").css("margin-left","7%");
 
 			$(".responsive-bottom").addClass('span4');  
-			$(".responsive-bottom").addClass('offset1'); 
 			
 			$(".bottom-1").removeClass('span8'); 
 			$(".bottom-1").removeClass('offset2'); 
@@ -125,13 +121,13 @@
 	<div class="removable space4"></div>
 	<div class="container-fluid">
 	  	<div class="row">
-	  		<div class="responsive-top span6 offset1">
+	  		<div style="margin-left: 7%;" class="responsive-top span7">
 	  			<div style="padding-top:6%;">
 				    <h1 style="color: #E67E22; text-align:center; font-family: 'ganandofont'; font-size: 55px !important;">Bienvenido </h1>
 				    <p style="margin-top:8%; text-align:center; color: #E67E22; line-height: 50px; font-family: 'ganandofont'; font-size: 30px;">Llega a miles de usuarios dispuestos a fomentar tu marca ¡Aumenta tu alcance! a un precio accesible. No volveras a ver los concursos de la misma manera.</p>
 		    	</div>
 	  		</div>
-	  		<div class="responsive-bottom span4 offset1" id="variable" style="min-height: 0px !important; ">
+	  		<div class="responsive-bottom span4" id="variable" style="min-height: 0px !important; ">
 		  			<div class="bottom-1">
 			  			<div class="row-fluid" style="border-radius: 5px; margin-left:8%">	
 			  				<div class="space05"></div>
