@@ -54,11 +54,23 @@
 
 
 </head>
-
 <body>
- 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>	
+	<div id="postulation-result" class="modal hide fade in">
+	<div class="modal-header">
+	<a class="close" rel="nofollow" data-dismiss="modal"><i class="icon-remove"></i></a> 
+	</div>
+	<div class="modal-body">
+	<h4>Ganando.cl</h4>
+	<p><?php if(isset($success_message)) echo $success_message; ?></p>              
+	</div>
+	<div class="modal-footer">
+	<a href="#" rel="nofollow" class="btn btn-primary" data-dismiss="modal">Cerrar</a>
+	</div>
+	</div>
+
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>	
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script> 
- 	<script src="<?php echo base_url()?>js/chosen.jquery.js" type="text/javascript"></script>
+		<script src="<?php echo base_url()?>js/chosen.jquery.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/bootstrap.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery.cleditor.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery.uniform.js" type="text/javascript"></script>
@@ -66,7 +78,7 @@
 	<script src="<?php echo base_url()?>js/chosen.jquery.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery.ba-resize.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery.countdown.js" type="text/javascript"></script>
-	
+
 	<div class="wrapper">	
 		<div id="fb-root"></div>
 		<div class="navbar navbar-fixed-top" id="headercontent">
@@ -95,7 +107,7 @@
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
 	                </a>
-			    	<a class="brand" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>"> 	<img style="margin-top:-15px;"src="<?php echo HOME."/img/logogif.gif"; ?>" /></a>
+			    	<a class="brand" style="background-color:#D35400; border-radius: 0; height:40px; margin-left:1% !important; position: absolute; color: #ECF0F1" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>"> 	<img style="margin-top:-15px;"src="<?php echo HOME."/img/logogif.gif"; ?>" /></a>
 
 					<div class="nav-collapse collapse navbar-responsive-collapse">
 	                    <ul class="nav">
@@ -139,210 +151,306 @@
 
 		<div class="push"></div>
 	</div>
-	<footer>
-		<div class="color_line"></div>
-		<div class="space2"></div>
-		<div class"row">
-			<div class="span12"><p style="color: #ECF0F1;">GlobalDreams SPA | Publica tus concursos <a rel="nofollow" href="<?php echo base_url();?>home/login_hunter">con nosotros</a> | Lee los <a rel="nofollow" href="<?php echo base_url();?>docs/terms.pdf">t&eacuterminos y condiciones</a> | <a rel="nofollow" href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
-		</div>
-		<div class="row">
-			<div class="span12">
-				<div class="row">
-						<div class="span11 offset1" style="margin-top: -3px;">
-							<p style="margin-left: 30px; text-decoration: none; color: #ECF0F1;" class="second">Ganando &copy; 2013 | Todos los derechos reservados | 
-							<a style="margin-left: 15 px;" href="https://twitter.com/ganandocl" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
-							<a href="https://www.facebook.com/ganandochile" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
-							<a rel="nofollow" style="top:6px;" class="fb-like" data-href="https://www.facebook.com/ganandochile" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></a>				
-							</p>
-						</div>
-				</div>
+</body>
+<footer>
+	<div class="color_line"></div>
+	<div class="space2"></div>
+	<div class"row">
+		<div class="span12"><p style="color: #ECF0F1;">GlobalDreams SPA | Publica tus concursos <a rel="nofollow" href="<?php echo base_url();?>home/login_hunter">con nosotros</a> | Lee los <a rel="nofollow" href="<?php echo base_url();?>docs/terms.pdf">t&eacuterminos y condiciones</a> | <a rel="nofollow" href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<div class="row">
+					<div class="span11 offset1" style="margin-top: -3px;">
+						<p style="margin-left: 30px; text-decoration: none; color: #ECF0F1;" class="second">Ganando &copy; 2013 | Todos los derechos reservados | 
+						<a style="margin-left: 15 px;" href="https://twitter.com/ViddonCom" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
+						<a href="https://www.facebook.com/ganandochile" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
+						<a rel="nofollow" style="top:6px;" class="fb-like" data-href="https://www.facebook.com/ganandochile" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></a>				
+						</p>
+					</div>
 			</div>
 		</div>
-		<div class="space2"></div>
-	</footer>
+	</div>
+	<div class="space2"></div>
+	<?php if(isset($success_message)){ ?>
+		<script type="text/javascript">
 
-	<script type="text/javascript">
-	      
+		  $('#postulation-result').modal({
+		    show: true
+		  });
+		</script>
+	<?php } ?>
+</footer>
+<script type="text/javascript">
+      
 
+	if($(this).width() < 930){
+    			    
+
+	   	$(".nav-collapse").css('margin-left','0');
+	   	$(".nav-collapse").css('right','0');
+
+	   	$("#fb-login").css('padding-top','29px');
+	    $("#fb-login").css('padding-bottom','27px');
+
+
+	   	
+   }else if($(this).width() >= 930)
+   {
+   		
+	    $(".nav-collapse").css('margin-left','260px');
+	    $(".nav-collapse").css('right','-40px');
+
+	    $("#fb-login").css('padding-top','26px');
+	    $("#fb-login").css('padding-bottom','6px');
+
+
+
+   }
+
+	$(window).resize(function(){
 		if($(this).width() < 930){
-	    			    
+			    
 
-		   	$(".nav-collapse").css('margin-left','0');
-		   	$(".nav-collapse").css('right','0');
+			$(".nav-collapse").css('margin-left','0');
+			$(".nav-collapse").css('right','0');
 
-		   	$("#fb-login").css('padding-top','29px');
-		    $("#fb-login").css('padding-bottom','27px');
-
-
-		   	
-	   }else if($(this).width() >= 930)
-	   {
-	   		
-		    $(".nav-collapse").css('margin-left','260px');
-		    $(".nav-collapse").css('right','-40px');
-
-		    $("#fb-login").css('padding-top','26px');
-		    $("#fb-login").css('padding-bottom','6px');
+			$("#fb-login").css('padding-top','29px');
+			$("#fb-login").css('padding-bottom','27px');
 
 
+		}else if($(this).width() >= 930)
+		{
 
-	   }
+			$(".nav-collapse").css('margin-left','260px');
+			$(".nav-collapse").css('right','-40px');
 
-		$(window).resize(function(){
-			if($(this).width() < 930){
-				    
-
-				$(".nav-collapse").css('margin-left','0');
-				$(".nav-collapse").css('right','0');
-
-				$("#fb-login").css('padding-top','29px');
-				$("#fb-login").css('padding-bottom','27px');
+			$("#fb-login").css('padding-top','26px');
+			$("#fb-login").css('padding-bottom','6px');
 
 
-			}else if($(this).width() >= 930)
-			{
+		}
+	});
 
-				$(".nav-collapse").css('margin-left','260px');
-				$(".nav-collapse").css('right','-40px');
+    if($(".chzn-select").length > 0)
+		$(".chzn-select").chosen({no_results_text: "No se encontraron resultados"});
+	
+	if($("#datatables").length > 0)
+  		$(document).ready(function() {
+		    $('#datatables').dataTable({
+	    		"sPaginationType": "full_numbers"
+			});
+		});
+	
+  	if($("#contestmodal").length > 0)
+  	{
+      	$("a[data-target=#contestmodal]").click(function(ev) {
+		    ev.preventDefault();
+		    var target = $(this).attr("href");
 
-				$("#fb-login").css('padding-top','26px');
-				$("#fb-login").css('padding-bottom','6px');
-
-
-			}
+		    // load the url and show modal on success
+		    $("#contestmodal .modal-body").load(target, function() { 
+		         $("#contestmodal").modal("show"); 
+		    });
 		});
 
-	    if($(".chzn-select").length > 0)
-			$(".chzn-select").chosen({no_results_text: "No se encontraron resultados"});
+		jQuery(".modal-backdrop, #contestmodal .close, #contestmodal .btn").live("click", function() {
+        jQuery("#contestmodal").remove();
+		});
+	}
+
+  	if($("#playermodal").length > 0)
+  	{
+      	$("a[data-target=#playermodal]").click(function(ev) {
+		    ev.preventDefault();
+		    var target = $(this).attr("href");
+
+		    // load the url and show modal on success
+		    $("#playermodal .modal-body").load(target, function() { 
+		         $("#playermodal").modal("show"); 
+		    });
+		});
+
+		jQuery(".modal-backdrop, #playermodal .close, #playermodal .btn").live("click", function() {
+        jQuery("#playermodal iframe").attr("src", null);
+		});
+	}
+
+
+	if($("#dp1").length > 0)
+		$(function(){
+			$("#dp1").datepicker({ dateFormat: "dd/mm/yy" });
+		});
+	
+	if($("#dp2").length > 0)
+		$(function(){
+			$("#dp2").datepicker({ dateFormat: "dd/mm/yy" });
+		});
+
+	if($(".carousel").length > 0)
+		$('.carousel').carousel({
+	  		interval: 7000
+		});
+	
+
+	if($(".chzn-select").length > 0)
+		$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true});
 		
-		if($("#datatables").length > 0)
-      		$(document).ready(function() {
-			    $('#datatables').dataTable({
-		    		"sPaginationType": "full_numbers"
+
+		
+    
+	(function(d, s, id) 
+	{
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	
+	if($("#grow").length > 0 && $("#variable").length > 0  )
+	{
+		if($('#variable').height() >= $('#grow').height() )
+		{
+			$('#grow').css({
+				'height': $('#variable').outerHeight()
+			});
+		    	
+		    jQuery('#variable').bind( 'resize', function(e) {
+					  
+				$('#grow').css({
+					    'height': $('#variable').outerHeight()
 				});
 			});
-		
-      	if($("#contestmodal").length > 0)
-      	{
-	      	$("a[data-target=#contestmodal]").click(function(ev) {
-			    ev.preventDefault();
-			    var target = $(this).attr("href");
-
-			    // load the url and show modal on success
-			    $("#contestmodal .modal-body").load(target, function() { 
-			         $("#contestmodal").modal("show"); 
-			    });
+		}else
+		{
+			$('#variable').css({
+				'height': $('#grow').outerHeight()
 			});
-
-			jQuery(".modal-backdrop, #contestmodal .close, #contestmodal .btn").live("click", function() {
-	        jQuery("#contestmodal").remove();
+		    	
+		    jQuery('#grow').bind( 'resize', function(e) {
+					  
+				$('#variable').css({
+					    'height': $('#grow').outerHeight()
+				});
 			});
 		}
+	}
 
+	$('.menu').css({
+		'height': $('#headercontent').outerHeight()
+	});
+		    	
 
-
-		if($("#dp1").length > 0)
-			$(function(){
-				$("#dp1").datepicker({ dateFormat: "dd/mm/yy" });
-			});
-		
-		if($("#dp2").length > 0)
-			$(function(){
-				$("#dp2").datepicker({ dateFormat: "dd/mm/yy" });
-			});
-
-		if($(".carousel").length > 0)
-			$('.carousel').carousel({
-		  		interval: 7000
-			});
-		
 	
-		if($(".chzn-select").length > 0)
-			$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true});
-   		
-
+	if($(".chosen_filter").length > 0)
+	{
+		var function_clean_select_all = function () 
+		{
 			
-	    
-		(function(d, s, id) 
-		{
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-
-		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-    	
-			    	
-		
-		if($(".chosen_filter").length > 0)
-		{
-			var function_clean_select_all = function () 
-			{
-				
-				 $("option",this).each(function () {
-					if(this.selected && this.value == -1)
-					{
-						$(this).parent().children("option").each(function () {
-							if($(this).val() == -2)
-								$(this).prop('selected', false);
-							else
-								$(this).prop('selected', true);
-						});
-						$(this).prop('selected', false);
-						$(this).parent().trigger('liszt:updated');
-						return false;
-					}
-					
-					if(this.selected && this.value == -2)
-					{
-						$(this).parent().children("option").each(function () {
+			 $("option",this).each(function () {
+				if(this.selected && this.value == -1)
+				{
+					$(this).parent().children("option").each(function () {
+						if($(this).val() == -2)
 							$(this).prop('selected', false);
-						});
+						else
+							$(this).prop('selected', true);
+					});
+					$(this).prop('selected', false);
+					$(this).parent().trigger('liszt:updated');
+					return false;
+				}
+				
+				if(this.selected && this.value == -2)
+				{
+					$(this).parent().children("option").each(function () {
 						$(this).prop('selected', false);
-						$(this).parent().trigger('liszt:updated');
-						return false;
-					}
-					
-			      });
-			};
+					});
+					$(this).prop('selected', false);
+					$(this).parent().trigger('liszt:updated');
+					return false;
+				}
+				
+		      });
+		};
 
-			$(".chosen_filter").change(function_clean_select_all);
-			$('.chosen_filter').trigger('change');
+		$(".chosen_filter").change(function_clean_select_all);
+		$('.chosen_filter').trigger('change');
 
-		}
+	}
 
 
+
+	var update_chosen_filter = function (event) 
+	{
 		
-		var update_state_filter = function (event) 
-		{
-			
-			var regExp1 = new RegExp(event.data.regexp); 
-	        var result = regExp1.exec($(event.data.target).attr("href"));
-	        var temp = (""+result).substr(0,(""+result).length - 2);
-	            
-	        result = temp + $(event.data.src).val() + "/";
-			    
-			$(event.data.target).attr("href",$(event.data.target).attr("href").replace(regExp1,result));
-
-		};	
+		var regExp1 = new RegExp(event.data.regexp); 
+        var result = regExp1.exec($(event.data.target).attr("href"));
+        var temp = (""+result).substr(0,(""+result).length - 1);
+        temp = temp.substr(0,temp.lastIndexOf('/')+1)
+        var uri="";
 		
-		/* filtro en hunter/casting_list*/
-		if($("#casting_status").length > 0)
-		{				
-			$("#casting_status").change({regexp: '/[0-9]+/[0-3]/',target: '#filter_button',src: '#casting_status'},update_state_filter);
-			$('#casting_status').trigger('change');
-		}
+		$("option",this).each(function () {
+			if(this.selected)
+		    	uri= uri + this.value +"_";
+		});
+		     
+		uri= uri.substr(0,uri.length - 1);
+		if(uri=="")
+			uri=-2;
+        result = temp + uri + "/";
+		    
+		$(event.data.target).attr("href",$(event.data.target).attr("href").replace(regExp1,result));
 
-			    	      
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	};	
 
-		ga('create', 'UA-42063032-1', 'ganando.cl');
-		ga('send', 'pageview');
+	/* filtro en home/casting list */
+	if($("#filter").length > 0)
+	{
+		$("#filter").change({regexp: '/[0-9]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
+		$('#filter').trigger('change');
+	}
+	
+	var update_state_filter = function (event) 
+	{
+		
+		var regExp1 = new RegExp(event.data.regexp); 
+        var result = regExp1.exec($(event.data.target).attr("href"));
+        var temp = (""+result).substr(0,(""+result).length - 2);
+            
+        result = temp + $(event.data.src).val() + "/";
+		    
+		$(event.data.target).attr("href",$(event.data.target).attr("href").replace(regExp1,result));
 
-	</script>
-</body>
+	};	
+	
+	/* filtro en hunter/casting_list*/
+	if($("#casting_status").length > 0)
+	{				
+		$("#casting_status").change({regexp: '/[0-9]+/[0-3]/',target: '#filter_button',src: '#casting_status'},update_state_filter);
+		$('#casting_status').trigger('change');
+	}
+
+
+
+	if($("iframe").attr('src').indexOf("youtube") >= 0){
+		$("iframe").each(function(){
+		  var ifr_source = $(this).attr('src');
+		  var wmode = "&wmode=opaque";
+		  $(this).attr('src',ifr_source+wmode);
+		});
+	}
+		    	    
+
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-42063032-1', 'ganando.cl');
+	ga('send', 'pageview');
+
+</script>

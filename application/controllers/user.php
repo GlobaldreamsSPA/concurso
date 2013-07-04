@@ -106,8 +106,7 @@ class User extends CI_Controller {
 
     }
 
-
-	public function index($id = NULL)
+	public function index($id = NULL, $success_message = NULL)
 	{
 		if($this->session->userdata('id') == FALSE)
 			redirect(HOME);
@@ -120,6 +119,11 @@ class User extends CI_Controller {
 			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		else
 			$args['image_profile_name'] = 0;
+
+		if(!is_null($success_message))
+		{
+			$args["success_message"] = $success_message;
+		}
 
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/active_casting_list";
@@ -134,8 +138,6 @@ class User extends CI_Controller {
 		$castings_id = $this->applies_model->get_applicant_applies($id);
 		
 		$apply_id_dictionary= array();
-		
-		
 
 		if($castings_id != 0)
 		{
@@ -162,14 +164,9 @@ class User extends CI_Controller {
 			}			
 		}
 		
-		
 		$args["user_id"] = $this->session->userdata('id');
-		
-
 		$this->load->view('template', $args);
 	}
-
-
 
 	public function logout()
 	{

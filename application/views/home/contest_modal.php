@@ -322,7 +322,7 @@
 		        <div class="upload-content photo-content span6">
 		         <h3 id="myModalLabel">Sube tu Foto</h3>
 		            <div>  
-			            <div style="margin-left: -10px; margin-top: -20px;" id="image_upload">
+			            <div id="image_upload">
 				              <?php echo form_upload(array('name' => 'upload_photo','id' => 'upload_photo','class'=> 'file','onchange'=>'readURL(this);')); ?>
 			
 			            </div>
