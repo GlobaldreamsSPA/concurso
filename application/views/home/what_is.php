@@ -84,7 +84,7 @@
 			</div>							
 			<div style="margin-top:2%; margin-left:3%; text-align:center;" class="responsive-bottom span6">
 				
-				<iframe style="border: 5px solid #E67E22;" width="85%" height="360px" src="http://www.youtube.com/embed/GAWcdrSC1-k?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe>
+				<iframe style="border: 5px solid #E67E22;" width="85%" height="360px" src="http://www.youtube.com/embed/GAWcdrSC1-k?rel=0&amp;showinfo=0&amp;theme=light" frameborder="0" allowfullscreen=""></iframe>
 
 			</div>		
 		</div>
