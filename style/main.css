@@ -230,6 +230,16 @@ input[type=file]{
 }
 
 
+.chozen-control-group .chzn-container
+{
+	width: 76% !important;
+}
+
+.chozen-control-group .search-field .default
+{
+	width: 100% !important;
+}
+
 /* Estilo del modal que muestra un mensaje de felicitaciones al postular a un concurso */
 #postulation-result
 {

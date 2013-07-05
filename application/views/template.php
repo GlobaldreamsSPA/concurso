@@ -69,8 +69,7 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>	
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script> 
 	<script src="<?php echo base_url()?>js/chosen.jquery.min.js" type="text/javascript"></script>
-	<script src="<?php echo base_url()?>js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="<?php echo base_url()?>js/jquery.dataTables.min.js" type="text/javascript"></script>
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>	<script src="<?php echo base_url()?>js/jquery.dataTables.min.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery.ba-resize.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery.countdown.js" type="text/javascript"></script>
 

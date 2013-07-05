@@ -22,7 +22,7 @@
 
 <script type="text/javascript">
 
-	if($(this).width() < 930){
+	if($(window).width() < 930){
 		
 		$(".responsive-top").removeClass('span7');  
 		$(".responsive-top").addClass("row");
@@ -44,7 +44,7 @@
 		$(".removable").removeClass("space4");
 
 	   	
-	}else if($(this).width() >= 930)
+	}else if($(window).width() >= 930)
 	{
 
 		$(".responsive-top").addClass('span7');  

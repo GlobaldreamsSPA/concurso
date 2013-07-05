@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	if($(this).width() < 930){
+	if($(window).width() < 930){
 		
 		$(".responsive-top").removeClass('span5');  
 		$(".responsive-top").removeClass('offset1');  
@@ -16,7 +16,7 @@
 
 
 
-    }else if($(this).width() >= 930)
+    }else if($(window).width() >= 930)
     {
    		$(".responsive-top").addClass('span5');  
 		$(".responsive-top").addClass('offset1');  

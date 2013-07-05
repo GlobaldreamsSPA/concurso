@@ -289,7 +289,7 @@
 				<h5>Premios</h5>
 				<?php 
 				
-				echo form_multiselect('prizes[]', $prizes,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona los premios...'");
+				echo form_multiselect('prizes[]', $prizes,NULL,"class='chzn-select chosen_filter' style='width:350px' data-placeholder='Selecciona los premios...'");
 				?>
 				
 				<h5>Descripci&oacuten o llamado a postular</h5>
