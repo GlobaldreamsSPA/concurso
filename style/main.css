@@ -24,7 +24,7 @@ html, body {
 
 @font-face {
     font-family: 'ganandofont'; /*a name to be used later*/
-    src: url('../fonts/soupofjustice.ttf'); /*URL to font*/
+    src: url('../fonts/walibi-holland.ttf'); /*URL to font*/
 }
 
 
@@ -229,6 +229,16 @@ input[type=file]{
 	border-radius:0 !important;
 }
 
+
+.chozen-control-group .chzn-container
+{
+	width: 76% !important;
+}
+
+.chozen-control-group .search-field .default
+{
+	width: 100% !important;
+}
 
 /* Estilo del modal que muestra un mensaje de felicitaciones al postular a un concurso */
 #postulation-result
@@ -464,7 +474,7 @@ div.space4
 /* Fondo pagina principal */
 div.home
 {
-	margin-top: 80px;
+	margin-top: 50px;
 	background: url('../img/bg_ganando.png') no-repeat;
 	background-size: 100% auto;
 }

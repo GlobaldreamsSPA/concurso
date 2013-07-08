@@ -23,9 +23,6 @@
 								echo "<label style='font-size:15px;'> Nombre Postulante </label>"; 
 								echo form_input('name', $name_p,"class='filter_input_a1' style='width:92%; border: 1px solid #aaa;'");
 
-								echo "<label style='font-size:15px;'> Habilidades </label>";
-								echo form_multiselect('skills[]', $skills, $filter_skills,"class='chzn-select chosen_filter' style='width:100%;' data-placeholder='Elige los tags...'");
-								
 								echo "<label style='font-size:15px;'> Sexo </label>";
 								echo form_multiselect('sex[]', $sex_list, $filter_sex,"class='chzn-select chosen_filter' style='width:100%' data-placeholder='Elige sexo ...'");
 								

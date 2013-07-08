@@ -238,6 +238,7 @@
 	    $('#upload_photo').trigger('click');
 	});
 
+
 </script>
 
 <div style="margin-left:10px; margin-right:10px;" class="row">
@@ -389,7 +390,7 @@
 									$options[$option['id']] = $option['option'];
 								}
 
-								echo "<div class='chozen-control-group'>".form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width: 313px;' data-placeholder='Selecciona tus respuestas..'");
+								echo "<div class='chozen-control-group'>".form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' data-placeholder='Selecciona tus respuestas..'");
 								echo "<label style='display: none; font-size: 12px; margin-left: 1%;'>Este campo es requerido</label></div>";
 								echo "<div class='space1'></div>";
 							}

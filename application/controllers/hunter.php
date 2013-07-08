@@ -500,11 +500,9 @@ class Hunter extends CI_Controller {
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/applicants_list";
 			$args["inner_args"]=$inner_args;
-			$args["skills"]= $this->skills_model->get_skills();
  	 	
  	 		$temp[-1]= "--  Seleccionar Todos  --";
 			$temp[-2]= "--     Vaciar Campo    --";
- 	 		$args["skills"] = $temp + $args["skills"];
 
 
 			$args["status"]= array(0=>"Sin Revisar",1=>"Aceptados",2=>"Rechazados",3=>"Todos");
@@ -527,16 +525,7 @@ class Hunter extends CI_Controller {
 				$args["name_p"] = $_GET["name"];
 				
 				$args["get_uri"] = "/?status=".$_GET["status"]."&name=".str_replace(' ', '+', $_GET["name"]);
-
-				if(isset($_GET["skills"]))
-				{
-					$args["filter_skills"] = $_GET["skills"];
-					foreach ($args["filter_skills"] as $value)
-						$args["get_uri"] = $args["get_uri"]."&skills%5B%5D=".$value;
-				}
-				else
-					$args["filter_skills"] = null;
-
+				
 				if(isset($_GET["sex"]))
 				{
 					$args["filter_sex"] = $_GET["sex"];

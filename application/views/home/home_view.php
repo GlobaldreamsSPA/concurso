@@ -2,9 +2,7 @@
 
 $(document).ready(function() {
 	
-	// Support for AJAX loaded modal window.
-	// Focuses on first input textbox after it loads the window.
-
+	
 	var active = false;
 
 	$('[data-toggle="modal"]').click(function(e) {
@@ -29,82 +27,82 @@ $(document).ready(function() {
 
 	});
 
- 	    if($(this).width() < 930){
-	    	var collection = $(".responsive");
-			collection.each(function( ) {
-		     	if($(this).hasClass("span4")){
-					$(this).removeClass('span4');  
-					$(this).css('margin-left','19%');
-					$(this).css('margin-bottom','10%');
-					$(this).addClass("span8");
-				}
-			});
+    if($(window).width() < 930){
+		var collection = $(".responsive");
+		collection.each(function( ) {
+	     	if($(this).hasClass("span4")){
+				$(this).removeClass('span4');  
+				$(this).css('margin-left','19%');
+				$(this).css('margin-bottom','10%');
+				$(this).addClass("span8");
+			}
+		});
 
-		    $(".responsive-search").removeClass('span3');  
-		    $(".responsive-search").addClass("span12");
-		    $(".responsive-search").css('margin-left','2.5%');
-
-
-		    $(".responsive-select").removeClass('span7');  
-		    $(".responsive-select").addClass("span12");
-		    $(".responsive-select").css('margin-left','2.5%');
+	    $(".responsive-search").removeClass('span3');  
+	    $(".responsive-search").addClass("span12");
+	    $(".responsive-search").css('margin-left','2.5%');
 
 
-		    $(".styled").removeClass('span5');  
-		    $(".styled").addClass("span6");
-
-		   	$(".responsive-button").removeClass('span2'); 
-		   	$(".responsive-button").addClass('span12'); 
-		   	$(".responsive-button").css('text-align','center');
-
-		   	$("#filter").css('font-size','20px');
-		    $("#prize").css('font-size','20px');
-		   	$("#category").css('font-size','20px');
-		    $("#filter_button").css('font-size','20px');
-
-			$(".removable").removeClass("space4");
-			$(".resize-space").removeClass("space4");
-			$(".resize-space").addClass("space2");
+	    $(".responsive-select").removeClass('span7');  
+	    $(".responsive-select").addClass("span12");
+	    $(".responsive-select").css('margin-left','2.5%');
 
 
-		   	
-	   }else if($(this).width() >= 930)
-	   {
-	   		var collection = $(".responsive");
+	    $(".styled").removeClass('span5');  
+	    $(".styled").addClass("span6");
 
-		     collection.each(function( ) {
-				 if(!$(this).hasClass("span4")){
-				    $(this).addClass("span4");
-					$(this).css('margin-left','1.7%');
-					$(this).css('margin-bottom','0');
-					$(this).removeClass("span8");
-				 }  
-			});
-		    $(".responsive-search").addClass('span3');  
-	    	$(".responsive-search").removeClass("span12");
-	    	$(".responsive-search").css('margin-left','0');
+	   	$(".responsive-button").removeClass('span2'); 
+	   	$(".responsive-button").addClass('span12'); 
+	   	$(".responsive-button").css('text-align','center');
 
-	    	$(".responsive-select").addClass('span7');  
-	    	$(".responsive-select").removeClass("span12");
-	    	$(".responsive-select").css('margin-left','0');
+	   	$("#filter").css('font-size','20px');
+	    $("#prize").css('font-size','20px');
+	   	$("#category").css('font-size','20px');
+	    $("#filter_button").css('font-size','20px');
 
-	    	$(".styled").addClass('span5');  
-	    	$(".styled").removeClass("span6");
+		$(".removable").removeClass("space4");
+		$(".resize-space").removeClass("space4");
+		$(".resize-space").addClass("space2");
 
-	    	$(".responsive-button").addClass('span2'); 
-		   	$(".responsive-button").removeClass('span12'); 
-		   	$(".responsive-button").css('text-align','inline');
 
-		   	$("#filter").css('font-size','16px');
-		    $("#prize").css('font-size','16px');
-		    $("#category").css('font-size','16px');
-		    $("#filter_button").css('font-size','16px');
+	   	
+	}else if($(window).width() >= 930)
+	{
+			var collection = $(".responsive");
 
-			$(".removable").addClass("space4");
-			$(".resize-space").addClass("space4");
-			$(".resize-space").removeClass("space2");
+	     collection.each(function( ) {
+			 if(!$(this).hasClass("span4")){
+			    $(this).addClass("span4");
+				$(this).css('margin-left','1.7%');
+				$(this).css('margin-bottom','0');
+				$(this).removeClass("span8");
+			 }  
+		});
+	    $(".responsive-search").addClass('span3');  
+		$(".responsive-search").removeClass("span12");
+		$(".responsive-search").css('margin-left','0');
 
-	   }
+		$(".responsive-select").addClass('span7');  
+		$(".responsive-select").removeClass("span12");
+		$(".responsive-select").css('margin-left','0');
+
+		$(".styled").addClass('span5');  
+		$(".styled").removeClass("span6");
+
+		$(".responsive-button").addClass('span2'); 
+	   	$(".responsive-button").removeClass('span12'); 
+	   	$(".responsive-button").css('text-align','inline');
+
+	   	$("#filter").css('font-size','16px');
+	    $("#prize").css('font-size','16px');
+	    $("#category").css('font-size','16px');
+	    $("#filter_button").css('font-size','16px');
+
+		$(".removable").addClass("space4");
+		$(".resize-space").addClass("space4");
+		$(".resize-space").removeClass("space2");
+
+	}
 
 	$(window).resize(function(){
  	    if($(this).width() < 930){
@@ -288,8 +286,10 @@ $(document).ready(function() {
 				}
 
 				?>
+				<div class="space4">
+				</div>
 
-				<div class="row">
+				<div class="row" style="display: none;">
 					<div class="space1"></div>
 					<div class="pagination" style="text-align:center;">  
 					  <ul id="pagination_bt">
