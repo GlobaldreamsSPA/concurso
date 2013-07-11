@@ -23,7 +23,21 @@
 				$(".sharer_questions").css("display", "");
 			}
 
+			if(tag != "Sube tu Foto")
+			{
+				$(".photo_description").css("display", "none");
+			}
+			else
+			{
+				$(".photo_description").css("display", "");
+			}
+
 		}
+
+		window.onload = function()
+        {
+           show_trivia_options();
+        };
 
 		function get_index_value()
 		{
@@ -374,6 +388,19 @@
 
 
 			    </div>
+
+
+			    <div class="photo_description" style="display:none;">
+
+			    	<legend><h3>Campos extra concurso de sube tu foto.</h3></legend>
+
+			    	<h5>Descripci&oacuten solicitada para la foto</h5>
+					<textarea class="span3" name="d_photo_contest"> </textarea>
+
+				
+
+			    </div>
+
 
 				<button style="margin-top: 2%;"type="submit" class="btn btn-primary">Publicar Concurso</button>
 

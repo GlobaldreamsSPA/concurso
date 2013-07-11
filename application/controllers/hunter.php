@@ -128,7 +128,7 @@ class Hunter extends CI_Controller {
 					$casting['bases'] = $this->input->post('bases');
 					$casting['steps'] = $this->input->post('steps');
 					$casting['prizes_description'] = $this->input->post('prizes_description');
-
+					$casting['d_photo_contest'] = $this->input->post("d_photo_contest");
 					$casting['apply_url'] = $this->input->post('apply_url');
 
 					$casting['prizes'] = "";

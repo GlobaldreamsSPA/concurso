@@ -259,14 +259,15 @@ input[type=file]{
 	display: none;
 	font-size: 12px;
 	color: #E74C3C;
-	margin-top: 2%;
-	margin-bottom: -7% !important;
 }
 
 .photo-content
 {
 	padding-left: 3%;
-	padding-right: 3.5%;	
+	padding-right: 3.5%;
+	height: 412px;
+	overflow-y: auto;
+	
 }
 
 .photo-container

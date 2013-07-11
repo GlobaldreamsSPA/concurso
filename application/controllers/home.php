@@ -132,7 +132,7 @@ class Home extends CI_Controller {
 			$args['full_image'] = $_GET['full_image'];
 			$args['category'] = $categories[$_GET['category']];	
 			$args['category_id'] = $_GET['category'];
-			
+			$args['d_photo_contest'] = $_GET['d_photo_contest'];
 
 			$args['logged_in'] = $this->session->userdata('id');
 
@@ -337,7 +337,7 @@ class Home extends CI_Controller {
 		{
 			$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
 
-			if($apply_id !== FALSE && $this->_upload_image($this->session->userdata('id'),$id))
+			if($apply_id !== FALSE && $this->_upload_image($this->session->userdata('id'),$id,$_POST["foto_description"]))
 			{
 				
 				$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
@@ -353,7 +353,7 @@ class Home extends CI_Controller {
 			redirect(HOME."/home");
 	}
 
-	private function _upload_image($id_user,$id_casting)
+	private function _upload_image($id_user,$id_casting,$description)
 	{
 	    $images_path = realpath(APPPATH.CONTEST_PHOTO_DIR);
 	    
@@ -378,7 +378,7 @@ class Home extends CI_Controller {
 	    {
 	    	$photo_to_save = array(
 			'name' => $img_name,
-			'description' => "Foto Concurso",
+			'description' => $description,
 			'user_id' => $id_user,
 			'casting_id' => $id_casting
 			);
