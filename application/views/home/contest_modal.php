@@ -328,12 +328,17 @@
 			
 			            </div>
 			            <label class="error-label">Debe subir una imagen antes de concursar</label>
-			            <div class="space2"></div>
 						
 						<div class="photo-container">
 							<img id="img_prev" style="max-height:250px; max-width:100%;"src="<?php echo HOME.'/img/dummy_galeria_fotos.png'; ?>" alt="your image" />
 						</div>
 			            <div class="space1"></div>  
+			            <div >
+			           		<?php echo $d_photo_contest; ?>
+			            </div>
+			            <div class="space1"></div>  
+			            <textarea style="width: 95% !important;" name="foto_description" id="foto_description" rows="2" placeholder="Descripción de la foto"></textarea>
+		         		<div class="space1"></div>  
 		            </div>
 		          <button type="submit" class="btn btn-primary pull-right">CONCURSAR</button>
 		    	</div>
