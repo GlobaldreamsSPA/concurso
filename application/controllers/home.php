@@ -14,8 +14,12 @@ class Home extends CI_Controller {
 	
 	}
 
-	public function index($page=1, $success_message = NULL)
+	public function index($page=1)
 	{
+		if(!$this->input->get('success_message'))
+			$success_message = NULL;
+		else
+			$success_message = $this->input->get('success_message');
 		$args = array();
 		
 		$args["get_uri"] ="";

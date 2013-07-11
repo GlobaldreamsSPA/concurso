@@ -100,7 +100,8 @@ class User extends CI_Controller {
 				$this->session->set_userdata($new_session_data);
 				$success_message = NULL;
             }
-            $this->index(NULL, $success_message);
+
+            redirect(HOME."?success_message=".$success_message);
         }
 
     }
