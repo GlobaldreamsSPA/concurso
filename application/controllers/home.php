@@ -148,7 +148,7 @@ class Home extends CI_Controller {
 						$share_data =$share_data[0];
 						$args['apply_url'] = "https://www.facebook.com/dialog/feed?
 										  app_id=458089044282863&
-										  link=".HOME."/home/share_counter/".$_GET['id']."/".$_GET['apply_url']."&
+										  link=".HOME."/home/share_counter/".$_GET['id']."?url=".urlencode($_GET['apply_url'])."&
 										  picture=".urlencode(HOME.CASTINGS_SHARE_PATH.$share_data['image'])."&
 										  name=".urlencode($share_data['title'])."&
 										  caption=".$_GET['apply_url']."&
@@ -216,13 +216,13 @@ class Home extends CI_Controller {
 		}
 	}
 
-	public function share_counter($id, $apply_url)
+	public function share_counter($id)
 	{
 		//Guardar la visita en la BD
 		$this->share_detail_model->increase_counter($id);
 
 		//Redirigir al sitio apply_url
-		redirect("http://".$apply_url);
+		redirect("http://".$_GET["url"]);
 	}
 
 	public function video()
