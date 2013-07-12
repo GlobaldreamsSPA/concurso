@@ -484,6 +484,49 @@ class Hunter extends CI_Controller {
 	}
 	
 
+	function accepted_list($id)
+	{
+		if($this->session->userdata('logged_in')&& isset($id) && $this->session->userdata('type') == "hunter")
+		{
+			$args['user_data'] = $this->session->userdata('logged_in');
+			
+			$hunter_id= $args['user_data']['id'];	   	 	
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
+			
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/accepted_list";
+			$args["inner_args"]=$inner_args;
+			
+			$temp = $this->castings_model->get_full_casting($id);
+			$args["name_casting"]= $temp["title"];
+
+			$id_applicants= $this->applies_model->get_castings_applies($id,null,0);
+			
+			$args["id_casting"]= $id;
+			$args["mailto_all"]="";
+
+			if($id_applicants!= 0)
+			{
+				$args["applicants"]=array();
+				
+				foreach($id_applicants as $id)
+				{
+					$applicant_info=$this->user_model->select_applicant($id['user_id']);
+					if($applicant_info['image_profile']!=0)
+						$applicant_info['image_profile'] = $this->photos_model->get_name($applicant_info['image_profile']);
+				
+					array_push($args["applicants"],$applicant_info);
+					$args["mailto_all"]=$args["mailto_all"].$applicant_info["email"].";";
+				}				
+			}
+		
+			$this->load->view('template', $args);	
+		}
+		else
+			redirect(HOME);
+	}
+
+
 	function applicants_list($id=NULL,$page=1)
 	{
 		if($this->session->userdata('logged_in') && isset($id))
@@ -640,44 +683,7 @@ class Hunter extends CI_Controller {
 			redirect(HOME);	
 	}
 	
-	function accepted_list($id)
-	{
-		if($this->session->userdata('logged_in')&& isset($id) && $this->session->userdata('type') == "hunter")
-		{
-			$args['user_data'] = $this->session->userdata('logged_in');
-			
-			$hunter_id= $args['user_data']['id'];	   	 	
-			$args["castings_dash"]= $this->_dashboard($hunter_id);
-			
-			$args["content"]="castings/hunter_template";
-			$inner_args["hunter_content"]="castings/accepted_list";
-			$args["inner_args"]=$inner_args;
-			$temp = $this->castings_model->get_full_casting($id);
-			$args["name_casting"]= $temp["title"];
-			$id_applicants= $this->applies_model->get_castings_applies_selected($id);
-			$args["id_casting"]= $id;
-			$args["mailto_all"]="";
-			if($id_applicants!= 0)
-			{
-				$args["applicants"]=array();
-				
-				foreach($id_applicants as $id)
-				{
-					$applicant_info=$this->user_model->select_applicant($id['user_id']);
-					$applicant_info["observation"]=$id["observation"];
-					if($applicant_info['image_profile']!=0)
-						$applicant_info['image_profile'] = $this->photos_model->get_name($applicant_info['image_profile']);
-				
-					array_push($args["applicants"],$applicant_info);
-					$args["mailto_all"]=$args["mailto_all"].$applicant_info["email"].";";
-				}				
-			}
-		
-			$this->load->view('template', $args);	
-		}
-		else
-			redirect(HOME);
-	}
+	
 
 	function finalize_casting($id_casting)
 	{

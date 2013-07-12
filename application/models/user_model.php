@@ -80,7 +80,7 @@ class User_model extends CI_Model
 	function select_applicant($id)
 	{
 		//Rescatar los datos de la tabla usuario
-		$this->db->select('id, name, email, image_profile');
+		$this->db->select('id, name, last_name, sex, email, birth_date,image_profile');
 		$this->db->from('users');
 		$this->db->where('id', $id);
 		$query = $this->db->get()->first_row('array');
