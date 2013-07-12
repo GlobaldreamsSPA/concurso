@@ -228,13 +228,6 @@
     if($(".chzn-select").length > 0)
 		$(".chzn-select").chosen({no_results_text: "No se encontraron resultados"});
 	
-	if($("#datatables").length > 0)
-  		$(document).ready(function() {
-		    $('#datatables').dataTable({
-	    		"sPaginationType": "full_numbers"
-			});
-		});
-	
 
 
 	$(function(){
