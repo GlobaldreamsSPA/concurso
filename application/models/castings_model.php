@@ -42,6 +42,18 @@ class Castings_model extends CI_Model
         return $casting;
     }
 
+    function _has_started($casting)
+    {
+        $interval = strtotime($casting['start_date']) - strtotime("now");
+        
+        if($interval > 0)
+            $casting['has_started'] = FALSE;
+        else
+            $casting['has_started'] = TRUE;
+
+        return $casting;
+    }
+
 	function check_status_active($casting_id)
 	{
 		$this->db->select('*');
@@ -103,6 +115,9 @@ class Castings_model extends CI_Model
         //Almacenar los dias que quedan
         $casting = $this->_days($casting);
 
+        //Analizar si el casting empezo o todavia no
+        $casting = $this->_has_started($casting);
+
         //Entregar las rutas de las imagenes
         $casting = $this->_routes($casting, TRUE);
 
@@ -158,6 +173,9 @@ class Castings_model extends CI_Model
         {
             //Almacenar los dias que quedan
             $casting = $this->_days($casting);
+
+            //Analizar si el casting empezo o todavia no
+            $casting = $this->_has_started($casting);
 
             //Entregar las rutas de las imagenes
             $casting = $this->_routes($casting ,TRUE);
@@ -216,6 +234,9 @@ class Castings_model extends CI_Model
         {
             //Almacenar los dias que quedan
             $casting = $this->_days($casting);
+
+            //Analizar si el casting empezo o todavia no
+            $casting = $this->_has_started($casting);
 
             //Entregar las rutas de las imagenes
             $casting = $this->_routes($casting ,TRUE);
@@ -276,6 +297,9 @@ class Castings_model extends CI_Model
         {
             //Almacenar los dias que quedan
             $casting = $this->_days($casting);
+
+            //Analizar si el casting empezo o todavia no
+            $casting = $this->_has_started($casting);
 
             //Entregar las rutas de las imagenes
             $casting = $this->_routes($casting ,TRUE);

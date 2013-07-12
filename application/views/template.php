@@ -116,15 +116,15 @@
 		            	   	<?php
 								if($id)
 								{
-									echo "<li>".anchor('user', "<span style='color: white;'>¡Bienvenido!</span>".$user)."</li>";
+									echo "<li>".anchor('user', "<span style='color: white;'>¡Bienvenido! </span>".$user)."</li>";
 									echo "<li>".anchor('user/logout','Cerrar sesi&oacuten')."</li>";
 
 								}
 								
 								elseif ($id_h) 
 								{	
-									echo "<li>¡Hola ".anchor('hunter', $name)." !</li>";
-									echo "<li>".anchor('hunter/logout','Cerrar sesi&oacuten')."</li>";						
+									echo "<li>".anchor('hunter', "<span style='color: white;'>¡Bienvenido! </span>".$name)."</li>";
+									echo "<li>".anchor('hunter/logout','Cerrar sesi&oacuten')."</li>";				
 								}
 							
 								if(!$id && !$id_h)
