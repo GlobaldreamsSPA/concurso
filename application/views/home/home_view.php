@@ -231,11 +231,26 @@ $(document).ready(function() {
 					?>
 					<div id="main_videos_list" class='responsive span4'>
 						<div class="space1"></div>
+						<?php
+							if($contest["has_started"] == TRUE)
+							{
+						?>
 						<a rel="nofollow" href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='.urlencode($contest["title"]).'&entity='.urlencode($contest["entity"]).'&days='.urlencode($contest["days"]).'&logo='.urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]).'&d_photo_contest='.urlencode($contest["d_photo_contest"]) ?>" data-toggle="modal">							
 							<div class="image">
 								<img class="fade_new" src="<?php echo $contest['full_image']; ?>" alt=""/>
 							</div>
 						</a>
+						<?php
+							}
+							else
+							{
+						?>
+							<div class="image">
+								<img class="fade_new" src="<?php echo $contest['full_image']; ?>" alt=""/>
+							</div>
+						<?php
+							} 
+						?>
 						<span class="arrow"></span>
 						<div class="video_text_main">
 							<div class="space1"></div>
@@ -255,6 +270,7 @@ $(document).ready(function() {
 												else
 												{
 													$date = explode("-", $contest["start_date"]); $date[1] = $date[1] -1;
+													echo "<label>".$date."</label>";
 													echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Faltan {dnn} días para activarse</span>'}); </script>"; 
 												}
 											?>
