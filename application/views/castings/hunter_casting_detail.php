@@ -13,14 +13,14 @@
 	</ul>
 </div>
 </div>
-<div class= "span8 offset1">			
+<div class= "span8 offset1">
 		<legend><h3 class="profile-title"> <a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a> Detalle Castings </h3></legend>
 		<div class="space05"></div>
 		<div class="row">
 			<div class="span5">
 				<h3 id="profile" style="font-weight:bold;"><?php echo $casting['title']; ?></h3>
 			</div>					  				
-			<div style="margin-top:15px;" class="span5 pull-left">
+			<div style="margin-top:15px;" class="span5 pull-right">
 				<a class="btn" href="<?php echo HOME.'/home/casting_detail/'.$casting["id"] ?>"> Vista Publica</a>
 				<a class="btn" href="<?php echo HOME.'/hunter/edit_casting/'.$casting["id"] ?>">Editar</a>
 			</div>

@@ -245,13 +245,18 @@ $(document).ready(function() {
 									<span class="home-video-author">Publicado por Ganando.cl</span>
 									<div class="space05"></div>
 									<div class="home-video-countdown">
-										<?php $date = explode("-", $contest["end_date"]); $date[1] = $date[1] -1; ?>
 										<div id="<?php echo 'countdown'.$i; ?>">
 											<?php
 												if($contest["has_started"] == TRUE)
+												{
+													$date = explode("-", $contest["end_date"]); $date[1] = $date[1] -1;
 													echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Quedan {dnn} días - {hnn}:{mnn}:{snn}</span>'}); </script>"; 
+												}
 												else
+												{
+													$date = explode("-", $contest["start_date"]); $date[1] = $date[1] -1;
 													echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Faltan {dnn} días para activarse</span>'}); </script>"; 
+												}
 											?>
 										</div>
 									</div>
