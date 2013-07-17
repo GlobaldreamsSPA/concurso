@@ -63,19 +63,27 @@
 	<div class="removable space4"></div>
 	<div class="content-fluid">
 		<div class="row">
-			<h1 style="text-align:center; color: #E67E22; font-family: 'ganandofont'; font-size: 50px !important;" > ¿QUE ES GANANDO.CL?</h1>									
+			<h1 style="text-align:center; margin-bottom:20px; color: #4da0d8; font-family: 'ganandofont'; font-size: 50px !important;" > ¿QUE ES GANANDO.CL?</h1>									
 			<div class="addable"></div>
 			<div style="margin-top:2%; margin-left:3%; text-align:center;" class="responsive-top span6">
 				
-				<iframe style="border: 5px solid #E67E22;" width="85%" height="360px" src="http://www.youtube.com/embed/GAWcdrSC1-k?rel=0&amp;showinfo=0&amp;theme=light" frameborder="0" allowfullscreen=""></iframe>
+				<iframe style="border: 10px solid #E67E22; border-radius:8px;" width="85%" height="360px" src="http://www.youtube.com/embed/GAWcdrSC1-k?rel=0&amp;showinfo=0&amp;theme=light" frameborder="0" allowfullscreen=""></iframe>
 
 			</div>	
 			<div style="padding-top:1%" class="responsive-bottom span6">
-				<p style="text-align:center; margin-top:8%; color: #E67E22; line-height: 40px; font-family: 'ganandofont'; font-size: 36px;">
+				<div class="space1"></div>
+				<div style="text-align:center;">
+					<img src="<?php echo HOME."/img/about-icon.png";?>"/>
+				</div>
+				<p style="text-align:center; color: #4da0d8; line-height: 32px; font-family: 'ganandofont'; font-size: 28px;">
 					Es el nuevo portal donde podrás encontrar muchos concursos entretenidos para participar
 				</p>
-				<p style="text-align:center; margin-top:8%; color: #E67E22; line-height: 40px; font-family: 'ganandofont'; font-size: 36px;">
-					¿Qué estás esperando? <a rel="nofollow" href="<?php echo base_url().'user/fb_login'; ?>">¡CONCURSA!</a>
+				<div class="space1"></div>
+				<p style="text-align:center; color: #4da0d8; line-height: 30px; font-family: 'ganandofont'; font-size: 26px;">
+					¿Qué estás esperando?				
+				</p>
+				<p style="text-align:center; color: #4da0d8; line-height: 40px; font-family: 'ganandofont'; font-size: 26px;">
+					 <a rel="nofollow" href="<?php echo base_url().'user/fb_login'; ?>">¡CONCURSA!</a>
 				</p>
 			</div>		
 		</div>

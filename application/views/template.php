@@ -71,7 +71,7 @@
 	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>	
 	<script src="<?php echo base_url()?>js/jquery.ba-resize.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery.countdown.js" type="text/javascript"></script>
-
+	
 	<div class="wrapper">	
 		<div id="fb-root"></div>
 		<div class="navbar navbar-fixed-top" id="headercontent">
@@ -149,7 +149,7 @@
 	<div class="color_line"></div>
 	<div class="space2"></div>
 	<div class"row">
-		<div class="span12"><p style="color: #ECF0F1;">GlobalDreams SPA | Publica tus concursos <a rel="nofollow" href="<?php echo base_url();?>home/login_hunter">con nosotros</a> | Lee los <a rel="nofollow" href="<?php echo base_url();?>docs/terms.pdf">t&eacuterminos y condiciones</a> | <a rel="nofollow" href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
+		<div class="span12"><p style="color: #ECF0F1;">GlobalDreams SPA | Publica tus concursos <a rel="nofollow" href="<?php echo base_url();?>home/login_hunter">con nosotros</a> | Lee los <a rel="nofollow"  target=”_blank” href="<?php echo base_url();?>docs/terms.pdf">t&eacuterminos y condiciones</a> | <a rel="nofollow" href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
 	</div>
 	<div class="row">
 		<div class="span12">
