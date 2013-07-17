@@ -150,14 +150,7 @@ class Home extends CI_Controller {
 					{
 						$share_data= $this->share_detail_model->select('*',array('casting_id'=>$args['id_casting']));
 						$share_data =$share_data[0];
-						$args['apply_url'] = "https://www.facebook.com/dialog/feed?
-										  app_id=458089044282863&
-										  link=".HOME."/home/share_counter/".$_GET['id']."?url=".urlencode($_GET['apply_url'])."&
-										  picture=".urlencode(HOME.CASTINGS_SHARE_PATH.$share_data['image'])."&
-										  name=".urlencode($share_data['title'])."&
-										  caption=".$_GET['apply_url']."&
-										  description=".urlencode($share_data['description'])."&
-										  redirect_uri=".HOME."/home/apply_share/".$args['id_casting'];
+						$args['apply_url'] = "https://www.facebook.com/dialog/feed?app_id=458089044282863&link=".HOME."/home/share_counter/".$_GET['id']."?url=".urlencode($_GET['apply_url'])."&picture=".urlencode(HOME.CASTINGS_SHARE_PATH.$share_data['image'])."&name=".urlencode($share_data['title'])."&caption=".$_GET['apply_url']."&description=".urlencode($share_data['description'])."&redirect_uri=".HOME."/home/apply_share/".$args['id_casting'];
 						$args['target'] = true;
 					}
 					else
