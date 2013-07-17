@@ -136,6 +136,7 @@
 							<?php
 
 							echo'<input id="'.$applicant["id"].'" value="'.$applicant["id"].'"  name="selected[]" type="checkbox">';
+							echo'<p style="display: none;" id="'.$i.'" >'.$applicant["email"].'</p>';
 
 
 							?>

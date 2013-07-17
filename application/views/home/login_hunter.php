@@ -123,10 +123,9 @@
 	  	<div class="row">
 	  		<div style="margin-left: 7%;" class="responsive-top span7">
 	  			<div style="padding-top:6%;">
+				    <p style="text-align:center; margin-left:-3%; color: #4da0d8; line-height: 30px; font-family: 'ganandofont'; font-size: 25px;">LLEGA A MUCHOS USUARIOS DISPUESTOS A FOMENTAR TU MARCA</p>		    						   
+					<div class="space2"></div>
 					<img src="<?php echo HOME."/img/empresa.png";?>">
-				    <p style="margin-top:6%; text-align:center; color: #E67E22; line-height: 30px; font-family: 'ganandofont'; font-size: 25px;">Llega a miles de usuarios dispuestos a fomentar tu marca.</p>		    						   
-		    		<p style="margin-top:2%; text-align:center; color: #E67E22; line-height: 30px; font-family: 'ganandofont'; font-size: 25px;">¡Aumenta tu alcance! a un precio accesible.</p>
-
 		    	</div>
 	  		</div>
 	  		<div class="responsive-bottom span4" id="variable" style="min-height: 0px !important; ">
