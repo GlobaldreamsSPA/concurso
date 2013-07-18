@@ -519,11 +519,11 @@ div.video_text_main
 
 .home-video-title
 {
+	width: 101%;
 	color: white;
-	font-size: 18px;
+	font-size: 17px;
 	font-weight: bold;
 	text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;
-
 }
 
 span.home-video-author
