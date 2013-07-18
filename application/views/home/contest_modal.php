@@ -225,12 +225,25 @@
 	});
 
 	$('#photo_upload_form').submit(function(){
+
+		var error = false;
+
 		if($('#photo_upload_form input').val() == "")
 		{
 			$('#photo_upload_form .error-label')[0].style.display = "block";
-			return false;
+			error = true;
 		}
-		return true;
+
+		if($('#photo_upload_form textarea').val() == "")
+		{
+			$('#photo_upload_form .error-label')[1].style.display = "block";
+			error = true;
+		}
+
+		if(error)
+			return false;
+		else
+			return true;
 	});
 
 
@@ -338,7 +351,8 @@
 			            </div>
 			            <div class="space1"></div>  
 			            <textarea style="width: 95% !important;" name="foto_description" id="foto_description" rows="2" placeholder="Descripción de la foto"></textarea>
-		         		<div class="space1"></div>  
+			            <label class="error-label" style="margin-top: -2%;">Debe ingresar una descripción antes de concursar</label>
+		         		<div class="space1"></div>
 		            </div>
 		          <button type="submit" class="btn btn-primary pull-right">CONCURSAR</button>
 		    	</div>
