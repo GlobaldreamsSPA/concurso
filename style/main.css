@@ -188,8 +188,9 @@ input[type=file]{
 #des{
 	position:absolute; 
 	width:27%; 
-	height:200px; 
-	background-color:#3498DB
+	height:120px; 
+	background-color:#3498DB;
+	padding-top:80px;
 }
 
 #pri
@@ -197,17 +198,19 @@ input[type=file]{
 	right:1.5%; 
 	position:absolute; 
 	width:27%; 
-	height:200px; 
-	background-color:#2ECC71
+	height:120px; 
+	background-color:#2ECC71;
+	padding-top:80px;
 }
 
 #bas
 {
 	position:absolute; 
 	width:27%; 
-	height:200px; 
+	height:120px; 
 	bottom:15%; 
-	background-color:#F39C12
+	background-color:#F39C12;
+	padding-top:80px;
 }
 
 #ste
@@ -215,9 +218,10 @@ input[type=file]{
 	right:1.5%;  
 	position:absolute;  
 	width:27%; 
-	height:200px; 
+	height:120px; 
 	bottom:15%; 
-	background-color:#F1C40F
+	background-color:#F1C40F;
+	padding-top:80px;
 }
 
 .tag
@@ -519,11 +523,11 @@ div.video_text_main
 
 .home-video-title
 {
-	width: 101%;
 	color: white;
-	font-size: 17px;
+	font-size: 18px;
 	font-weight: bold;
 	text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;
+
 }
 
 span.home-video-author
