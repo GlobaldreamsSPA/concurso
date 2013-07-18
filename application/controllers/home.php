@@ -14,9 +14,11 @@ class Home extends CI_Controller {
 	
 	}
 
-	public function index($page=1)
+	public function index($page=1, $message=NULL)
 	{
-		if(!$this->input->get('success_message'))
+		if(!is_null($message))
+			$success_message = $message;
+		else if(!$this->input->get('success_message'))
 			$success_message = NULL;
 		else
 			$success_message = $this->input->get('success_message');
@@ -150,7 +152,14 @@ class Home extends CI_Controller {
 					{
 						$share_data= $this->share_detail_model->select('*',array('casting_id'=>$args['id_casting']));
 						$share_data =$share_data[0];
-						$args['apply_url'] = "https://www.facebook.com/dialog/feed?app_id=458089044282863&link=".HOME."/home/share_counter/".$_GET['id']."?url=".urlencode($_GET['apply_url'])."&picture=".urlencode(HOME.CASTINGS_SHARE_PATH.$share_data['image'])."&name=".urlencode($share_data['title'])."&caption=".$_GET['apply_url']."&description=".urlencode($share_data['description'])."&redirect_uri=".HOME."/home/apply_share/".$args['id_casting'];
+						$args['apply_url'] = "https://www.facebook.com/dialog/feed?
+										  app_id=458089044282863&
+										  link=".HOME."/home/share_counter/".$_GET['id']."?url=".urlencode($_GET['apply_url'])."&
+										  picture=".urlencode(HOME.CASTINGS_SHARE_PATH.$share_data['image'])."&
+										  name=".urlencode($share_data['title'])."&
+										  caption=".$_GET['apply_url']."&
+										  description=".urlencode($share_data['description'])."&
+										  redirect_uri=".HOME."/home/apply_share/".$args['id_casting'];
 						$args['target'] = true;
 					}
 					else
@@ -315,6 +324,7 @@ class Home extends CI_Controller {
 				$this->share_apply_model->insert(array('apply_id'=>$apply_id,'post_id'=>$_GET['post_id']));
 				$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
 				$this->index(1, $success_message);
+				redirect(HOME."/home?");
 			}
 			else
 			{
