@@ -19,7 +19,7 @@
 		{
 	?>
 			<title>Publicidad para tu negocio o pyme - Ganando .cl </title>
-			<meta name="description" content="Publicidad para tu negocio o pyme  - Ganando .cl">
+			<meta name="description" content="Podrás realizar publicidad  y marketing para tu negocio a bajo costo, especialmente dirigido a emprendedores o pymes - Ganando .cl">
 			<meta name="keywords" content="publicidad, pyme, negocio, marketing, emprendedor">
 	
 	<?php
