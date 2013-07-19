@@ -6,6 +6,7 @@
 
 
 	<?php 
+		
 		if(isset($about))
 		{ 
 	?>
@@ -47,7 +48,7 @@
 	<link href="<?php echo base_url()?>style/flat-ui.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/chosen.css" rel="stylesheet"/>
 	<link href="<?php echo base_url()?>style/jquery.countdown.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<link href="<?php echo base_url()?>style/jquery-ui.css" rel="stylesheet"/>
 
 
 </head>
@@ -65,8 +66,8 @@
 	</div>
 	</div>
 
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>	
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script> 
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> 
 	<script src="<?php echo base_url()?>js/chosen.jquery.min.js" type="text/javascript"></script>
 	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>	
 	<script src="<?php echo base_url()?>js/jquery.ba-resize.js" type="text/javascript"></script>
@@ -158,7 +159,7 @@
 						<p style="margin-left: 30px; text-decoration: none; color: #ECF0F1;" class="second">Ganando &copy; 2013 | Todos los derechos reservados | 
 						<a style="margin-left: 15 px;" href="https://twitter.com/ViddonCom" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
 						<a href="https://www.facebook.com/ganandochile" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
-						<a rel="nofollow" style="top:6px;" class="fb-like" data-href="https://www.facebook.com/ganandochile" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></a>				
+						<a rel="nofollow" style="top:6px;" class="fb-like" data-href="https://www.facebook.com/ganandochile" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></a>										
 						</p>
 					</div>
 			</div>
