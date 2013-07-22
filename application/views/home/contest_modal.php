@@ -16,6 +16,7 @@
 					$(event.data.div1).css("z-index","0");
 					$(event.data.div2).css("z-index","0");
 					$(event.data.div3).css("z-index","0");
+					$(event.data.hideclick).css("display","");
 					}
 	            );
 	        $(event.data.target_text).empty();
@@ -30,10 +31,11 @@
 		$(event.data.div1).css("z-index","-1");
 		$(event.data.div2).css("z-index","-1");
 		$(event.data.div3).css("z-index","-1");
+		$(event.data.hideclick).css("display","none");
 
         if (event.data.state) {
             $(event.data.target).animate({
-                height: 390,
+                height: 380,
                 width: "55%",
                 "padding-top": 30
             }, 1000);
@@ -47,6 +49,7 @@
 				$(event.data.div1).css("z-index","0");
 				$(event.data.div2).css("z-index","0");
 				$(event.data.div3).css("z-index","0");
+				$(event.data.hideclick).css("display","");
 
 				}
             );
@@ -56,19 +59,19 @@
   		event.data.state = !event.data.state;
     };
 
-    var stade_des = {target: '#des', div1: '#pri', div2: '#bas', div3: '#ste', state: true, target_text: '#des-text', source_text: '#text-des'};
+    var stade_des = {target: '#des', div1: '#pri', div2: '#bas', div3: '#ste', hideclick: '.hide-click1', state: true, target_text: '#des-text', source_text: '#text-des'};
 	$("#des").click(stade_des, contest_information_animation);
 	$("#des").mouseleave(stade_des, contest_information_animation_onmouseleave);
 
-	var state_pri = {target: '#pri', div1: '#des', div2: '#bas', div3: '#ste', state: true, target_text: '#pri-text', source_text: '#text-pri'};
+	var state_pri = {target: '#pri', div1: '#des', div2: '#bas', div3: '#ste', hideclick: '.hide-click2', state: true, target_text: '#pri-text', source_text: '#text-pri'};
 	$("#pri").click(state_pri, contest_information_animation);
 	$("#pri").mouseleave(state_pri, contest_information_animation_onmouseleave);
 
-  	var state_bas = {target: '#bas', div1: '#des', div2: '#pri', div3: '#ste', state: true, target_text: '#bas-text', source_text: '#text-bas'};
+  	var state_bas = {target: '#bas', div1: '#des', div2: '#pri', div3: '#ste', hideclick: '.hide-click3', state: true, target_text: '#bas-text', source_text: '#text-bas'};
 	$("#bas").click(state_bas, contest_information_animation);
   	$("#bas").mouseleave(state_bas, contest_information_animation_onmouseleave);
 
-  	var state_ste = {target: '#ste', div1: '#des', div2: '#pri', div3: '#bas', state: true, target_text: '#ste-text', source_text: '#text-ste'};
+  	var state_ste = {target: '#ste', div1: '#des', div2: '#pri', div3: '#bas', hideclick: '.hide-click4', state: true, target_text: '#ste-text', source_text: '#text-ste'};
 	$("#ste").click(state_ste, contest_information_animation);
 	$("#ste").mouseleave(state_ste, contest_information_animation_onmouseleave);
 
@@ -306,6 +309,7 @@
 		<div id="des">
 			<h3 style="text-align: center; color:#ffffff;">
 				Descripci&oacute;n
+				<label class="hide-click1" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
 			</h3>
 			<div id="des-text" style="color:#ffffff; padding:5%; padding-top:1% !important;font-size:15px;">
 			</div>
@@ -313,6 +317,7 @@
 		<div id="pri">
 			<h3 style="text-align: center;  color:#ffffff;">
 				Premios
+				<label class="hide-click2" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
 			</h3>
 			<div id="pri-text" style="color:#ffffff; padding:5%; padding-top:1% !important; font-size:15px;">
 			</div>
@@ -320,6 +325,7 @@
 		<div id="bas">
 			<h3 style="text-align: center; color:#ffffff;">
 				Bases del Concurso
+				<label class="hide-click3" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
 			</h3>
 			<div id="bas-text" style="color:#ffffff; padding:5%; padding-top:1% !important; font-size:15px;">
 			</div>
@@ -327,6 +333,7 @@
 		<div id="ste">
 			<h3 style="text-align: center; color:#ffffff;">
 				¿Como Concursar?
+				<label class="hide-click4" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
 			</h3>
 			<div id="ste-text" style="color:#ffffff; padding:5%; padding-top:1% !important; font-size:15px;">
 			</div>

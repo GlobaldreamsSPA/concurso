@@ -140,9 +140,9 @@ input[type=file]{
 
 #contestmodal{
   position: fixed;
-  top: 40%;
+  top: 3%;
   left: 40%;
-  margin: -18% 0 0 -25%;
+  margin: 0 0 0 -25%;
   padding-top: 1%; 
   padding-bottom: 1%; 
   width: 70% !important;
@@ -340,7 +340,6 @@ a:visited {text-decoration: none !important}
 .navbar .nav li a:hover
 {
 	text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;
-	font-size: 18px !important;
 }
 
 .navbar .nav li a:hover img
@@ -479,7 +478,7 @@ div.space4
 /* Fondo pagina principal */
 div.home
 {
-	margin-top: 50px;
+	margin-top: 70px;
 	background: url('../img/bg_ganando.png') no-repeat;
 	background-size: 100% auto;
 }
@@ -523,7 +522,7 @@ div.video_text_main
 
 .home-video-title
 {
-	width: 101%;
+	width: 102%;
 	color: white;
 	font-size: 17px;
 	font-weight: bold;

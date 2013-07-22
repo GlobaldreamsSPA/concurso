@@ -117,7 +117,7 @@
 		            	   	<?php
 								if($id)
 								{
-									echo "<li>".anchor('user', "<span style='color: white;'>¡Bienvenido! </span>".$user)."</li>";
+									echo "<li>".anchor('user', "<span style='margin-right:10px; color: #3b5998;' class='fui-user'></span>".$user)."</li>";
 									echo "<li>".anchor('user/logout','Cerrar sesi&oacuten')."</li>";
 
 								}
