@@ -5,12 +5,10 @@ body
 
 }
 
-* {
-	margin: 0;
-}
 html, body {
 	height: 100%;
 }
+
 .wrapper {
 	min-height: 100%;
 	height: auto !important;
@@ -546,12 +544,18 @@ div.home-video-countdown
 	margin-bottom: 2%;
 }
 
+div.contest-countdown
+{
+	position: relative;
+	top: -24%;
+}
+
 div.home-video-countdown div
 {
 	width: 100%;
 	margin-left: -10%;
 	padding-top: 1.5%;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 div.row_text_main
