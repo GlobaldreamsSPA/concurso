@@ -162,7 +162,7 @@
 					<div class="space1"></div>
 					<div class="bottom-2">
 						<div class="row-fluid" style="border-radius: 5px; margin-left:8%;">
-					  		<?php echo form_open('home/login_hunter', array('class' => 'form-horizontal')); ?>
+					  		<?php echo form_open('home/company', array('class' => 'form-horizontal')); ?>
 								
 								<div class="space05"></div>
 				  				<h3 style="padding-left:5%; background-color: #E67E22; color: #fff; text-align:center;">Cont&aacute;ctanos</h3>

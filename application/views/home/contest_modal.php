@@ -9,8 +9,9 @@
 		if(event.data.state == false)
 		{
 			$(event.data.target).animate({
-	                height: 200,
-	                width: "27%"
+	                height: 120,
+	                width: "27%",
+	                "padding-top": 80
 	            }, 1000, function(){
 					$(event.data.div1).css("z-index","0");
 					$(event.data.div2).css("z-index","0");
@@ -32,18 +33,21 @@
 
         if (event.data.state) {
             $(event.data.target).animate({
-                height: 410,
-                width: "55%"
+                height: 390,
+                width: "55%",
+                "padding-top": 30
             }, 1000);
             $(event.data.target_text).append($(event.data.source_text).html());
         } else {
             $(event.data.target).animate({
-                height: 200,
-                width: "27%"
+                height: 120,
+                width: "27%",
+                "padding-top": 80
             }, 1000, function(){
 				$(event.data.div1).css("z-index","0");
 				$(event.data.div2).css("z-index","0");
 				$(event.data.div3).css("z-index","0");
+
 				}
             );
             $(event.data.target_text).empty();
@@ -300,31 +304,31 @@
 	</div>
 	<div class="span7" id="info-contest" style="height:420px;">
 		<div id="des">
-			<h3 style="text-align: center; margin-top:80px; color:#ffffff;">
+			<h3 style="text-align: center; color:#ffffff;">
 				Descripci&oacute;n
 			</h3>
-			<div id="des-text" style="color:#ffffff; padding:5%; font-size:15px;">
+			<div id="des-text" style="color:#ffffff; padding:5%; padding-top:1% !important;font-size:15px;">
 			</div>
 		</div>
 		<div id="pri">
-			<h3 style="text-align: center; margin-top:80px; color:#ffffff;">
+			<h3 style="text-align: center;  color:#ffffff;">
 				Premios
 			</h3>
-			<div id="pri-text" style="color:#ffffff; padding:5%; font-size:15px;">
+			<div id="pri-text" style="color:#ffffff; padding:5%; padding-top:1% !important; font-size:15px;">
 			</div>
 		</div>
 		<div id="bas">
-			<h3 style="text-align: center; margin-top:80px; color:#ffffff;">
-				¿Puedo Concursar?
+			<h3 style="text-align: center; color:#ffffff;">
+				Bases del Concurso
 			</h3>
-			<div id="bas-text" style="color:#ffffff; padding:5%; font-size:15px;">
+			<div id="bas-text" style="color:#ffffff; padding:5%; padding-top:1% !important; font-size:15px;">
 			</div>
 		</div>
 		<div id="ste">
-			<h3 style="text-align: center; margin-top:80px; color:#ffffff;">
+			<h3 style="text-align: center; color:#ffffff;">
 				¿Como Concursar?
 			</h3>
-			<div id="ste-text" style="color:#ffffff; padding:5%; font-size:15px;">
+			<div id="ste-text" style="color:#ffffff; padding:5%; padding-top:1% !important; font-size:15px;">
 			</div>
 		</div>
 		

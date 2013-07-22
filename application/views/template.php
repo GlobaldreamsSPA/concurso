@@ -6,6 +6,7 @@
 
 
 	<?php 
+		
 		if(isset($about))
 		{ 
 	?>
@@ -18,7 +19,7 @@
 		{
 	?>
 			<title>Publicidad para tu negocio o pyme - Ganando .cl </title>
-			<meta name="description" content="Publicidad para tu negocio o pyme  - Ganando .cl">
+			<meta name="description" content="Podrás realizar publicidad  y marketing para tu negocio a bajo costo, especialmente dirigido a emprendedores o pymes - Ganando .cl">
 			<meta name="keywords" content="publicidad, pyme, negocio, marketing, emprendedor">
 	
 	<?php
@@ -47,7 +48,7 @@
 	<link href="<?php echo base_url()?>style/flat-ui.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/chosen.css" rel="stylesheet"/>
 	<link href="<?php echo base_url()?>style/jquery.countdown.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<link href="<?php echo base_url()?>style/jquery-ui.css" rel="stylesheet"/>
 
 
 </head>
@@ -65,8 +66,8 @@
 	</div>
 	</div>
 
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>	
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script> 
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> 
 	<script src="<?php echo base_url()?>js/chosen.jquery.min.js" type="text/javascript"></script>
 	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>	
 	<script src="<?php echo base_url()?>js/jquery.ba-resize.js" type="text/javascript"></script>
@@ -100,7 +101,7 @@
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
 	                </a>
-			    	<a class="brand" style="background-color:#D35400; border-radius: 0; height:40px; margin-left:1% !important; position: absolute; color: #ECF0F1" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME?>"> 	<img style="margin-top:-15px;"src="<?php echo HOME."/img/logogif.gif"; ?>" /></a>
+			    	<a class="brand" style="background-color:#D35400; border-radius: 0; height:40px; margin-left:1% !important; position: absolute; color: #ECF0F1" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME.'/home'?>"> 	<img style="margin-top:-15px;"src="<?php echo HOME."/img/logogif.gif"; ?>" /></a>
 
 					<div class="nav-collapse collapse navbar-responsive-collapse">
 	                    <ul class="nav">
@@ -149,7 +150,7 @@
 	<div class="color_line"></div>
 	<div class="space2"></div>
 	<div class"row">
-		<div class="span12"><p style="color: #ECF0F1;">GlobalDreams SPA | Publica tus concursos <a rel="nofollow" href="<?php echo base_url();?>home/login_hunter">con nosotros</a> | Lee los <a rel="nofollow"  target=”_blank” href="<?php echo base_url();?>docs/terms.pdf">t&eacuterminos y condiciones</a> | <a rel="nofollow" href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
+		<div class="span12"><p style="color: #ECF0F1;">GlobalDreams SPA | Publica tus concursos <a rel="nofollow" href="<?php echo base_url();?>home/company">con nosotros</a> | Lee los <a rel="nofollow"  target=”_blank” href="<?php echo base_url();?>docs/terms.pdf">t&eacuterminos y condiciones</a> | <a rel="nofollow" href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
 	</div>
 	<div class="row">
 		<div class="span12">
@@ -158,7 +159,7 @@
 						<p style="margin-left: 30px; text-decoration: none; color: #ECF0F1;" class="second">Ganando &copy; 2013 | Todos los derechos reservados | 
 						<a style="margin-left: 15 px;" href="https://twitter.com/ViddonCom" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
 						<a href="https://www.facebook.com/ganandochile" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
-						<a rel="nofollow" style="top:6px;" class="fb-like" data-href="https://www.facebook.com/ganandochile" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></a>				
+						<a rel="nofollow" style="top:6px;" class="fb-like" data-href="https://www.facebook.com/ganandochile" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></a>										
 						</p>
 					</div>
 			</div>

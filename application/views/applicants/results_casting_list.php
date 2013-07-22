@@ -40,7 +40,7 @@
 		<div class="space2"></div>
 		<div class="space1"></div>
 		<div style="padding-right:4%; !important">
-			<table id="datatables" class="table">
+			<table class="table">
 	          <thead>
 	            <tr>
 	              <th>Fecha</th>
