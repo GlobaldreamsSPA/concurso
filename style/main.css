@@ -103,6 +103,7 @@ input[type=file]{
 {
 	text-align: justify;
 	color: #34495E !important;
+	max-height: 100px !important;
 
 }
 
