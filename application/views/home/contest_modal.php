@@ -272,7 +272,9 @@
 <div style="margin-left:10px; margin-top:2%; margin-bottom:2%; height: 90%;" class="row">
 	<div class="span5" style="padding-right: 2%;">
 		<img src='<?php echo $full_image; ?>'/>
-		<div style="margin-top: 5%; margin-bottom: 5%;">
+		<div class="space05"></div>
+		<span style="font-size:20px !important; font-weight: bold;">Etiquetas:</span>
+		<div style="margin-top: 1%; margin-bottom: 5%;">
 			<?php 
 				echo "<a href='".HOME."/home?search_terms=&category=".$category_id."&prize=' target='_blank' class='btn btn-inverse tag'>".$category."</a>";
 				
