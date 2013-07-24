@@ -60,9 +60,11 @@ $(document).ready(function() {
 	   	$("#category").css('font-size','20px');
 	    $("#filter_button").css('font-size','20px');
 
-		$(".removable").removeClass("space4");
-		$(".resize-space").removeClass("space4");
-		$(".resize-space").addClass("space2");
+	    $("#top-banner").removeClass('span5');  
+	    $("#top-banner").addClass("span11");
+
+	    $("#bottom-banner").removeClass('span6');  
+	    $("#bottom-banner").addClass("span11 offset1");
 
 
 	   	
@@ -98,9 +100,12 @@ $(document).ready(function() {
 	    $("#category").css('font-size','16px');
 	    $("#filter_button").css('font-size','16px');
 
-		$(".removable").addClass("space4");
-		$(".resize-space").addClass("space4");
-		$(".resize-space").removeClass("space2");
+
+	    $("#top-banner").addClass('span5');  
+	    $("#top-banner").removeClass("span11");
+
+	    $("#bottom-banner").addClass('span6');  
+	    $("#bottom-banner").removeClass("span11 offset1");
 
 	}
 
@@ -138,9 +143,12 @@ $(document).ready(function() {
 		   	$("#category").css('font-size','20px');
 		    $("#filter_button").css('font-size','20px');
 
-		    $(".removable").removeClass("space4");
-		    $(".resize-space").removeClass("space4");
-			$(".resize-space").addClass("space2");
+
+		    $("#top-banner").removeClass('span5');  
+		    $("#top-banner").addClass("span11");
+
+		    $("#bottom-banner").removeClass('span6');  
+		    $("#bottom-banner").addClass("span11 offset1");
 
 
 		   	
@@ -177,11 +185,12 @@ $(document).ready(function() {
 		    $("#category").css('font-size','16px');
 		    $("#filter_button").css('font-size','16px');
 
-			$(".removable").addClass("space4");
-			$(".resize-space").addClass("space4");
-			$(".resize-space").removeClass("space2");
 
+		    $("#top-banner").addClass('span5');  
+		    $("#top-banner").removeClass("span11");
 
+		    $("#bottom-banner").addClass('span6');  
+		    $("#bottom-banner").removeClass("span11 offset1");
 	   }
 	});
 });
@@ -193,13 +202,42 @@ $(document).ready(function() {
 <h1 style="display:none">Participa en los sorteos por premios en Ganando .cl</h1>
 
 <div class="content home" id="content">
-	<div class="space4"></div>
-	<div class="space4"></div>
-	<div class="space4"></div>
-	<div class="space4"></div>
-	<div class="resize-space space4"></div>
-	<div class="removable space4"></div>
-	<div class="row">
+		<h1 style="text-align:center; margin-top:120px; margin-bottom: 45px; color: #4da0d8; font-family: 'ganandofont'; font-size: 76px !important; line-height: 76px !important;" > GANA EN 3 PASOS</h1>									
+		<div class="row">
+			<div id="top-banner" style="margin-left: 9%;"class="span5">
+				<p style="margin-top: 14px; color: #4da0d8; line-height: 40px; font-family: 'ganandofont'; font-size: 25px;">
+					MUCHOS CONCURSOS PARA QUE PUEDAS PARTICIPAR DE FORMA GRATUITA CON TAN SÓLO 3 PASOS. 
+				</p>
+			</div>
+			<div id="bottom-banner"class="span6">
+				<div class="span4">
+					<a href="<?php echo HOME."/user/fb_login"?>">
+						<img style="width:100%;" src="<?php echo HOME.'/img/bg1.png'?>"/>
+					
+						<p style="text-align:center; color: #4da0d8; line-height: 40px; font-family: 'ganandofont'; font-size: 22px;">
+							INGRESA 
+						</p>
+					</a>
+				</div>
+				<div class="span4">
+					<a href="#" onclick=" if($(window).width() < 930) $('body,html').animate({ scrollTop: 800 }, 600); else $('body,html').animate({ scrollTop: 400 }, 600); ">
+						<img style="width:100%;" src="<?php echo HOME.'/img/bg2.png'?>"/>
+						<p style="text-align:center; color: #4da0d8; line-height: 40px; font-family: 'ganandofont'; font-size: 22px;">
+							CONCURSA
+						</p>
+					</a>
+
+				</div>
+				<div class="span4">
+					<img style="width:100%;" src="<?php echo HOME.'/img/bg3.png'?>"/>
+					<p style="text-align:center; color: #4da0d8; line-height: 40px; font-family: 'ganandofont'; font-size: 22px;">
+						¡GANA!
+					</p>
+				</div>
+
+			</div>
+		</div>
+		<div class="row">
 			<div style="margin-left:1.2%;"  class="row-fluid">
 				<div class="space2"></div>
 	  			<div style="margin-left:3%;" class="row">
