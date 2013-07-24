@@ -1,36 +1,10 @@
+	<link href="<?php echo base_url()?>style/jquery.dataTables.css" rel="stylesheet">
+	<script src="<?php echo base_url()?>js/jquery.dataTables.min.js" type="text/javascript"></script>
+
 	<script type="text/javascript">
-
-	$(document).ready(function()
-	{
-		$('#search').keyup(function()
-		{
-			searchTable($(this).val());
-		});
-	});
-
-	function searchTable(inputVal)
-	{
-		var table = $('#tblData');
-		table.find('tr').each(function(index, row)
-		{
-			var allCells = $(row).find('td');
-			if(allCells.length > 0)
-			{
-				var found = false;
-				allCells.each(function(index, td)
-				{
-					var regExp = new RegExp(inputVal, 'i');
-					if(regExp.test($(td).text()))
-					{
-						found = true;
-						return false;
-					}
-				});
-				if(found == true)$(row).show();else $(row).hide();
-			}
-		});
-	}
-
+		$(document).ready(function() {
+		    $('#tblData').dataTable();
+		} );
 	</script>
 
 
@@ -54,12 +28,7 @@
     		
 		<row>
 			<div class="span10">
-				<h1> Selección de Ganador(es)</h1>	
-				<ul class="breadcrumb" style="background-color: transparent !important ">
-				  <li><a href="<?php echo HOME.'/hunter/casting_list' ?>">Concursos</a><span class="divider">/</span></li>
-				  <li><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting ?>"><?php echo $name_casting; ?></a> <span class="divider">/</span></li>
-				  <li class="active">Participantes</li>
-				</ul>
+				<h1> Selección de Ganador(es)</h1>					
 			</div>
 			<div class="span1" style="margin-left: -1%;">
 				<a class="btn" href="<?php echo "mailto: ".$mailto_all; ?>">
@@ -72,22 +41,30 @@
 					<i class="icon-off icon-white"></i>					
 					Cerrar                                            
 				</a>
-			</div>										
+			</div>		
+			<ul class="breadcrumb" style="margin-left:20px; background-color: transparent !important; margin-top:73px !important; font-size:15px; ">
+				  <li><a href="<?php echo HOME.'/hunter/casting_list' ?>">Concursos</a><span class="divider">/</span></li>
+				  <li><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting ?>"><?php echo $name_casting; ?></a> <span class="divider">/</span></li>
+				  <li class="active">Participantes</li>
+			</ul>								
 		</row>
-		
+
+
+
 				
-		<input type="text" id="search"/>
 
 		<table id="tblData" class="table">
           <thead>
             <tr>
-            	<th style="text-align:center;">Nº</th>
-				<th style="text-align:center;">Imagen</th>
-				<th style="text-align:center;">Nombre</th>
-				<th style="text-align:center;">Edad</th>
-				<th style="text-align:center;">Sexo</th>
-				<th style="text-align:center;">Correo</th>
-				<th style="text-align:center;">Ganador </th>
+            	<th>Nº</th>
+				<th>Imagen</th>
+				<th>Nombre completo</th>
+			<!--
+				<th>Edad</th>
+				<th>Sexo</th>
+			-->
+				<th>Correo</th>
+				<th>Ganador </th>
 			</tr>
           </thead>
           <tbody>
@@ -107,7 +84,7 @@
 			    		</td>
 			            <td style="vertical-align:middle;"><?php echo $applicant["name"]." ".$applicant["last_name"]?></td>
 			            
-
+			        <!--
 			            <td style="vertical-align:middle; text-align:center;"><?php
 						         //explode the date to get month, day and year
 						         $birthDate = explode("-", $applicant["birth_date"]);
@@ -122,7 +99,7 @@
 			            		else
 			            			echo "Mujer";
 			            	?> </td>
-
+					-->
 			            <td  style="vertical-align:middle; width:20%;text-align:center;">				            
 							<a class="btn" href="<?php echo "mailto:".$applicant["email"] ?>">
 								<i class="icon-envelope icon-white"></i>					
