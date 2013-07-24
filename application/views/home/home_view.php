@@ -201,7 +201,7 @@ $(document).ready(function() {
 <h1 style="display:none">Como ganar, solo concursa en Ganando .cl</h1>
 <h1 style="display:none">Participa en los sorteos por premios en Ganando .cl</h1>
 
-<div class="content home" id="content">
+<div class="content home" style="background:none !important;"id="content">
 		<h1 style="text-align:center; margin-top:120px; margin-bottom: 45px; color: #4da0d8; font-family: 'ganandofont'; font-size: 76px !important; line-height: 76px !important;" > GANA EN 3 PASOS</h1>									
 		<div class="row">
 			<div id="top-banner" style="margin-left: 9%;"class="span5">
