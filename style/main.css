@@ -101,6 +101,7 @@ input[type=file]{
 
 .ui-accordion-content
 {
+	max-height: 200px;
 	text-align: justify;
 	color: #34495E !important;
 	max-height: 100px !important;
@@ -187,9 +188,8 @@ input[type=file]{
 #des{
 	position:absolute; 
 	width:27%; 
-	height:120px; 
-	background-color:#3498DB;
-	padding-top:80px;
+	height:200px; 
+	background-color:#3498DB
 }
 
 #pri
@@ -197,19 +197,17 @@ input[type=file]{
 	right:1.5%; 
 	position:absolute; 
 	width:27%; 
-	height:120px; 
-	background-color:#2ECC71;
-	padding-top:80px;
+	height:200px; 
+	background-color:#2ECC71
 }
 
 #bas
 {
 	position:absolute; 
 	width:27%; 
-	height:120px; 
+	height:200px; 
 	bottom:15%; 
-	background-color:#F39C12;
-	padding-top:80px;
+	background-color:#F39C12
 }
 
 #ste
@@ -217,10 +215,9 @@ input[type=file]{
 	right:1.5%;  
 	position:absolute;  
 	width:27%; 
-	height:120px; 
+	height:200px; 
 	bottom:15%; 
-	background-color:#F1C40F;
-	padding-top:80px;
+	background-color:#F1C40F
 }
 
 .tag
@@ -525,7 +522,6 @@ div.video_text_main
 	font-size: 17px;
 	font-weight: bold;
 	text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;
-
 }
 
 span.home-video-author

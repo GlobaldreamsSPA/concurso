@@ -187,7 +187,7 @@ class Castings_model extends CI_Model
         return $results;
     }
 
-    function get_castings_search($search,$page=NULL,$cant=NULL)
+    function get_castings_search($search, $page=NULL, $cant=NULL)
     {
         $this->db->select('*');
         
@@ -202,9 +202,10 @@ class Castings_model extends CI_Model
         if($search["search_terms"] && !is_null($search["search_terms"]))
         {
             $search_value = array();
-            $search_value = explode(' ', $search_terms);
+            $search_value = explode(' ', $search["search_terms"]);
             $flag = FALSE;
             $where="";
+
             foreach ($search_value as $iter) 
             {
                 if($flag)
