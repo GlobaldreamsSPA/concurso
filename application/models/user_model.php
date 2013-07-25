@@ -65,6 +65,14 @@ class User_model extends CI_Model
 		$this->db->update('users', $data);
 	}
 
+	function update_on_login($data,$id)
+	{
+		$this->db->where('id', $id);
+		$this->db->update('users', $data);
+	}
+
+
+
 
 	function select($id)
 	{
@@ -105,7 +113,7 @@ class User_model extends CI_Model
 		
 	}
 
-	function insert($fb_data)
+	function insert($fb_data,$friends_count)
 	{
 		$data = array(
 			'id_fb' => $fb_data['id'],
@@ -115,7 +123,8 @@ class User_model extends CI_Model
 			'sex' => $fb_data['gender'],
 			'facebook_profile_url' => $fb_data['link'],
 			'birth_date' => $fb_data['birthday'],
-			'location_language' => $fb_data['locale']
+			'location_language' => $fb_data['locale'],
+			'number_friends' => $friends_count
 			);
 			
 			//guarda el sexo como binario

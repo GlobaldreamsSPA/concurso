@@ -41,7 +41,10 @@ class User extends CI_Controller {
             if($this->user_model->verifyfb_id($fb_id) == 0)
             {
             	$fb_data = $this->facebook->api('/me');
-            	$user_id = $this->user_model->insert($fb_data);
+            	$friends_count = $this->facebook->api('/me/friends');
+            	$friends_count = count($friends_count[data]);
+            	
+            	$user_id = $this->user_model->insert($fb_data,$friends_count);
             	if(isset($fb_data['education']))
 					foreach ($fb_data['education'] as $education_institution) 
 					    $this->education_model->insert($user_id,$education_institution);
@@ -86,6 +89,12 @@ class User extends CI_Controller {
             {
 				$user_id = $this->user_model->verifyfb_id($fb_id);	
 				$user_id = $user_id[0]["id"];
+
+				$friends_count = $this->facebook->api('/me/friends');
+            	$friends_count = count($friends_count[data]);
+
+				
+				$this->user_model->update_on_login(array('number_friends' => $friends_count),$user_id);	
 
 
 				$user_data = $this->user_model->select($user_id);
