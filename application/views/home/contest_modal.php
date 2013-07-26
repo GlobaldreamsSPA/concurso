@@ -9,7 +9,7 @@
 		if(event.data.state == false)
 		{
 			$(event.data.target).animate({
-	                height: 120,
+	                height: 127,
 	                width: "27%",
 	                "padding-top": 80
 	            }, 1000, function(){
@@ -35,14 +35,14 @@
 
         if (event.data.state) {
             $(event.data.target).animate({
-                height: 380,
+                height: 395,
                 width: "55%",
                 "padding-top": 30
             }, 1000);
             $(event.data.target_text).append($(event.data.source_text).html());
         } else {
             $(event.data.target).animate({
-                height: 120,
+                height: 127,
                 width: "27%",
                 "padding-top": 80
             }, 1000, function(){
@@ -275,16 +275,19 @@
 		<div class="space05"></div>
 		<span style="font-size:20px !important; font-weight: bold;">Etiquetas:</span>
 		<div style="margin-top: 1%; margin-bottom: 5%;">
+			<ul class="tags">
 			<?php 
-				echo "<a href='".HOME."/home?search_terms=&category=".$category_id."&prize=' target='_blank' class='btn btn-inverse tag'>".$category."</a>";
+				echo "<li><a href='".HOME."/home?search_terms=&category=".$category_id."&prize=' target='_blank'>".$category."</a></li>";
 				
 				foreach ($prizes as $id => $prize ) 
 					if($prize!="")
 					{
-						echo "<a href='".HOME."/home?search_terms=&category=&prize=".$id."' target='_blank' class='btn btn-inverse tag'>".$prize."</a>";
+						echo "<li><a href='".HOME."/home?search_terms=&category=&prize=".$id."' target='_blank' >".$prize."</a></li>";
 					}
 			?>
+			<ul>
 		</div>
+		<div class="space1"></div>
 		<div style="text-align: center;">
 			<span class="fui-time"></span>
 			<?php
@@ -308,7 +311,7 @@
 
 	</div>
 	<div class="span7" id="info-contest" style="height:420px;">
-		<div id="des">
+		<div style="height: 127px;" id="des">
 			<h3 style="text-align: center; color:#ffffff;">
 				Descripci&oacute;n
 				<label class="hide-click1" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
@@ -316,7 +319,7 @@
 			<div id="des-text" style="color:#ffffff; padding:5%; padding-top:1% !important;font-size:15px;">
 			</div>
 		</div>
-		<div id="pri">
+		<div style="height: 127px;" id="pri">
 			<h3 style="text-align: center;  color:#ffffff;">
 				Premios
 				<label class="hide-click2" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
@@ -324,7 +327,7 @@
 			<div id="pri-text" style="color:#ffffff; padding:5%; padding-top:1% !important; font-size:15px;">
 			</div>
 		</div>
-		<div id="bas">
+		<div style="height: 127px;" id="bas">
 			<h3 style="text-align: center; color:#ffffff;">
 				Bases del Concurso
 				<label class="hide-click3" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
@@ -332,7 +335,7 @@
 			<div id="bas-text" style="color:#ffffff; padding:5%; padding-top:1% !important; font-size:15px;">
 			</div>
 		</div>
-		<div id="ste">
+		<div style="height: 127px;" id="ste">
 			<h3 style="text-align: center; color:#ffffff;">
 				¿Como Concursar?
 				<label class="hide-click4" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
@@ -444,7 +447,7 @@
 	</div>
 </div>
 <div style="margin-right:2%;" class="row">
-	<a id="contest-link" class="btn btn-primary pull-right" <?php if(!isset($target)) echo 'target="_blank"';?> href="<?php echo $apply_url; ?>">CONCURSAR</a>
+	<a id="contest-link" style="font-size:18px; line-height: 40px;" class="btn btn-primary pull-right" <?php if(!isset($target)) echo 'target="_blank"';?> href="<?php echo $apply_url; ?>"> <img style="height: 30px; margin-right:10px; margin-top: -7px;" src="<?php echo HOME."/img/animacion2.gif" ?>"/>CONCURSAR</a>
 </div>
 
 
