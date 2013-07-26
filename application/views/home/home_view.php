@@ -16,7 +16,7 @@ $(document).ready(function() {
 		var url = $(this).attr('href');
 
 		$.get(url, function(data) {
-			$('<div id="contestmodal" class="modal hide fade">' + data + '</div>').modal();
+			$('<div id="contestmodal" style="max-height: 95% !important;" class="modal hide fade">' + data + '</div>').modal();
 		}).success(function() { 
 			$('.modal-title').focus(); 
 
