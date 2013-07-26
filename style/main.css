@@ -2,7 +2,6 @@
 body 
 { 
 	background: white !important;
-
 }
 
 html, body {
@@ -201,6 +200,7 @@ input[type=file]{
 	height:120px; 
 	background-color:#2ECC71;
 	padding-top:80px;
+	cursor: pointer;
 }
 
 #bas
@@ -211,6 +211,7 @@ input[type=file]{
 	bottom:15%; 
 	background-color:#F39C12;
 	padding-top:80px;
+	cursor: pointer;
 }
 
 #ste
@@ -222,8 +223,12 @@ input[type=file]{
 	bottom:15%; 
 	background-color:#F1C40F;
 	padding-top:80px;
+	cursor: pointer;
 }
 
+.modal-closed:hover, .modal-closed label:hover{
+	cursor: pointer;
+}
 
 .tag
 {

@@ -26,7 +26,6 @@
 
 	var contest_information_animation = function (event) 
 	{
-			
 		$(event.data.target).css("z-index","0");
 		$(event.data.div1).css("z-index","-1");
 		$(event.data.div2).css("z-index","-1");
@@ -54,7 +53,6 @@
 				}
             );
             $(event.data.target_text).empty();
-
         }
   		event.data.state = !event.data.state;
     };
@@ -308,7 +306,7 @@
 
 	</div>
 	<div class="span7" id="info-contest" style="height:420px;">
-		<div id="des">
+		<div id="des" class="modal-closed">
 			<h3 style="text-align: center; color:#ffffff;">
 				Descripci&oacute;n
 				<label class="hide-click1" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
@@ -316,7 +314,7 @@
 			<div id="des-text" style="color:#ffffff; padding:5%; padding-top:1% !important;font-size:15px;">
 			</div>
 		</div>
-		<div id="pri">
+		<div id="pri" class="modal-closed">
 			<h3 style="text-align: center;  color:#ffffff;">
 				Premios
 				<label class="hide-click2" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
@@ -324,7 +322,7 @@
 			<div id="pri-text" style="color:#ffffff; padding:5%; padding-top:1% !important; font-size:15px;">
 			</div>
 		</div>
-		<div id="bas">
+		<div id="bas" class="modal-closed">
 			<h3 style="text-align: center; color:#ffffff;">
 				Bases del Concurso
 				<label class="hide-click3" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
@@ -332,7 +330,7 @@
 			<div id="bas-text" style="color:#ffffff; padding:5%; padding-top:1% !important; font-size:15px;">
 			</div>
 		</div>
-		<div id="ste">
+		<div id="ste" class="modal-closed">
 			<h3 style="text-align: center; color:#ffffff;">
 				¿Como Concursar?
 				<label class="hide-click4" style="font-size: 12px; margin-top:-10px;">(click para ver info)</label>
