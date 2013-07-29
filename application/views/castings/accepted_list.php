@@ -85,7 +85,7 @@
 
 			            	$file = realpath(LOCAL_GALLERY.$applicant["image_profile"]);
 			            	
-			            	if(file_exists($file))
+			            	if($applicant["image_profile"] != "" && file_exists($file))
 			            	{
 			            		$filesize = filesize($file);
 			            		
