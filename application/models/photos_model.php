@@ -68,8 +68,8 @@ class Photos_model extends CI_Model
 
 		if($query->num_rows() != 0)
 		{
-			$query->first_row('array');
-			return $query['name'];
+			$elem = $query->first_row('array');
+			return $elem['name'];
 		}
 		else
 			return "";
