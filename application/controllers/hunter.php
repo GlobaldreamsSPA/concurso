@@ -520,7 +520,7 @@ class Hunter extends CI_Controller {
 				}				
 			}
 		
-			$this->load->view('template', $args);	
+			$this->load->view('template', $args);
 		}
 		else
 			redirect(HOME);
