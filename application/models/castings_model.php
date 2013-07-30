@@ -362,4 +362,21 @@ class Castings_model extends CI_Model
         
         return $casting['status'];
     }
+
+    function elegir_ganadores($casting_id, $ganador_id)
+    {
+        //Analizar si el casting tiene status distinto de 2
+        $casting = $this->db->select('status')->where('id', $casting_id)->get('castings')->first_row('array');
+        
+        if(strcmp($casting['status'], '2') != 0)
+        {
+            //Buscar Los applies y asignarles a todos state igual a 2
+            $this->db->where('casting_id', $casting_id)->update('applies', array('state' => 2));
+            
+            //Buscar al ganador y asignarle estado 1
+            $this->db->where('user_id', $ganador_id)->where('casting_id', $casting_id)->update('applies', array('state' => 1));
+            //Asignar estado 2 al casting
+            $this->db->where('id', $casting_id)->update('castings', array('status' => 2));
+        }
+    }
 }
