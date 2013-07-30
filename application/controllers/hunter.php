@@ -522,6 +522,7 @@ class Hunter extends CI_Controller {
 				}				
 			}
 		
+			
 			$this->load->view('template', $args);
 		}
 		else

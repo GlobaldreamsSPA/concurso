@@ -1,18 +1,23 @@
-<div class="row-fluid">
-<div class="span3 user-profile-left">
-<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
-<div class="space4"></div>
+<div style="margin-left: -3%;" class="span3">
+	<div style=" padding-right: 10%; padding-left:10%; border-top-left-radius:10px; border-top-right-radius: 10px;" class="row-fluid">
+		<div style="margin-left:-10% !important; margin-right: -11%;" class="row top-title-left" >
+			<h1>Perfil</h1>
+		</div>
+		<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
+		<div class="space4"></div>
+		
+		<div class="span9 offset1">
+    		<ul class="nav nav-pills nav-stacked orange">
+			  	<li><a href="<?php echo HOME."/hunter";?>"> <i class="icon-user"></i> Perfil</a> </li>
+			  	<li><a href="<?php echo HOME."/hunter/edit/";?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
+			  	<li><a href="<?php echo HOME."/hunter/publish";?>"> <i class="icon-edit"></i> Nuevo Concurso</a></li>
+				<li class="active"><a> <i class="icon-list"></i> Mis Concursos</a></li>
+				<li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>						
+			</ul>
+		</div>
+	</div>
+</div>
 
-<div class="span9 offset1">
-	<ul class="nav nav-pills nav-stacked orange">
-	  	<li><a href="<?php echo HOME."/hunter";?>"> <i class="icon-user"></i> Perfil</a> </li>
-	  	<li><a href="<?php echo HOME."/hunter/edit/";?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
-	  	<li><a href="<?php echo HOME."/hunter/publish";?>"> <i class="icon-edit"></i> Nuevo Concurso</a></li>
-		<li class="active"><a> <i class="icon-list"></i> Mis Concursos</a></li>
-		<li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
-	</ul>
-</div>
-</div>
 <div class= "span8 offset1">
 		<legend><h3 class="profile-title"> <a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a> Detalle Castings </h3></legend>
 		<div class="space05"></div>
@@ -105,7 +110,4 @@
 	<div class="space2"></div>
 	<a class="MBT-readmore" href="<?php echo HOME.'/hunter/accepted_list/'.$casting["id"] ?>" style="float: right;">Todos Los Seleccionados >></a>
 </div>
-</div>
-<div class="row-fluid">	
-<div class="space4"></div>	
-</div>
+
