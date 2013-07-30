@@ -51,6 +51,7 @@
 	            <tr>
 	            	<th>Nº</th>
 					<th>Imagen</th>
+					<th>Imagen Concurso</th>
 					<th>Nombre completo</th>
 				<!--
 					<th>Edad</th>
@@ -94,6 +95,10 @@
 				            ?>
 				            	<img style="max-width: 80px; max-height:80px;" src="<?php echo $image_profile ?>"/>
 				    		</td>
+				    		<td>
+				    			<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/contest_photo/".$applicant["contest_photo"]; ?>"/>
+				    		</td>
+
 				            <td style="vertical-align:middle;"><?php echo $applicant["name"]." ".$applicant["last_name"]?></td>
 				            
 				        <!--

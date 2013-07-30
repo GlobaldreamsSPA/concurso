@@ -75,6 +75,25 @@ class Photos_model extends CI_Model
 			return "";
     	
 	}
+
+	function get_contest_photo($user_id,$contest_id)
+	{
+		$this->db->select('name');
+		$this->db->from('photos');
+		$this->db->where('user_id', $user_id);
+		$this->db->where('casting_id', $contest_id);
+
+		$query = $this->db->get();
+
+		if($query->num_rows() != 0)
+		{
+			$elem = $query->first_row('array');
+			return $elem['name'];
+		}
+		else
+			return "";
+    	
+	}
 	
 	function get_last_indicator($id_user) //obtiene el valor "indicador" del name "userid_indicador.formato" de la última foto subida por el usuario
 	{
