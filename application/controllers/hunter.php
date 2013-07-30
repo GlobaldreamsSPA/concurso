@@ -521,7 +521,7 @@ class Hunter extends CI_Controller {
 					if($applicant_info['image_profile']!=0)
 						$applicant_info['image_profile'] = $this->photos_model->get_name($applicant_info['image_profile']);
 					
-					$applicant_info['contest_photo'] = $this->photos_model->get_contest_photo($id['user_id'],$args["id_casting"]);
+					//$applicant_info['contest_photo'] = $this->photos_model->get_contest_photo($id['user_id'],$args["id_casting"]);
  
 					array_push($args["applicants"],$applicant_info);
 					$args["mailto_all"]=$args["mailto_all"].$applicant_info["email"].";";
