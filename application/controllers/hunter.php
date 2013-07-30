@@ -498,7 +498,9 @@ class Hunter extends CI_Controller {
 			$args["inner_args"]=$inner_args;
 			
 			$temp = $this->castings_model->get_full_casting($id);
-			$args["name_casting"]= $temp["title"];
+			$args["name_casting"] = $temp["title"];
+			if(strlen($args["name_casting"]) > 36)
+				$args["name_casting"] = substr($args["name_casting"],0,34)."..";
 
 			$id_applicants= $this->applies_model->get_castings_applies($id,null,0);
 			
@@ -908,16 +910,12 @@ class Hunter extends CI_Controller {
 				else 
 					$casting['target_applies'] = 100;
 								
-				if($casting['applies'] != 0)
-					$casting['reviewed'] = round(($casting['applies'] - $this->applies_model->count_casting_applies($casting['id'],0))/$casting['applies'],2)*100;
-				else 
-					$casting['reviewed']= 0;				
+									
 				
-				
-				   
 				$casting['target_applies_color'] = $this->_color_bar((int) $casting['target_applies']);
-				$casting['reviewed_color'] = $this->_color_bar((int) $casting['reviewed']);
 				
+				$casting['label_color'] = $this->_color_label($casting['status']);
+
 				
 	   	 	}	
  		return $castings;
@@ -942,6 +940,29 @@ class Hunter extends CI_Controller {
 				
 				$return= "bar-success";
 				break;
+			default:
+				
+				break;
+		}
+		
+		return $return;
+	}
+
+	private function _color_label($status)
+	{
+		
+		$return = "";
+		switch (TRUE) {
+			case ($status = "Activo"):
+				
+				$return= "label-info";
+				break;
+			
+			case ($status = "En Revisión"):
+				
+				$return= "label-warning";
+				break;
+				
 			default:
 				
 				break;

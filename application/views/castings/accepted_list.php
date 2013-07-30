@@ -1,15 +1,18 @@
-	<link href="<?php echo base_url()?>style/jquery.dataTables.css" rel="stylesheet">
-	<script src="<?php echo base_url()?>js/jquery.dataTables.min.js" type="text/javascript"></script>
+<link href="<?php echo base_url()?>style/jquery.dataTables.css" rel="stylesheet">
+<script src="<?php echo base_url()?>js/jquery.dataTables.min.js" type="text/javascript"></script>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-		    $('#tblData').dataTable();
-		} );
-	</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#tblData').dataTable();
+	} );
+</script>
 
 
-	<div class="row-fluid">		
-	<div class="span3 user-profile-left">
+<div style="margin-left: -3%;" class="span3">
+	<div style=" padding-right: 10%; padding-left:10%; border-top-left-radius:10px; border-top-right-radius: 10px;" class="row-fluid">
+		<div style="margin-left:-10% !important; margin-right: -11%;" class="row top-title-left" >
+			<h1>Perfil</h1>
+		</div>
 		<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
 		<div class="space4"></div>
 		
@@ -23,35 +26,23 @@
 			</ul>
 		</div>
 	</div>
-    
-    <div style="padding-left:3%;" class="span8 offset1 user-profile-right">
-    		
-		<row>
-			<div class="span10">
-				<h1> Selección de Ganador(es)</h1>					
-			</div>
-			<div class="span1" style="margin-left: -1%;">
-				<a class="btn" href="<?php echo "mailto: ".$mailto_all; ?>">
-					<i class="icon-envelope icon-white"></i>					
-					Todos                                            
-				</a>
-			</div>
-			<div class="span1" style="margin-left: 6%;">
-				<a class="btn" href="#">
-					<i class="icon-off icon-white"></i>					
-					Cerrar                                            
-				</a>
-			</div>		
-			<ul class="breadcrumb" style="margin-left:20px; background-color: transparent !important; margin-top:73px !important; font-size:15px; ">
+</div>
+
+<div style="margin-left:6.5%;" class="span9">
+	<div style="padding-left:4%; padding-right:6%; border-top-left-radius:10px; border-top-right-radius: 10px;" class="row-fluid">
+		<div style="margin-left:-4% !important; margin-right: -6%;" class="row top-title-left" >
+			<h1> Selección de Ganador(es)</h1>					
+		</div>
+		
+		<div class="space2"></div>
+		
+		<div class="row" style="text-align:center; margin-bottom: 10px;">
+			<ul class="breadcrumb" style=" background-color: transparent !important;  font-size:21px; ">
 				  <li><a href="<?php echo HOME.'/hunter/casting_list' ?>">Concursos</a><span class="divider">/</span></li>
 				  <li><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting ?>"><?php echo $name_casting; ?></a> <span class="divider">/</span></li>
 				  <li class="active">Participantes</li>
-			</ul>								
-		</row>
-
-
-
-				
+			</ul>		
+		</div>	
 
 		<table id="tblData" class="table">
           <thead>
@@ -123,12 +114,17 @@
               	$i=$i+1;
               	}
             }
-              	?>
+        	?>
           </tbody>
         </table>
-		
+		<div class="space4"></div>
+		<div class="row">
+			<a class="btn btn-info pull-right"  style="margin-left:10px;" href="#"><i style="margin-top: 3px; margin-right: 3px;" class="icon-off icon-white"></i>Finalizar Concurso</a>
+			<a class="btn btn-info pull-right" href="<?php echo "mailto: ".$mailto_all; ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-envelope icon-white"></i>Todos</a>
+			<div class="space4"></div>
+		</div>	
 	</div>
 </div>
-<div class="row-fluid">	
-	<div class="space4"></div>	
-</div>
+
+
+
