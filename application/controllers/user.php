@@ -136,7 +136,7 @@ class User extends CI_Controller {
 
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/active_casting_list";
-		$args["inner_args"]=$inner_args;
+		$args["inner_args"] = $inner_args;
 		$args['public'] = $public;
 			
 		if($this->input->post("del-apply"))
@@ -146,7 +146,7 @@ class User extends CI_Controller {
 		
 		$castings_id = $this->applies_model->get_applicant_applies($id);
 		
-		$apply_id_dictionary= array();
+		$apply_id_dictionary = array();
 
 		if($castings_id != 0)
 		{

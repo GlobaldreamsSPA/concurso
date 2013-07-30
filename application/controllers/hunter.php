@@ -488,6 +488,12 @@ class Hunter extends CI_Controller {
 	{
 		if($this->session->userdata('logged_in')&& isset($id) && $this->session->userdata('type') == "hunter")
 		{
+			if($this->input->post('selected'))
+			{
+				$selected = $this->input->post('selected');
+				$this->castings_model->elegir_ganadores($id, $selected[0]);
+			}
+
 			$args['user_data'] = $this->session->userdata('logged_in');
 			
 			$hunter_id= $args['user_data']['id'];	   	 	
