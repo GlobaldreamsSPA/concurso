@@ -265,7 +265,7 @@ class User extends CI_Controller {
 		
 		$castings_id = $this->applies_model->get_applicant_applies($id);
 		
-		$apply_status_dictionary=array("0"=>"Pendiente","1"=>"Aceptado","2"=>"Rechazado");
+		$apply_status_dictionary=array("0"=>"Pendiente","1"=>"Ganador","2"=>"No saliste sorteado");
 		
 		$apply_id_dictionary= array();
 			
