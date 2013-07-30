@@ -953,12 +953,12 @@ class Hunter extends CI_Controller {
 		
 		$return = "";
 		switch (TRUE) {
-			case ($status = "Activo"):
+			case ($status == "Activo"):
 				
 				$return= "label-info";
 				break;
 			
-			case ($status = "En Revisión"):
+			case ($status =="En Revisión"):
 				
 				$return= "label-warning";
 				break;
