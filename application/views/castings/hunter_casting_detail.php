@@ -18,96 +18,77 @@
 	</div>
 </div>
 
-<div class= "span8 offset1">
-		<legend><h3 class="profile-title"> <a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a> Detalle Castings </h3></legend>
-		<div class="space05"></div>
+<div style="margin-left:6.5%;" class="span9">
+	<div style="padding-left:4%; padding-right:6%; border-top-left-radius:10px; border-top-right-radius: 10px;" class="row-fluid">
+		<div style="margin-left:-4% !important; margin-right: -6%;" class="row top-title-left" >
+			<h1> Detalle Casting</h1>					
+		</div>
+		<div class="space2"></div>
+
+		<div class="row" style="text-align:center; margin-bottom: 10px;">
+			<ul class="breadcrumb" style=" background-color: transparent !important;  font-size:21px; ">
+				  <li><a href="<?php echo HOME.'/hunter/casting_list' ?>">Concursos</a><span class="divider">/</span></li>
+				  <li><?php echo $casting["title"]; ?></li>
+			</ul>		
+		</div>
+
 		<div class="row">
-			<div class="span5">
-				<h3 id="profile" style="font-weight:bold;"><?php echo $casting['title']; ?></h3>
-			</div>					  				
-			<div style="margin-top:15px;" class="span5 pull-right">
-				<a class="btn" href="<?php echo HOME.'/home/casting_detail/'.$casting["id"] ?>"> Vista Publica</a>
-				<a class="btn" href="<?php echo HOME.'/hunter/edit_casting/'.$casting["id"] ?>">Editar</a>
+			<div class="span6">
+				<img style="margin-top:10px; height: 250px;" src="<?php echo $casting['full_image'] ?>">
+			</div>
+			<div style="margin-left: 5%;" class="span6">
+				<h2 id="profile" style="font-weight:bold;"> Información</h2>
+				<div style="margin-top: 1%; margin-bottom: 5%;">
+					<ul class="tags">
+					<?php 
+						echo "<li><a href='".HOME."/home?search_terms=&category=".$casting["category_id"]."&prize=' target='_blank'>".$casting["category"]."</a></li>";
+						
+						foreach ($casting["prizes"] as $id => $prize ) 
+							if($prize!="")
+							{
+								echo "<li><a href='".HOME."/home?search_terms=&category=&prize=".$id."' target='_blank' >".$prize."</a></li>";
+							}
+					?>
+					<ul>
+				</div>
+
+				<div class="space1"></div>	
+				<p>
+					El Casting empez&aacute;: <?php echo $casting['start_date'] ?>
+				</p>
+				<p>
+					El Casting termina: <?php echo $casting['end_date'] ?>
+				</p>
+				<div class="space05"></div>
+				
+				<p>
+					Estado: <span class="label <?php echo $casting['label_color']; ?>"><?php echo $casting['status']; ?></span>
+				</p>										
+				<div class="space1"></div>
+																
+				<p>
+					Postulaciones/Meta :<?php echo $casting['applies']."/".$casting['max_applies'] ?>
+				</p>
+				<div class="progress" style="height: 17px;">
+						<div class="bar <?php echo $casting["target_applies_color"];?>" style="width: <?php echo $casting["target_applies"];?>%; color:black !important;"><?php echo $casting["target_applies"];?>%</div>
+				</div>
+
+
 			</div>
 		</div>
 		<div class="space2"></div>
-	<img style="margin-top:10px; height: 250px;" class="pull-right" src="<?php echo $casting['full_image'] ?>">
-	<div class="space2"></div>
-	<h2 id="profile" style="font-weight:bold;"> Categorias</h2>
-	<div class="space05"></div>
-	<?php
-				if(isset($tags))											
-		    	{
-		    		echo '<ul class="skills-list">';
-		    		foreach ($tags as $tag) {
-						echo '<li> <a href="#">'.$tag.'</a></li>';
-					}
-					echo '</ul>';
-				}
-	?>
-	<div class="space2"></div>
-	<h3 id="profile" style="font-weight:bold;"> Estadisticas</h3>
-	<div class ="row">
-		<div style="margin-left: 15px;"  class="span8">						
-			<div class="space1"></div>
-			<p>
-				Visitas pagina casting: 12000
-			</p>
-			<div class="space1"></div>
-			
-			<p>
-				El Casting empez&aacute; el d&iacute;a: <?php echo $casting['start_date'] ?>.
-			</p>
-			<p>
-				El Casting termina el d&iacute;a: <?php echo $casting['end_date'] ?>.
-			</p>
-			<div class="space1"></div>
-			
-			<p>
-				Estado: <?php echo $casting['status']; ?>
-			</p>										
-			<div class="space1"></div>
-															
-			<p>
-				Meta de postulantes: <?php echo $casting['applies'] ?> personas de <?php echo $casting['max_applies'] ?>
-			</p>
-			<div class="progress" style="height: 17px;">
-					<div class="bar <?php echo $casting["target_applies_color"];?>" style="width: <?php echo $casting["target_applies"];?>%; color:black !important;"><?php echo $casting["target_applies"];?>%</div>
-			</div>
 
-			
-			<div class="space1"></div>
-			
-			<p>
-				Postulantes revisados:
-			</p>
-			<div class="progress" style="height: 17px;">
-					<div class="bar <?php echo $casting["reviewed_color"];?>" style="width: <?php echo $casting["reviewed"];?>%; color:black !important;" ><?php echo $casting["reviewed"];?>%</div>
+		<div class="row">
+			<div class="span3">
+				<a class="btn" href="<?php echo HOME.'/hunter/accepted_list/'.$casting["id"] ?>" ><i style="margin-top: 3px; margin-right: 3px;" class="icon-star"></i>Elegir Ganador</a>
 			</div>
-		
-			<div class="space1"></div>
+			<div class="span2">
+				<a class="btn" href="<?php echo HOME.'/home/casting_detail/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-search"></i>Previa</a>
+			</div>
+			<div class="span2">
+				<a class="btn" href="<?php echo HOME.'/hunter/edit_casting/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-edit"></i>Editar</a>
+			</div>
 		</div>
+		<div class="space2"></div>
 	</div>
-	
-	<h3 id="profile" style="font-weight:bold;"> Postulantes</h3>
-	<ul style="list-style: none;">
-	<?php
-		if(!is_null($postulantes))
-		{
-			foreach($postulantes as $postu)
-			{?>
-				<li style="margin-right:10px;display: inline;">
-				<a style="text-decoration:none;" href="<?php echo HOME.'/user/index/'.$postu['id'] ?>" title="<?php echo $postu['name'] ?>">
-				<img style=" margin-top:10px; height: 10%; width: 10%;" src="<?php echo HOME.'/img/gallery/'.$postu['image_profile'];?>">
-				</a>
-				</li>
-			<?php	
-			}
-		}									
-	?>
-	</ul>
-	
-	<div class="space2"></div>
-	<a class="MBT-readmore" href="<?php echo HOME.'/hunter/accepted_list/'.$casting["id"] ?>" style="float: right;">Todos Los Seleccionados >></a>
 </div>
-

@@ -322,8 +322,11 @@ class Hunter extends CI_Controller {
 				$args["casting"]['reviewed'] = round(($args["casting"]['applies'] - $this->applies_model->count_casting_applies($args["casting"]['id'],0))/$args["casting"]['applies'],2)*100;
 			else 
 				$args["casting"]['reviewed']= 0;					   
+			
+
 			$args["casting"]['target_applies_color'] = $this->_color_bar((int) $args["casting"]['target_applies']);
 			$args["casting"]['reviewed_color'] = $this->_color_bar((int) $args["casting"]['reviewed']);
+			$args["casting"]['label_color'] = $this->_color_label($args['casting']['status']);
 			
 			
 			if(isset($args["casting"]["skills"]))//skills guardadas del casting
@@ -338,42 +341,37 @@ class Hunter extends CI_Controller {
 				$args['tags'] = $textual_tags;//intercambia los arreglos para enviarlos textualmente
 			}
 			
+			$args['casting']['prizes'] = explode("-", $args['casting']['prizes']);	
+			$prizes_id = $args['casting']['prizes'];
+
+			
+			$prizes =  $this->prize_categories_model->select("name");
+			$prizes_temp= array();
+			
+			$counter=0;
+			foreach ($prizes as $prize) {
+				$prizes_temp[$counter] = $prize["name"];
+				$counter = $counter +1 ;
+			}
+
+			foreach ($args['casting']['prizes'] as &$prize) 
+				if($prize!="")
+					$prize = $prizes_temp[$prize];
+
+			$args['casting']['prizes'] = array_combine($prizes_id ,$args['casting']['prizes']);
+
+			$args['casting']['category_id'] = $args['casting']['category'];
+			
+			$categories = $this->casting_categories_model->get_casting_categories();
+			$args['casting']['category'] = $categories[$args['casting']['category']];	
+
+
 			$args['user_data'] = $this->session->userdata('logged_in');
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/hunter_casting_detail";
 			$args["inner_args"]=$inner_args;
-			
-			//Obtengo los ID de los usuarios(5) todos y los seleccionados
-			$args["postulantes"] = $this->applies_model->get_short_user_applies($id);
-			$args["seleccionados"] = $this->applies_model->get_short_user_applies($id,1);
-			
-			//se transforman en arreglo de usuarios
-			if($args["postulantes"] != 0)
-			{
-				$postulantes_textual = array();
-				foreach($args["postulantes"] as $postulante_numerico)
-				{
-			
-					$postulantes_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
-					if($postulantes_textual[count($postulantes_textual)-1]['image_profile']!=0)
-						$postulantes_textual[count($postulantes_textual)-1]['image_profile'] = $this->photos_model->get_name($postulantes_textual[count($postulantes_textual)-1]['image_profile']);
-				}
-				$args["postulantes"] = $postulantes_textual;
-			}
-			else $args["postulantes"] = NULL;
-			
-			if($args["seleccionados"] != 0)
-			{
-				$seleccionados_textual = array();			
-				foreach($args["seleccionados"] as $postulante_numerico)
-				{
-					$seleccionados_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
-					if($seleccionados_textual[count($seleccionados_textual)-1]['image_profile']!=0)
-						$seleccionados_textual[count($seleccionados_textual)-1]['image_profile'] = $this->photos_model->get_name($seleccionados_textual[count($seleccionados_textual)-1]['image_profile']);				
-				}
-				$args["seleccionados"] = $seleccionados_textual;
-			}
-			else $args["seleccionados"] = NULL;
+
+
 					
 			$this->load->view('template', $args);
 		}
@@ -522,7 +520,7 @@ class Hunter extends CI_Controller {
 				}				
 			}
 		
-			
+
 			$this->load->view('template', $args);
 		}
 		else
