@@ -71,7 +71,26 @@
 					<tr>
 						<td style="vertical-align:middle;" class="center"><?php echo $i;?></td>
 			            <td style="vertical-align:middle;">
-			            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/gallery/".$applicant["image_profile"] ?>"/>
+			            <?php
+			            	$image_profile = GALLERY.$applicant["image_profile"];
+
+			            	$file = realpath(LOCAL_GALLERY.$applicant["image_profile"]);
+			            	
+			            	if($applicant["image_profile"] != "" && file_exists($file))
+			            	{
+			            		$filesize = filesize($file);
+			            		
+			            		if($filesize == 0)
+			            		{
+			            			$image_profile = GALLERY.'generic.png';
+			            		}
+			            	}
+			            	else
+			            	{
+			            		$image_profile = GALLERY.'generic.png';
+			            	}
+			            ?>
+			            	<img style="max-width: 80px; max-height:80px;" src="<?php echo $image_profile ?>"/>
 			    		</td>
 			            <td style="vertical-align:middle;"><?php echo $applicant["name"]." ".$applicant["last_name"]?></td>
 			            

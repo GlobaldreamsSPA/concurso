@@ -62,9 +62,17 @@ class Photos_model extends CI_Model
 	{
 		$this->db->select('name');
 		$this->db->from('photos');
-		$this->db->where('id',$id);
-		$query = $this->db->get()->first_row('array');
-		return $query['name'];
+		$this->db->where('id', $id);
+
+		$query = $this->db->get();
+
+		if($query->num_rows() != 0)
+		{
+			$elem = $query->first_row('array');
+			return $elem['name'];
+		}
+		else
+			return "";
     	
 	}
 	
