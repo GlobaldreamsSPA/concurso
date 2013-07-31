@@ -388,7 +388,7 @@
 
 						for($i=0; $i < count($custom_options); $i++) 
 						{
-							echo "<div style='padding-left:3% text-align:center; width:90%;'class='row'";
+							echo "<div style='padding-left:4%; padding-right:3%; width:95%;'class='row'";
 
 							if(strcmp($custom_options[$i]['type'], 'text') == 0)
 							{
