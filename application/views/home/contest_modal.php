@@ -432,7 +432,7 @@
 							}
 							echo "</div>";
 						}
-					echo form_submit("", "CONCURSAR", "id='apply-link' class='btn btn-primary' target='_blank' ");
+					echo form_submit("", "CONCURSAR", "id='apply-link' style='margin-right:4%;' class='btn btn-primary pull-right' target='_blank' ");
 					}
 				?>
 				
