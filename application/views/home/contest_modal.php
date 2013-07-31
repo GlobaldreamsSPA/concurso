@@ -393,7 +393,7 @@
 							if(strcmp($custom_options[$i]['type'], 'text') == 0)
 							{
 								echo "<h5>".$custom_options[$i]['text']."</h5>";
-								echo "<div style='text-align: center;' class='control-group'><textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 91%; margin-top: 15px;' placeholder='ingresa tu respuesta'></textarea>";
+								echo "<div style='text-align: center;' class='control-group'><textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 94%; margin-top: 15px;' placeholder='ingresa tu respuesta'></textarea>";
 								echo "<label style='display: none; font-size: 12px; margin-left: 5px; margin-top: -2.4%;'>Este campo es requerido</label></div>";
 								echo "<div class='space05'></div>";
 							}
