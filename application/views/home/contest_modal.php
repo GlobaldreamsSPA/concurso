@@ -380,11 +380,11 @@
 			{
 		?>
 		<form id="trivia-upload-form" action="<?php echo HOME.'/home/apply_trivia/'.$id_casting; ?>" method="POST">
-			<div class="upload-content trivia-content">
+			<div style="margin-left: 1% !important; width: 53.6% !important;" class="upload-content trivia-content">
 				<?php
 					if($custom_options != FALSE)
 					{
-						echo "<h3 class='demo-panel-title'>Responde las siguientes preguntas</h3>";
+						echo "<h3 style='text-align: center;' class='demo-panel-title'>Responde las siguientes preguntas</h3>";
 
 						for($i=0; $i < count($custom_options); $i++) 
 						{
@@ -393,7 +393,7 @@
 							if(strcmp($custom_options[$i]['type'], 'text') == 0)
 							{
 								echo "<h5>".$custom_options[$i]['text']."</h5>";
-								echo "<div class='control-group'><textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 70%; margin-top: 15px;' placeholder='La respuesta del postulante iría acá'></textarea>";
+								echo "<div style='text-align: center;' class='control-group'><textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 70%; margin-top: 15px;' placeholder='ingresa tu respuesta'></textarea>";
 								echo "<label style='display: none; font-size: 12px; margin-left: 5px; margin-top: -2.4%;'>Este campo es requerido</label></div>";
 								echo "<div class='space05'></div>";
 							}
@@ -403,13 +403,14 @@
 								//Pregunta va h5 y se crea un select con varios options
 								echo "<h5>".$custom_options[$i]['text']."</h5>";
 								echo "<div class='space05'></div>";
-
+								echo "<div style='text-align: center;'>";
 								echo "<select name='custom_select_answer_".$custom_options[$i]['id']."'>";
 								foreach ($custom_options[$i]['options'] as $option)
 								{
 									echo "<option value='".$option['id']."'>".$option['option']."</option>";
 								}
 								echo "</select>";
+								echo "</div>";
 								echo "<div class='space05'></div>";
 							}
 
@@ -425,7 +426,7 @@
 									$options[$option['id']] = $option['option'];
 								}
 
-								echo "<div class='chozen-control-group'>".form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' data-placeholder='Selecciona tus respuestas..'");
+								echo "<div style='text-align: center;' class='chozen-control-group'>".form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' data-placeholder='Selecciona tus respuestas..'");
 								echo "<label style='display: none; font-size: 12px; margin-left: 1%;'>Este campo es requerido</label></div>";
 								echo "<div class='space1'></div>";
 							}
