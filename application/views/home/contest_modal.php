@@ -388,12 +388,12 @@
 
 						for($i=0; $i < count($custom_options); $i++) 
 						{
-							echo "<div style='padding-left:3%'class='row'";
+							echo "<div style='padding-left:3% text-align:center; width:90%;'class='row'";
 
 							if(strcmp($custom_options[$i]['type'], 'text') == 0)
 							{
 								echo "<h5>".$custom_options[$i]['text']."</h5>";
-								echo "<div style='text-align: center;' class='control-group'><textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 70%; margin-top: 15px;' placeholder='ingresa tu respuesta'></textarea>";
+								echo "<div style='text-align: center;' class='control-group'><textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 91%; margin-top: 15px;' placeholder='ingresa tu respuesta'></textarea>";
 								echo "<label style='display: none; font-size: 12px; margin-left: 5px; margin-top: -2.4%;'>Este campo es requerido</label></div>";
 								echo "<div class='space05'></div>";
 							}
@@ -432,7 +432,7 @@
 							}
 							echo "</div>";
 						}
-					echo form_submit("", "CONCURSAR", "id='apply-link' class='btn btn-primary pull-left' target='_blank' style='margin-left: 25%'");
+					echo form_submit("", "CONCURSAR", "id='apply-link' class='btn btn-primary' target='_blank' ");
 					}
 				?>
 				
