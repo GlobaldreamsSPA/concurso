@@ -33,10 +33,10 @@
 		</div>
 
 		<div class="row">
-			<div class="span6">
+			<div style="margin-left: 4%;" class="span6">
 				<img style="margin-top:10px; height: 250px;" src="<?php echo $casting['full_image'] ?>">
 			</div>
-			<div style="margin-left: 5%;" class="span6">
+			<div style="margin-left: 2%;" class="span6">
 				<h2 id="profile" style="font-weight:bold;"> Información</h2>
 				<div style="margin-top: 1%; margin-bottom: 5%;">
 					<ul class="tags">
@@ -69,8 +69,9 @@
 				<p>
 					Postulaciones/Meta :<?php echo $casting['applies']."/".$casting['max_applies'] ?>
 				</p>
-				<div class="progress" style="height: 17px;">
-						<div class="bar <?php echo $casting["target_applies_color"];?>" style="width: <?php echo $casting["target_applies"];?>%; color:black !important;"><?php echo $casting["target_applies"];?>%</div>
+
+				<div class="progress" style="width:97% !important; height: 17px; border: 1px solid #95A5A6;">
+				    <div class="bar <?php echo $casting["target_applies_color"]?>" style="width: <?php echo $casting["target_applies"]?>%; color:white !important; font-weight: 900	;"><?php echo $casting["target_applies"]?>%</div>
 				</div>
 
 
@@ -78,8 +79,8 @@
 		</div>
 		<div class="space2"></div>
 
-		<div class="row">
-			<div class="span3">
+		<div style="margin-right: -9%;" class="row">
+			<div class="span3 <?php if ($casting["category"] != "Trivia") echo "offset5"; else  echo "offset2"; ?>">
 				<a class="btn" href="<?php echo HOME.'/hunter/accepted_list/'.$casting["id"] ?>" ><i style="margin-top: 3px; margin-right: 3px;" class="icon-star"></i>Elegir Ganador</a>
 			</div>
 			<div class="span2">
@@ -88,6 +89,15 @@
 			<div class="span2">
 				<a class="btn" href="<?php echo HOME.'/hunter/edit_casting/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-edit"></i>Editar</a>
 			</div>
+			<?php if ($casting["category"] == "Trivia") 
+				{
+			?>
+					<div class="span3">
+						<a class="btn" href="<?php echo HOME.'/hunter/question_responses/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-question-sign"></i>Ver respuestas</a>
+					</div>
+			<?php 
+				}	
+			?>
 		</div>
 		<div class="space2"></div>
 	</div>

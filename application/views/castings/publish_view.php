@@ -242,8 +242,11 @@
       </form>
     </div>      <!-- MODAL-->
 
-<div class="row-fluid">		
-	<div class="span3 user-profile-left">
+<div style="margin-left: -3%;" class="span3">
+	<div style=" padding-right: 10%; padding-left:10%; border-top-left-radius:10px; border-top-right-radius: 10px;" class="row-fluid">
+		<div style="margin-left:-10% !important; margin-right: -11%;" class="row top-title-left" >
+			<h1>Perfil</h1>
+		</div>
 		<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
 		<div class="space4"></div>
 		
@@ -257,13 +260,16 @@
 			</ul>
 		</div>
 	</div>
-	
-	<div class="span8 offset1 user-profile-right">
-			
+</div>
+
+<div style="margin-left:6.5%;" class="span9">
+	<div style="padding-left:4%; padding-right:6%; border-top-left-radius:10px; border-top-right-radius: 10px;" class="row-fluid">		
+		<div style="margin-left:-4% !important; margin-right: -6%;" class="row top-title-left" >
+			<h1>Nuevo concurso</h1>					
+		</div>
 		<div class="space1"></div>
-		<div class="space1"></div>
-		<?php echo form_open_multipart('hunter/publish', array('class' => 'form-horizontal', 'onsubmit' => "return confirm('¿Está seguro que desea publicar el concurso?')")); ?>
-			<legend><h1> Publicar un nuevo Concurso </h1></legend>
+
+		<?php echo form_open_multipart('hunter/publish', array('style' => 'margin-left: 10%; width: 80%;','class' => 'form-horizontal', 'onsubmit' => "return confirm('¿Está seguro que desea publicar el concurso?')")); ?>
 			<div style="margin-left:15px;">
 				
 				<h5>Tipo de Concurso</h5>
@@ -277,21 +283,21 @@
 				</select>
 
 				<h5>Fecha de inicio</h5>
-				<input type="text" style="width: 30%;" id="dp1" name="start-date">
+				<input type="text" style="width: 97%;" id="dp1" name="start-date">
 				<h5>Fecha de t&eacutermino</h5>
-				<input type="text" style="width: 30%;" id="dp2" name="end-date">
+				<input type="text" style="width: 97%;" id="dp2" name="end-date">
 
 				<h5>T&iacutetulo</h5>
-				<input type="text" name="title" style="width: 40%;" placeholder="Ingrese un t&iacute;tulo llamativo">
+				<input type="text" name="title" style="width: 97%;" placeholder="Ingrese un t&iacute;tulo llamativo">
 				<?php echo form_error('title'); ?>
 
 
 				<h5>Meta Postulantes</h5>
-				<input type="text" name="max_applies" style="width: 40%;" placeholder="Ingresa Cantidad" value="<?php if(isset($update_values)) echo $update_values["max_applies"]; else echo set_value('max_applies');?>">
+				<input type="text" name="max_applies" style="width: 97%;" placeholder="Ingresa Cantidad" value="<?php if(isset($update_values)) echo $update_values["max_applies"]; else echo set_value('max_applies');?>">
 				<?php echo form_error('max_applies'); ?>
-	
+
 				<h5>URL Postulaci&oacute;n</h5>
-				<input type="text" name="apply_url" style="width: 40%;" placeholder="Ingresa URL">
+				<input type="text" name="apply_url" style="width: 97%;" placeholder="Ingresa URL">
 						
 				<h5>Imagen para mostrar (ésta es la imagen descriptiva)</h5>
 				<?php echo form_upload(array('name' => 'logo','class'=> 'file')); ?>
@@ -407,11 +413,9 @@
 			</div>
 		
 		</form>
-	</div>			
-</div>
-<div class="row-fluid">	
-	<div class="space4"></div>	
-</div>
+	</div>
+</div>			
+
 <script>
 	body_elem = document.getElementById('modal-body');
 </script>

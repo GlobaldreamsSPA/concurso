@@ -18,9 +18,11 @@
 
 </script>
 
-
-<div class="row-fluid">		
-	<div class="span3 user-profile-left">
+<div style="margin-left: -3%;" class="span3">
+	<div style=" padding-right: 10%; padding-left:10%; border-top-left-radius:10px; border-top-right-radius: 10px;" class="row-fluid">
+		<div style="margin-left:-10% !important; margin-right: -11%;" class="row top-title-left" >
+			<h1>Perfil</h1>
+		</div>
 		<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
 		<div class="space4"></div>
 		
@@ -33,72 +35,74 @@
 				<li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 			</ul>
 		</div>
-		
-		<div class="span9 offset1">
+	</div>
+</div>
 
-			
+<div style="margin-left:6.5%;" class="span9">
+	<div style="padding-left:4%; padding-right:6%; border-top-left-radius:10px; border-top-right-radius: 10px;" class="row-fluid">		
+		<div style="margin-left:-4% !important; margin-right: -6%;" class="row top-title-left" >
+			<h1>Castings Publicados</h1>					
+		</div>
+		<div class="space1"></div>
+
+		<form class="row">
+
+			<div class="styled span8 offset1">
 				<?php 
 				echo form_dropdown('status', $status,$casting_state,"id='casting_status' style='width:100%'");
 													
 				?>
-			  <a href="<?php echo HOME."/hunter/casting_list/1/0/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
 			</div>
-		
-	</div>
+			<div class="span2 offset1">
+		    	<button href="<?php echo HOME."/hunter/casting_list/1/0/"?>" type="submit" class="btn btn-info">Actualizar</button>
+			</div>
+		</form>
 
-	<div class="span8 offset1 user-profile-right">
-			
-		<legend><h3 class="profile-title"> Castings Publicados </h3></legend>
 		<?php foreach($castings as $casting){ ?>
 		<div class="row">
-			<div class="space1"></div>
-			<div class="row">
-				
-				<div style="margin-left: 5%" class="span1">
-					<img src="<?php echo $casting['logo'] ?>"/>
-				</div>
-				<div class="span6">
-					<h4 ><?php echo $casting['title'] ?></h4>
-				</div>
-				
-			</div>
 
-			<div class="span11">
+			<div class="space1"></div>
+
+			<div style="margin-left: 1%" class="row">
 				<div class="span7">
 					<a href="<?php echo site_url("hunter/casting_detail/".$casting['id']); ?>">
 						<img style='height:100%; width: 100%;' src="<?php echo $casting['image'] ?>"/>
 					</a>
 				</div>
 				<div class="space05"></div>
-				<div class="span5 list-view-applies-desc">
-																								
-					<div class="row list-view-applies">
-						<div class="span7">
-							<h5 class="list-view-applies-text">Postulaciones:</h5>
-						</div>
-						<div style="margin-top: 7%;" class="span3 offset2">
-							<p ><?php echo $casting['applies'] ?></p>
-						</div>									
+				<div style="margin-left: 5%; " class="span5">
+														
+					<div style="font-size: 25px;" class="row list-view-applies">						
+						<?php echo $casting['title'] ?>
 					</div>
 
-					<div class="row list-view-applies">
-						<div class="span7">
-							<label>Estado:</label>
-						</div>
-						<div class="span3 offset2">
-					 		<span class="label label-info"><?php echo $casting['status'] ?></span>
-						</div>
-					</div>
-					
-					<div class="row list-view-applies">
-						<div style="margin-top:2%;" class="span7">
+					<div class="space4"></div>	
+
+
+					<div class="row">
+						<div class="span5">
+							<label>Postulaciones</label>
+							<p ><?php echo $casting['applies'] ?></p>
+
+						</div>	
+						<div style="margin-left: 3%;" class="span3">
+							<label>Estado</label>
+							<span class="label label-info"><?php echo $casting['status'] ?></span>
+						</div>		
+						<div style="margin-left: 3%;" class="span4">
+							<label>Tiempo</label>
+
 						<?php if($casting['days'] >0 ){ ?>
 							<i class="icon-time"></i> <?php echo $casting['days'] ?> d&iacute;as
 						<?php } ?>
-						</div>
-						<div  class"span5">
-							<a style="margin-left: 10%;" class="btn btn-info" href="<?php echo site_url("hunter/casting_detail/".$casting['id']); ?>" type="button"><i class="icon-zoom-in"></i></a>
-						</div>
+						</div>					
+					</div>
+
+					<div class="space4"></div>	
+
+
+					<div class="row">
+						<a style="margin-left: 10%;" class="btn btn-info pull-right" href="<?php echo site_url("hunter/casting_detail/".$casting['id']); ?>" type="button"><i class="icon-zoom-in"></i> Ver detalle</a>
 					</div>
 				</div>
 			</div>
@@ -132,7 +136,4 @@
 			<div class="space1"></div>	
 		</div>	
 	</div>
-</div>
-<div class="row-fluid">	
-	<div class="space4"></div>	
 </div>

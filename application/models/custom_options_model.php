@@ -35,6 +35,7 @@ class Custom_options_model extends CI_Model
 		else
 			return $query->result_array();
 	}
+
 	
 	function insert($id_question, $option_text)
 	{

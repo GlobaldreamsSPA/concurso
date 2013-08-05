@@ -48,7 +48,7 @@
 	<link href="<?php echo base_url()?>style/flat-ui.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/chosen.css" rel="stylesheet"/>
 	<link href="<?php echo base_url()?>style/jquery.countdown.css" rel="stylesheet"/>
-	<link href="<?php echo base_url()?>style/jquery-ui.css" rel="stylesheet"/>
+	<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery-ui.css" rel="stylesheet"/>
 
 
 </head>

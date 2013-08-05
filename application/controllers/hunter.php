@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form','security'));
-		$this->load->model(array('hunter_model','share_detail_model', 'prize_categories_model' ,'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model','custom_questions_model','custom_options_model'));
+		$this->load->model(array('hunter_model','share_detail_model', 'prize_categories_model' ,'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model','custom_questions_model','custom_options_model','custom_answers_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		
 	}
@@ -263,7 +263,7 @@ class Hunter extends CI_Controller {
 			redirect(HOME);
 	}
 	
-	function casting_list($page=1,$casting_state=0)
+	function casting_list($page=1)
 	{
 		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
@@ -271,15 +271,17 @@ class Hunter extends CI_Controller {
 		 	$hunter_id = $hunter_id['id'];
 			$args["castings_dash"]= $this->_dashboard($hunter_id);
 			
-			
-			$args["casting_state"] = $casting_state;
-			$args["chunks"]=ceil($this->castings_model->count_castings($hunter_id,$casting_state)/5);						
-			$args["castings"]= $this->castings_model->get_castings($hunter_id, 5, $page, $casting_state);
+			if(isset($_GET["status"]))
+				$args["casting_state"] = $_GET["status"];
+			else
+				$args["casting_state"] = 0;
+
+			$args["chunks"]=ceil($this->castings_model->count_castings($hunter_id, $args["casting_state"])/5);						
+			$args["castings"]= $this->castings_model->get_castings($hunter_id, 5, $page, $args["casting_state"]);
 			
 			$args["status"]=array(0=>"Activo",1=>"Revisi&oacute;n",2=>"Finalizado",3=>"Todos");
 			$args["page"]=$page;
 			
-			$args["casting_state"]=$casting_state;
 	   	 	//Rescatar las personas que postularon a cada uno de los castings
 	   	 	foreach ($args['castings'] as &$casting) {
 	   	 		$casting['applies'] = $this->applies_model->get_applies_cant($casting['id']);
@@ -535,139 +537,100 @@ class Hunter extends CI_Controller {
 			redirect(HOME);
 	}
 
-
-	function applicants_list($id=NULL,$page=1)
+	function question_responses($casting_id)
 	{
-		if($this->session->userdata('logged_in') && isset($id))
+		if($this->session->userdata('logged_in'))
 		{
-		
-			$args["id_casting"]=$id;
-	   	 	$args['user_data'] = $this->session->userdata('logged_in');
 			
-		 	$hunter_id= $args['user_data']['id'];
-	   	 	
+			$args['user_data'] = $this->session->userdata('logged_in');
+			
+			$hunter_id= $args['user_data']['id'];	   	 	
 			$args["castings_dash"]= $this->_dashboard($hunter_id);
 			
-
 			$args["content"]="castings/hunter_template";
-			$inner_args["hunter_content"]="castings/applicants_list";
+			$inner_args["hunter_content"]="castings/question_responses";
 			$args["inner_args"]=$inner_args;
- 	 	
- 	 		$temp[-1]= "--  Seleccionar Todos  --";
-			$temp[-2]= "--     Vaciar Campo    --";
-
-
-			$args["status"]= array(0=>"Sin Revisar",1=>"Aceptados",2=>"Rechazados",3=>"Todos");
 			
-			$args["sex_list"]= $temp + array(0=>"Femenino",1=>"Masculino");
-	
-			$args["age_list"] = $temp + array(0=>"10 a&ntildeos o menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"20-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 a&ntildeos o m&aacutes");	
+			$temp = $this->castings_model->get_full_casting($casting_id);
+			$args["name_casting"] = $temp["title"];
+			if(strlen($args["name_casting"]) > 36)
+				$args["name_casting"] = substr($args["name_casting"],0,34)."..";
 
-			$temp = $this->castings_model->get_full_casting($id);
-			$args["name_casting"]= $temp["title"];
+			$args["id_casting"] = $casting_id;
 			
-			$unfiltered_applicants= $this->applies_model->get_castings_applies($id,null,0);
-			$args["get_uri"] = null;
+			$questions = $this->custom_questions_model->getQuestionsBy($casting_id);
+		
+			$args["question_select"]= array();
+			$args["question_type"]= array();
 
-			if(isset($_GET["status"]))
+			foreach ($questions as $question) 
 			{
-				$id_applicants= $this->applies_model->get_castings_applies($id,null,$_GET["status"]);
-				
-				$args["applies_state"] = $_GET["status"];
-				$args["name_p"] = $_GET["name"];
-				
-				$args["get_uri"] = "/?status=".$_GET["status"]."&name=".str_replace(' ', '+', $_GET["name"]);
-				
-				if(isset($_GET["sex"]))
-				{
-					$args["filter_sex"] = $_GET["sex"];
-					foreach ($args["filter_sex"] as $value)
-						$args["get_uri"] = $args["get_uri"]."&sex%5B%5D=".$value;
-				}
+				if(strlen($question["text"]) > 56)
+					$text = substr($question["text"],0,54)."..";
 				else
-					$args["filter_sex"] = null;
-				
-				if(isset($_GET["age"]))
-				{
-					$args["age_range"] = $_GET["age"];
-					foreach ($args["age_range"] as $value)
-						$args["get_uri"] = $args["get_uri"]."&age%5B%5D=".$value;
-				}
-				else
-					$args["age_range"] = null;
-
-				if($id_applicants!=0)				
-				{
-					$all_data_postulation_data= $id_applicants;
-
-					if(!is_null($args["filter_skills"]))
-					{
-						$id_applicants = $this->user_model->filter_user($id_applicants,$args["filter_sex"],$args["age_range"],$args["name_p"]);
-						
-						
-						$args["chunks"]=ceil(count($this->skills_model->filter_user_categories($id_applicants,$args["filter_skills"]))/5);	
-
-						$id_applicants = $this->skills_model->filter_user_categories($id_applicants,$args["filter_skills"],$page);
-					}
-					else
-					{
-						$args["chunks"]=ceil(count($this->user_model->filter_user($id_applicants,$args["filter_sex"],$args["age_range"],$args["name_p"]))/5);	
-						$id_applicants = $this->user_model->filter_user($id_applicants,$args["filter_sex"],$args["age_range"],$args["name_p"],$page);
-					}
-
-					if($id_applicants != 0)
-					{
-						$temp = array();
-						foreach ($all_data_postulation_data as $value) 
-							if(isset($id_applicants[$value["user_id"]]))
-								array_push($temp, $value);
-						$id_applicants = $temp;
-					}
-
-				}
-				else
-					$args["chunks"]=0;
+					$text=$question["text"];
+				$args["question_select"][$question["id"]]= $text;
+				$args["question_type"][$question["id"]]= $question["type"];
 			
 			}
+
+			if(isset($_GET["question_id"]))
+				$args["selected_question"] =$_GET["question_id"];
 			else
-			{
-				$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,0)/5);					
-				$id_applicants= $this->applies_model->get_castings_applies($id,$page,0);
-				$args["applies_state"] = 0;
-				$args["name_p"] = null;
-				$args["filter_skills"] = null;
-				$args["filter_sex"] = null;
-				$args["age_range"] = null;
+				$args["selected_question"] = $questions[0]["id"];
+			
+			$all_answers = $this->custom_answers_model->retrieve($args["selected_question"]);
 
+			switch ($args["question_type"][$args["selected_question"]]) {
+				case 'multiselect':
+					
+					$args["options"] =  $this->custom_options_model->getOptionsByQuestion($args["selected_question"]);
+					
+					foreach ($args["options"] as &$option) 
+						$option["counter"]=0;
+
+					foreach ($all_answers as $answer)
+					{
+						$splited_answer= explode(",",$answer["answer"]);
+						foreach ($splited_answer as $split)
+							foreach ($args["options"] as &$option)
+								if($option["id"] == $split)
+									$option["counter"] = $option["counter"] + 1; 
+					}
+
+					$args["table_type"] = "Opciones multiples";
+
+					break;
+
+				case 'select':
+
+					$args["options"] =  $this->custom_options_model->getOptionsByQuestion($args["selected_question"]);
+					
+					foreach ($args["options"] as &$option) 
+						$option["counter"]=0;
+
+					foreach ($all_answers as $answer)
+						foreach ($args["options"] as &$option)
+							if($option["id"] == $answer["answer"])
+								$option["counter"] = $option["counter"] + 1; 
+					
+					$args["table_type"] = "Opción única";
+
+					break;
+
+				case 'text':
+				
+					break;
+				
+				default:
+					break;
 			}
 
-			$args["page"] = $page;
-
-			if($id_applicants!= 0)
-			{
-				//define si se puede finalizar el casting o no(toma el array anterior(sin filtrar) como parametro)
-				$args["allowed_to_finalize"] = $this->applies_model->verify_castings_applies_status($unfiltered_applicants);
-				
-				$args["applicants"]=array();
-				
-				foreach($id_applicants as $id)
-				{
-					$applicant_info = $this->user_model->select_applicant($id['user_id']);
-						
-					if($applicant_info['image_profile']!=0)
-						$applicant_info['image_profile'] = $this->photos_model->get_name($applicant_info['image_profile']);
-				
-					$applicant_info["apply_id"]= $id["id"]; 
-					$applicant_info["apply_state"]= $id["state"];
-					array_push($args["applicants"],$applicant_info);
-				}				
-			}
 
 			$this->load->view('template', $args);
 		}
 		else
 			redirect(HOME);
-
 	}
 	
 	function accept_apply($apply_id,$casting_id)
@@ -734,7 +697,6 @@ class Hunter extends CI_Controller {
 			$this->form_validation->set_rules('email', 'Email', 'required');
 			$this->form_validation->set_rules('address', 'Address', 'required');
 			$this->form_validation->set_rules('about_us', 'About_us', 'required');
-			$this->form_validation->set_rules('we_look_for', 'We_look_for', 'required');
 			
 
 			if ($this->form_validation->run() == FALSE)
@@ -750,11 +712,8 @@ class Hunter extends CI_Controller {
 				$profile['email'] = $this->input->post('email');
 				$profile['address'] = $this->input->post('address');
 				$profile['about_us'] = $this->input->post('about_us');
-				$profile['we_look_for']  = $this->input->post('we_look_for');
-				//$profile['logo']  = $this->input->post('logo');
 
-				//print_r($profile);
-				//ingresar los datos a la base de datos
+
 				$this->hunter_model->update($profile);
 
 				//Por ultimo subir la foto

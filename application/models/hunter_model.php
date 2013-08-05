@@ -9,7 +9,7 @@ Class Hunter_model extends CI_Model
 
    function login($email, $password)
    {
-     $this->db->select('id, name, email, password, about_us, we_look_for, logo');
+     $this->db->select('id, name, email, password, about_us, logo');
      $this->db->from('entities');
      $this->db->where('email', $email);
      $this->db->where('password', MD5($password));
@@ -28,33 +28,6 @@ Class Hunter_model extends CI_Model
      }
    }
 
-  function insert_sub_hunter($data)
-  {
-    $this->db->insert('entities',$data);
-    return $this->db->insert_id();
-
-  }
-
-  function update_sub_hunter($data,$id,$super_hunter_id)
-  {
-    $this->db->where(array('id' => $id,'super_hunter_id' => $super_hunter_id));
-    $this->db->update('entities', $data);
-  }
-
-  function delete_sub_hunter($id,$super_hunter_id)
-  {
-    $this->db->delete('entities', array('id' => $id,'super_hunter_id' => $super_hunter_id));
-  }
-
-  function retrieve_sub_hunters($super_hunter_id)
-  {
-    $this->db->select('*');
-    $this->db->from('entities');
-    $this->db->where('super_hunter_id', $super_hunter_id);
-    $query = $this->db->get();
-
-    return $query->result_array();
-  }
 
 	function update($profile)
 	{
@@ -62,8 +35,7 @@ Class Hunter_model extends CI_Model
 				'name' => $profile['name'],
 				'email' => $profile['email'],
 				'address' => $profile['address'],
-				'about_us' => $profile['about_us'],
-				'we_look_for' => $profile['we_look_for']
+				'about_us' => $profile['about_us']
 			);
 
 		$this->db->where('id', $profile['id']);
@@ -73,7 +45,7 @@ Class Hunter_model extends CI_Model
 	function select($id)
 	{
 		//Rescatar los datos de la tabla entities
-		$this->db->select('name, email, address,about_us, we_look_for,logo');
+		$this->db->select('name, email, address,about_us,logo');
 		$this->db->from('entities');
 		$this->db->where('id', $id);
 		$query = $this->db->get()->first_row('array');
