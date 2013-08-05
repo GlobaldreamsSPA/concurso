@@ -198,8 +198,8 @@ $(function () {
 
 		<ul class="nav nav-tabs" id="myTab">
 			<li class="active"><a style="font-size: 15px !important;" id="tab-info" href="#info">Información Concurso</a></li>
-			<li><a style="font-size: 15px !important;" id="tab-date" href="#date">Días vs Repeticiones</a></li>
-			<li><a style="font-size: 15px !important;" id="tab-hour" href="#hour">Horas vs Repeticiones</a></li>
+			<li><a style="font-size: 15px !important;" id="tab-date" href="#date">Días vs Postulaciones</a></li>
+			<li><a style="font-size: 15px !important;" id="tab-hour" href="#hour">Horas vs Postulaciones</a></li>
 		</ul>
 		 
 		<div class="tab-content">
