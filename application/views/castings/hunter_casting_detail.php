@@ -129,7 +129,7 @@ $(function () {
 <div style="margin-left:6.5%;" class="span9">
 	<div style="padding-left:4%; padding-right:6%; border-top-left-radius:10px; border-top-right-radius: 10px;" class="row-fluid">
 		<div style="margin-left:-4% !important; margin-right: -6%;" class="row top-title-left" >
-			<h1> Detalle Casting</h1>					
+			<h1> Detalle Concurso</h1>					
 		</div>
 		<div class="space2"></div>
 
@@ -167,13 +167,21 @@ $(function () {
 				<p>
 					El Casting termina: <?php echo $casting['end_date'] ?>
 				</p>
-				<div class="space05"></div>
 				
 				<p>
 					Estado: <span class="label <?php echo $casting['label_color']; ?>"><?php echo $casting['status']; ?></span>
 				</p>										
-				<div class="space1"></div>
-																
+				
+				<?php 
+					if($casting["category_id"]==2) 
+					{
+				?>
+						<p>
+							Retorno clicks: <?php echo $casting['share_count']; ?>
+						</p>											
+				<?php
+					} 
+				?>
 				<p>
 					Postulaciones/Meta :<?php echo $casting['applies']."/".$casting['max_applies'] ?>
 				</p>
@@ -226,14 +234,15 @@ $(function () {
 						</thead>
 						<tbody>
 							<?php 
-								foreach ($date_table as $date){
+								if($date_table)
+									foreach ($date_table as $date){
 							?>
-									<tr>
-										<td style="text-align: center; vertical-align: middle;"><?php echo $date["date"] ?></td>
-										<td style="text-align: center; vertical-align: middle;"><?php echo $date["number"] ?></td>
-									</tr>
+										<tr>
+											<td style="text-align: center; vertical-align: middle;"><?php echo $date["date"] ?></td>
+											<td style="text-align: center; vertical-align: middle;"><?php echo $date["number"] ?></td>
+										</tr>
 							<?php	
-								} 
+									} 
 							?>
 						</tbody>
 					</table>
@@ -251,14 +260,15 @@ $(function () {
 						</thead>
 						<tbody>
 							<?php 
-								foreach ($hour_table as $hour){
-							?>
-									<tr>
-										<td style="text-align: center; vertical-align: middle;"><?php echo $hour["hour"] ?></td>
-										<td style="text-align: center; vertical-align: middle;"><?php echo $hour["number"] ?></td>
-									</tr>
-							<?php	
-								} 
+								if($hour_table)
+									foreach ($hour_table as $hour){
+								?>
+										<tr>
+											<td style="text-align: center; vertical-align: middle;"><?php echo $hour["hour"] ?></td>
+											<td style="text-align: center; vertical-align: middle;"><?php echo $hour["number"] ?></td>
+										</tr>
+								<?php	
+									} 
 							?>
 						</tbody>
 					</table>
@@ -270,13 +280,13 @@ $(function () {
 		<div class="space2"></div>
 
 		<div style="margin-right: -9%;" class="row">
-			<div class="span3 <?php if ($casting["category"] != "Trivia") echo "offset7"; else  echo "offset4"; ?>">
+			<div class="span3 <?php if ($casting["category_id"] != "3") echo "offset7"; else  echo "offset4"; ?>">
 				<a class="btn btn-primary" href="<?php echo HOME.'/hunter/accepted_list/'.$casting["id"] ?>" ><i style="margin-top: 3px; margin-right: 3px;" class="icon-star"></i>Elegir Ganador</a>
 			</div>
 			<div class="span2">
 				<a class="btn btn-primary" href="<?php echo HOME.'/hunter/edit_casting/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-edit"></i>Editar</a>
 			</div>
-			<?php if ($casting["category"] == "Trivia") 
+			<?php if ($casting["category_id"] == "3") 
 				{
 			?>
 					<div class="span3">

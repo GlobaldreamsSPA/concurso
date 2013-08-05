@@ -364,6 +364,11 @@ class Hunter extends CI_Controller {
 
 			$args['casting']['category_id'] = $args['casting']['category'];
 			
+			if($args['casting']['category_id'] == 2)
+			{
+				$args['casting']["share_count"] = $this->share_detail_model->select('visits',array('casting_id'=>$id));
+				$args['casting']["share_count"] = $args['casting']["share_count"][0]["visits"];
+			}
 			$categories = $this->casting_categories_model->get_casting_categories();
 			$args['casting']['category'] = $categories[$args['casting']['category']];	
 
