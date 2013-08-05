@@ -58,7 +58,7 @@
 							foreach ($photos as $photo){
 						?>
 								<tr>
-									<td style="text-align: center; vertical-align: middle;"><img src="<?php echo HOME."img/contest_photo/".$photo["name"] ?>" /></td>
+									<td style="text-align: center; vertical-align: middle;"><img src="<?php echo HOME."/img/contest_photo/".$photo["name"] ?>" /></td>
 									<td style="text-align: center; vertical-align: middle;"><?php echo $photo["description"] ?></td>
 								</tr>
 						<?php	
