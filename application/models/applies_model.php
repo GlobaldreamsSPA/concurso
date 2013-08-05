@@ -13,6 +13,34 @@ class Applies_model extends CI_Model
     	$this->db->from('applies');
     	return $this->db->count_all_results();
     }
+
+    function get_ncontest_by_date($casting_id)
+    {
+    	$this->db->select('count(id) as number,date(timestamp) as date');
+    	$this->db->where('casting_id', $casting_id);
+    	$this->db->group_by('date(timestamp)');
+
+    	$query= $this->db->get('applies');
+    	
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return $query->result_array();
+    }
+
+    function get_ncontest_by_hour($casting_id)
+    {
+    	$this->db->select('count(id) as number,hour(timestamp) as hour');
+    	$this->db->where('casting_id', $casting_id);
+    	$this->db->group_by('hour(timestamp)');
+
+    	$query= $this->db->get('applies');
+    	
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return $query->result_array();
+    }
 	
 	function get_applicant_applies($applicant_id)
     {

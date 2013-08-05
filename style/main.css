@@ -100,7 +100,6 @@ input[type=file]{
 
 .ui-accordion-content
 {
-	max-height: 200px;
 	text-align: justify;
 	color: #34495E !important;
 	max-height: 100px !important;

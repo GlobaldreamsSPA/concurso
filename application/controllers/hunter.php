@@ -373,8 +373,9 @@ class Hunter extends CI_Controller {
 			$inner_args["hunter_content"]="castings/hunter_casting_detail";
 			$args["inner_args"]=$inner_args;
 
+			$args["date_table"] = $this->applies_model-> get_ncontest_by_date($id);
+			$args["hour_table"] = $this->applies_model-> get_ncontest_by_hour($id);
 
-					
 			$this->load->view('template', $args);
 		}
 		else

@@ -1,3 +1,104 @@
+<script src="<?php echo base_url()?>js/highcharts.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>js/highcharts.data.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>js/highcharts.exporting.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+$(function () {
+    $('#date_graph').highcharts({
+        data: {
+            table: document.getElementById('date_table')
+        },
+        chart: {
+            plotBackgroundColor: "#ECF0F1",
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'line'
+        },
+        title: {
+            text: "Días v/s Postulaciones"
+        },
+        yAxis: {
+        	min: 0,
+        	title: {
+                    text: 'Postulaciones'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+			valueSuffix: ' postulantes'
+        }
+    });
+
+    $('#hour_graph').highcharts({
+        data: {
+            table: document.getElementById('hour_table')
+        },
+        chart: {
+            plotBackgroundColor: "#ECF0F1",
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'line'
+        },
+        title: {
+            text: "Hora v/s Postulaciones"
+        },
+        yAxis: {
+        	min: 0,
+        	title: {
+                    text: 'Postulaciones'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+			valueSuffix: ' postulantes'
+        }
+    });
+
+    $('#tab-info').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+		$("#tab-hour").tab('hide');
+		$("#tab-date").tab('hide');
+	});
+
+    $('#tab-date').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+		$("#tab-hour").tab('hide');
+		$("#tab-info").tab('hide');
+	});
+
+	$('#tab-hour').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+		$("#tab-date").tab('hide');
+		$("#tab-info").tab('hide');
+	});
+
+
+	$(function() {
+		$( ".accordion" ).accordion({active: false});
+	});
+});
+
+</script>
+
+<style>
+	.ui-accordion-content
+	{
+		max-height: 207px !important;
+	}
+</style>
+
 <div style="margin-left: -3%;" class="span3">
 	<div style=" padding-right: 10%; padding-left:10%; border-top-left-radius:10px; border-top-right-radius: 10px;" class="row-fluid">
 		<div style="margin-left:-10% !important; margin-right: -11%;" class="row top-title-left" >
@@ -78,22 +179,101 @@
 			</div>
 		</div>
 		<div class="space2"></div>
+		
+
+		<ul class="nav nav-tabs" id="myTab">
+			<li class="active"><a style="font-size: 15px !important;" id="tab-info" href="#info">Información Concurso</a></li>
+			<li><a style="font-size: 15px !important;" id="tab-date" href="#date">Días vs Repeticiones</a></li>
+			<li><a style="font-size: 15px !important;" id="tab-hour" href="#hour">Horas vs Repeticiones</a></li>
+		</ul>
+		 
+		<div class="tab-content">
+			<div class="tab-pane active" id="info">
+				<div class="row accordion">
+					<h3>Descripci&oacuten</h3>
+					<div style="font-size:15px;">
+						<?php echo  $casting['description']; ?>
+					</div>
+					<h3>Pasos del Concurso</h3>
+					<div style="font-size:15px;">
+						<?php echo  $casting['steps']; ?>
+					</div>
+					<h3>Bases</h3>
+					<div style="font-size:15px;">
+						<?php echo  $casting['bases']; ?>
+					</div>
+					<h3>Premios</h3>
+					<div style="font-size:15px;">
+						<?php echo  $casting['prizes_description']; ?>
+					</div>
+				</div>	
+			</div>
+			<div class="tab-pane" id="date">
+				<div class="row">
+					<table id="date_table" style="display:none;" class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th style="text-align: center;">Fecha</th>
+								<th style="text-align: center;">Repeticiones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php 
+								foreach ($date_table as $date){
+							?>
+									<tr>
+										<td style="text-align: center; vertical-align: middle;"><?php echo $date["date"] ?></td>
+										<td style="text-align: center; vertical-align: middle;"><?php echo $date["number"] ?></td>
+									</tr>
+							<?php	
+								} 
+							?>
+						</tbody>
+					</table>
+					<div id="date_graph" style="min-width: 47.8%; height: 400px; margin: 0 auto"></div>
+				</div>
+			</div>
+			<div class="tab-pane" id="hour">
+				<div class="row">
+					<table id="hour_table" style="display: none;"class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th style="text-align: center;">Hora</th>
+								<th style="text-align: center;">Repeticiones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php 
+								foreach ($hour_table as $hour){
+							?>
+									<tr>
+										<td style="text-align: center; vertical-align: middle;"><?php echo $hour["hour"] ?></td>
+										<td style="text-align: center; vertical-align: middle;"><?php echo $hour["number"] ?></td>
+									</tr>
+							<?php	
+								} 
+							?>
+						</tbody>
+					</table>
+					<div id="hour_graph" style="min-width: 47.8%; height: 400px; margin: 0 auto"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="space2"></div>
 
 		<div style="margin-right: -9%;" class="row">
-			<div class="span3 <?php if ($casting["category"] != "Trivia") echo "offset5"; else  echo "offset2"; ?>">
-				<a class="btn" href="<?php echo HOME.'/hunter/accepted_list/'.$casting["id"] ?>" ><i style="margin-top: 3px; margin-right: 3px;" class="icon-star"></i>Elegir Ganador</a>
+			<div class="span3 <?php if ($casting["category"] != "Trivia") echo "offset7"; else  echo "offset4"; ?>">
+				<a class="btn btn-info" href="<?php echo HOME.'/hunter/accepted_list/'.$casting["id"] ?>" ><i style="margin-top: 3px; margin-right: 3px;" class="icon-star"></i>Elegir Ganador</a>
 			</div>
 			<div class="span2">
-				<a class="btn" href="<?php echo HOME.'/home/casting_detail/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-search"></i>Previa</a>
-			</div>
-			<div class="span2">
-				<a class="btn" href="<?php echo HOME.'/hunter/edit_casting/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-edit"></i>Editar</a>
+				<a class="btn btn-info" href="<?php echo HOME.'/hunter/edit_casting/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-edit"></i>Editar</a>
 			</div>
 			<?php if ($casting["category"] == "Trivia") 
 				{
 			?>
 					<div class="span3">
-						<a class="btn" href="<?php echo HOME.'/hunter/question_responses/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-question-sign"></i>Ver respuestas</a>
+						<a class="btn btn-info" href="<?php echo HOME.'/hunter/question_responses/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-question-sign"></i>Ver respuestas</a>
 					</div>
 			<?php 
 				}	
