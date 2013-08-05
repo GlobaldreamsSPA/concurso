@@ -98,7 +98,7 @@ $(function () {
 		max-height: 207px !important;
 	}
 
-	li.active a
+	ul#myTab li.active a
 	{
 		color: #3498DB !important;
 		background-color: #ECF0F1 !important;
@@ -280,7 +280,7 @@ $(function () {
 		<div class="space2"></div>
 
 		<div style="margin-right: -9%;" class="row">
-			<div class="span3 <?php if ($casting["category_id"] != "3") echo "offset7"; else  echo "offset4"; ?>">
+			<div class="span3 <?php if ($casting["category_id"] == "3") echo "offset4"; elseif($casting["category_id"] == "1") echo "offset5"; else  echo "offset7"; ?>">
 				<a class="btn btn-primary" href="<?php echo HOME.'/hunter/accepted_list/'.$casting["id"] ?>" ><i style="margin-top: 3px; margin-right: 3px;" class="icon-star"></i>Elegir Ganador</a>
 			</div>
 			<div class="span2">
@@ -291,6 +291,13 @@ $(function () {
 			?>
 					<div class="span3">
 						<a class="btn btn-primary" href="<?php echo HOME.'/hunter/question_responses/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-question-sign"></i>Ver respuestas</a>
+					</div>
+			<?php 
+				}elseif ($casting["category_id"] == "1") 
+				{
+			?>
+					<div class="span2">
+						<a class="btn btn-primary" href="<?php echo HOME.'/hunter/photo_list/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-camera"></i> Fotos</a>
 					</div>
 			<?php 
 				}	

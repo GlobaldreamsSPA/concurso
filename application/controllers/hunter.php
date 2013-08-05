@@ -369,6 +369,8 @@ class Hunter extends CI_Controller {
 				$args['casting']["share_count"] = $this->share_detail_model->select('visits',array('casting_id'=>$id));
 				$args['casting']["share_count"] = $args['casting']["share_count"][0]["visits"];
 			}
+
+
 			$categories = $this->casting_categories_model->get_casting_categories();
 			$args['casting']['category'] = $categories[$args['casting']['category']];	
 
@@ -639,6 +641,34 @@ class Hunter extends CI_Controller {
 			redirect(HOME);
 	}
 	
+	function photo_list($id_casting)
+	{
+		if($this->session->userdata('logged_in'))
+		{
+			$hunter_id = $this->session->userdata('logged_in');
+		 	$hunter_id = $hunter_id['id'];
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
+			
+			$args["id_casting"] = $id_casting;
+
+			$temp = $this->castings_model->get_full_casting($id_casting);
+			$args["name_casting"] = $temp["title"];
+			if(strlen($args["name_casting"]) > 36)
+				$args["name_casting"] = substr($args["name_casting"],0,34)."..";
+
+
+			$args["photos"] = $this->photos_model->get_contest_photos($id_casting);
+	   	 	$args['user_data'] = $this->session->userdata('logged_in');
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/photo_list";
+			$args["inner_args"]=$inner_args;
+			
+			$this->load->view('template', $args);
+		}
+		else
+			redirect(HOME);
+	}
+
 	function accept_apply($apply_id,$casting_id)
 	{
 		if($this->session->userdata('logged_in'))

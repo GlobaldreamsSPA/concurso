@@ -76,19 +76,18 @@ class Photos_model extends CI_Model
     	
 	}
 
-	function get_contest_photo($user_id,$contest_id)
+	function get_contest_photos($contest_id)
 	{
-		$this->db->select('name');
+		$this->db->select('name,description');
 		$this->db->from('photos');
-		$this->db->where('user_id', $user_id);
 		$this->db->where('casting_id', $contest_id);
 
 		$query = $this->db->get();
 
 		if($query->num_rows() != 0)
 		{
-			$elem = $query->first_row('array');
-			return $elem['name'];
+			$results = $query->result_array();
+			return $results;
 		}
 		else
 			return "";
