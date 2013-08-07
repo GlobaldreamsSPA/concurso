@@ -76,7 +76,7 @@
 						<?php echo $casting['title'] ?>
 					</div>
 
-					<div class="space4"></div>	
+					<div class="space2"></div>	
 
 
 					<div class="row">
@@ -98,7 +98,7 @@
 						</div>					
 					</div>
 
-					<div class="space4"></div>	
+					<div class="space2"></div>	
 
 
 					<div class="row">
