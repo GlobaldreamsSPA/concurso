@@ -47,9 +47,15 @@ class Castings_model extends CI_Model
         $interval = strtotime($casting['start_date']) - strtotime("now");
         
         if($interval > 0)
+        {
             $casting['has_started'] = FALSE;
+            $casting['interval'] = $interval;
+        }
         else
+        {
+            $casting['interval'] = 0;
             $casting['has_started'] = TRUE;
+        }
 
         return $casting;
     }

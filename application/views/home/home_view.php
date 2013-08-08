@@ -309,7 +309,15 @@ $(document).ready(function() {
 												{
 													$date = explode("-", $contest["start_date"]); $date[1] = $date[1] -1;
 													echo "<label>".$date."</label>";
-													echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Faltan {dnn} días para activarse</span>'}); </script>";
+													
+													if($contest["interval"] >= 3600*24)
+														echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Faltan {dnn} días para activarse</span>'}); </script>";
+													else
+													{
+														$hours = intval($contest["interval"]/(3600));
+														echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Faltan {hnn} horas para activarse</span>'}); </script>";
+
+													}
 												}
 											?>
 										</div>
