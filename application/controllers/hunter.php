@@ -627,7 +627,8 @@ class Hunter extends CI_Controller {
 					break;
 
 				case 'text':
-				
+					
+					$args["answers"] = $all_answers;
 					break;
 				
 				default:

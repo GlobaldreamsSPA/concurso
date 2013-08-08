@@ -1,6 +1,8 @@
 <script src="<?php echo base_url()?>js/highcharts.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>js/highcharts.data.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>js/highcharts.exporting.js" type="text/javascript"></script>
+<link href="<?php echo base_url()?>style/jquery.dataTables.css" rel="stylesheet">
+<script src="<?php echo base_url()?>js/jquery.dataTables.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 
@@ -37,6 +39,10 @@ $(function () {
         }
     });
 });
+
+$(document).ready(function() {
+	    $('#tblData').dataTable();
+	} );
 
 </script>
 
@@ -126,8 +132,30 @@ $(function () {
 			<?php
 						break;
 
-					case 'text':
+					case 'text':			
 			?>
+						<div style="margin-left: 1px;" class="row">
+							<table id="tblData" class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th style="text-align: center;">Respuestas</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php 
+										foreach ($answers as $answer){
+									?>
+											<tr>
+												<td style="text-align: center; vertical-align: middle;"><?php echo $answer["answer"] ?></td>
+											</tr>
+									<?php	
+										} 
+									?>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="space2"></div>	
 
 			<?php
 						break;
