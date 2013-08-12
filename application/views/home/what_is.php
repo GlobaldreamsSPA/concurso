@@ -67,7 +67,7 @@
 			<div class="addable"></div>
 			<div style="margin-top:2%; margin-left:3%; text-align:center;" class="responsive-top span6">
 				
-				<iframe style="border: 10px solid #E67E22; border-radius:8px;" width="85%" height="360px" src="https://www.youtube.com/embed/GAWcdrSC1-k?rel=0&amp;showinfo=0&amp;theme=light" frameborder="0" allowfullscreen=""></iframe>
+				<iframe style="border: 10px solid #E67E22; border-radius:8px;" width="85%" height="360px" src="https://www.youtube.com/embed/yAlfQibk1J0?rel=0&amp;showinfo=0&amp;theme=light" frameborder="0" allowfullscreen=""></iframe>
 
 			</div>	
 			<div style="padding-top:1%" class="responsive-bottom span6">
