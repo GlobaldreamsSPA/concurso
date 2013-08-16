@@ -233,6 +233,14 @@
 
 		var error = false;
 
+		extension = $('#photo_upload_form input').val().substr(-3);
+
+		if(extension != 'png' && extension != 'jpg' && extension != 'jpeg')
+		{
+			$('#photo_upload_form .error-label')[0].style.display = "block";
+			error = true;
+		}
+
 		if($('#photo_upload_form input').val() == "")
 		{
 			$('#photo_upload_form .error-label')[0].style.display = "block";
@@ -351,7 +359,7 @@
 			 <form id="photo_upload_form" enctype="multipart/form-data"  action="<?php echo HOME.'/home/apply_photo/'.$id_casting;?>" method="post">
 		        <div class="upload-content photo-content">
 		         <h3 id="myModalLabel">Sube tu Foto</h3>
-		            <div>  
+		            <div>
 			            <div id="image_upload">
 				              <?php echo form_upload(array('name' => 'upload_photo','id' => 'upload_photo','class'=> 'file','onchange'=>'readURL(this);')); ?>
 			
