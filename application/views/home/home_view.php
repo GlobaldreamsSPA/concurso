@@ -201,11 +201,11 @@ $(document).ready(function() {
 <h1 style="display:none">Como ganar, solo concursa en Ganando .cl</h1>
 <h1 style="display:none">Participa en los sorteos por premios en Ganando .cl</h1>
 
-<div class="content home" style="background:none !important;"id="content">
-		<h1 style="text-align:center; margin-top:100px; margin-bottom: 20px; color: #4da0d8; font-family: 'ganandofont'; font-size: 76px !important; line-height: 76px !important;" > GANA EN 3 PASOS</h1>									
+<div class="content home" id="content">
+		<h1 id="main-banner-text" > GANA EN 3 PASOS</h1>									
 		<div class="row">
 			<div id="top-banner" style="margin-left: 9%;"class="span5">
-				<p style="margin-top: 14px; color: #4da0d8; line-height: 40px; font-family: 'ganandofont'; font-size: 25px;">
+				<p id="left-banner-text">
 					MUCHOS CONCURSOS PARA QUE PUEDAS PARTICIPAR DE FORMA GRATUITA CON TAN SÓLO 3 PASOS. 
 				</p>
 			</div>
@@ -214,7 +214,7 @@ $(document).ready(function() {
 					<a href="<?php echo HOME."/user/fb_login"?>">
 						<img style="width:100%;" src="<?php echo HOME.'/img/bg1.png'?>"/>
 					
-						<p style="text-align:center; color: #4da0d8; line-height: 40px; font-family: 'ganandofont'; font-size: 22px;">
+						<p id="right-banner-text">
 							INGRESA 
 						</p>
 					</a>
@@ -222,7 +222,7 @@ $(document).ready(function() {
 				<div class="span4">
 					<a href="#" onclick=" if($(window).width() < 930) $('body,html').animate({ scrollTop: 800 }, 600); else $('body,html').animate({ scrollTop: 400 }, 600); ">
 						<img style="width:100%;" src="<?php echo HOME.'/img/bg2.png'?>"/>
-						<p style="text-align:center; color: #4da0d8; line-height: 40px; font-family: 'ganandofont'; font-size: 22px;">
+						<p id="right-banner-text">
 							CONCURSA
 						</p>
 					</a>
@@ -230,7 +230,7 @@ $(document).ready(function() {
 				</div>
 				<div class="span4">
 					<img style="width:100%;" src="<?php echo HOME.'/img/bg3.png'?>"/>
-					<p style="text-align:center; color: #4da0d8; line-height: 40px; font-family: 'ganandofont'; font-size: 22px;">
+					<p id="right-banner-text">
 						¡GANA!
 					</p>
 				</div>
@@ -332,7 +332,15 @@ $(document).ready(function() {
 											{
 											?>
 												<div style="color: white; font-size: 16px;">
-													Concurso en <span style="font-weight: bold; color: #FFFF00;">revisión</span>, atent@ a los resultados.
+													Concurso en <span style="font-size: 17px; font-weight: bold; color: #FFFF00; text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;">revisión</span>, atent@ a los resultados.
+												</div>
+										<?php
+											}
+											elseif ($contest["status"]=="Finalizado") 
+											{
+											?>
+												<div style="color: white; font-size: 16px;">
+													Concurso <span style="font-size: 17px; font-weight: bold; color: #FFCC00  ; text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;">finalizado</span>, felicitaciones al ganador(a).
 												</div>
 										<?php
 											}

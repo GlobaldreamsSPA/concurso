@@ -24,6 +24,36 @@ html, body {
     src: url('../fonts/walibi-holland.ttf'); /*URL to font*/
 }
 
+/*Estilo banner*/
+
+#main-banner-text
+{
+	text-align:center; 
+	margin-top:100px; 
+	margin-bottom: 20px; 
+	color: #4da0d8; 
+	font-family: 'ganandofont'; 
+	font-size: 76px;
+	line-height: 76px;
+}
+
+#left-banner-text
+{
+	margin-top: 14px; 
+	color: #4da0d8; 
+	line-height: 40px; 
+	font-family: 'ganandofont'; 
+	font-size: 25px;
+}
+
+#right-banner-text
+{
+	text-align:center; 
+	color: #4da0d8; 
+	line-height: 40px; 
+	font-family: 'ganandofont'; 
+	font-size: 22px;
+}
 
 /* perfil usuario*/
 
