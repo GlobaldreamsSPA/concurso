@@ -10,7 +10,7 @@
 		{
 			$(event.data.target).animate({
 	                height: 127,
-	                width: "27%",
+	                width: "49.5%",
 	                "padding-top": 80
 	            }, 1000, function(){
 					$(event.data.div1).css("z-index","0");
@@ -34,15 +34,15 @@
 
         if (event.data.state) {
             $(event.data.target).animate({
-                height: 395,
-                width: "55%",
+                height: 390,
+                width: "100%",
                 "padding-top": 30
             }, 1000);
             $(event.data.target_text).append($(event.data.source_text).html());
         } else {
             $(event.data.target).animate({
                 height: 127,
-                width: "27%",
+                width: "49.5%",
                 "padding-top": 80
             }, 1000, function(){
 				$(event.data.div1).css("z-index","0");
@@ -117,19 +117,19 @@
 	        	$(".upload-content").css("z-index","-1");
 
 	            $("#des").animate({
-	                width: "27%"
+	                width: "49.5%"
 	            }, 1000);
 
 	            $("#pri").animate({
-	                width: "27%",
+	                width: "49.5%"
 	            }, 1000);
 
 	            $("#bas").animate({
-	                width: "27%",
+	                width: "49.5%"
 	            }, 1000);
 
 	            $("#ste").animate({
-	                width: "27%",
+	                width: "49.5%"
 	            }, 1000, function()
 	            {
 	            	$(".upload-content").css("display","none");
@@ -273,9 +273,9 @@
 		<div class="space05"></div>
 		<span style="font-size:20px !important; font-weight: bold;">Etiquetas:</span>
 		<div style="margin-top: 1%; margin-bottom: 5%;">
-			<ul class="tags">
+			<ul style="list-style-type: none !important;" class="tags">
 			<?php 
-				echo "<li><a href='".HOME."/home?search_terms=&category=".$category_id."&prize=' target='_blank'>".$category."</a></li>";
+				echo "<li style='list-style-type: none !important;'><a href='".HOME."/home?search_terms=&category=".$category_id."&prize=' target='_blank'>".$category."</a></li>";
 				
 				foreach ($prizes as $id => $prize ) 
 					if($prize!="")
@@ -308,7 +308,7 @@
 
 
 	</div>
-	<div class="span7" id="info-contest" style="height:420px;">
+	<div class="span7" id="info-contest" style="height:420px; position: relative !important;">
 		<div style="height: 127px;" id="des" class="modal-closed">
 			<h3 style="text-align: center; color:#ffffff;">
 				Descripci&oacute;n
@@ -349,7 +349,7 @@
 			{
 		?>
 			 <form id="photo_upload_form" enctype="multipart/form-data"  action="<?php echo HOME.'/home/apply_photo/'.$id_casting;?>" method="post">
-		        <div class="upload-content photo-content span6">
+		        <div class="upload-content photo-content">
 		         <h3 id="myModalLabel">Sube tu Foto</h3>
 		            <div>  
 			            <div id="image_upload">
@@ -380,7 +380,7 @@
 			{
 		?>
 		<form id="trivia-upload-form" action="<?php echo HOME.'/home/apply_trivia/'.$id_casting; ?>" method="POST">
-			<div style="margin-left: 1% !important; width: 53.6% !important;" class="upload-content trivia-content">
+			<div class="upload-content trivia-content">
 				<?php
 					if($custom_options != FALSE)
 					{

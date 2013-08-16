@@ -183,18 +183,19 @@ input[type=file]{
 	color:white !important;
 }
 
+
 #des{
 	position:absolute; 
-	width:27%; 
+	width:49.5%; 
 	background-color:#3498DB;
 	padding-top:80px;
 }
 
 #pri
 {
-	right:1.5%; 
+	right:0; 
 	position:absolute; 
-	width:27%; 
+	width:49.5%; 
 	background-color:#2ECC71;
 	padding-top:80px;
 	cursor: pointer;
@@ -203,8 +204,8 @@ input[type=file]{
 #bas
 {
 	position:absolute; 
-	width:27%; 
-	bottom:15%; 
+	width:49.5%; 
+	bottom:0; 
 	background-color:#F39C12;
 	padding-top:80px;
 	cursor: pointer;
@@ -212,10 +213,10 @@ input[type=file]{
 
 #ste
 {
-	right:1.5%;  
+	right: 0;  
 	position:absolute;  
-	width:27%; 
-	bottom:15%; 
+	width:49.5%; 
+	bottom:0; 
 	background-color:#F1C40F;
 	padding-top:80px;
 	cursor: pointer;
@@ -227,7 +228,7 @@ input[type=file]{
 
 .tags{
 	margin:0;
-	padding:0;s
+	padding:0;
 	list-style:none;
 }
 
@@ -324,7 +325,8 @@ input[type=file]{
 	padding-right: 3.5%;
 	height: 412px;
 	overflow-y: auto;
-	
+	width: 91%;
+
 }
 
 .photo-container
@@ -363,7 +365,7 @@ input[type=file]{
 
 .trivia-content {
 	margin-left: 1%;
-	width: 53.6%;
+	width: 97%;
 	height: 412px;
 	overflow-y: auto;
 }

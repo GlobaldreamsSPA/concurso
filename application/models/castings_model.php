@@ -196,9 +196,7 @@ class Castings_model extends CI_Model
     function get_castings_search($search, $page=NULL, $cant=NULL)
     {
         $this->db->select('*');
-        
-        $this->db->where('status', 0);
-        
+                
         if($search["category"] != "" && !is_null($search["category"]))
             $this->db->where('category', $search["category"]);
                 
@@ -226,6 +224,8 @@ class Castings_model extends CI_Model
             $this->db->where($where);
         }
         
+        $this->db->order_by("start_date", "desc");
+
 
         if(!is_null($page) && !is_null($cant))
             $query = $this->db->get('castings', $cant, ($page-1)*$cant);

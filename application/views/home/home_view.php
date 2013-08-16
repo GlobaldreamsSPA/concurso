@@ -202,7 +202,7 @@ $(document).ready(function() {
 <h1 style="display:none">Participa en los sorteos por premios en Ganando .cl</h1>
 
 <div class="content home" style="background:none !important;"id="content">
-		<h1 style="text-align:center; margin-top:120px; margin-bottom: 45px; color: #4da0d8; font-family: 'ganandofont'; font-size: 76px !important; line-height: 76px !important;" > GANA EN 3 PASOS</h1>									
+		<h1 style="text-align:center; margin-top:100px; margin-bottom: 20px; color: #4da0d8; font-family: 'ganandofont'; font-size: 76px !important; line-height: 76px !important;" > GANA EN 3 PASOS</h1>									
 		<div class="row">
 			<div id="top-banner" style="margin-left: 9%;"class="span5">
 				<p style="margin-top: 14px; color: #4da0d8; line-height: 40px; font-family: 'ganandofont'; font-size: 25px;">
@@ -273,19 +273,19 @@ $(document).ready(function() {
 							if($contest["has_started"] == TRUE)
 							{
 						?>
-						<a rel="nofollow" href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='.urlencode($contest["title"]).'&entity='.urlencode($contest["entity"]).'&days='.urlencode($contest["days"]).'&logo='.urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]).'&d_photo_contest='.urlencode($contest["d_photo_contest"]) ?>" data-toggle="modal">							
-							<div class="image">
-								<img class="fade_new" style="width:100%;" src="<?php echo $contest['full_image']; ?>" alt=""/>
-							</div>
-						</a>
+								<a rel="nofollow" href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='.urlencode($contest["title"]).'&entity='.urlencode($contest["entity"]).'&days='.urlencode($contest["days"]).'&logo='.urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]).'&d_photo_contest='.urlencode($contest["d_photo_contest"]) ?>" data-toggle="modal">							
+									<div class="image">
+										<img class="fade_new" style="width:100%;" src="<?php echo $contest['full_image']; ?>" alt=""/>
+									</div>
+								</a>
 						<?php
 							}
 							else
 							{
 						?>
-							<div class="image">
-								<img class="fade_new" style="width:100%;" src="<?php echo $contest['full_image']; ?>" alt=""/>
-							</div>
+								<div class="image">
+									<img class="fade_new" style="width:100%;" src="<?php echo $contest['full_image']; ?>" alt=""/>
+								</div>
 						<?php
 							} 
 						?>
@@ -297,31 +297,46 @@ $(document).ready(function() {
 									<div style="margin-bottom: 0.5%;" class="home-video-title"><?php echo $contest["title"]; ?></div>
 									<span class="home-video-author">Publicado por Ganando.cl</span>
 									<div class="space05"></div>
-									<div class="home-video-countdown">
-										<div class="contest-countdown" id="<?php echo 'countdown'.$i; ?>">
-											<?php
-												if($contest["has_started"] == TRUE)
-												{
-													$date = explode("-", $contest["end_date"]); $date[1] = $date[1] -1;
-													echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: \"<span>El concurso finaliza en: {dnn} días, {hnn}&nbsp;horas</span></br><span>{mnn} minutos,&nbsp;{snn} segundos</span>\"}); </script>";
-												}
-												else
-												{
-													$date = explode("-", $contest["start_date"]); $date[1] = $date[1] -1;
-													echo "<label>".$date."</label>";
-													
-													if($contest["interval"] >= 3600*24)
-														echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Faltan {dnn} días para activarse</span>'}); </script>";
-													else
-													{
-														$hours = intval($contest["interval"]/(3600));
-														echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Faltan {hnn} horas para activarse</span>'}); </script>";
+										<?php
+											if($contest["status"]=="Activo")
+											{
+										?>
+												<div class="home-video-countdown">
+													<div class="contest-countdown" id="<?php echo 'countdown'.$i; ?>">													
+														<?php	
+															if($contest["has_started"] == TRUE)
+															{
+																$date = explode("-", $contest["end_date"]); $date[1] = $date[1] -1;
+																echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: \"<span>El concurso finaliza en: {dnn} días, {hnn}&nbsp;horas</span></br><span>{mnn} minutos,&nbsp;{snn} segundos</span>\"}); </script>";
+															}
+															else
+															{
+																$date = explode("-", $contest["start_date"]); $date[1] = $date[1] -1;
+																echo "<label>".$date."</label>";
+																
+																if($contest["interval"] >= 3600*24)
+																	echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Faltan {dnn} días para activarse</span>'}); </script>";
+																else
+																{
+																	$hours = intval($contest["interval"]/(3600));
+																	echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Faltan {hnn} horas para activarse</span>'}); </script>";
 
-													}
-												}
+																}
+															}
+														?>
+													</div>
+												</div>
+										<?php
+											}
+											elseif ($contest["status"]=="En Revisión") 
+											{
 											?>
-										</div>
-									</div>
+												<div style="color: white; font-size: 16px;">
+													Concurso en <span style="font-weight: bold; color: #FFFF00;">revisión</span>, atent@ a los resultados.
+												</div>
+										<?php
+											}
+										?>
 								</div>
 								<div class="span1">
 									<?php 
