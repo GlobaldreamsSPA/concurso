@@ -12,14 +12,15 @@ $(document).ready(function() {
         	return;
     	}
 		active = true;
+		$("#load").css("display","");
 
 		var url = $(this).attr('href');
 
 		$.get(url, function(data) {
 			$('<div id="contestmodal" style="max-height: 95% !important;" class="modal hide fade">' + data + '</div>').modal();
 		}).success(function() { 
+			$("#load").css("display","none");
 			$('.modal-title').focus(); 
-
 			$(".modal-backdrop").on("remove", function () {
 			    active = false;
 			});
@@ -201,6 +202,8 @@ $(document).ready(function() {
 <h1 style="display:none">Como ganar, solo concursa en Ganando .cl</h1>
 <h1 style="display:none">Participa en los sorteos por premios en Ganando .cl</h1>
 
+<img id="load" style="display:none; margin-left: 45%; margin-top: 120px; position: fixed;  z-index: 10000" src="<?php echo HOME."/img/load.gif" ?>"/>
+
 <div class="content home" id="content">
 		<h1 id="main-banner-text" > GANA EN 3 PASOS</h1>									
 		<div class="row">
@@ -267,14 +270,33 @@ $(document).ready(function() {
 					if(($i-1)%3 == 0 or $i==1) 
 						echo "<div style='margin-left: 1px;' class='row'>";
 					?>
-					<div id="main_videos_list" class='responsive span4'>
+					<div style="position: relative;" id="main_videos_list" class='responsive span4'>
 						<div class="space1"></div>
+
+
 						<?php
 							if($contest["has_started"] == TRUE)
 							{
 						?>
-								<a rel="nofollow" href="<?php echo HOME.'/home/contest?id='.urlencode($contest["id"]).'&title='.urlencode($contest["title"]).'&entity='.urlencode($contest["entity"]).'&days='.urlencode($contest["days"]).'&logo='.urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]).'&d_photo_contest='.urlencode($contest["d_photo_contest"]) ?>" data-toggle="modal">							
+								<a rel="nofollow" href="<?php echo HOME.'/home/contest?status='.urlencode($contest["status"]).'&id='.urlencode($contest["id"]).'&title='.urlencode($contest["title"]).'&entity='.urlencode($contest["entity"]).'&days='.urlencode($contest["days"]).'&logo='.urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]).'&d_photo_contest='.urlencode($contest["d_photo_contest"]) ?>" data-toggle="modal">							
 									<div class="image">
+									<?php
+										if ($contest["status"]=="En Revisión") 
+										{
+									?>
+											<img style="z-index: 1000; width:62%; margin-left:45.3%; margin-top: -5.5%; position: absolute;" src="<?php echo HOME."/img/etiqueta_revision.png"; ?>" alt=""/>
+									<?php
+										}
+										elseif ($contest["status"]=="Finalizado") 
+										{
+									?>
+											<img style="z-index: 1000; width:60%; margin-left:46%; margin-top: -5.5%; position: absolute;" src="<?php echo HOME."/img/etiqueta_finalizado.png"; ?>" alt=""/>
+
+									<?php
+										}
+									?>
+
+
 										<img class="fade_new" style="width:100%;" src="<?php echo $contest['full_image']; ?>" alt=""/>
 									</div>
 								</a>
@@ -331,16 +353,16 @@ $(document).ready(function() {
 											elseif ($contest["status"]=="En Revisión") 
 											{
 											?>
-												<div style="color: white; font-size: 16px;">
-													Concurso en <span style="font-size: 17px; font-weight: bold; color: #FFFF00; text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;">revisión</span>, atent@ a los resultados.
+												<div style="width: 104%; color: white; font-size: 16px;">
+													Concurso <span class="home-video-title">esperando sorteo</span>, atentos a los resultados.
 												</div>
 										<?php
 											}
 											elseif ($contest["status"]=="Finalizado") 
 											{
 											?>
-												<div style="color: white; font-size: 16px;">
-													Concurso <span style="font-size: 17px; font-weight: bold; color: #FFCC00  ; text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;">finalizado</span>, felicitaciones al ganador(a).
+												<div style="width: 104%; color: white; font-size: 16px;">
+													Concurso <span class="home-video-title" >finalizado</span>, felicitaciones al ganador(a).
 												</div>
 										<?php
 											}

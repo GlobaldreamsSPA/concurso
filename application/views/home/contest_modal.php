@@ -235,7 +235,7 @@
 
 		extension = $('#photo_upload_form input').val().substr(-3);
 
-		if(extension != 'png' && extension != 'jpg' && extension != 'jpeg')
+		if(extension != 'gif' && extension != 'png' && extension != 'jpg' && extension != 'jpeg')
 		{
 			$('#photo_upload_form .error-label')[0].style.display = "block";
 			error = true;

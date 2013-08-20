@@ -137,62 +137,13 @@ class Home extends CI_Controller {
 			$args['category'] = $categories[$_GET['category']];	
 			$args['category_id'] = $_GET['category'];
 			$args['d_photo_contest'] = $_GET['d_photo_contest'];
+			$args['status'] = $_GET['status'];
 
 			$args['logged_in'] = $this->session->userdata('id');
 
-			if( !in_array($args['category_id'],array(1,2,3)))
-				$args['apply_url'] = $_GET['apply_url'];
-			else
-			{
-				if($args['category_id']==2)
-				{
-					if($args['logged_in'])
-					{
-						$share_data= $this->share_detail_model->select('*',array('casting_id'=>$args['id_casting']));
-						$share_data =$share_data[0];
-						$args['apply_url'] = "https://www.facebook.com/dialog/feed?app_id=458089044282863&link=".HOME."/home/share_counter/".$_GET['id']."?url=".urlencode($_GET['apply_url'])."&picture=".urlencode(HOME.CASTINGS_SHARE_PATH.$share_data['image'])."&name=".urlencode($share_data['title'])."&caption=".$_GET['apply_url']."&description=".urlencode($share_data['description'])."&redirect_uri=".HOME."/home/apply_share/".$args['id_casting'];
-						$args['target'] = true;
-					}
-					else
-						$args['apply_url'] = "none";
-				}
-				elseif($args['category_id'] == 1)
-					$args['apply_url'] = "photo";
-				elseif($args['category_id'] == 3)
-				{
-					$args['apply_url'] = "trivia";
-
-					//Aca se recuperan las preguntas personalizadas
-					$custom_questions = $this->custom_questions_model->getQuestionsBy($args['id_casting']);
-					$custom_options = array();
-
-					if($custom_questions != 0)
-					{
-						for($i =0; $i < count($custom_questions); $i++)
-						{
-							$custom_options[$i] = array('id' => $custom_questions[$i]['id'], 'type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
-							$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
-
-							if((!$opciones == 0))
-							{
-								//hay opciones
-								foreach ($opciones as $option) {
-									$custom_options[$i]['options'][] = array('id' => $option['id'], 'option' => $option['option']);	
-								}
-							}
-						}
-
-						$args['custom_options'] = $custom_options;
-					}
-				}
-				else
-					$args['apply_url'] = null;
-			}	
-			
 			$args['entity_id'] = $_GET['entity_id'];	
 			$args['prizes'] = explode("-", $_GET['prizes']);	
 			$prizes_id = $args['prizes'];
-
 			
 			$prizes =  $this->prize_categories_model->select("name");
 			$prizes_temp= array();
@@ -209,7 +160,65 @@ class Home extends CI_Controller {
 
 			$args['prizes'] = array_combine($prizes_id ,$args['prizes']);
 
-			$this->load->view('home/contest_modal',$args);
+
+			
+			if ($args["status"]=="En Revisión") 
+				$this->load->view('home/contest_modal_r',$args);
+			elseif ($args["status"]=="Finalizado") 
+				$this->load->view('home/contest_modal_r',$args);
+			else
+			{
+				if( !in_array($args['category_id'],array(1,2,3)))
+					$args['apply_url'] = $_GET['apply_url'];
+				else
+				{
+					if($args['category_id']==2)
+					{
+						if($args['logged_in'])
+						{
+							$share_data= $this->share_detail_model->select('*',array('casting_id'=>$args['id_casting']));
+							$share_data =$share_data[0];
+							$args['apply_url'] = "https://www.facebook.com/dialog/feed?app_id=458089044282863&link=".HOME."/home/share_counter/".$_GET['id']."?url=".urlencode($_GET['apply_url'])."&picture=".urlencode(HOME.CASTINGS_SHARE_PATH.$share_data['image'])."&name=".urlencode($share_data['title'])."&caption=".$_GET['apply_url']."&description=".urlencode($share_data['description'])."&redirect_uri=".HOME."/home/apply_share/".$args['id_casting'];
+							$args['target'] = true;
+						}
+						else
+							$args['apply_url'] = "none";
+					}
+					elseif($args['category_id'] == 1)
+						$args['apply_url'] = "photo";
+					elseif($args['category_id'] == 3)
+					{
+						$args['apply_url'] = "trivia";
+
+						//Aca se recuperan las preguntas personalizadas
+						$custom_questions = $this->custom_questions_model->getQuestionsBy($args['id_casting']);
+						$custom_options = array();
+
+						if($custom_questions != 0)
+						{
+							for($i =0; $i < count($custom_questions); $i++)
+							{
+								$custom_options[$i] = array('id' => $custom_questions[$i]['id'], 'type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
+								$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
+
+								if((!$opciones == 0))
+								{
+									//hay opciones
+									foreach ($opciones as $option) {
+										$custom_options[$i]['options'][] = array('id' => $option['id'], 'option' => $option['option']);	
+									}
+								}
+							}
+
+							$args['custom_options'] = $custom_options;
+						}
+					}
+					else
+						$args['apply_url'] = null;
+				}	
+				
+				$this->load->view('home/contest_modal',$args);
+			}
 		}
 	}
 
@@ -313,7 +322,7 @@ class Home extends CI_Controller {
 		if($this->session->userdata('id') && $_FILES['upload_photo']['error'] != 4)
 		{
 			$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
-
+ 
 			if($apply_id !== FALSE && $this->_upload_image($this->session->userdata('id'),$id,$_POST["foto_description"]))
 			{
 				
