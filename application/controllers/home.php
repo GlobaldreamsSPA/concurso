@@ -164,8 +164,16 @@ class Home extends CI_Controller {
 			
 			if ($args["status"]=="En Revisión") 
 				$this->load->view('home/contest_modal_r',$args);
-			elseif ($args["status"]=="Finalizado") 
-				$this->load->view('home/contest_modal_r',$args);
+			elseif ($args["status"]=="Finalizado")
+			{ 
+				$args["contest_winner"]["id"] = $this->applies_model->get_selected($args['id_casting']);
+				$args["contest_winner"]["id"] = $args["contest_winner"]["id"][0]["user_id"];
+				$args["contest_winner"]["image"] = $this->user_model->get_image_profile($args["contest_winner"]["id"]);
+				$args["contest_winner"]["image"] = $this->photos_model->get_name($args["contest_winner"]["image"]);
+				$args["contest_winner"]["name"] = $this->user_model->get_name($args["contest_winner"]["id"]);
+				$args["contest_winner"]["name"] = $args["contest_winner"]["name"][0]["name"]." ".$args["contest_winner"]["name"][0]["last_name"];
+				$this->load->view('home/contest_modal_f',$args);
+			}
 			else
 			{
 				if( !in_array($args['category_id'],array(1,2,3)))

@@ -202,7 +202,7 @@ $(document).ready(function() {
 <h1 style="display:none">Como ganar, solo concursa en Ganando .cl</h1>
 <h1 style="display:none">Participa en los sorteos por premios en Ganando .cl</h1>
 
-<img id="load" style="display:none; margin-left: 45%; margin-top: 120px; position: fixed;  z-index: 10000" src="<?php echo HOME."/img/load.gif" ?>"/>
+<img id="load" style="display: none; left: 50%; margin-left: -200px; top: 50%; margin-top: -30px; width:400px; position: fixed;  z-index: 10000" src="<?php echo HOME."/img/load.gif" ?>"/>
 
 <div class="content home" id="content">
 		<h1 id="main-banner-text" > GANA EN 3 PASOS</h1>									
@@ -284,13 +284,13 @@ $(document).ready(function() {
 										if ($contest["status"]=="En Revisión") 
 										{
 									?>
-											<img style="z-index: 1000; width:62%; margin-left:45.3%; margin-top: -5.5%; position: absolute;" src="<?php echo HOME."/img/etiqueta_revision.png"; ?>" alt=""/>
+											<img style="z-index: 1000; width:62%; margin-left:44%; margin-top: -5.5%; position: absolute;" src="<?php echo HOME."/img/etiqueta_revision.png"; ?>" alt=""/>
 									<?php
 										}
 										elseif ($contest["status"]=="Finalizado") 
 										{
 									?>
-											<img style="z-index: 1000; width:60%; margin-left:46%; margin-top: -5.5%; position: absolute;" src="<?php echo HOME."/img/etiqueta_finalizado.png"; ?>" alt=""/>
+											<img style="z-index: 1000; width:60%; margin-left:45.5%; margin-top: -5.3%; position: absolute;" src="<?php echo HOME."/img/etiqueta_finalizado.png"; ?>" alt=""/>
 
 									<?php
 										}
@@ -354,7 +354,7 @@ $(document).ready(function() {
 											{
 											?>
 												<div style="width: 104%; color: white; font-size: 16px;">
-													Concurso <span class="home-video-title">esperando sorteo</span>, atentos a los resultados.
+													Concurso <span class="home-video-title" style="color: #66FF33;">esperando sorteo</span>, atentos a los resultados.
 												</div>
 										<?php
 											}
@@ -362,7 +362,7 @@ $(document).ready(function() {
 											{
 											?>
 												<div style="width: 104%; color: white; font-size: 16px;">
-													Concurso <span class="home-video-title" >finalizado</span>, felicitaciones al ganador(a).
+													Concurso <span class="home-video-title" style="color: yellow;" >finalizado</span>, felicitaciones al ganador(a).
 												</div>
 										<?php
 											}

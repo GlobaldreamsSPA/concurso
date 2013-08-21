@@ -154,9 +154,9 @@ class Applies_model extends CI_Model
 		return true;		
 	}
 	
-	function get_castings_applies_selected($casting_id)
+	function get_selected($casting_id)
 	{
-		$this->db->select('user_id,observation');
+		$this->db->select('user_id');
     	$this->db->where('casting_id', $casting_id);
 		$this->db->where('state', 1);	
 		$query = $this->db->get('applies');

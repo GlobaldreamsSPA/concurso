@@ -126,17 +126,19 @@ class User_model extends CI_Model
 		$this->db->update('users', $data);
 	}
 
-	
-	function welcome_name($id_user)
+	function get_name($id_user)
 	{
-		$result = $this->select($id_user);
-
-		if($result["name"] != NULL)
-			return $result["name"];
-		if($result["email"] != NULL)
-			return $result["email"];
+		$this->db->select("name,last_name");
+		$this->db->where("id",$id_user);
+		$query = $this->db->get("users");
 		
-		return 'Usuario';
+		if($query->num_rows == 0)
+			return 0;
+
+		else
+			return $query->result_array();
+				
+
 	}
 
 
