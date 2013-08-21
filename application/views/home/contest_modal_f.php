@@ -229,7 +229,7 @@
 <div style="margin-left:10px; margin-top:2%; margin-bottom:2%; height: 90%;" class="row">
 	<div class="responsive-top span5" style="padding-right: 2%;">
 		<div style="position: relative; background: #2C3E50;">
-			<img style="position: absolute; z-index: 1000;" src='<?php echo HOME."/img/end_stamp.png"; ?>'/>
+			<img style="position: absolute; z-index: 1000;" src='<?php echo HOME."/img/end_stamp.png?v=1.1"; ?>'/>
 			<img style="opacity: 0.5;" src='<?php echo $full_image; ?>'/>
 		</div>
 		<div class="space05"></div>
