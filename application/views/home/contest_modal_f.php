@@ -89,7 +89,7 @@
             $("#contestmodal").css("overflow-x","hidden");
             
 
-            var width_boxes = "0.3%";
+            var width_boxes = "0";
 
             $("#des").animate({
                 width: width_boxes
@@ -159,6 +159,62 @@
 	});
 
 
+	if($(window).width() < 930)
+	{
+			
+		$(".responsive-top").removeClass('span5');  
+		$(".responsive-top").addClass("span12");
+		$(".responsive-top").css("padding-top","10%");
+
+
+		$(".responsive-bottom").css("padding-top","10%");
+		$(".responsive-bottom").removeClass('span7');  
+		$(".responsive-bottom").addClass("span12");
+
+
+	   	
+	}else if($(window).width() >= 930)
+	{
+		$(".responsive-top").addClass('span5');  
+		$(".responsive-top").removeClass("span12");
+		$(".responsive-top").css("padding-top","");
+
+		$(".responsive-bottom").css("padding-top","");
+		$(".responsive-bottom").addClass('span7');  
+		$(".responsive-bottom").removeClass("span12");
+
+
+
+	}
+
+	$(window).resize(function(){
+		if($(this).width() < 930){
+			
+			$(".responsive-top").removeClass('span5');  
+			$(".responsive-top").addClass("span12");
+			$(".responsive-top").css("padding-top","10%");
+
+
+			$(".responsive-bottom").css("padding-top","10%");
+			$(".responsive-bottom").removeClass('span7');  
+			$(".responsive-bottom").addClass("span12");
+
+
+		   	
+		}else if($(this).width() >= 930)
+		{
+			$(".responsive-top").addClass('span5');  
+			$(".responsive-top").removeClass("span12");
+			$(".responsive-top").css("padding-top","");
+
+			$(".responsive-bottom").css("padding-top","");
+			$(".responsive-bottom").addClass('span7');  
+			$(".responsive-bottom").removeClass("span12");
+
+
+
+		}
+	});
 
 </script>
 
@@ -171,8 +227,11 @@
 	</div>
 </div>
 <div style="margin-left:10px; margin-top:2%; margin-bottom:2%; height: 90%;" class="row">
-	<div class="span5" style="padding-right: 2%;">
-		<img src='<?php echo $full_image; ?>'/>
+	<div class="responsive-top span5" style="padding-right: 2%;">
+		<div style="position: relative; background: #2C3E50;">
+			<img style="position: absolute; z-index: 1000;" src='<?php echo HOME."/img/end_stamp.png"; ?>'/>
+			<img style="opacity: 0.5;" src='<?php echo $full_image; ?>'/>
+		</div>
 		<div class="space05"></div>
 		<span style="font-size:20px !important; font-weight: bold;">Etiquetas:</span>
 		<div style="margin-top: 1%; margin-bottom: 5%;">
@@ -211,7 +270,7 @@
 
 
 	</div>
-	<div class="span7" id="info-contest" style="height:420px; position: relative !important;">
+	<div class="responsive-bottom span7" id="info-contest" style="height:420px; position: relative !important;">
 		<div style="height: 127px;" id="des" class="modal-closed">
 			<h3 style="text-align: center; color:#ffffff;">
 				Descripci&oacute;n
@@ -247,7 +306,7 @@
 			</div>
 		</div>		
         <div class="upload-content photo-content">
-	        <h1 style="text-align:center; font-size: 30px; font-family: 'ganandofont'; color: #27AE60;">¡Felicitaciones al Ganador!</h1>
+	        <h1 style="text-align:center; font-size: 30px; font-family: 'ganandofont'; color: #3498DB;">¡Felicitaciones al Ganador!</h1>
 	        <div style="text-align:center;">
 	        	<div style="display: table-cell; vertical-align: middle; height: 250px; width: 30%;">
 	        		<img style="border-style:solid; border-width:5px; max-width:90%; max-height: 250px;" src="<?php echo HOME.'/img/gallery/'.$contest_winner["image"]; ?>" />

@@ -215,6 +215,7 @@ input[type=file]{
 
 
 #des{
+	overflow-y:auto;
 	position:absolute; 
 	width:49.5%; 
 	background-color:#3498DB;
@@ -223,6 +224,7 @@ input[type=file]{
 
 #pri
 {
+	overflow-y:auto;
 	right:0; 
 	position:absolute; 
 	width:49.5%; 
@@ -233,6 +235,7 @@ input[type=file]{
 
 #bas
 {
+	overflow-y:auto;
 	position:absolute; 
 	width:49.5%; 
 	bottom:0; 
@@ -243,6 +246,7 @@ input[type=file]{
 
 #ste
 {
+	overflow-y:auto;
 	right: 0;  
 	position:absolute;  
 	width:49.5%; 

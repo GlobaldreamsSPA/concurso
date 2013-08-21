@@ -89,7 +89,7 @@
             $("#contestmodal").css("overflow-x","hidden");
             
 
-            var width_boxes = "0.3%";
+            var width_boxes = "0";
 
             $("#des").animate({
                 width: width_boxes
@@ -263,6 +263,63 @@
 	$(".photo-container").bind("click", function() {
 	    $('#upload_photo').trigger('click');
 	});
+	
+	if($(window).width() < 930)
+	{
+			
+		$(".responsive-top").removeClass('span5');  
+		$(".responsive-top").addClass("span12");
+		$(".responsive-top").css("padding-top","10%");
+
+
+		$(".responsive-bottom").css("padding-top","10%");
+		$(".responsive-bottom").removeClass('span7');  
+		$(".responsive-bottom").addClass("span12");
+
+
+	   	
+	}else if($(window).width() >= 930)
+	{
+		$(".responsive-top").addClass('span5');  
+		$(".responsive-top").removeClass("span12");
+		$(".responsive-top").css("padding-top","");
+
+		$(".responsive-bottom").css("padding-top","");
+		$(".responsive-bottom").addClass('span7');  
+		$(".responsive-bottom").removeClass("span12");
+
+
+
+	}
+
+	$(window).resize(function(){
+		if($(this).width() < 930){
+			
+			$(".responsive-top").removeClass('span5');  
+			$(".responsive-top").addClass("span12");
+			$(".responsive-top").css("padding-top","10%");
+
+
+			$(".responsive-bottom").css("padding-top","10%");
+			$(".responsive-bottom").removeClass('span7');  
+			$(".responsive-bottom").addClass("span12");
+
+
+		   	
+		}else if($(this).width() >= 930)
+		{
+			$(".responsive-top").addClass('span5');  
+			$(".responsive-top").removeClass("span12");
+			$(".responsive-top").css("padding-top","");
+
+			$(".responsive-bottom").css("padding-top","");
+			$(".responsive-bottom").addClass('span7');  
+			$(".responsive-bottom").removeClass("span12");
+
+
+
+		}
+	});
 
 
 </script>
@@ -276,7 +333,7 @@
 	</div>
 </div>
 <div style="margin-left:10px; margin-top:2%; margin-bottom:2%; height: 90%;" class="row">
-	<div class="span5" style="padding-right: 2%;">
+	<div class="responsive-top span5" style="padding-right: 2%;">
 		<img src='<?php echo $full_image; ?>'/>
 		<div class="space05"></div>
 		<span style="font-size:20px !important; font-weight: bold;">Etiquetas:</span>
@@ -316,7 +373,7 @@
 
 
 	</div>
-	<div class="span7" id="info-contest" style="height:420px; position: relative !important;">
+	<div class="responsive-bottom span7" id="info-contest" style="height:420px; position: relative !important;">
 		<div style="height: 127px;" id="des" class="modal-closed">
 			<h3 style="text-align: center; color:#ffffff;">
 				Descripci&oacute;n
