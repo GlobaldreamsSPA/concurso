@@ -289,12 +289,12 @@ class Home extends CI_Controller {
 					}
 				}
 
-			$this->index(1, $success_message);
+				redirect(HOME."/home?success_message=".$success_message);
 			}
 			else
 			{
 				$success_message = "Ya estás participado en el concurso, sólo puedes postular una vez";
-				$this->index(1, $success_message);
+				redirect(HOME."/home?success_message=".$success_message);
 			}
 		}
 		else	
@@ -311,12 +311,12 @@ class Home extends CI_Controller {
 			{
 				$this->share_apply_model->insert(array('apply_id'=>$apply_id,'post_id'=>$_GET['post_id']));
 				$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
-				$this->index(1, $success_message);
+				redirect(HOME."/home?success_message=".$success_message);
 			}
 			else
 			{
 				$success_message = "Ya estás participado en el concurso, sólo puedes postular una vez";
-				$this->index(1, $success_message);
+				redirect(HOME."/home?success_message=".$success_message);
 			}
 		}
 		else
@@ -335,12 +335,12 @@ class Home extends CI_Controller {
 			{
 				
 				$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
-				$this->index(1, $success_message);
+				redirect(HOME."/home?success_message=".$success_message);
 			}
 			else
 			{
 				$success_message = "Ya estás participado en el concurso, sólo puedes postular una vez";
-				$this->index(1, $success_message);
+				redirect(HOME."/home?success_message=".$success_message);
 			}
 		}
 		else
