@@ -49,7 +49,7 @@ class Applies_model extends CI_Model
 
     function get_ncontest_by_age($casting_id)
     {
-    	$this->db->select('YEAR(birth_date) as year,COUNT(user_id) as number');
+    	$this->db->select('(YEAR(CURDATE()) - YEAR(birth_date)) as age,COUNT(user_id) as number');
     	$this->db->where('casting_id', $casting_id);
     	$this->db->group_by('YEAR(birth_date)');
     	$this->db->from('applies');

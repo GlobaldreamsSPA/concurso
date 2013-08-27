@@ -108,7 +108,7 @@ $(function () {
             type: 'line'
         },
         title: {
-            text: "Año Nacimiento v/s Postulaciones"
+            text: "Edad v/s Postulaciones"
         },
         yAxis: {
         	min: 0,
@@ -409,7 +409,7 @@ $(function () {
 									foreach ($age_table as $age){
 								?>
 										<tr>
-											<td style="text-align: center; vertical-align: middle;"><?php echo $age["year"] ?></td>
+											<td style="text-align: center; vertical-align: middle;"><?php echo $age["age"] ?></td>
 											<td style="text-align: center; vertical-align: middle;"><?php echo $age["number"] ?></td>
 										</tr>
 								<?php	
