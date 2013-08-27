@@ -382,6 +382,8 @@ class Hunter extends CI_Controller {
 
 			$args["date_table"] = $this->applies_model-> get_ncontest_by_date($id);
 			$args["hour_table"] = $this->applies_model-> get_ncontest_by_hour($id);
+			$args["sex_table"] = $this->applies_model-> get_ncontest_by_sex($id);
+			$args["age_table"] = $this->applies_model-> get_ncontest_by_age($id);
 
 			$this->load->view('template', $args);
 		}

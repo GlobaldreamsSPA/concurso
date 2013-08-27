@@ -14,6 +14,37 @@ class Applies_model extends CI_Model
     	return $this->db->count_all_results();
     }
 
+
+    function get_ncontest_by_sex($casting_id)
+    {
+    	$this->db->select('IF(sex = 0, "femenino", "masculino" ) as sex,COUNT(user_id) as number',false);
+    	$this->db->where('casting_id', $casting_id);
+    	$this->db->group_by('sex');
+    	$this->db->from('applies');
+		$this->db->join('users', 'users.id = applies.user_id');
+		$query = $this->db->get();
+
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return $query->result_array();
+    }
+
+    function get_ncontest_by_age($casting_id)
+    {
+    	$this->db->select('YEAR(birth_date) as year,COUNT(user_id) as number');
+    	$this->db->where('casting_id', $casting_id);
+    	$this->db->group_by('YEAR(birth_date)');
+    	$this->db->from('applies');
+		$this->db->join('users', 'users.id = applies.user_id');
+		$query = $this->db->get();
+
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return $query->result_array();
+    }
+
     function get_ncontest_by_date($casting_id)
     {
     	$this->db->select('count(id) as number,date(timestamp) as date');

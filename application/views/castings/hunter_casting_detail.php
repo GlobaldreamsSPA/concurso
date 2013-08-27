@@ -63,11 +63,76 @@ $(function () {
         }
     });
 
+
+
+    $('#sex_graph').highcharts({
+        data: {
+            table: document.getElementById('sex_table')
+        },
+        chart: {
+            plotBackgroundColor: "#ECF0F1",
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: ""
+        },
+        yAxis: {
+            allowDecimals: false,
+        }, 
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                  dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+            }
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+
+        }
+    });
+
+    $('#age_graph').highcharts({
+        data: {
+            table: document.getElementById('age_table')
+        },
+        chart: {
+            plotBackgroundColor: "#ECF0F1",
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'line'
+        },
+        title: {
+            text: "Hora v/s Postulaciones"
+        },
+        yAxis: {
+        	min: 0,
+        	title: {
+                    text: 'Postulaciones'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+			valueSuffix: ' postulantes'
+        }
+    });
+
     $('#tab-info').click(function (e) {
 		e.preventDefault();
 		$(this).tab('show');
 		$("#tab-hour").tab('hide');
 		$("#tab-date").tab('hide');
+		$("#tab-sex").tab('hide');
+		$("#tab-age").tab('hide');
 	});
 
     $('#tab-date').click(function (e) {
@@ -75,11 +140,34 @@ $(function () {
 		$(this).tab('show');
 		$("#tab-hour").tab('hide');
 		$("#tab-info").tab('hide');
+		$("#tab-sex").tab('hide');
+		$("#tab-age").tab('hide');
 	});
 
 	$('#tab-hour').click(function (e) {
 		e.preventDefault();
 		$(this).tab('show');
+		$("#tab-date").tab('hide');
+		$("#tab-info").tab('hide');
+		$("#tab-sex").tab('hide');
+		$("#tab-age").tab('hide');
+
+	});
+
+	$('#tab-sex').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+		$("#tab-hour").tab('hide');
+		$("#tab-date").tab('hide');
+		$("#tab-info").tab('hide');
+		$("#tab-age").tab('hide');
+	});
+
+	$('#tab-age').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+		$("#tab-sex").tab('hide');
+		$("#tab-hour").tab('hide');
 		$("#tab-date").tab('hide');
 		$("#tab-info").tab('hide');
 	});
@@ -198,8 +286,10 @@ $(function () {
 
 		<ul class="nav nav-tabs" id="myTab">
 			<li class="active"><a style="font-size: 15px !important;" id="tab-info" href="#info">Información Concurso</a></li>
-			<li><a style="font-size: 15px !important;" id="tab-date" href="#date">Días vs Postulaciones</a></li>
-			<li><a style="font-size: 15px !important;" id="tab-hour" href="#hour">Horas vs Postulaciones</a></li>
+			<li><a style="font-size: 15px !important;" id="tab-date" href="#date"> Dia / Post </a></li>
+			<li><a style="font-size: 15px !important;" id="tab-hour" href="#hour"> Hora / Post </a></li>
+			<li><a style="font-size: 15px !important;" id="tab-sex" href="#sex"> Sexo / Post</a></li>
+			<li><a style="font-size: 15px !important;" id="tab-age" href="#age"> Edad / Post</a></li>
 		</ul>
 		 
 		<div class="tab-content">
@@ -273,6 +363,58 @@ $(function () {
 						</tbody>
 					</table>
 					<div id="hour_graph" style="min-width: 47.8%; height: 400px; margin: 0 auto"></div>
+				</div>
+			</div>
+			<div class="tab-pane" id="sex">
+				<div class="row">
+					<table id="sex_table" style="display:none;" class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th style="text-align: center;">Sexo</th>
+								<th style="text-align: center;">Repeticiones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php 
+								if($sex_table)
+									foreach ($sex_table as $sex){
+							?>
+										<tr>
+											<td style="text-align: center; vertical-align: middle;"><?php echo $sex["sex"] ?></td>
+											<td style="text-align: center; vertical-align: middle;"><?php echo $sex["number"] ?></td>
+										</tr>
+							<?php	
+									} 
+							?>
+						</tbody>
+					</table>
+					<div id="sex_graph" style="height: 400px; min-width: 46.8%; margin-left:2%;"></div>
+				</div>
+			</div>
+			<div class="tab-pane" id="age">
+				<div class="row">
+					<table id="age_table" style="display: none;"class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th style="text-align: center;">Año Nacimiento</th>
+								<th style="text-align: center;">Repeticiones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php 
+								if($age_table)
+									foreach ($age_table as $age){
+								?>
+										<tr>
+											<td style="text-align: center; vertical-align: middle;"><?php echo $age["year"] ?></td>
+											<td style="text-align: center; vertical-align: middle;"><?php echo $age["number"] ?></td>
+										</tr>
+								<?php	
+									} 
+							?>
+						</tbody>
+					</table>
+					<div id="age_graph" style="min-width: 47.8%; height: 400px; margin: 0 auto"></div>
 				</div>
 			</div>
 		</div>
