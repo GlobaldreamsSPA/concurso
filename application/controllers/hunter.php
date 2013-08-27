@@ -368,6 +368,8 @@ class Hunter extends CI_Controller {
 			{
 				$args['casting']["share_count"] = $this->share_detail_model->select('visits',array('casting_id'=>$id));
 				$args['casting']["share_count"] = $args['casting']["share_count"][0]["visits"];
+				$args['casting']['share_reach'] = $this->applies_model->get_share_reach($id);
+				
 			}
 
 

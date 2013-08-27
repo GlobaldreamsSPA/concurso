@@ -266,7 +266,10 @@ $(function () {
 				?>
 						<p>
 							Retorno clicks: <?php echo $casting['share_count']; ?>
-						</p>											
+						</p>
+						<p>
+							Alcance: <?php echo $casting['share_reach']; ?>
+						</p>															
 				<?php
 					} 
 				?>

@@ -14,6 +14,23 @@ class Applies_model extends CI_Model
     	return $this->db->count_all_results();
     }
 
+    function get_share_reach($casting_id)
+    {
+    	$this->db->select('SUM(number_friends) as number');
+    	$this->db->where('casting_id', $casting_id);
+    	$this->db->group_by('casting_id');
+    	$this->db->from('applies');
+		$this->db->join('users', 'users.id = applies.user_id');
+		$query = $this->db->get();
+
+		if($query->num_rows == 0)
+			return 0;
+		else
+		{
+			$return = $query->result_array();
+			return  $return[0]["number"];
+    	}
+    }
 
     function get_ncontest_by_sex($casting_id)
     {
