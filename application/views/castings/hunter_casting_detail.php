@@ -97,6 +97,7 @@ $(function () {
         }
     });
 
+
     $('#age_graph').highcharts({
         data: {
             table: document.getElementById('age_table')
@@ -125,7 +126,7 @@ $(function () {
 			valueSuffix: ' postulantes'
         }
     });
-
+    
     $('#tab-info').click(function (e) {
 		e.preventDefault();
 		$(this).tab('show');

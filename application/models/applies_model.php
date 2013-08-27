@@ -52,6 +52,7 @@ class Applies_model extends CI_Model
     	$this->db->select('(YEAR(CURDATE()) - YEAR(birth_date)) as age,COUNT(user_id) as number');
     	$this->db->where('casting_id', $casting_id);
     	$this->db->group_by('YEAR(birth_date)');
+    	$this->db->order_by('age');
     	$this->db->from('applies');
 		$this->db->join('users', 'users.id = applies.user_id');
 		$query = $this->db->get();
