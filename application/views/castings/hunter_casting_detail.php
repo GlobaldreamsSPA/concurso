@@ -108,7 +108,7 @@ $(function () {
             type: 'line'
         },
         title: {
-            text: "Hora v/s Postulaciones"
+            text: "Año Nacimiento v/s Postulaciones"
         },
         yAxis: {
         	min: 0,
