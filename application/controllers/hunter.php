@@ -590,8 +590,46 @@ class Hunter extends CI_Controller {
 				$args["selected_question"] =$_GET["question_id"];
 			else
 				$args["selected_question"] = $questions[0]["id"];
+
+
 			
-			$all_answers = $this->custom_answers_model->retrieve($args["selected_question"]);
+			if(isset($_GET["sex"]))
+				$filter_sex = $_GET["sex"];
+			else
+				$filter_sex  = "";
+
+			$args["sex_select"]= array(""=>"Sexo",0 => "Femenino",1 => "Masculino");
+			$args["selected_sex"] = $filter_sex;
+
+			if(isset($_GET["sex"]))
+				$filter_sex = $_GET["sex"];
+			else
+				$filter_sex  = "";
+
+			$age=array();
+
+			for ($i=10; $i < 70; $i++) { 
+				$age[$i] = $i." años";				
+			}
+
+			if(isset($_GET["from_age"]))
+				$filter_from_age = $_GET["from_age"];
+			else
+				$filter_from_age  = 0;
+			
+			$args["from_age_select"] = array("Desde") +$age;
+			$args["selected_from_age"] = $filter_from_age;
+
+			if(isset($_GET["to_age"]))
+				$filter_to_age = $_GET["to_age"];
+			else
+				$filter_to_age  = 0;
+
+			$args["to_age_select"] = array("Hasta") +$age;
+			$args["selected_to_age"] = $filter_to_age;
+
+
+			$all_answers = $this->custom_answers_model->retrieve($args["selected_question"],$filter_sex,$filter_from_age,$filter_to_age);
 
 			switch ($args["question_type"][$args["selected_question"]]) {
 				case 'multiselect':

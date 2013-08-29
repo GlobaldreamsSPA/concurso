@@ -12,12 +12,24 @@ class Custom_answers_model extends CI_Model
         $this->db->insert('custom_answers', array('answer' => $data['answer'], 'custom_questions_id' => $data['custom_questions_id'], 'apply_id' => $apply_id));
     }
 
-    function retrieve($custom_questions_id)
+    function retrieve($custom_questions_id, $sex = "",$from_age = "",$to_age = "")
     {
-    	$this->db->select('*');
+    	$this->db->select('answer,sex,YEAR(CURDATE()) - YEAR(birth_date) as age');
     	$this->db->where('custom_questions_id', $custom_questions_id);
-		
-		$query = $this->db->get("custom_answers");
+        if($sex != "")
+            $this->db->where('sex', $sex);
+        if(($from_age != "" && $to_age != "") && ($from_age <= $to_age))
+        {
+            $this->db->having('age >=', $from_age);
+            $this->db->having('age <=', $to_age);
+               
+        }
+
+		$this->db->from("custom_answers");
+		$this->db->join('applies', 'apply_id = applies.id');
+        $this->db->join('users', 'users.id = user_id');
+
+        $query = $this->db->get();
 		
 		if($query->num_rows == 0)
 			return 0;

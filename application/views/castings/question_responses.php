@@ -84,11 +84,28 @@ $(document).ready(function() {
 
 		<div class="row" style="margin-top:15px; left:0 !important;">
 			<form style="margin-right: -6%;" class="row">
-				<div style="margin-left:4%;" class="styled span9">										
-					<?php echo form_dropdown("question_id",$question_select,$selected_question,'id="question_id" style="width:100%;"') ?>
+				<div class="span9">
+					<div style="margin-left:4%;" class="styled span12">										
+						<?php echo form_dropdown("question_id",$question_select,$selected_question,'id="question_id" style="width:100%;"') ?>
+					</div>
+					<div style="margin-left:4%; margin-top: 2%;" class="span1">										
+						<div style="margin-top: 30%; font-weight: bold;">Filtros</div>
+					</div>
+					<div style="margin-left:3%; margin-top: 2%;" class="styled span3">										
+						<?php echo form_dropdown("sex",$sex_select,$selected_sex,'id="sex" style="width:100%;"') ?>
+					</div>
+					<div style="margin-left:3%; margin-top: 2%; text-align:center;" class="span1">										
+						<div style="margin-top: 5%; font-weight: bold;">Rango Edad</div>
+					</div>
+					<div style="margin-left:3%; margin-top: 2%;" class="styled span3">										
+						<?php echo form_dropdown("from_age",$from_age_select,$selected_from_age,'id="from_age" style="width:100%;"') ?>
+					</div>
+					<div style="margin-left:3%; margin-top: 2%;" class="styled span3">										
+						<?php echo form_dropdown("to_age",$to_age_select,$selected_to_age,'id="to_age" style="width:100%;"') ?>
+					</div>
 				</div>
-				<div style="margin-left:2%;" class="styled span3">
-					<button type="submit" class="btn btn-info">Ver Resultados</button>
+				<div style="margin-left:2%; height: 20%;" class="styled span3">
+					<button style="margin-top: 8%;" type="submit" class="btn btn-info">Actualizar Resultados</button>
 				</div>
 			</form>
 
