@@ -145,11 +145,6 @@ class Hunter extends CI_Controller {
 					$casting['category'] = $this->input->post('category');
 					$casting['category'] = $this->casting_categories_model->get_id_by_name($casting['category']);
 
-					if(strcmp($this->input->post('category'), 'Trivia') == 0)
-					{
-						$casting['apply_url'] = 'trivia';
-					}
-
 					$casting['max_applies'] = $this->input->post('max_applies');
 					$casting['entity_id'] = $hunter_id;
 

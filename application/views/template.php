@@ -67,12 +67,12 @@
 	</div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
+	<script src="//www.youtube.com/iframe_api"></script>	
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> 
 	<script src="<?php echo base_url()?>js/chosen.jquery.min.js" type="text/javascript"></script>
 	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>	
 	<script src="<?php echo base_url()?>js/jquery.ba-resize.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery.countdown.js" type="text/javascript"></script>
-	
 	<div class="wrapper">	
 		<div id="fb-root"></div>
 		<div class="navbar navbar-fixed-top" id="headercontent">
@@ -176,7 +176,9 @@
 	<?php } ?>
 </footer>
 <script type="text/javascript">
-      
+    
+
+
 
 	if($(window).width() < 930){
     			    

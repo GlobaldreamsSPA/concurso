@@ -5,7 +5,7 @@
 		{
 			tag = $("#type_contest option:selected").text();
 
-			if(tag != "Trivia")
+			if(tag != "Trivia" && tag != "Video")
 			{
 				$("#trivia").css("display", "none");
 			}

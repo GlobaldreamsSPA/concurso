@@ -145,23 +145,16 @@
 		});
 	}
 
-	if((($("#contest-link").attr("href") == 'photo' || $("#contest-link").attr("href") == 'trivia') && !($(".upload-content").length > 0)) ||  $("#contest-link").attr("href") == 'none')
+	if($("#contest-link").attr("href") == 'none')
 	{
-			
-
 		$('#contest-link').attr('rel','tooltip');
 		$('#contest-link').attr('data-original-title','Debes iniciar sesión para participar');
 		$('#contest-link').tooltip();
 
 		$('#contest-link').click(function(event){
 	         event.preventDefault();
-	      });
-
+	    });
 	}
-		
-	if(!($("#contest-link").attr("href") == 'photo' || $("#contest-link").attr("href") == 'trivia' || $("#contest-link").attr("href") == 'none'))
-		close_elements = close_elements + ", .btn-primary";
-
 
 	$(close_elements).bind("click", function() {
 	    $("#contestmodal").fadeOut(500, function () {
@@ -446,14 +439,162 @@
 		?>
 		<form id="trivia-upload-form" action="<?php echo HOME.'/home/apply_trivia/'.$id_casting; ?>" method="POST">
 			<div class="upload-content trivia-content">
+				<h3 style='text-align: center;'>Responde las siguientes preguntas</h3>
+				<div class="space05"></div>
 				<?php
 					if($custom_options != FALSE)
 					{
-						echo "<h3 style='text-align: center;' class='demo-panel-title'>Responde las siguientes preguntas</h3>";
-
 						for($i=0; $i < count($custom_options); $i++) 
 						{
 							echo "<div style='padding-left:4%; padding-right:3%; width:95%;'class='row'";
+
+							if(strcmp($custom_options[$i]['type'], 'text') == 0)
+							{
+								echo "<h5>".$custom_options[$i]['text']."</h5>";
+								echo "<div style='text-align: center;' class='control-group'><textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 94%; margin-top: 15px;' placeholder='ingresa tu respuesta'></textarea>";
+								echo "<label style='display: none; font-size: 12px; margin-left: 5px; margin-top: -2.4%;'>Este campo es requerido</label></div>";
+								echo "<div class='space05'></div>";
+							}
+
+							if(strcmp($custom_options[$i]['type'], 'select') == 0)
+							{
+								//Pregunta va h5 y se crea un select con varios options
+								echo "<h5>".$custom_options[$i]['text']."</h5>";
+								echo "<div class='space05'></div>";
+								echo "<div style='text-align: center;'>";
+								echo "<select name='custom_select_answer_".$custom_options[$i]['id']."'>";
+								foreach ($custom_options[$i]['options'] as $option)
+								{
+									echo "<option value='".$option['id']."'>".$option['option']."</option>";
+								}
+								echo "</select>";
+								echo "</div>";
+								echo "<div class='space05'></div>";
+							}
+
+							if(strcmp($custom_options[$i]['type'], 'multiselect') == 0)
+							{
+								//Pregunta va h5 y se crea un select chozen
+								echo "<h5>".$custom_options[$i]['text']."</h5>";
+								echo "<div class='space05'></div>";
+
+								$options =  array();
+								foreach ($custom_options[$i]['options'] as $option)
+								{
+									$options[$option['id']] = $option['option'];
+								}
+
+								echo "<div style='text-align: center;' class='chozen-control-group'>".form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' data-placeholder='Selecciona tus respuestas..'");
+								echo "<label style='display: none; font-size: 12px; margin-left: 1%;'>Este campo es requerido</label></div>";
+								echo "<div class='space1'></div>";
+							}
+							echo "</div>";
+						}
+					echo form_submit("", "CONCURSAR", "id='apply-link' style='margin-right:4%;' class='btn btn-primary pull-right' target='_blank' ");
+					}
+				?>
+				
+				<!-- Este script es para convertir los multiselects en chozen selects -->
+				<script type="text/javascript">
+					$(".chzn-select").chosen();
+				</script>
+			</div>
+		</form>
+		<?php		
+			}
+			elseif(strcmp($apply_url, "video") == 0 && $logged_in)
+			{
+		?>
+		<form id="video-form" action="<?php echo HOME.'/home/apply_trivia/'.$id_casting; ?>" method="POST">
+			<div class="upload-content trivia-content">
+				<h3 style='text-align: center;'>Ve el video y responde la pregunta</h3>
+				<div class="space05"></div>
+				<div id="video_id" style="display:none;"><?php echo $video_id; ?></div>
+				<div style="margin-left: 4%;border: 5px solid #E67E22; border-radius:3px;" id="player"></div>
+
+			    <script>
+			   
+					var player;
+					var viewed = false;
+					player = new YT.Player('player', {
+						height: '220',
+						width: '90%',
+						videoId: $("#video_id").text(),
+						events: {
+			                'onStateChange': onPlayerStateChange
+			            }
+					});
+
+					$('#contest-link').click(function (event)
+					{
+					    if(!toggle) 
+					    	player.playVideo();
+				        else 
+							player.stopVideo();
+					});
+
+					function onPlayerStateChange(event) {        
+			            if(event.data === 0) {          
+			                viewed = true;
+			            }
+			        }
+				
+					$("#video-form").submit(function(){
+						
+						if (!viewed) {
+							alert("¡Debes ver el video completo!");
+							return false;
+						}
+						
+						var error = false;
+						var elements = $('.control-group textarea');
+
+						for(var i=0; i < elements.length; i++)
+						{
+							if(elements[i].value == "")
+							{
+								error = true;
+
+								div = $('.control-group')[i];
+								div.className = div.className + " error";
+
+								label = $('.control-group label')[i];
+								label.style.display = "block";
+								label.style.marginTop = "0";
+								label.style.color = "#E74C3C";
+							}
+						}
+
+						var elements = $('.chzn-choices');
+						
+						for(var i=0; i < elements.length; i++)
+						{
+							length = elements[i].getElementsByClassName('search-choice').length;
+							if(length == 0)
+							{
+								error = true;
+								label = $('.chozen-control-group label')[i];
+								label.style.display = "block";	
+								label.style.color = "#E74C3C";
+							}
+						}
+
+						if(error)
+							return false;
+						else
+							return true;
+					});
+
+			    </script>
+
+				<div class="space05"></div>
+				<?php
+					if($custom_options != FALSE)
+					{
+
+						for($i=0; $i < count($custom_options); $i++) 
+						{
+							echo "<div style='padding-left:6%; padding-right:3%; width:92%;'class='row'";
 
 							if(strcmp($custom_options[$i]['type'], 'text') == 0)
 							{

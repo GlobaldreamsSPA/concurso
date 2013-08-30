@@ -46,7 +46,7 @@ class Home extends CI_Controller {
 		$args["page"]=$page;
 
 		foreach ($args["contest_list"] as &$element) {
-			if(!in_array($element["category"],array(1,2,3)))
+			if(!in_array($element["category"],array(1,2,3,4)))
 				$element["info_only"]= true;
 			else
 				$element["info_only"]= false;
@@ -176,7 +176,7 @@ class Home extends CI_Controller {
 			}
 			else
 			{
-				if( !in_array($args['category_id'],array(1,2,3)))
+				if( !in_array($args['category_id'],array(1,2,3,4)))
 					$args['apply_url'] = $_GET['apply_url'];
 				else
 				{
@@ -193,36 +193,54 @@ class Home extends CI_Controller {
 							$args['apply_url'] = "none";
 					}
 					elseif($args['category_id'] == 1)
-						$args['apply_url'] = "photo";
-					elseif($args['category_id'] == 3)
 					{
-						$args['apply_url'] = "trivia";
-
-						//Aca se recuperan las preguntas personalizadas
-						$custom_questions = $this->custom_questions_model->getQuestionsBy($args['id_casting']);
-						$custom_options = array();
-
-						if($custom_questions != 0)
+						if($args['logged_in'])
 						{
-							for($i =0; $i < count($custom_questions); $i++)
+							$args['apply_url'] = "photo";
+						}
+						else
+							$args['apply_url'] = "none";
+					}
+					elseif($args['category_id'] == 3 || $args['category_id'] == 4)
+					{
+						if($args['logged_in'])
+						{
+							if($args['category_id'] == 3)
+								$args['apply_url'] = "trivia";
+							else
 							{
-								$custom_options[$i] = array('id' => $custom_questions[$i]['id'], 'type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
-								$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
-
-								if((!$opciones == 0))
-								{
-									//hay opciones
-									foreach ($opciones as $option) {
-										$custom_options[$i]['options'][] = array('id' => $option['id'], 'option' => $option['option']);	
-									}
-								}
+								$args['apply_url'] = "video";
+								$args['video_id'] = $_GET['apply_url'];
 							}
 
-							$args['custom_options'] = $custom_options;
+							//Aca se recuperan las preguntas personalizadas
+							$custom_questions = $this->custom_questions_model->getQuestionsBy($args['id_casting']);
+							$custom_options = array();
+
+							if($custom_questions != 0)
+							{
+								for($i =0; $i < count($custom_questions); $i++)
+								{
+									$custom_options[$i] = array('id' => $custom_questions[$i]['id'], 'type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
+									$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
+
+									if((!$opciones == 0))
+									{
+										//hay opciones
+										foreach ($opciones as $option) {
+											$custom_options[$i]['options'][] = array('id' => $option['id'], 'option' => $option['option']);	
+										}
+									}
+								}
+
+								$args['custom_options'] = $custom_options;
+							}
 						}
+						else
+							$args['apply_url'] = "none";
 					}
 					else
-						$args['apply_url'] = null;
+						$args['apply_url'] = "none";
 				}	
 				
 				$this->load->view('home/contest_modal',$args);

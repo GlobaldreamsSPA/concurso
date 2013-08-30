@@ -315,7 +315,7 @@ class Applies_model extends CI_Model
     	}
 
     	//Se borran las custom answers y se borra el apply
-    	if(strcmp($category, "3") == 0)
+    	if(strcmp($category, "3") == 0 || strcmp($category, "4") == 0)
     	{
     		$this->db->delete('custom_answers', array('apply_id' => $apply_id));
     	}
