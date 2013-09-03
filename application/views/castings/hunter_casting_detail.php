@@ -426,13 +426,13 @@ $(function () {
 		<div class="space2"></div>
 
 		<div style="margin-right: -9%;" class="row">
-			<div class="span3 <?php if ($casting["category_id"] == "3") echo "offset4"; elseif($casting["category_id"] == "1") echo "offset5"; else  echo "offset7"; ?>">
+			<div class="span3 <?php if ($casting["category_id"] == "3" || $casting["category_id"] == "4") echo "offset4"; elseif($casting["category_id"] == "1") echo "offset5"; else  echo "offset7"; ?>">
 				<a class="btn btn-primary" href="<?php echo HOME.'/hunter/accepted_list/'.$casting["id"] ?>" ><i style="margin-top: 3px; margin-right: 3px;" class="icon-star"></i>Elegir Ganador</a>
 			</div>
 			<div class="span2">
 				<a class="btn btn-primary" href="<?php echo HOME.'/hunter/edit_casting/'.$casting["id"] ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-edit"></i>Editar</a>
 			</div>
-			<?php if ($casting["category_id"] == "3") 
+			<?php if ($casting["category_id"] == "3" || $casting["category_id"] == "4" ) 
 				{
 			?>
 					<div class="span3">
