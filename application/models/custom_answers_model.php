@@ -7,11 +7,13 @@ class Custom_answers_model extends CI_Model
         parent::__construct();
     }
 
+    /* Funcion para guardar las respuestas */
     function save($data, $apply_id)
     {
         $this->db->insert('custom_answers', array('answer' => $data['answer'], 'custom_questions_id' => $data['custom_questions_id'], 'apply_id' => $apply_id));
     }
 
+    /*Funcion para recuperar las respuestas, utilizando filtros alternativos*/
     function retrieve($custom_questions_id, $sex = "",$from_age = 0,$to_age = 0)
     {
     	$this->db->select('answer,sex,YEAR(CURDATE()) - YEAR(birth_date) as age');

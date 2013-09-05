@@ -7,7 +7,7 @@ class Hunter extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form','security'));
 		$this->load->model(array('hunter_model','share_detail_model', 'prize_categories_model' ,'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model','custom_questions_model','custom_options_model','custom_answers_model'));
-		$this->load->library(array('upload', 'image_lib', 'form_validation'));
+		$this->load->library(array('upload','image_lib', 'form_validation'));
 		
 	}
 	
@@ -51,6 +51,8 @@ class Hunter extends CI_Controller {
 		   redirect(HOME."/hunter");
 	   }
     }
+
+
 
 	function check_database($password)
 	{
@@ -314,15 +316,9 @@ class Hunter extends CI_Controller {
 					$args["casting"]['target_applies'] = round($args["casting"]["applies"]/$args["casting"]["max_applies"],2) * 100;
 			else 
 				$casting['target_applies'] = 100;
-								
-			if($args["casting"]['applies'] != 0)
-				$args["casting"]['reviewed'] = round(($args["casting"]['applies'] - $this->applies_model->count_casting_applies($args["casting"]['id'],0))/$args["casting"]['applies'],2)*100;
-			else 
-				$args["casting"]['reviewed']= 0;					   
+												   
 			
-
 			$args["casting"]['target_applies_color'] = $this->_color_bar((int) $args["casting"]['target_applies']);
-			$args["casting"]['reviewed_color'] = $this->_color_bar((int) $args["casting"]['reviewed']);
 			$args["casting"]['label_color'] = $this->_color_label($args['casting']['status']);
 			
 			
@@ -489,7 +485,86 @@ class Hunter extends CI_Controller {
 		else
 			redirect(HOME);
 	}
-	
+  	
+
+  	function list_all($id_casting)
+	{
+
+
+		if(isset($_GET['iSortCol_0']))
+		{
+			$order = true;
+			$direction = $_GET['sSortDir_0'];
+		}
+		else
+		{
+			$order = null;
+			$direction = null;
+		
+		}
+
+    	if(isset($_GET['iDisplayStart']) && $_GET['iDisplayLength'] != '-1')
+    	{
+    		$from = $_GET['iDisplayStart'];
+    		$length = $_GET['iDisplayLength'];
+    	}
+    	else
+    	{
+			$from = null;
+    		$length = null;  	
+    	}
+
+		if(isset($_GET['sSearch']) && $_GET['sSearch'] != "")
+			$search = $_GET['sSearch'];
+		else
+			$search = null;
+
+		$applicants = $this->applies_model->get_castings_applies_data_tables($id_casting,$from,$length,$search,$order,$direction);
+		$count_applicants_filter = $this->applies_model->get_castings_applies_data_tables($id_casting,null,null,$search,$order,$direction);
+
+		$total = $this->applies_model->get_applies_cant($id_casting);
+
+		$output = array(
+			"sEcho" => intval($_GET['sEcho']),
+			"iTotalRecords" => $total,
+			"iTotalDisplayRecords" => count($count_applicants_filter),
+			"aaData" => array()
+		);
+
+		$counter = 1;
+		if(!is_null($applicants))
+			foreach ($applicants as $applicant) {
+				
+				$data = array();
+				$image_profile = GALLERY.$applicant["image_profile"];
+
+	        	$file = realpath(LOCAL_GALLERY.$applicant["image_profile"]);
+	        	
+	        	if($applicant["image_profile"] != "" && file_exists($file))
+	        	{
+	        		$filesize = filesize($file);
+	        		
+	        		if($filesize == 0)
+	        		{
+	        			$image_profile = GALLERY.'generic.png';
+	        		}
+	        	}
+	        	else
+	        	{
+	        		$image_profile = GALLERY.'generic.png';
+	        	}
+	        	
+	        	$data[] = $applicant["number"];
+	        	$data[] = $image_profile;
+	        	$data[] = $applicant["full_name"];
+	        	$data[] = $applicant["email"];
+				$data[] = $applicant["user_id"];
+				$output["aaData"][]=$data;
+
+				$counter = $counter + 1;
+			}
+		echo json_encode( $output );
+	}	
 
 	function accepted_list($id)
 	{
@@ -515,34 +590,27 @@ class Hunter extends CI_Controller {
 			if(strlen($args["name_casting"]) > 36)
 				$args["name_casting"] = substr($args["name_casting"],0,34)."..";
 
-			$id_applicants= $this->applies_model->get_castings_applies($id,null,0);
 			
 			$args["id_casting"]= $id;
-			$args["mailto_all"]="";
 
-			if($id_applicants!= 0)
-			{
-				$args["applicants"]=array();
-				
-				foreach($id_applicants as $id)
-				{
-					$applicant_info=$this->user_model->select_applicant($id['user_id']);
-					if($applicant_info['image_profile']!=0)
-						$applicant_info['image_profile'] = $this->photos_model->get_name($applicant_info['image_profile']);
-					
-					//$applicant_info['contest_photo'] = $this->photos_model->get_contest_photo($id['user_id'],$args["id_casting"]);
- 
-					array_push($args["applicants"],$applicant_info);
-					$args["mailto_all"]=$args["mailto_all"].$applicant_info["email"].";";
-				}				
-			}
-		
 
 			$this->load->view('template', $args);
 		}
 		else
 			redirect(HOME);
 	}
+
+	function set_postulation_number($casting_id)
+	{
+		if($this->session->userdata('logged_in'))
+		{
+			$this->applies_model->set_postulation_number($casting_id);
+			redirect(HOME."/hunter/accepted_list/".$casting_id);
+		}
+		else
+			redirect(HOME);
+	}
+
 
 	function question_responses($casting_id)
 	{
@@ -702,41 +770,6 @@ class Hunter extends CI_Controller {
 			$args["inner_args"]=$inner_args;
 			
 			$this->load->view('template', $args);
-		}
-		else
-			redirect(HOME);
-	}
-
-	function accept_apply($apply_id,$casting_id)
-	{
-		if($this->session->userdata('logged_in'))
-		{
-			$this->applies_model->set_accepted($apply_id,$this->input->post('observation'));
-			redirect(HOME."/hunter/applicants_list/".$casting_id);
-		}
-		else
-			redirect(HOME);	
-	}
-	
-	function reject_apply($apply_id,$casting_id)
-	{
-		if($this->session->userdata('logged_in'))
-		{
-			$this->applies_model->set_rejected($apply_id);
-			redirect(HOME."/hunter/applicants_list/".$casting_id);
-		}
-		else
-			redirect(HOME);	
-	}
-	
-	
-
-	function finalize_casting($id_casting)
-	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
-		{
-				$this->castings_model->finalize_casting($id_casting);	
-				redirect(HOME."/hunter/casting_list");
 		}
 		else
 			redirect(HOME);

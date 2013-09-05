@@ -3,10 +3,29 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-	    $('#tblData').dataTable();
+	    $('#tblData').dataTable( {
+	    	"bProcessing": true,
+			"bServerSide": true,
+			"sAjaxSource": $("#url").text()
+		} );
+		$(document).ajaxSuccess(function() {
+			$('#tblData tbody td').each(function() {
+				var column = $(this).parent().children().index(this);
+				if(column == 1)
+					$(this).html("<img src='"+$(this).text()+"'/>");
+				if(column == 3)
+					$(this).html("<a class='btn' href='mailto:"+$(this).text()+"'><i class='icon-envelope icon-white'></i></a>");
+				if(column == 4)
+					$(this).html("<input id='"+$(this).text()+"' value='"+$(this).text()+"' name='selected[]'' type='checkbox'>");
+
+			});
+
+		});
+			
 	} );
 </script>
 
+<div id="url" style="display: none"><?php echo HOME."/hunter/list_all/".$id_casting; ?></div>
 
 <div style="margin-left: -3%;" class="span3">
 	<div style=" padding-right: 10%; padding-left:10%; border-top-left-radius:10px; border-top-right-radius: 10px;" class="row-fluid">
@@ -44,115 +63,29 @@
 			</ul>		
 		</div>	
 
-
 		<form method="post">
 			<table id="tblData" class="table">
 	          <thead>
 	            <tr>
 	            	<th>Nº</th>
 					<th>Imagen</th>
-				<!--	<th>Imagen Concurso</th> -->
 					<th>Nombre completo</th>
-				<!--
-					<th>Edad</th>
-					<th>Sexo</th>
-				-->
 					<th>Correo</th>
 					<th>Ganador </th>
 				</tr>
 	          </thead>
 	          <tbody>
-	          	
-	          	<?php
-	          	 if(isset($applicants))
-	          	 {
-	          	 	$i=1;
-
-		          	foreach ($applicants as $applicant) 
-		          	{
-		          	?>
-						<tr>
-							<td style="vertical-align:middle;" class="center"><?php echo $i;?></td>
-				            <td style="vertical-align:middle;">
-				            <?php
-				            	$image_profile = GALLERY.$applicant["image_profile"];
-
-				            	$file = realpath(LOCAL_GALLERY.$applicant["image_profile"]);
-				            	
-				            	if($applicant["image_profile"] != "" && file_exists($file))
-				            	{
-				            		$filesize = filesize($file);
-				            		
-				            		if($filesize == 0)
-				            		{
-				            			$image_profile = GALLERY.'generic.png';
-				            		}
-				            	}
-				            	else
-				            	{
-				            		$image_profile = GALLERY.'generic.png';
-				            	}
-				            ?>
-				            	<img style="max-width: 80px; max-height:80px;" src="<?php echo $image_profile ?>"/>
-				    		</td>
-				    		<!--
-				    		<td>
-				    			<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/contest_photo/".$applicant["contest_photo"]; ?>"/>
-				    		</td>
-							-->
-				            <td style="vertical-align:middle;"><?php echo $applicant["name"]." ".$applicant["last_name"]?></td>
-				            
-				        <!--
-				            <td style="vertical-align:middle; text-align:center;"><?php
-							         //explode the date to get month, day and year
-							         $birthDate = explode("-", $applicant["birth_date"]);
-							         //get age from date or birthdate
-							         $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[1], $birthDate[2], $birthDate[0]))) > date("md") ? ((date("Y")-$birthDate[0])-1):(date("Y")-$birthDate[0]));
-							         echo $age;
-				            	?></td>
-
-				            <td style="vertical-align:middle; text-align:center;"><?php
-				            		if($applicant["sex"] == 1)
-				            			echo "Hombre";
-				            		else
-				            			echo "Mujer";
-				            	?> </td>
-						-->
-				            <td  style="vertical-align:middle; width:20%;text-align:center;">				            
-								<a class="btn" href="<?php echo "mailto:".$applicant["email"] ?>">
-									<i class="icon-envelope icon-white"></i>					
-								</a>
-								<a class="btn" href="#">
-									<i class="icon-file icon-white"></i>					
-								</a>
-							</td>
-
-							<td style="vertical-align:middle; text-align:center;" >
-								<?php
-
-								echo'<input id="'.$applicant["id"].'" value="'.$applicant["id"].'"  name="selected[]" type="checkbox">';
-								echo'<p style="display: none;" id="'.$i.'" >'.$applicant["email"].'</p>';
-
-
-								?>
-							</td>
-			            </tr>    
-	              	<?php 
-	              	$i=$i+1;
-	              	}
-	            }
-	        	?>
-	          </tbody>
+					<tr>
+						<td colspan="5" class="dataTables_empty">Loading data from server</td>
+					</tr>
+	          	</tbody>
 	        </table>
 			<div class="space4"></div>
 			<div class="row">
 				<button type="submit" class="btn btn-info pull-right"  style="margin-left:10px;" href="#"><i style="margin-top: 3px; margin-right: 3px;" class="icon-off icon-white"></i>Finalizar Concurso</button>
-				<a class="btn btn-info pull-right" href="<?php echo "mailto: ".$mailto_all; ?>"><i style="margin-top: 3px; margin-right: 3px;" class="icon-envelope icon-white"></i>Todos</a>
+				<a class="btn btn-info pull-right"  style="margin-left:10px;" href="<?php echo HOME.'/hunter/set_postulation_number/'.$id_casting ?>"> Actualizar Numero Sorteo </a>
 				<div class="space4"></div>
 			</div>
 		</form>	
 	</div>
 </div>
-
-
-

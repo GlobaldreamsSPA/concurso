@@ -7,6 +7,7 @@ class Casting_categories_model extends CI_Model
         parent::__construct();
     }
 
+    /* Funcion utilizada para recuperar el id de la categoria utilizando el nombre de la misma */
 	function get_id_by_name($name)
 	{
 		$this->db->select('id');
@@ -17,6 +18,7 @@ class Casting_categories_model extends CI_Model
     	
 	}
 	
+    /* Funcion utilizada para recuperar el nombre de la categoria utilizando el id de la misma */
 	function get_name($id)
 	{
 		$this->db->select('name');
@@ -27,15 +29,7 @@ class Casting_categories_model extends CI_Model
     	
 	}
 	
-    function get_casting_categories_cant()
-    {
-    	$this->db->from('castings_categories');
-    	return $this->db->count_all_results();
-    }
-	
-	/**
-	 * Si $id_casting es NULL =>Saca todo de todas las categorias
-	 */
+	/* Funcion utilizada para recuperar la lista de categorias de concursos	*/
 	function get_casting_categories()
     {
     	$this->db->select('id,name');

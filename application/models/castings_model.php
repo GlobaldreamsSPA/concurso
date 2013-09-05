@@ -7,19 +7,21 @@ class Castings_model extends CI_Model
         parent::__construct();
     }
 
+    /* Insercion de concursos */
     function insert($casting)
     {
       $this->db->insert('castings',$casting);
       return $this->db->insert_id();
     }
 
-	
+	/* Funcion para actualizar concursos */
 	function update($casting,$id)
     {
 		$this->db->where('id', $id);
 		$this->db->update('castings', $casting);
     }
 
+    /* Calculo rutas imagenes del concurso*/
     function _routes($casting, $full_image = FALSE)
     {
         $casting['logo'] = HOME.HUNTER_PROFILE_IMAGE.$this->_get_hunter_logo($casting['entity_id']);
@@ -31,6 +33,7 @@ class Castings_model extends CI_Model
         return $casting;
     }
 
+    /*Funcion para el calculo de dias restantes del concurso*/
     function _days($casting)
     {
         $end_date = date_create($casting['end_date']);
@@ -42,6 +45,7 @@ class Castings_model extends CI_Model
         return $casting;
     }
 
+    /*Funcion para el calculo de si concurso empezo aun o no*/
     function _has_started($casting)
     {
         $interval = strtotime($casting['start_date']) - strtotime("now");
@@ -59,20 +63,8 @@ class Castings_model extends CI_Model
 
         return $casting;
     }
-
-	function check_status_active($casting_id)
-	{
-		$this->db->select('*');
-        $this->db->where('id', $casting_id);
-		$this->db->where('status', 0);		
-        $result = $this->db->get('castings');
-		
-		if($result->num_rows == 0)
-			return FALSE;
-		else
-			return TRUE;
-	}
 	
+    /* Funcion para guardar imagen del concurso*/
     function insert_image($casting_id, $filename)
     {
         $data = array('image' => $filename);
@@ -80,6 +72,7 @@ class Castings_model extends CI_Model
         $this->db->update('castings', $data);
     }
 
+    /* Funcion utilizada para calcular la cantidad de paginas en las listas de concursos*/
     function count_castings($hunter_id=NULL,$status=NULL,$categories=NULL)
     {
     	$this->db->select('id');
@@ -110,6 +103,7 @@ class Castings_model extends CI_Model
 		
     }
 
+    /* Funcion que retorna la info completa de un concurso en especifico utilizando el id*/
     function get_full_casting($id)
     {
         $this->db->select('*');
@@ -138,6 +132,7 @@ class Castings_model extends CI_Model
         return $casting;
     }
 
+    /*Funcion utilizada para recuperar la informacion del dashboard de los concursos*/
     function get_castings($hunter_id=NULL, $cant=NULL, $page=NULL, $status=NULL, $categories=NULL)
     {
     	$this->db->select('*');
@@ -193,6 +188,7 @@ class Castings_model extends CI_Model
         return $results;
     }
 
+    /*Funcion utilizada en la pagina principal para manejar la busqueda de los concursos*/
     function get_castings_search($search, $page=NULL, $cant=NULL)
     {
         $this->db->select('*');
@@ -263,6 +259,8 @@ class Castings_model extends CI_Model
         return $results;
     }
 
+    /* Funcion que recupera los datos de concursos desde una lista, utilizada en el controlador
+    de usuarios principalmente */
     function get_castings_especific($ids_query,$status=NULL)
     {
     	$this->db->select();
@@ -319,17 +317,7 @@ class Castings_model extends CI_Model
         return $results;
     }
 
-	function finalize_casting($id_casting) 
-	{
-		$data = array(
-	        'status' => 2
-        );
-
-		$this->db->where('id', $id_casting);
-		$this->db->update('castings', $data); 
-	}
-
-
+    /* Funcion utilizada para recuperar la diferencia entre dos fechas, se utiliza en este mismo modelo*/
     function date_diff($start, $end="NOW")
     {
         $ts1 = strtotime($start);
@@ -340,6 +328,7 @@ class Castings_model extends CI_Model
         return floor($seconds_diff/3600/24);
     }
 
+    /* Funcion utilizada para recuperar el logo de la empresa, se utiliza en este mismo modelo*/
     private function _get_hunter_logo($hunter_id)
     {
         $this->db->select('logo');
@@ -350,6 +339,8 @@ class Castings_model extends CI_Model
         return $query['logo'];
     }
 
+    /* Funcion utilizada para traducir el estado de un concurso, desde el id a su significado,
+    se utiliza en este mismo modelo */
     function _get_status($casting)
     {
         
@@ -369,6 +360,7 @@ class Castings_model extends CI_Model
         return $casting['status'];
     }
 
+    /* Funcion que elige el o los ganadores del concurso y cierra el mismo*/
     function elegir_ganadores($casting_id, $ganador_id)
     {
         //Analizar si el casting tiene status distinto de 2

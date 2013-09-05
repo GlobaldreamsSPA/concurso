@@ -266,14 +266,19 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
+
+	/* Funcion utilizada para guardar las postulaciones de concursos de trivia y video */
 	public function apply_trivia($id)
 	{
 		if($this->session->userdata('id'))
 		{	
-			$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
+			$has_participated = $this->applies_model->verify_apply($this->session->userdata('id'), $id);
 
-			if($apply_id !== FALSE)
+
+			if(!$has_participated)
 			{
+				$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
+
 				$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
 				
 				//Ahora guardas las preguntas custom
@@ -323,10 +328,11 @@ class Home extends CI_Controller {
 	{
 		if($this->session->userdata('id') && isset($_GET['post_id']))
 		{
-			$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
+			$has_participated = $this->applies_model->verify_apply($this->session->userdata('id'), $id);
 
-			if($apply_id !== FALSE)
+			if(!$has_participated)
 			{
+				$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
 				$this->share_apply_model->insert(array('apply_id'=>$apply_id,'post_id'=>$_GET['post_id']));
 				$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
 				redirect(HOME."/home?success_message=".$success_message);
@@ -347,13 +353,21 @@ class Home extends CI_Controller {
 	{
 		if($this->session->userdata('id') && $_FILES['upload_photo']['error'] != 4)
 		{
-			$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id);
+			$has_participated = $this->applies_model->verify_apply($this->session->userdata('id'), $id);
  
-			if($apply_id !== FALSE && $this->_upload_image($this->session->userdata('id'),$id,$_POST["foto_description"]))
+			if(!$has_participated)
 			{
-				
-				$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
-				redirect(HOME."/home?success_message=".$success_message);
+				if($this->_upload_image($this->session->userdata('id'),$id,$_POST["foto_description"]))
+				{
+					$this->applies_model->apply($this->session->userdata('id'), $id);
+					$success_message = "¡Felicitaciones! Ya estás participando en el concurso";
+					redirect(HOME."/home?success_message=".$success_message);
+				}
+				else
+				{
+					$success_message = "Hay problemas con el archivo subido, intenta con otro";
+					redirect(HOME."/home?success_message=".$success_message);
+				}
 			}
 			else
 			{

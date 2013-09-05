@@ -7,6 +7,8 @@ class Applies_model extends CI_Model
         parent::__construct();
     }
 
+    /*Funcion que retorna la cantidad de concursantes por concurso, utilizada principalmente para
+    mostrar el estado del concurso*/
     function get_applies_cant($casting_id)
     {
     	$this->db->where('casting_id', $casting_id);
@@ -14,6 +16,32 @@ class Applies_model extends CI_Model
     	return $this->db->count_all_results();
     }
 
+    /* Funcion para setear el numero del concursante para los sorteos */
+    function set_postulation_number($casting_id)
+    {
+        $this->db->select('id');
+        $this->db->where('casting_id', $casting_id);
+        $this->db->order_by('id',"asc");
+        $this->db->from('applies');
+        $results = $this->db->get();
+        
+        if($results->num_rows != 0)
+        {
+            $results = $results->result_array();
+
+            $counter= 1;
+
+            foreach ($results as $apply) {
+                $this->db->where('id', $apply["id"]);
+                $this->db->update('applies', array('postulation_number' => $counter ));
+                $counter= $counter + 1;
+            }
+        }
+    }
+
+
+    /*Funcion que calcula el alcance posible de los concursos de compartir sumando la cantidad de amigos
+    de cada participante*/
     function get_share_reach($casting_id)
     {
     	$this->db->select('SUM(number_friends) as number');
@@ -32,6 +60,8 @@ class Applies_model extends CI_Model
     	}
     }
 
+
+    /*Funcion que retorna los datos utilizados para las estadisticas de concurso: Sexo vs Postulaciones*/
     function get_ncontest_by_sex($casting_id)
     {
     	$this->db->select('IF(sex = 0, "femenino", "masculino" ) as sex,COUNT(user_id) as number',false);
@@ -47,6 +77,7 @@ class Applies_model extends CI_Model
 			return $query->result_array();
     }
 
+    /*Funcion que retorna los datos utilizados para las estadisticas de concurso: Edad vs Postulaciones*/
     function get_ncontest_by_age($casting_id)
     {
     	$this->db->select('(YEAR(CURDATE()) - YEAR(birth_date)) as age,COUNT(user_id) as number');
@@ -63,6 +94,7 @@ class Applies_model extends CI_Model
 			return $query->result_array();
     }
 
+    /*Funcion que retorna los datos utilizados para las estadisticas de concurso: Fecha vs Postulaciones*/
     function get_ncontest_by_date($casting_id)
     {
     	$this->db->select('count(id) as number,date(timestamp) as date');
@@ -77,6 +109,7 @@ class Applies_model extends CI_Model
 			return $query->result_array();
     }
 
+    /*Funcion que retorna los datos utilizados para las estadisticas de concurso: Hora del dia vs Postulaciones*/
     function get_ncontest_by_hour($casting_id)
     {
     	$this->db->select('count(id) as number,hour(timestamp) as hour');
@@ -91,6 +124,7 @@ class Applies_model extends CI_Model
 			return $query->result_array();
     }
 	
+	/*Funcion utilizada para recuperar todas las postulaciones de un usuario a un concurso*/
 	function get_applicant_applies($applicant_id)
     {
     	$this->db->select('id,casting_id,state');
@@ -104,105 +138,52 @@ class Applies_model extends CI_Model
 		
     }
 
+    /*Funcion utilizada para validar que un concursante solo participe una vez por concurso*/
     function verify_apply($user_id, $casting_id)
 	{
+		$this->db->select('*');
 		$this->db->where('user_id', $user_id);
 		$this->db->where('casting_id', $casting_id);
 		$query = $this->db->get('applies');
 
-		//Si el usuario no ha postulado retorna 1
 		if($query->num_rows == 0)
-			return 0;
+			return FALSE;
 		else
-			return 1;
+			return TRUE;
 	}
 	
-	function get_castings_applies($casting_id,$page,$state=null,$cant=5)
+	/*Funcion utilizada para actualizar tabla de postulantes*/
+	function get_castings_applies_data_tables($casting_id,$from,$length,$search,$order,$direction)
 	{
-		$this->db->select('user_id,id,state');
-    	$this->db->where('casting_id', $casting_id);
-		
-	    if(!is_null($state) && $state!=3)
-    		$this->db->where('state', $state);
+		$this->db->select('applies.postulation_number as number, photos.name as image_profile, CONCAT(users.name," ", users.last_name) as full_name, users.email as email, applies.user_id as user_id',false);
+		$this->db->join('users', 'users.id = applies.user_id');
+		$this->db->join('photos', 'photos.id = applies.user_id');
+    	$this->db->where('applies.casting_id', $casting_id);	
+    	$this->db->where('state', 0);
 
-    	if(!is_null($page))
-    		$query = $this->db->get('applies', $cant, ($page-1)*$cant);
+		if(!is_null($search))
+		{
+			$where = '(CONCAT(users.name," ", users.last_name) LIKE "%'.$search.'%" OR applies.postulation_number LIKE "%'.$search.'%" )';
+			$this->db->where($where); 
+		}
+		if(!is_null($order))
+    		$this->db->order_by('applies.id',$direction);
+
+    	if(!is_null($from))
+    		$query = $this->db->get('applies', $length, $from);
 		else
 		   	$query = $this->db->get('applies');
 		
+
 		if($query->num_rows == 0)
-			return 0;
+			return null;
 		else
 			return $query->result_array();
 		
 	}
-	
-	function get_short_user_applies($casting_id,$state=NULL) //para sacar la información utilizada en casting_details
-	{
-		$this->db->select('user_id');
-    	$this->db->where('casting_id', $casting_id);
-		
-    	if(is_null($state))
-    	{
-    		$this->db->where('state',0); //evita aceptados y rechazados
-    		$query = $this->db->get('applies',5);		
-    	}
-   		else
-   		{
-   			$this->db->where('state',$state);
-   			$query = $this->db->get('applies',5);
-   		}
-		   	
-		if($query->num_rows == 0)
-			return 0;
-		else
-			return $query->result_array();
-		
-	}
-	
-	
-	function count_casting_applies($casting_id,$state)
- 	{
- 		$this->db->select('id');
- 	   	$this->db->where('casting_id', $casting_id);
- 		
- 		if($state != 3)
- 	   		$this->db->where('state', $state);
- 	 	
- 	 	$query = $this->db->get('applies');
- 	 	
- 	 	return $query->num_rows;
-	}
-	
-	/**
-	 * @desc Verifica el estado de cada "apply" de un respectivo casting y retorna "true" si cada "apply" tiene estado distinto de 0.
-	 * Retorna -1 si no recibe parametros
-	 * */
-	function verify_castings_applies_status($parametro)//se verifica si le paso el ID o un array de applies
-	{
-		if(is_array($parametro))
-		{
-			//es array, lo analizadirectamente
-			$todos = $parametro;		
-		}
-		else
-		{
-			//Saca los applies del id_casting(parametro) recibido
-			$todos = $this->get_castings_applies($parametro);	
-		}
-		
-		//los revisa y si algun(status) es 0 retorna FALSO
-		foreach ($todos as $apply) 
-		{
-			if($apply['state'] == 0)
-			{
-				return FALSE;
-			}
-		}
-		//si no se salio => todos los "state" son distintos de 0
-		return true;		
-	}
-	
+
+	/*Funcion a utilizar, puesto que debe haber una parte del concurso para ver el ganador y sus 
+	datos de contacto*/	
 	function get_selected($casting_id)
 	{
 		$this->db->select('user_id');
@@ -217,27 +198,8 @@ class Applies_model extends CI_Model
 		
 	}
 
-	function verify_video_apply($video_id, $user_id)
-	{
-		$this->db->select('castings.*');
-		$this->db->from('castings');
-		$this->db->join('applies', 'applies.casting_id = castings.id');
-		$this->db->join('videos_applies', 'videos_applies.apply_id = applies.id');
-		$this->db->where('videos_applies.video_id', $video_id);
-		$this->db->where('applies.user_id', $user_id);
-		$this->db->group_by('castings.id');
-		$query = $this->db->get();
-
-		//Verificar que este video no este ingresado en una postulacion activa
-		foreach($query->result_array() as $casting) {
-			if($casting['active'] == 1)
-			{
-				return FALSE;
-			}
-		}
-		return TRUE;
-	}
-
+	/*Funcion utilizada para guardar la postulacion de un concursante,
+	 es utilizada para todos los concursos*/
 	function apply($user_id, $casting_id)
 	{
 		//Verificar que el usuario no postule dos veces
@@ -251,7 +213,6 @@ class Applies_model extends CI_Model
 		{
 			//Crear postulacion (apply)
 			$apply = array(
-					'observation' => '',
 					'user_id' => $user_id,
 					'casting_id' => $casting_id,
 					'state' => 0
@@ -269,6 +230,8 @@ class Applies_model extends CI_Model
 			return FALSE;
 	}
 
+	/* Funcion utilizada para borrar la postulacion del concursante, funciona para todos los tipos
+	 de concursos actualmente*/
 	function delete($apply_id, $user_id)
     {
     	/* Primero verificar la categoria del casting */
@@ -324,27 +287,6 @@ class Applies_model extends CI_Model
     	$this->db->delete('applies', array('id' => $apply_id));
     	return TRUE;
     }
-	
-	function set_accepted($apply_id,$observation)
-	{
-		$data = array(
-               'state' => 1,
-               'observation' => $observation
-            );
 
-		$this->db->where('id', $apply_id);
-		$this->db->update('applies', $data); 
-	}
-
-	function set_rejected($apply_id)
-	{
-		$data = array(
-               'state' =>2,
-               'observation' => NULL			   
-            );
-
-		$this->db->where('id', $apply_id);
-		$this->db->update('applies', $data); 
-	}
 
 }
