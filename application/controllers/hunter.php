@@ -537,8 +537,7 @@ class Hunter extends CI_Controller {
 				
 				$data = array();
 				$image_profile = GALLERY.$applicant["image_profile"];
-
-				/*
+				
 	        	$file = realpath(LOCAL_GALLERY.$applicant["image_profile"]);
 	        	
 	        	if($applicant["image_profile"] != "" && file_exists($file))
@@ -553,7 +552,7 @@ class Hunter extends CI_Controller {
 	        	else
 	        	{
 	        		$image_profile = GALLERY.'generic.png';
-	        	}*/
+	        	}
 	        	
 	        	$data[] = $applicant["number"];
 	        	$data[] = $image_profile;

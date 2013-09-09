@@ -157,7 +157,7 @@ class Applies_model extends CI_Model
 	{
 		$this->db->select('applies.postulation_number as number, photos.name as image_profile, CONCAT(users.name," ", users.last_name) as full_name, users.email as email, applies.user_id as user_id',false);
 		$this->db->join('users', 'users.id = applies.user_id');
-		$this->db->join('photos', 'photos.id = applies.user_id');
+		$this->db->join('photos', 'photos.user_id = applies.user_id');
     	$this->db->where('applies.casting_id', $casting_id);	
     	$this->db->where('state', 0);
 
