@@ -7,6 +7,7 @@ Class Hunter_model extends CI_Model
      parent::__construct();
    }
 
+   /* Funcion de inicio de sesion del usuario para crear concursos*/
    function login($email, $password)
    {
      $this->db->select('id, name, email, password, about_us, logo');
@@ -29,19 +30,21 @@ Class Hunter_model extends CI_Model
    }
 
 
-	function update($profile)
-	{
-		$data = array(
-				'name' => $profile['name'],
-				'email' => $profile['email'],
-				'address' => $profile['address'],
-				'about_us' => $profile['about_us']
-			);
+  /* Funcion utilizada para la actualizacion del perfil del usuario creador de concursos*/
+  function update($profile)
+  {
+  	$data = array(
+  			'name' => $profile['name'],
+  			'email' => $profile['email'],
+  			'address' => $profile['address'],
+  			'about_us' => $profile['about_us']
+  		);
 
-		$this->db->where('id', $profile['id']);
-		$this->db->update('entities', $data);
-	}
+  	$this->db->where('id', $profile['id']);
+  	$this->db->update('entities', $data);
+  }
 
+  /* Funcion utilizada para recuperar los datos del usuario creador de concursos*/
 	function select($id)
 	{
 		//Rescatar los datos de la tabla entities
@@ -53,39 +56,5 @@ Class Hunter_model extends CI_Model
 		return $query;
 	}
 
-  function validate_mail($mail)
-  {
-    $this->db->select('*');
-    $this->db->from('entities');
-    $this->db->where('email', $mail);
-    $query = $this->db->get();
-
-
-    if($query->num_rows() > 0)
-     {
-       return true;
-     }
-     else
-     {
-       return false;
-     }
-  }
-
-  function validate_mail_update($mail,$id)
-  {
-    $this->db->select('*');
-    $this->db->from('entities');
-    $this->db->where(array('email' => $mail, 'id !=' => $id));
-    $query = $this->db->get();
-
-    if($query->num_rows() > 0)
-     {
-       return true;
-     }
-     else
-     {
-       return false;
-     }
-  }
 }
 ?>

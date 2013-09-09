@@ -2,12 +2,14 @@
 
 class Education_model extends CI_Model
 {
-    function __construct() 
-    {
-        parent::__construct();
-    }
+  function __construct() 
+  {
+      parent::__construct();
+  }
 
-    function insert($user_id,$education_data)
+  /* Funcion utilizada para insertar las organizaciones donde el usuario
+   estudio, informacion aun no utilizada*/
+  function insert($user_id,$education_data)
 	{
 		$data = array(
 			'user_id' => $user_id,

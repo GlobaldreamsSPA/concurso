@@ -9,19 +9,6 @@ class Custom_options_model extends CI_Model
         parent::__construct();
     }
 	
-	/*Funcion para recuperar una opcion en especifico, no se usa*/
-	function getOption($idOption)
-	{
-		$this->db->select('*');
-    	$this->db->where('id', $idOption);
-		
-		$query = $this->db->get($this->table);
-		
-		if($query->num_rows == 0)
-			return 0;
-		else
-			return $query->result_array();
-	}
 	
 	/*Funcion para recuperar las opciones asociadas a una pregunta*/
 	function getOptionsByQuestion($idQuestion)
@@ -48,23 +35,6 @@ class Custom_options_model extends CI_Model
 		return $this->db->insert($this->table, $data);
 	}
 	
-	/* Funcion para borrar una opcion en especifico, no se usa */
-	function delete($idOption)
-	{
-		$this->db->delete($this->table, array('id' => $idOption));
-	}
-	
-	/* Funcion para actualizar una opcion, no se usa */
-	function update($new_data, $idOption)
-	{
-		$data = array(
-				'option' => $new_data['opcion_value'],
-				'custom_questions_id' => $new_data['id_pregunta']
-			);
-
-		$this->db->where('id', $idOption);
-		$this->db->update($this->table, $data);
-	}
 }
 
 ?>
