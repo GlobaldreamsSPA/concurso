@@ -159,6 +159,7 @@ class Applies_model extends CI_Model
 		$this->db->join('users', 'users.id = applies.user_id');
 		$this->db->join('photos', 'photos.user_id = applies.user_id');
     	$this->db->where('applies.casting_id', $casting_id);	
+        $this->db->where('photos.casting_id', null);    
     	$this->db->where('state', 0);
 
 		if(!is_null($search))
