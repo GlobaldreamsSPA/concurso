@@ -521,7 +521,6 @@ class Hunter extends CI_Controller {
 
 		$applicants = $this->applies_model->get_castings_applies_data_tables($id_casting,$from,$length,$search,$order,$direction);
 		$count_applicants_filter = $this->applies_model->get_castings_applies_data_tables($id_casting,null,null,$search,$order,$direction);
-
 		$total = $this->applies_model->get_applies_cant($id_casting);
 
 		$output = array(
