@@ -93,17 +93,17 @@
 							
 							<div style="width: 24%; display: inline-block; text-align: left;">
 								<a href="<?php echo HOME."/user/fb_login"?>">
-									<img style="width:100%;" src="<?php echo HOME.'/img/bg1.png'?>"/>
+									<img style="width:100%;" src="<?php echo HOME.'/img/bg1.png?v=1.0'?>"/>
 								</a>
 							</div>
 							<div style="margin-left: 8%; margin-right: 9%; width: 30%; display: inline-block; text-align: center;">
 								<a href="#" onclick=" if($(window).width() < 930) $('body,html').animate({ scrollTop: 800 }, 600); else $('body,html').animate({ scrollTop: 400 }, 600); ">
-									<img style="width:100%;" src="<?php echo HOME.'/img/bg2.png'?>"/>
+									<img style="width:100%;" src="<?php echo HOME.'/img/bg2.png?v=1.0'?>"/>
 								</a>
 
 							</div>
 							<div style="width: 28%; display: inline-block; text-align: right;">
-								<img style="width:100%;" src="<?php echo HOME.'/img/bg3.png'?>"/>
+								<img style="width:100%;" src="<?php echo HOME.'/img/bg3.png?v=1.0'?>"/>
 							</div>
 						</div>
 					</div>
