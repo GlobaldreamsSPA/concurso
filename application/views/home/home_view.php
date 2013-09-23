@@ -267,7 +267,7 @@ $(document).ready(function() {
 					?>
 							<a rel="nofollow" href="<?php echo HOME.'/home/contest?status='.urlencode($contest["status"]).'&id='.urlencode($contest["id"]).'&title='.urlencode($contest["title"]).'&entity='.urlencode($contest["entity"]).'&days='.urlencode($contest["days"]).'&logo='.urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]).'&d_photo_contest='.urlencode($contest["d_photo_contest"]) ?>" data-toggle="modal">							
 								<div class="image">
-									<img class="fade_new" style="width:100%;" src="<?php echo $contest['full_image']; ?>" alt=""/>
+									<img class="fade_new" style="width:100%;" src="<?php echo $contest['little_image']; ?>" alt=""/>
 								</div>
 							</a>
 					<?php
@@ -276,7 +276,7 @@ $(document).ready(function() {
 						{
 					?>
 							<div class="image">
-								<img class="fade_new" style="width:100%;" src="<?php echo $contest['full_image']; ?>" alt=""/>
+								<img class="fade_new" style="width:100%;" src="<?php echo $contest['little_image']; ?>" alt=""/>
 							</div>
 					<?php
 						} 
