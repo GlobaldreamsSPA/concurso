@@ -66,7 +66,7 @@
 				<div class="row">
 					<div style="margin-left:3%;" class="span6">
 						<div class="space05"></div>
-						<img style='height:100%; width: 100%;' src="<?php echo $casting['image'] ?>"/>
+						<img style='height:100%; width: 100%;' src="<?php echo $casting['full_image'] ?>"/>
 					</div>
 					<div style="padding-left: 1%; margin-left:5%;" class="span5 offset1 list-view-applies-desc">
 						<div class="space05"></div>

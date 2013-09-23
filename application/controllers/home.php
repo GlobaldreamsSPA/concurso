@@ -30,17 +30,17 @@ class Home extends CI_Controller {
 			$args["get_uri"] = "/?search_terms=".str_replace(' ', '+', $_GET["search_terms"])."&prize=".$_GET["prize"]."&category=".$_GET["category"];
 			$args["search_values"]=$_GET;
 
-			$args["contest_list"] = $this->castings_model->get_castings_search($_GET, $page, 9);
+			$args["contest_list"] = $this->castings_model->get_castings_search($_GET, $page, 6);
 			
-			$args["chunks"]=ceil(count($this->castings_model->get_castings_search($_GET)) / 9);
+			$args["chunks"]=ceil(count($this->castings_model->get_castings_search($_GET)) / 6);
 		}
 		else
 		{
 			$args["search_values"]["search_terms"] = NULL;
 			$args["search_values"]["prize"] = NULL;
 			$args["search_values"]["category"] = NULL;		
-			$args["contest_list"]  = $this->castings_model->get_castings_search($args["search_values"],$page, 9);
-			$args["chunks"] = ceil(count($this->castings_model->get_castings_search($args["search_values"])) / 9);
+			$args["contest_list"]  = $this->castings_model->get_castings_search($args["search_values"],$page, 6);
+			$args["chunks"] = ceil(count($this->castings_model->get_castings_search($args["search_values"])) / 6);
 		}		
     	
 		$args["page"]=$page;
@@ -60,13 +60,15 @@ class Home extends CI_Controller {
 			$counter = $counter + 1;
 		}
 
+		$args["bottom_contest"] = $this->castings_model->get_castings(null,null,null,0,array(0));
+
 		$args["prizes"] = array(""=>"Elige: tipo de premio") + $args["prizes"];
 		$args['categories'] = array(""=>"Elige: tipo de concurso")+$this->casting_categories_model->get_casting_categories();
 		
 		if(!is_null($success_message))
 			$args["success_message"] = $success_message;
 
-
+		$args["ganando_promo"] = true;
 
 		$args["inner_args"] = NULL;
 

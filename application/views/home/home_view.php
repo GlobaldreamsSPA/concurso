@@ -26,174 +26,15 @@ $(document).ready(function() {
 			});
 		});
 
+
 	});
 
-    if($(window).width() < 930){
-		var collection = $(".responsive");
-		collection.each(function( ) {
-	     	if($(this).hasClass("span4")){
-				$(this).removeClass('span4');  
-				$(this).css('margin-left','19%');
-				$(this).css('margin-bottom','10%');
-				$(this).addClass("span8");
-			}
-		});
-
-	    $(".responsive-search").removeClass('span3');  
-	    $(".responsive-search").addClass("span12");
-	    $(".responsive-search").css('margin-left','2.5%');
-
-
-	    $(".responsive-select").removeClass('span7');  
-	    $(".responsive-select").addClass("span12");
-	    $(".responsive-select").css('margin-left','2.5%');
-
-
-	    $(".styled").removeClass('span5');  
-	    $(".styled").addClass("span6");
-
-	   	$(".responsive-button").removeClass('span2'); 
-	   	$(".responsive-button").addClass('span12'); 
-	   	$(".responsive-button").css('text-align','center');
-
-	   	$("#filter").css('font-size','20px');
-	    $("#prize").css('font-size','20px');
-	   	$("#category").css('font-size','20px');
-	    $("#filter_button").css('font-size','20px');
-
-	    $("#top-banner").removeClass('span5');  
-	    $("#top-banner").addClass("span11");
-
-	    $("#bottom-banner").removeClass('span6');  
-	    $("#bottom-banner").addClass("span11 offset1");
-
-
-	   	
-	}else if($(window).width() >= 930)
-	{
-			var collection = $(".responsive");
-
-	     collection.each(function( ) {
-			 if(!$(this).hasClass("span4")){
-			    $(this).addClass("span4");
-				$(this).css('margin-left','1.7%');
-				$(this).css('margin-bottom','0');
-				$(this).removeClass("span8");
-			 }  
-		});
-	    $(".responsive-search").addClass('span3');  
-		$(".responsive-search").removeClass("span12");
-		$(".responsive-search").css('margin-left','0');
-
-		$(".responsive-select").addClass('span7');  
-		$(".responsive-select").removeClass("span12");
-		$(".responsive-select").css('margin-left','0');
-
-		$(".styled").addClass('span5');  
-		$(".styled").removeClass("span6");
-
-		$(".responsive-button").addClass('span2'); 
-	   	$(".responsive-button").removeClass('span12'); 
-	   	$(".responsive-button").css('text-align','inline');
-
-	   	$("#filter").css('font-size','16px');
-	    $("#prize").css('font-size','16px');
-	    $("#category").css('font-size','16px');
-	    $("#filter_button").css('font-size','16px');
-
-
-	    $("#top-banner").addClass('span5');  
-	    $("#top-banner").removeClass("span11");
-
-	    $("#bottom-banner").addClass('span6');  
-	    $("#bottom-banner").removeClass("span11 offset1");
-
-	}
-
-	$(window).resize(function(){
- 	    if($(this).width() < 930){
-	    	var collection = $(".responsive");
-			collection.each(function( ) {
-		     	if($(this).hasClass("span4")){
-					$(this).removeClass('span4');  
-					$(this).css('margin-left','19%');
-					$(this).css('margin-bottom','10%');
-					$(this).addClass("span8");
-				}
-			});
-
-		    $(".responsive-search").removeClass('span3');  
-		    $(".responsive-search").addClass("span12");
-		    $(".responsive-search").css('margin-left','2.5%');
-
-
-		    $(".responsive-select").removeClass('span7');  
-		    $(".responsive-select").addClass("span12");
-		    $(".responsive-select").css('margin-left','2.5%');
-
-
-		    $(".styled").removeClass('span5');  
-		    $(".styled").addClass("span6");
-
-		   	$(".responsive-button").removeClass('span2'); 
-		   	$(".responsive-button").addClass('span12'); 
-		   	$(".responsive-button").css('text-align','center');
-
-		   	$("#filter").css('font-size','20px');
-		    $("#prize").css('font-size','20px');
-		   	$("#category").css('font-size','20px');
-		    $("#filter_button").css('font-size','20px');
-
-
-		    $("#top-banner").removeClass('span5');  
-		    $("#top-banner").addClass("span11");
-
-		    $("#bottom-banner").removeClass('span6');  
-		    $("#bottom-banner").addClass("span11 offset1");
-
-
-		   	
-	   }else if($(this).width() >= 930)
-	   {
-	   		var collection = $(".responsive");
-
-		     collection.each(function( ) {
-				 if(!$(this).hasClass("span4")){
-				    $(this).addClass("span4");
-					$(this).css('margin-left','1.7%');
-					$(this).css('margin-bottom','0');
-					$(this).removeClass("span8");
-				 }  
-			});
-		    $(".responsive-search").addClass('span3');  
-	    	$(".responsive-search").removeClass("span12");
-	    	$(".responsive-search").css('margin-left','0');
-
-	    	$(".responsive-select").addClass('span7');  
-	    	$(".responsive-select").removeClass("span12");
-	    	$(".responsive-select").css('margin-left','0');
-
-	    	$(".styled").addClass('span5');  
-	    	$(".styled").removeClass("span6");
-
-	    	$(".responsive-button").addClass('span2'); 
-		   	$(".responsive-button").removeClass('span12'); 
-		   	$(".responsive-button").css('text-align','inline');
-
-
-		    $("#filter").css('font-size','16px');
-		    $("#prize").css('font-size','16px');
-		    $("#category").css('font-size','16px');
-		    $("#filter_button").css('font-size','16px');
-
-
-		    $("#top-banner").addClass('span5');  
-		    $("#top-banner").removeClass("span11");
-
-		    $("#bottom-banner").addClass('span6');  
-		    $("#bottom-banner").removeClass("span11 offset1");
-	   }
+	$( ".list_element" ).hover(function() {
+		$(this).find("#hidden").removeClass("hidden");
+	},function() {
+		$(this).find("#hidden").addClass("hidden");
 	});
+
 });
 
 </script>
@@ -204,45 +45,12 @@ $(document).ready(function() {
 
 <img id="load" style="display: none; left: 50%; margin-left: -150px; top: 50%; margin-top: -30px; width:300px; position: fixed;  z-index: 10000" src="<?php echo HOME."/img/load.gif" ?>"/>
 
-<div class="content home" id="content">
-		<h1 id="main-banner-text" > GANA EN 3 PASOS</h1>									
-		<div class="row">
-			<div id="top-banner" style="margin-left: 9%;"class="span5">
-				<p id="left-banner-text">
-					MUCHOS CONCURSOS PARA QUE PUEDAS PARTICIPAR DE FORMA GRATUITA CON TAN SÓLO 3 PASOS. 
-				</p>
-			</div>
-			<div id="bottom-banner"class="span6">
-				<div class="span4">
-					<a href="<?php echo HOME."/user/fb_login"?>">
-						<img style="width:100%;" src="<?php echo HOME.'/img/bg1.png'?>"/>
-					
-						<p id="right-banner-text">
-							INGRESA 
-						</p>
-					</a>
-				</div>
-				<div class="span4">
-					<a href="#" onclick=" if($(window).width() < 930) $('body,html').animate({ scrollTop: 800 }, 600); else $('body,html').animate({ scrollTop: 400 }, 600); ">
-						<img style="width:100%;" src="<?php echo HOME.'/img/bg2.png'?>"/>
-						<p id="right-banner-text">
-							CONCURSA
-						</p>
-					</a>
-
-				</div>
-				<div class="span4">
-					<img style="width:100%;" src="<?php echo HOME.'/img/bg3.png'?>"/>
-					<p id="right-banner-text">
-						¡GANA!
-					</p>
-				</div>
-
-			</div>
-		</div>
-		<div class="row">
-			<div style="margin-left:1.2%;"  class="row-fluid">
+<div class="content home" id="content">		
+	<div class="row">
+		<div style="margin-left:1.2%; text-align:center;"  class="row-fluid">
+			<div style="width: 80%; display: inline-block;">
 				<div class="space2"></div>
+				<?php /*
 	  			<div style="margin-left:3%;" class="row">
 		  			<?php echo form_open('home',array('method' => 'get', 'class' => 'form-inline')); ?>
 	  					<div style="margin-top:15px;" class="responsive-search span3">
@@ -261,6 +69,8 @@ $(document).ready(function() {
 						</div>
 					</form>
 				</div>
+				*/?>
+
 				<div class="space2"></div>
 
 				<?php
@@ -270,7 +80,7 @@ $(document).ready(function() {
 					if(($i-1)%3 == 0 or $i==1) 
 						echo "<div style='margin-left: 1px;' class='row'>";
 					?>
-					<div style="position: relative;" id="main_videos_list" class='responsive span4'>
+					<div style="position: relative;" id="main_videos_list" class='list_element responsive span4'>
 						<div class="space1"></div>
 
 
@@ -311,14 +121,14 @@ $(document).ready(function() {
 						<?php
 							} 
 						?>
-						<span class="arrow"></span>
-						<div class="video_text_main">
-							<div class="space1"></div>
-							<div class="row row_text_main">
-								<div style="margin-left:6%;"class="span11">
-									<div style="margin-bottom: 0.5%;" class="home-video-title"><?php echo $contest["title"]; ?></div>
-									<span class="home-video-author">Publicado por Ganando.cl</span>
-									<div class="space05"></div>
+						<div class="contest_text_main">
+							<div class="space05"></div>
+							<div style="margin-left: 0;" class="row row_text_main">
+								<div class="span12">
+									<div style="margin-bottom: 0.5%;" class="home-contest-title"><?php echo $contest["title"]; ?></div>
+									<div id="hidden" class="hidden">
+										<span class="home-contest-author">Publicado por Ganando.cl</span>
+										<div class="space025"></div>
 										<?php
 											if($contest["status"]=="Activo")
 											{
@@ -329,7 +139,7 @@ $(document).ready(function() {
 															if($contest["has_started"] == TRUE)
 															{
 																$date = explode("-", $contest["end_date"]); $date[1] = $date[1] -1;
-																echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: \"<span>El concurso finaliza en: {dnn} días, {hnn}&nbsp;horas</span></br><span>{mnn} minutos,&nbsp;{snn} segundos</span>\"}); </script>";
+																echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: \"<span>El concurso finaliza en {dnn} días, {hnn}:{mnn}:{snn}</span>\"}); </script>";
 															}
 															else
 															{
@@ -337,7 +147,7 @@ $(document).ready(function() {
 																echo "<label>".$date."</label>";
 																
 																if($contest["interval"] >= 3600*24)
-																	echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Faltan {dnn} días para activarse</span>'}); </script>";
+																	echo "<script type='text/javascript'> $('#countdown".$i."').countdown({until: new Date(".$date[0].",".$date[1].",".$date[2].", 23, 59, 59, 00), layout: '<span>Faltan {dnn} días para iniciar el concurso</span>'}); </script>";
 																else
 																{
 																	$hours = intval($contest["interval"]/(3600));
@@ -353,22 +163,22 @@ $(document).ready(function() {
 											elseif ($contest["status"]=="En Revisión") 
 											{
 											?>
-												<div style="width: 104%; color: white; font-size: 16px;">
-													Concurso <span class="home-video-title" style="color: #78EA78; text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;">esperando sorteo</span>, atentos a los resultados.
+												<div style="width: 104%; color: white; font-size: 14px;">
+													<span class="home-video-title" style="color: #78EA78; text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;">Esperando sorteo</span>, atent@s a las redes sociales.
 												</div>
 										<?php
 											}
 											elseif ($contest["status"]=="Finalizado") 
 											{
 											?>
-												<div style="width: 104%; color: white; font-size: 16px;">
-													Concurso <span class="home-video-title" style="color: #FFF664; text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;" >finalizado</span>, felicitaciones al ganador(a).
+												<div style="width: 104%; color: white; font-size: 14px;">
+													<span class="home-video-title" style="color: #FFF664; text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;" >Concurso finalizado</span>, felicitaciones al ganador(a).
 												</div>
 										<?php
 											}
 										?>
-								</div>
-								<div class="span1">
+									</div>
+									<div class="span1">
 									<?php 
 										if($contest["info_only"])
 										{
@@ -377,14 +187,17 @@ $(document).ready(function() {
 									<?php
 										}
 									?>
+									</div>
 								</div>
 							</div>
-							<div class="space1"></div>
 						</div>
 					</div>
 				<?php 
-					if($i%3 == 0 || $i == count($contest_list)) 
+					if($i%3 == 0 || $i == count($contest_list))
+					{ 
 						echo "</div>"; 
+						echo "<div class='space4'></div>"; 
+					}
 				}
 
 				if(count($contest_list)==0)
@@ -400,14 +213,11 @@ $(document).ready(function() {
 				}
 
 				?>
-				<div class="space4">
-				</div>
 
-				<div class="row" style="display: none;">
-					<div class="space1"></div>
-					<div class="pagination" style="text-align:center;">  
+				<div class="row">
+					<div style="text-align:center;">  
 					  <ul id="pagination_bt">
-					    <li class="previous" <?php if($page==1) echo "class=disabled";?>><a rel="nofollow" <?php if($page!=1) echo "href='".base_url()."home/index/".($page-1).$get_uri."'";?>>Prev</a></li>  
+					    <li class="previous <?php if($page==1) echo "disabled";?>"><a rel="nofollow" <?php if($page!=1) echo "href='".base_url()."home/index/".($page-1).$get_uri."'";?>></a></li>  
 						<?php
 						$pag_size = 16; 
 						$margen = $pag_size/2;
@@ -420,17 +230,76 @@ $(document).ready(function() {
 						
 						for($i = $begin_pag; $i <= $end_pag; $i++){ 
 							?>
-							<li <?php if($page==$i) echo "class=disabled";?>><a rel="nofollow" <?php if($page!=$i) echo "href='".base_url()."home/index/".$i.$get_uri."'";?> > <?php echo $i; ?></a></li>  
+							<li class="number <?php if($page==$i) echo "disabled";?>"><a rel="nofollow" <?php if($page!=$i) echo "href='".base_url()."home/index/".$i.$get_uri."'";?> > <?php echo $i; ?></a></li>  
 						<?php 
 						} 
 						?>
-					    <li class="next" <?php if($page==$chunks) echo "class=disabled";?>><a <?php if($page!=$chunks) echo "href='".base_url()."home/index/".($page+1).$get_uri."'";?>>Next</a></li>
+					    <li class="next <?php if($page==$chunks) echo "disabled";?>"><a <?php if($page!=$chunks) echo "href='".base_url()."home/index/".($page+1).$get_uri."'";?>></a></li>
 					     
 					  </ul>  
 					</div>  
-					<div class="space1"></div>	
-				</div>	
+					<div class="space4"></div>	
+				</div>
 			</div>
+			<div style="position: relative; width: 15%; height: 20px; margin-left: 5%; margin-right: 5%; display: inline-block; background-color: #2c3e50; margin-bottom: -0.2%;">
+				<div style="position: absolute; left: -20px; display: inline-block; width: 0px; height: 0px; border-style: solid; border-width: 0 0 20px 20px; border-color: transparent transparent #2c3e50 transparent;"></div>
+				<span style="font-size: 16px; color: white;">Otros Concursos</span>
+				<div style="position: absolute; right: -20px; display: inline-block; width: 0px; height: 0px; border-style: solid; border-width: 20px 0 0 20px; border-color: transparent transparent transparent #2c3e50;"></div>
+			</div>
+			<div style="width: 77.2%; display: inline-block; background-color: #2c3e50;">
+				<?php
+				$i=0; 
+				foreach ($bottom_contest as $contest) {
+					$i++;
+					if(($i-1)% 6 == 0 or $i==1)
+					{ 
+						echo "<div style='margin-left: 1px;' class='row'>";
+						echo "<div style='position: relative; width: 14.2%; margin-left:0; display: inline-block;' id='main_videos_list' class='list_element'>";
+					}else
+						echo "<div style='position: relative; width: 14.2%; display: inline-block;' id='main_videos_list' class='list_element'>";	
+					
+					?>
+					<div class="space1"></div>
+
+					<?php
+						if($contest["has_started"] == TRUE)
+						{
+					?>
+							<a rel="nofollow" href="<?php echo HOME.'/home/contest?status='.urlencode($contest["status"]).'&id='.urlencode($contest["id"]).'&title='.urlencode($contest["title"]).'&entity='.urlencode($contest["entity"]).'&days='.urlencode($contest["days"]).'&logo='.urlencode($contest["logo"]).'&description='.urlencode($contest["description"]).'&steps='.urlencode($contest["steps"]).'&prizes_description='.urlencode($contest["prizes_description"]).'&bases='.urlencode($contest["bases"]).'&full_image='.urlencode($contest["full_image"]).'&category='.urlencode($contest["category"]).'&prizes='.urlencode($contest["prizes"]).'&apply_url='.urlencode($contest["apply_url"]).'&entity_id='.urlencode($contest["entity_id"]).'&d_photo_contest='.urlencode($contest["d_photo_contest"]) ?>" data-toggle="modal">							
+								<div class="image">
+									<img class="fade_new" style="width:100%;" src="<?php echo $contest['full_image']; ?>" alt=""/>
+								</div>
+							</a>
+					<?php
+						}
+						else
+						{
+					?>
+							<div class="image">
+								<img class="fade_new" style="width:100%;" src="<?php echo $contest['full_image']; ?>" alt=""/>
+							</div>
+					<?php
+						} 
+					?>
+					</div>
+				<?php 
+					if($i%6 == 0 || $i == count($bottom_contest))
+					{ 
+						echo "</div>"; 
+						echo "<div class='space1'></div>"; 
+					}
+				}
+				?>
+			</div>
+			<!--
+			<div style="position: relative; width: 10%; height: 20px; margin-left: 10%; margin-right: 10%; display: inline-block; background-color: #2c3e50; margin-bottom: -0.2%;">
+				<div style="position: absolute; left: -20px; display: inline-block; width: 0px; height: 0px; border-style: solid; border-width: 0 20px 20px 0; border-color: transparent #2c3e50 transparent transparent;"></div>
+				<span style="font-size: 14px; color: white;">Ver Más</span>
+				<div style="position: absolute; right: -20px; display: inline-block; width: 0px; height: 0px; border-style: solid; border-width: 20px 20px 0 0; border-color: #2c3e50 transparent transparent transparent;"></div>
+			</div>
+			-->
+			<div class="space4"></div> 	
+			<div class="space2"></div> 	
+		</div>
 	</div>
-  	<div class="space4"></div> 	
 </div>

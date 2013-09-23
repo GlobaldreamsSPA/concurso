@@ -8,7 +8,6 @@
 		$(".responsive-bottom").removeClass('span6');  
 		$(".responsive-bottom").addClass("span11 offset1");
 
-		$(".removable").removeClass("space4");
 		$(".addable").addClass("space4");
 
 	   	
@@ -21,7 +20,6 @@
 		$(".responsive-bottom").addClass('span6');  
 		$(".responsive-bottom").removeClass("span11 offset1");
 
-		$(".removable").addClass("space4");
 		$(".addable").removeClass("space4");
 
 
@@ -37,7 +35,6 @@
 			$(".responsive-bottom").removeClass('span6');  
 			$(".responsive-bottom").addClass("span11 offset1");
 
-			$(".removable").removeClass("space4");
 			$(".addable").addClass("space4");
 
 		   	
@@ -50,7 +47,6 @@
 			$(".responsive-bottom").addClass('span6');  
 			$(".responsive-bottom").removeClass("span11 offset1");
 
-			$(".removable").addClass("space4");
 			$(".addable").removeClass("space4");
 
 
@@ -59,8 +55,7 @@
 
 </script>
 <div class="content_lh" id="content">
-	<div class="space4"></div>
-	<div class="removable space4"></div>
+	<div class="space2"></div>
 	<div class="content-fluid">
 		<div class="row">
 			<h1 style="text-align:center; margin-bottom:20px; color: #4da0d8; font-family: 'ganandofont'; font-size: 50px !important;" > ¿QUE ES GANANDO.CL?</h1>									

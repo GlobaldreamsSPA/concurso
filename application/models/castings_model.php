@@ -25,10 +25,8 @@ class Castings_model extends CI_Model
     function _routes($casting, $full_image = FALSE)
     {
         $casting['logo'] = HOME.HUNTER_PROFILE_IMAGE.$this->_get_hunter_logo($casting['entity_id']);
-        
-        if($full_image == TRUE)
-            $casting['full_image'] = HOME.CASTINGS_FULL_PATH.$casting['image'];
-        $casting['image'] = HOME.CASTINGS_PATH.$casting['image'];
+        $casting['full_image'] = HOME.CASTINGS_FULL_PATH.$casting['image'];
+        $casting['little_image'] = HOME.CASTINGS_PATH.$casting['image'];
         
         return $casting;
     }
@@ -189,10 +187,11 @@ class Castings_model extends CI_Model
     }
 
     /*Funcion utilizada en la pagina principal para manejar la busqueda de los concursos*/
-    function get_castings_search($search, $page=NULL, $cant=NULL)
+    function get_castings_search($search, $page=NULL, $cant=NULL, $external = null)
     {
         $this->db->select('*');
-                
+        $this->db->where('category !=', '0');
+
         if($search["category"] != "" && !is_null($search["category"]))
             $this->db->where('category', $search["category"]);
                 

@@ -66,7 +66,7 @@
 			<div style="margin-left: 1%" class="row">
 				<div class="span7">
 					<a href="<?php echo site_url("hunter/casting_detail/".$casting['id']); ?>">
-						<img style='height:100%; width: 100%;' src="<?php echo $casting['image'] ?>"/>
+						<img style='height:100%; width: 100%;' src="<?php echo $casting['full_image'] ?>"/>
 					</a>
 				</div>
 				<div class="space05"></div>

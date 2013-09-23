@@ -41,8 +41,6 @@
 		$(".bottom-2").addClass('offset2'); 
 		$(".bottom-2").css("margin-bottom","5%");
 
-		$(".removable").removeClass("space4");
-
 	   	
 	}else if($(window).width() >= 930)
 	{
@@ -62,7 +60,6 @@
 		$(".bottom-2").removeClass('span8'); 
 		$(".bottom-2").removeClass('offset2');    
 		$(".bottom-2").css("margin-bottom","0");
-		$(".removable").addClass("space4");
 
 
 	}
@@ -87,8 +84,6 @@
 			$(".bottom-2").addClass('offset2'); 
 			$(".bottom-2").css("margin-bottom","5%");
 
-			$(".removable").removeClass("space4");
-
 		   	
 		}else if($(this).width() >= 930)
 		{
@@ -108,7 +103,6 @@
 			$(".bottom-2").removeClass('span8'); 
 			$(".bottom-2").removeClass('offset2');    
 			$(".bottom-2").css("margin-bottom","0");
-			$(".removable").addClass("space4");
 	
 	
 		}
@@ -117,8 +111,7 @@
 </script>
 
 <div class="content content_lh" id="content">
-	<div class="space4"></div>
-	<div class="removable space4"></div>
+	<div class="space2"></div>
 	<div class="container-fluid">
 	  	<div class="row">
 	  		<div style="margin-left: 7%;" class="responsive-top span7">

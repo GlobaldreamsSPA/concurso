@@ -237,12 +237,13 @@
 		<div style="margin-top: 1%; margin-bottom: 5%;">
 			<ul style="list-style-type: none !important;" class="tags">
 			<?php 
-				echo "<li style='list-style-type: none !important;'><a href='".HOME."/home?search_terms=&category=".$category_id."&prize=' target='_blank'>".$category."</a></li>";
-				
+				//echo "<li style='list-style-type: none !important;'><a href='".HOME."/home?search_terms=&category=".$category_id."&prize=' target='_blank'>".$category."</a></li>";
+				echo "<li style='list-style-type: none !important;'><a>".$category."</a></li>";
 				foreach ($prizes as $id => $prize ) 
 					if($prize!="")
 					{
-						echo "<li><a href='".HOME."/home?search_terms=&category=&prize=".$id."' target='_blank' >".$prize."</a></li>";
+						//echo "<li><a href='".HOME."/home?search_terms=&category=&prize=".$id."' target='_blank' >".$prize."</a></li>";
+						echo "<li><a>".$prize."</a></li>";	
 					}
 			?>
 			<ul>

@@ -52,7 +52,7 @@
 						}
 						$flag=false;
 					?>
-						<img style="width:100%; max-height:100%;" id="image_casting" src=<?php echo $casting['image']?> >
+						<img style="width:100%; max-height:100%;" id="image_casting" src=<?php echo $casting['full_image']?> >
 					</div>
 					<?php } ?>
 			  	</div>

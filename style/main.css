@@ -24,35 +24,46 @@ html, body {
     src: url('../fonts/walibi-holland.ttf'); /*URL to font*/
 }
 
-/*Estilo banner*/
+/* Estilo navbar*/
 
-#main-banner-text
-{
-	text-align:center; 
-	margin-top:100px; 
-	margin-bottom: 20px; 
-	color: #4da0d8; 
-	font-family: 'ganandofont'; 
-	font-size: 76px;
-	line-height: 76px;
+.navbar .nav > li > a {
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
 }
 
-#left-banner-text
+.navbar .nav li a
 {
-	margin-top: 14px; 
-	color: #4da0d8; 
-	line-height: 40px; 
-	font-family: 'ganandofont'; 
-	font-size: 25px;
+	color: #ECF0F1 !important;
 }
 
-#right-banner-text
+.navbar .nav li a:hover
 {
-	text-align:center; 
-	color: #4da0d8; 
-	line-height: 40px; 
-	font-family: 'ganandofont'; 
-	font-size: 22px;
+	text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;
+}
+
+.navbar .nav li a:hover img
+{
+	opacity: 1 !important;
+}
+
+.right-triangle
+{
+	width: 0px;
+	height: 0px;
+	margin-right: -40px;
+	border-style: solid;
+	border-width: 40px 0 0 40px;
+	border-color: transparent transparent transparent #e67e22;
+}
+
+.left-triangle
+{
+	width: 0px;
+	height: 0px;
+	margin-left: -40px;
+	border-style: solid;
+	border-width: 0 0 40px 40px;
+	border-color: transparent transparent #e67e22 transparent;
 }
 
 /* perfil usuario*/
@@ -115,6 +126,59 @@ html, body {
 	border-top-right-radius:10px;
 }
 
+/* Estilo paginacion*/
+
+#pagination_bt li
+{
+	display: inline-block;
+}
+
+#pagination_bt .previous a
+{
+	opacity: 0.8;
+	width: 0px;
+	height: 0px;
+	line-height: 0;
+	font-size: 0;
+	border-style: solid;
+	border-width: 21px 30px 11.5px 0;
+	border-color: transparent #e67e22 transparent transparent;
+}
+
+#pagination_bt .next a
+{
+	opacity: 0.8;
+	width: 0px;
+	height: 0px;
+	margin-top: -2px;
+	line-height: 0;
+	font-size: 0;
+	border-style: solid;
+	border-width: 21px 0 11.5px 30px;
+	border-color: transparent transparent transparent #e67e22;
+}
+
+
+#pagination_bt .number a
+{
+	opacity: 0.8;
+	border: 4px solid;
+	border-color: #e67e22;
+	font-size: 14px;
+	color: white;
+	background-color: #e67e22;
+}
+
+#pagination_bt a:hover
+{
+	opacity: 1;
+}
+
+#pagination_bt .disabled a:hover
+{
+	opacity: 0.8 !important;
+	cursor: default;
+}
 /* acordion cuenta usuario*/
 
 input[type=file]{
@@ -319,7 +383,11 @@ input[type=file]{
 	box-shadow:-1px -1px 2px #004977;
 }
 
-.tags a:hover{color:#3498DB;}	
+.tags a:hover
+{
+	color: white;
+	cursor: default;
+}	
 
 
 .chozen-control-group .chzn-container
@@ -410,42 +478,12 @@ a:link {text-decoration: none !important}
 a:visited {text-decoration: none !important}
 
 
-/*navbar colores de los items*/
-
-.brand
-{
-	background-color:#D35400; 
-	border-radius: 0 !important; 
-	height:40px; 
-	margin-left:1% !important; 
-	position: absolute; 
-}
-
-.navbar .nav li a
-{
-	color: #ECF0F1 !important;
-}
-
-.navbar .nav li a:hover
-{
-	text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;
-}
-
-.navbar .nav li a:hover img
-{
-	border: 2px solid #466cb0;
-	margin-top: -4px !important;
-}
-
-
-
-
 /* Hover imagen concurso*/
 
 .image { position: relative; background-color: white;}
 .fade_new{opacity: 0.85;}
 
-.image:hover .fade_new{opacity: 1;}
+#main_videos_list:hover .fade_new{opacity: 1;}
 
 
 /* Select estilo flat*/
@@ -467,26 +505,6 @@ a:visited {text-decoration: none !important}
    overflow: hidden;
 }
 
-
-.MBT-readmore{ 
-background:#1097db; 
-text-align:right; 
-cursor:pointer; 
-color:#fff; 
-margin-top: 10px;
-margin-bottom:10px; 
-margin-right: 10px;
-float:right; 
-border:2px solid #ddd; 
-padding:5px; 
--moz-border-radius:6px; 
--webkit-border-radius:6px; 
-font:bold 11px sans-serif; 
-} 
-.MBT-readmore:hover{ 
-font:bold 11px sans-serif; 
-color:#fff; 
-}
 
 .chzn-container .chzn-results {
 max-height: 200px !important;
@@ -511,16 +529,6 @@ div.hunter_msj
 
 
 
-/* Fondo Login Hunter , quienes somos*/
-
-div.content_lh
-{
-	-webkit-background-size: cover !important;	
-	background-size: cover !important;
-}
-
-
-
 /* Estilo del logo */
 
 img.image-logo 
@@ -532,16 +540,12 @@ img.image-logo
 }
 
 
-
-/* posicion paginacion pagina principal*/
-ul#pagination_bt
-{
-	position:relative;
-	left: 4%;
-}
-
-
 /* espacios estandar utilizados para separar contenido en la pagina*/
+
+div.space025
+{
+	min-height: 5px;
+}
 
 div.space05
 {
@@ -561,14 +565,6 @@ div.space2
 div.space4
 {
 	min-height: 60px;
-}
-
-
-/* Fondo pagina principal */
-div.home
-{
-	margin-top: 70px;
-	background-size: 100% auto;
 }
 
 	
@@ -594,6 +590,15 @@ img.user_image
 
 /* formato concursos pagina principal*/
 
+.hidden
+{
+	display: none;
+}
+
+.hasCountdown
+{
+	padding: 0 !important;
+}
 
 div#main_videos_list
 {
@@ -601,71 +606,43 @@ div#main_videos_list
 	display: block;
 }
 
-div.video_text_main
+div.contest_text_main
 {
-	position: relative;
-	top: -17px;
+	position: absolute;
+	width: 100%;
+	bottom: -11%;
 	background:  #E67E22  !important;
 }
 
-.home-video-title
+.home-contest-title
 {
-	width: 102%;
+	width: 104%;
 	color: white;
-	font-size: 17px;
+	font-size: 14px;
 	font-weight: bold;
 }
 
-span.home-video-author
+span.home-contest-author
 {
-	font-size: 12px;
-	color: #ECF0F1;
+	font-size: 11px;
+	color: white;
 	font-weight: bold;
 }
 
 div.home-video-countdown
 {
 	width: 100%;
-	height: 33px;
 	color: white;
-	background: url("../img/reloj_arena.png") no-repeat left bottom;
 	margin-bottom: 2%;
 }
 
-div.contest-countdown
-{
-	position: relative;
-	top: -24%;
-}
-
-div.home-video-countdown div
-{
-	width: 100%;
-	margin-left: -10%;
-	padding-top: 1.5%;
-	font-size: 16px;
-}
 
 div.row_text_main
 {
 	position:relative;
 	top: -05px;
 	margin-top: 0;
-	height: 75px;
 }
-span.arrow {
-	position: relative;
-	width: 0;
-	height: 0;
-	top: -27px;
-	left: 40px;
-	bottom: 0;
-	border-left: 12px solid transparent;
-	border-right: 12px solid transparent;
-	border-bottom: 12px solid #E67E22;
-	z-index: 12;
-}
-
 
 img.hunter_casting_logo_detail
 {

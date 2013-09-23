@@ -43,7 +43,7 @@
 
 	<link rel="icon" type="image/png" href="<?php echo HOME ?>/favicon.ico">
 
-	<link href="<?php echo base_url()?>style/main.css?v=1.2" rel="stylesheet">
+	<link href="<?php echo base_url()?>style/main.css?v=1.4" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/flat-ui.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/chosen.css" rel="stylesheet"/>
@@ -75,38 +75,68 @@
 	<script src="<?php echo base_url()?>js/jquery.countdown.js" type="text/javascript"></script>
 	<div class="wrapper">	
 		<div id="fb-root"></div>
-		<div class="navbar navbar-fixed-top" id="headercontent">
-			<?php
-						
-				$id = $this->session->userdata('id');
-
-				if($id)
-				{
-					$user = $this->session->userdata('name')." ".$this->session->userdata('last_name');
-				}
-				
-				/*verificacion ususario hunter*/
-				$id_h = $this->session->userdata('logged_in');	
-
-				if($id_h)
-				{
-					$name = $this->session->userdata('logged_in');
-					$name= $name["name"];
-				}
+		<div id="header">
+			<div style="text-align:center; margin-top:2%;">
+				<a title="Volver a la P&aacute;ina Principal" href="<?php echo HOME.'/home'?>">
+					<img src="<?php echo base_url().'img/logo.png'?>">
+				</a>
+			</div>
+			<?php 
+		
+				if(isset($ganando_promo))
+				{ 
 			?>
-			<div class="navbar-inner" style="background-color: #E67E22">
-			    <div class="container" >
-			    	<a rel="nofollow" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-	                    <span class="icon-bar"></span>
-	                    <span class="icon-bar"></span>
-	                    <span class="icon-bar"></span>
-	                </a>
-			    	<a class="brand" style="background-color:#D35400; border-radius: 0; height:40px; margin-left:1% !important; position: absolute; color: #ECF0F1" title="Volver a la P&aacute;ina Principal" href="<?php echo HOME.'/home'?>"> 	<img style="margin-top:-15px;"src="<?php echo HOME."/img/logogif.gif"; ?>" /></a>
+					<div style="text-align:center;">
+						<div style="width: 800px; display:inline-block">
+							
+							<img src="<?php echo base_url().'img/home_header.png'?>">
+							
+							<div style="width: 24%; display: inline-block; text-align: left;">
+								<a href="<?php echo HOME."/user/fb_login"?>">
+									<img style="width:100%;" src="<?php echo HOME.'/img/bg1.png'?>"/>
+								</a>
+							</div>
+							<div style="margin-left: 8%; margin-right: 9%; width: 30%; display: inline-block; text-align: center;">
+								<a href="#" onclick=" if($(window).width() < 930) $('body,html').animate({ scrollTop: 800 }, 600); else $('body,html').animate({ scrollTop: 400 }, 600); ">
+									<img style="width:100%;" src="<?php echo HOME.'/img/bg2.png'?>"/>
+								</a>
 
-					<div class="nav-collapse collapse navbar-responsive-collapse">
+							</div>
+							<div style="width: 28%; display: inline-block; text-align: right;">
+								<img style="width:100%;" src="<?php echo HOME.'/img/bg3.png'?>"/>
+							</div>
+						</div>
+					</div>
+			<?php
+				} 
+			?>
+
+			<div class="space2"></div>
+			<div style="width: 75%; margin-left: 12.5%; margin-bottom: 0;" class="navbar">
+				<?php
+							
+					$id = $this->session->userdata('id');
+
+					if($id)
+					{
+						$user = $this->session->userdata('name')." ".$this->session->userdata('last_name');
+					}
+					
+					/*verificacion ususario hunter*/
+					$id_h = $this->session->userdata('logged_in');	
+
+					if($id_h)
+					{
+						$name = $this->session->userdata('logged_in');
+						$name= $name["name"];
+					}
+				?>
+				<div class="navbar-inner" style="border-radius:0; background-color: #E67E22; height: 40px;">
+				    <div class="container">
 	                    <ul class="nav">
+	                    	<li class="left-triangle"></li>		
 							<?php
-								echo "<li>".anchor('home', 'Home')."</li>";
+								echo "<li>".anchor('home', 'Inicio')."</li>";
 								echo "<li>".anchor('home/what_is', '¿Que es?')."</li>";
 								if(!$id && !$id_h)
 									echo "<li>".anchor('home/company', 'Empresas')."</li>";
@@ -130,15 +160,16 @@
 							
 								if(!$id && !$id_h)
 								{   
-									echo "<li>".anchor('user/fb_login', "<img style='margin-right:10px;' src='".HOME."/img/fb-login.png' /> Iniciar sesi&oacute;n"," id='fb-login' rel='nofollow' title='Iniciar sesión con facebook'")."</li>";
+									echo "<li>".anchor('user/fb_login', "<img style='margin-right:10px; margin-top: -5px; opacity: 0.92;' src='".HOME."/img/fb-login.png' /> Iniciar sesi&oacute;n"," id='fb-login' rel='nofollow' title='Iniciar sesión con facebook'")."</li>";
 			                       
 								}
-							?>	
+							?>
+							<li class="right-triangle"></li>		
 						</ul>             
-	                </div>
-			    </div>	
+				    </div>
+				</div>
 			</div>
-			<div class="color_line"></div>
+			<div style="height:1px; background: #E67E22;"></div>
 		</div>
 
 		<?php $this->load->view($content,$inner_args); ?>
@@ -148,24 +179,30 @@
 </body>
 <footer>
 	<div class="color_line"></div>
-	<div class="space2"></div>
-	<div class"row">
-		<div class="span12"><p style="color: #ECF0F1;">GlobalDreams SPA | Publica tus concursos <a rel="nofollow" href="<?php echo base_url();?>home/company">con nosotros</a> | Lee los <a rel="nofollow"  target=”_blank” href="<?php echo base_url();?>docs/terms.pdf">t&eacuterminos y condiciones</a> | <a rel="nofollow" href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
-	</div>
-	<div class="row">
-		<div class="span12">
-			<div class="row">
-					<div class="span11 offset1" style="margin-top: -3px;">
-						<p style="margin-left: 30px; text-decoration: none; color: #ECF0F1;" class="second">Ganando &copy; 2013 | Todos los derechos reservados | 
-						<a style="margin-left: 15 px;" href="https://twitter.com/ViddonCom" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
-						<a href="https://www.facebook.com/ganandochile" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
-						<a rel="nofollow" style="top:6px;" class="fb-like" data-href="https://www.facebook.com/ganandochile" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></a>										
-						</p>
-					</div>
-			</div>
+	<div style="text-align: center;	background-color: #E67E22;" class="row">
+		<div class="space05"></div>
+		<div style="text-align: right; " class="span2">
+			<img src="<?php echo HOME.'/img/footer_dude.png'; ?>" />
+		</div>
+		<div class="span4">
+			<p style="color: white; margin: 0;">Es el nuevo portal donde podrás encontrar</p> 
+			<p style="color: white; margin: 0;">muchos concursos entretenidos para participar</p>
+			<p style="color: white; margin: 0;">¿Qué estas esperando?</p>
+			<p style="color: white; margin: 0;">¡CONCURSA!</p>
+		</div>
+		<div class="span6">
+			<p style="color: white; margin: 0;">Recibe noticias de nuestros concursos</p> 
+			<p style="color: white; margin: 0;">y ve los sorteos en nuestras redes sociales</p>
+			<div class="space05"></div>
+			<a href="https://twitter.com/ganandocl" target=”_blank”><img style="width: 30px; height: 30px;" src="<?php echo base_url(); ?>img/social_container_t.png"/></a>
+			<a style="margin-left: 15px;" href="https://www.facebook.com/ganandochile" target=”_blank”> <img style="width: 30px; height: 30px;" src="<?php echo base_url(); ?>img/social_container_f.png"/></a>
 		</div>
 	</div>
-	<div class="space2"></div>
+	<div style="background-color: #E67E22;" class="space05"></div>
+	<div class="row" style="text-align: center; background-color: #d5741e;">
+		<p style="line-height: 30px; margin: 0; text-decoration: none; color: #ECF0F1;" class="second"> Ganando &copy; 2013 | Publica tus concursos <a rel="nofollow" href="<?php echo base_url();?>home/company">con nosotros</a> | Lee los <a rel="nofollow"  target=”_blank” href="<?php echo base_url();?>docs/terms.pdf">t&eacuterminos y condiciones</a> | <a rel="nofollow" href="mailto:contacto@viddon.com">Cont&aacutectanos</a>
+		</p>
+	</div>
 	<?php if(isset($success_message)){ ?>
 		<script type="text/javascript">
 
@@ -177,56 +214,6 @@
 </footer>
 <script type="text/javascript">
     
-
-
-
-	if($(window).width() < 930){
-    			    
-
-	   	$(".nav-collapse").css('margin-left','0');
-	   	$(".nav-collapse").css('right','0');
-
-	   	$("#fb-login").css('padding-top','29px');
-	    $("#fb-login").css('padding-bottom','27px');
-
-
-	   	
-   }else if($(window).width() >= 930)
-   {
-   		
-	    $(".nav-collapse").css('margin-left','260px');
-	    $(".nav-collapse").css('right','-40px');
-
-	    $("#fb-login").css('padding-top','26px');
-	    $("#fb-login").css('padding-bottom','6px');
-
-
-
-   }
-
-	$(window).resize(function(){
-		if($(this).width() < 930){
-			    
-
-			$(".nav-collapse").css('margin-left','0');
-			$(".nav-collapse").css('right','0');
-
-			$("#fb-login").css('padding-top','29px');
-			$("#fb-login").css('padding-bottom','27px');
-
-
-		}else if($(this).width() >= 930)
-		{
-
-			$(".nav-collapse").css('margin-left','260px');
-			$(".nav-collapse").css('right','-40px');
-
-			$("#fb-login").css('padding-top','26px');
-			$("#fb-login").css('padding-bottom','6px');
-
-
-		}
-	});
 
     if($(".chzn-select").length > 0)
 		$(".chzn-select").chosen({no_results_text: "No se encontraron resultados"});
