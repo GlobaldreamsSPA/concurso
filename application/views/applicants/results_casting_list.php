@@ -24,7 +24,7 @@
     			<ul class="nav nav-pills nav-stacked">
 					<li><a href="<?php echo HOME.'/user'?>"> <i class="icon-th-large"></i> Postulaciones Activas</a></li>											
 					<li class="active"><a> <i class=" icon-star"></i> Resultados de Concursos</a></li>											
-					<li><a href="<?php echo HOME."/user/edit/".$user_id;?>"> <i class="icon-edit"></i> Editar Datos</a></li>	
+					<li><a href="<?php echo HOME."/user/edit/";?>"> <i class="icon-edit"></i> Editar Datos</a></li>	
 					<li><a href="<?php echo HOME."/user/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 				</ul>
 			</div>

@@ -172,7 +172,7 @@ class User extends CI_Controller {
 		redirect(HOME);
 	}
 	
-	public function edit($user_id=null)
+	public function edit()
 	{
 		$this->load->library('form_validation');
 
@@ -180,6 +180,7 @@ class User extends CI_Controller {
 			redirect(HOME);
 		else
 		{
+			$user_id = $this->session->userdata('id');
 			//Setear mensajes
 			$this->form_validation->set_message('required', 'Este campo es obligatorio');
 			$this->form_validation->set_message('valid_email', 'Este campo debe ser un correo v&aacute;lido');
