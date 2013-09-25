@@ -43,11 +43,10 @@
 
 	<link rel="icon" type="image/png" href="<?php echo HOME ?>/favicon.ico">
 
-	<link href="<?php echo base_url()?>style/main.css?v=1.4" rel="stylesheet">
+	<link href="<?php echo base_url()?>style/main.css?v=1.5" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/flat-ui.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/chosen.css" rel="stylesheet"/>
-	<link href="<?php echo base_url()?>style/jquery.countdown.css" rel="stylesheet"/>
 	<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery-ui.css" rel="stylesheet"/>
 
 
@@ -67,12 +66,11 @@
 	</div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
-	<script src="//www.youtube.com/iframe_api"></script>	
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> 
 	<script src="<?php echo base_url()?>js/chosen.jquery.min.js" type="text/javascript"></script>
 	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>	
-	<script src="<?php echo base_url()?>js/jquery.ba-resize.js" type="text/javascript"></script>
 	<script src="<?php echo base_url()?>js/jquery.countdown.js" type="text/javascript"></script>
+	
 	<div class="wrapper">	
 		<div id="fb-root"></div>
 		<div id="header">
@@ -86,24 +84,26 @@
 				if(isset($ganando_promo))
 				{ 
 			?>
-					<div style="text-align:center;">
-						<div style="width: 800px; display:inline-block">
-							
+					<div class="align-center">
+						<div id="banner-container">
+	
 							<img src="<?php echo base_url().'img/home_header.png'?>">
 							
-							<div style="width: 24%; display: inline-block; text-align: left;">
+							<div class="banner" id="left-banner">
 								<a href="<?php echo HOME."/user/fb_login"?>">
-									<img style="width:100%;" src="<?php echo HOME.'/img/bg1.png?v=1.0'?>"/>
+									<img src="<?php echo HOME.'/img/bg1.png?v=1.1'?>"/>
 								</a>
 							</div>
-							<div style="margin-left: 8%; margin-right: 9%; width: 30%; display: inline-block; text-align: center;">
-								<a href="#" onclick=" if($(window).width() < 930) $('body,html').animate({ scrollTop: 800 }, 600); else $('body,html').animate({ scrollTop: 400 }, 600); ">
-									<img style="width:100%;" src="<?php echo HOME.'/img/bg2.png?v=1.0'?>"/>
+							<div class="banner"  id="center-banner">
+								<a href="#" onclick=" $('body,html').animate({ scrollTop: 500 }, 600); ">
+									<img src="<?php echo HOME.'/img/bg2.png?v=1.1'?>"/>
 								</a>
 
 							</div>
-							<div style="width: 28%; display: inline-block; text-align: right;">
-								<img style="width:100%;" src="<?php echo HOME.'/img/bg3.png?v=1.0'?>"/>
+							<div class="banner" id="right-banner">
+								<a href="https://twitter.com/ganandocl" target="_blank" >
+									<img src="<?php echo HOME.'/img/bg3.png?v=1.1'?>"/>
+								</a>
 							</div>
 						</div>
 					</div>

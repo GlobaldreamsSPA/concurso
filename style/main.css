@@ -17,12 +17,59 @@ html, body {
 .footer, .push {
 	height: 130px; /* .push must be the same height as .footer */
 }
+.align-center
+{
+	text-align: center;
+}
 
 
 @font-face {
     font-family: 'ganandofont'; /*a name to be used later*/
     src: url('../fonts/walibi-holland.ttf'); /*URL to font*/
 }
+
+/* Estilo imagenes baner home*/
+
+
+#banner-container
+{
+	width: 800px; 
+	display:inline-block;
+}
+
+#left-banner
+{
+	width: 28%; 
+	display: inline-block; 
+	text-align: left;
+}
+
+#right-banner
+{
+	width: 28%; 
+	display: inline-block; 
+	text-align: right;
+}
+
+#center-banner
+{
+	margin-left: 7%; 
+	margin-right: 7%; 
+	width: 28%; 
+	display: inline-block; 
+	text-align: center;
+}
+
+.banner
+{
+	opacity: 0.9;
+}
+
+.banner:hover
+{
+	opacity: 1;
+}
+
 
 /* Estilo navbar*/
 
