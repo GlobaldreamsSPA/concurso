@@ -34,65 +34,79 @@
     	<div class="row top-title" >
 			<h1>Postulaciones Activas a Concursos</h1>
 		</div>
-		<div class="space1">
+		<div class="space2">
 		</div>
 		<?php 							
-		if(isset($castings))
-			foreach($castings as $casting){ ?>
-				<div class="row">
-					<div style="margin-left:3%;" class="span1">
-						<img src="<?php echo $casting['logo'] ?>"/>
+			if(isset($castings))
+				foreach($castings as $casting)
+				{ 
+		?>
+					<div class="row">
+						<div style="margin-left:3%;" class="span1">
+							<img src="<?php echo $casting['logo'] ?>"/>
+						</div>
+						<div style="margin-top: 1.5%;"class="span5">
+							<h4><?php echo $casting['title'] ?></h4>
+						</div>
+						<div style="margin-top: 2%; font-size: 15px;" class="span2 offset1">
+							<span class="fui-time"></span> <?php echo $casting['days'] ?> d&iacute;as
+						</div>
+						<div class="span1 offset1" style="margin-top:1%;" >
+							<a class="btn" style="color:white; background: #e67e22;" href="mailto:contacto@viddon.com">
+								<span class="fui-mail"></span>                                         
+							</a>
+						</div>
+						<div class="span1" style="margin-top:1%;">
+							<form action="<?php echo site_url("casting/delete"); ?>" method="POST">
+								<button style="color:white; background: #e67e22;" class="btn" type="submit">
+									<span class="fui-cross"></span>
+								</button>
+								<input type="hidden" name="apply_id" value="<?php echo $casting["apply_id"] ?>"/>
+							</form>
+						</div>
 					</div>
-					<div style="margin-top: 1.5%;"class="span5">
-						<h4><?php echo $casting['title'] ?></h4>
+					<div class="row">
+						<div style="margin-left:3%;" class="span6">
+							<div class="space05"></div>
+							<img style='height:100%; width: 100%;' src="<?php echo $casting['full_image'] ?>"/>
+						</div>
+						<div style="padding-left: 1%; margin-left:5%;" class="span5 offset1 list-view-applies-desc">
+							<div class="space05"></div>
+							<div class="row accordion">
+								<h3>Descripci&oacuten</h3>
+								<div style="font-size:12px;">
+									<?php echo  $casting['description']; ?>
+								</div>
+								<h3>Pasos del Concurso</h3>
+								<div style="font-size:12px;">
+									<?php echo  $casting['steps']; ?>
+								</div>
+								<h3>Bases</h3>
+								<div style="font-size:12px;">
+									<?php echo  $casting['bases']; ?>
+								</div>
+								<h3>Premios</h3>
+								<div style="font-size:12px;">
+									<?php echo  $casting['prizes_description']; ?>
+								</div>
+							</div>							
+						</div>
 					</div>
-					<div style="margin-top: 2%; font-size: 15px;" class="span2 offset1">
-						<span class="fui-time"></span> <?php echo $casting['days'] ?> d&iacute;as
+					<div class="space4"></div>
+		<?php 
+				}
+			else
+			{			
+		?>
+				<div style="margin-left: -4.2%;">
+					<div class="space4"></div>
+					<div style="text-align:center; font-size: 20px;">
+						No has concursado aún, vuelve a la página principal para <a href="<?php echo HOME."/" ?>">concursar</a>
 					</div>
-					<div class="span1 offset1" style="margin-top:1%;" >
-						<a class="btn" style="color:white; background: #e67e22;" href="mailto:contacto@viddon.com">
-							<span class="fui-mail"></span>                                         
-						</a>
-					</div>
-					<div class="span1" style="margin-top:1%;">
-						<form action="<?php echo site_url("casting/delete"); ?>" method="POST">
-							<button style="color:white; background: #e67e22;" class="btn" type="submit">
-								<span class="fui-cross"></span>
-							</button>
-							<input type="hidden" name="apply_id" value="<?php echo $casting["apply_id"] ?>"/>
-						</form>
-					</div>
+					<div class="space4"></div>
 				</div>
-				<div class="row">
-					<div style="margin-left:3%;" class="span6">
-						<div class="space05"></div>
-						<img style='height:100%; width: 100%;' src="<?php echo $casting['full_image'] ?>"/>
-					</div>
-					<div style="padding-left: 1%; margin-left:5%;" class="span5 offset1 list-view-applies-desc">
-						<div class="space05"></div>
-						<div class="row accordion">
-							<h3>Descripci&oacuten</h3>
-							<div style="font-size:12px;">
-								<?php echo  $casting['description']; ?>
-							</div>
-							<h3>Pasos del Concurso</h3>
-							<div style="font-size:12px;">
-								<?php echo  $casting['steps']; ?>
-							</div>
-							<h3>Bases</h3>
-							<div style="font-size:12px;">
-								<?php echo  $casting['bases']; ?>
-							</div>
-							<h3>Premios</h3>
-							<div style="font-size:12px;">
-								<?php echo  $casting['prizes_description']; ?>
-							</div>
-						</div>							
-					</div>
-				</div>
-				<div class="space4"></div>
-		<?php } ?>
-		<div class="space4"></div>	
-		<div class="space4"></div>						
+		<?php
+			}
+		?>
 	</div>					
 </div>

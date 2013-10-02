@@ -38,12 +38,12 @@
 	<meta property="fb:app_id" content="458089044282863"/>
 	<meta property="og:type" content="website" />
 	<meta property="og:description" content="La nueva pagina de concursos chilena, donde podrás participar por muchos premios. Conoce Ganando.cl"/>
-	<meta property="og:image" content="<?php echo HOME.'/img/logo.png'?>"/>
+	<meta property="og:image" content="<?php echo HOME.'/img/share.png'?>"/>
 
 
 	<link rel="icon" type="image/png" href="<?php echo HOME ?>/favicon.ico">
 
-	<link href="<?php echo base_url()?>style/main.css?v=1.5" rel="stylesheet">
+	<link href="<?php echo base_url()?>style/main.css?v=1.1" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/flat-ui.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/chosen.css" rel="stylesheet"/>
@@ -180,7 +180,7 @@
 <footer>
 	<div class="color_line"></div>
 	<div style="text-align: center;	background-color: #E67E22;" class="row">
-		<div class="space05"></div>
+		<div class="space1"></div>
 		<div style="text-align: right; " class="span2">
 			<img src="<?php echo HOME.'/img/footer_dude.png'; ?>" />
 		</div>
@@ -198,7 +198,7 @@
 			<a style="margin-left: 15px;" href="https://www.facebook.com/ganandochile" target=”_blank”> <img style="width: 30px; height: 30px;" src="<?php echo base_url(); ?>img/social_container_f.png"/></a>
 		</div>
 	</div>
-	<div style="background-color: #E67E22;" class="space05"></div>
+	<div style="background-color: #E67E22;" class="space1"></div>
 	<div class="row" style="text-align: center; background-color: #d5741e;">
 		<p style="line-height: 30px; margin: 0; text-decoration: none; color: #ECF0F1;" class="second"> Ganando &copy; 2013 | Publica tus concursos <a rel="nofollow" href="<?php echo base_url();?>home/company">con nosotros</a> | Lee los <a rel="nofollow"  target=”_blank” href="<?php echo base_url();?>docs/terms.pdf">t&eacuterminos y condiciones</a> | <a rel="nofollow" href="mailto:contacto@viddon.com">Cont&aacutectanos</a>
 		</p>
