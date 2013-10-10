@@ -185,7 +185,7 @@
 					<div class="control-group align-center">
 						<div class="input-group span6 offset3">
 							<label class="user-modal-label">Celular</label>
-							<input class="user-modal-input" type="text" id="cell_phone" name="cell_phone" placeholder="Sólo los 8 números" value="<?php echo set_value("cell_phone");?>">
+							<input class="user-modal-input" type="text" id="cell_phone" name="cell_phone" placeholder="Ej: 81234567" value="<?php echo set_value("cell_phone");?>">
 							<label class="input-error-label">Debes ingresar un numero valido</label>
 							<?php echo form_error('cell_phone', '<label class="form-error-label">', '</label>'); ?>
 						</div>
