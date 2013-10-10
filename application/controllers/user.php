@@ -6,14 +6,13 @@ class User extends CI_Controller {
 	{
 		parent::__construct();
 		error_reporting(0);
-		$this->load->library(array('upload', 'image_lib'));
+		$this->load->library(array('upload', 'image_lib','form_validation'));
 		$this->load->helper(array('url', 'file', 'form'));
-		
+	
 		$this->load->model('user_model');
 		$this->load->model('applies_model');
 		$this->load->model('castings_model');
 		$this->load->model('photos_model');
-		$this->load->model('likes_model');
 		$this->load->model('education_model');
 
 		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
@@ -32,7 +31,7 @@ class User extends CI_Controller {
         $userId = $this->facebook->getUser();
         
         if($userId == 0){
-			$url = $this->facebook->getLoginUrl(array('scope'=>'email,user_location,user_hometown,user_education_history,user_birthday,user_likes','redirect_uri' => HOME.'/user/fb_login/'));
+			$url = $this->facebook->getLoginUrl(array('scope'=>'email,user_location,user_hometown,user_education_history,user_birthday','redirect_uri' => HOME.'/user/fb_login/'));
 			redirect($url);
 		} else {
             $fb_id = $this->facebook->api('/me?fields=id');
@@ -48,10 +47,6 @@ class User extends CI_Controller {
             	if(isset($fb_data['education']))
 					foreach ($fb_data['education'] as $education_institution) 
 					    $this->education_model->insert($user_id,$education_institution);
-
-				$likes = $this->facebook->api('/me/likes');
-				foreach ($likes['data'] as $like) 
-					$this->likes_model->insert($user_id,$like);
 
 				$parts = array();
 				
@@ -83,7 +78,7 @@ class User extends CI_Controller {
 						);
 
 				$this->session->set_userdata($new_session_data);
-				$success_message = "Bienvenido a Ganando.cl, ¡ahora puedes postular a los concursos propios del sitio! ";
+				//$success_message = "Bienvenido a Ganando.cl, ¡ahora puedes postular a los concursos propios del sitio! ";
             }
             else
             {
@@ -94,7 +89,7 @@ class User extends CI_Controller {
             	$friends_count = count($friends_count[data]);
 
 				
-				$this->user_model->update_on_login(array('number_friends' => $friends_count),$user_id);	
+				$this->user_model->update_detail(array('number_friends' => $friends_count),$user_id);	
 
 
 				$user_data = $this->user_model->select($user_id);
@@ -107,10 +102,16 @@ class User extends CI_Controller {
 				);
 
 				$this->session->set_userdata($new_session_data);
-				$success_message = NULL;
+				//$success_message = NULL;
             }
 
-            redirect(HOME."?success_message=".$success_message);
+            if($this->user_model->has_rut($user_id))
+            	redirect(HOME."/");
+        	else
+        	{
+        		$this->session->set_userdata('update_contact_data', TRUE);
+        		redirect(HOME."/user");
+        	}
         }
 
     }
@@ -121,24 +122,65 @@ class User extends CI_Controller {
 			redirect(HOME);
 
 		$id = $this->session->userdata('id');
-		$public = FALSE;
 		
 		$args = $this->user_model->select($id);
+
 		if($args['image_profile'] != 0)
 			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		else
 			$args['image_profile_name'] = 0;
 
-		if(!is_null($success_message))
+		
+		if($this->session->userdata('update_contact_data') == TRUE)
 		{
-			$args["success_message"] = $success_message;
+			$args["update_contact_data"] = TRUE;
+			$this->session->unset_userdata('update_contact_data');
+		}
+
+		if(isset($_POST["rut"]))
+		{
+			//Setear mensajes
+			$this->form_validation->set_message('required', 'Este campo es obligatorio');
+			$this->form_validation->set_message('valid_email', 'Este campo debe ser un correo válido');
+			$this->form_validation->set_message('min_length', '%s: Deben ser por lo menos %s caracteres');
+			$this->form_validation->set_message('max_length', '%s: Deben ser a lo más %s caracteres');
+			$this->form_validation->set_message('exact_length', '%s: Deben ser %s números');
+
+			//Setear reglas
+			$this->form_validation->set_rules('name', 'Nombre', 'required');
+			$this->form_validation->set_rules('last_name', 'Apellido', 'required');
+			$this->form_validation->set_rules('email', 'Correo', 'trim|required|valid_email');
+			$this->form_validation->set_rules('rut', 'Rut', 'trim|required|min_length[9]|max_length[10]|callback__rut_check');
+			$this->form_validation->set_rules('cell_phone', 'Celular', 'trim|numeric|exact_length[8]');
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				$args["update_contact_data"] = TRUE;
+			}
+			
+			else
+			{
+				$data["name"]= $_POST["name"];
+				$data["last_name"]= $_POST["last_name"];
+				$data["asked_email"]= $_POST["email"];
+				$data["rut"]= $_POST["rut"];
+				$data["cellphone"]= $_POST["cell_phone"];
+				$this->user_model->update_detail($data,$id);	
+
+				$success_message = "Bienvenido a Ganando.cl, ¡ahora podrás participar en los concursos del sitio! ";
+				redirect(HOME."/?success_message=".$success_message);
+			}
 		}
 
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/active_casting_list";
 		$args["inner_args"] = $inner_args;
-		$args['public'] = $public;
-			
+		
+		if(!is_null($success_message))
+		{
+			$args["success_message"] = $success_message;
+		}
+
 		if($this->input->post("del-apply"))
 		{
 			$this->applies_model->delete($this->input->post("del-apply"));
@@ -169,13 +211,11 @@ class User extends CI_Controller {
 	{
 		$this->session->sess_destroy();
 		$this->facebook->destroySession();
-		redirect(HOME);
+		redirect(HOME."/");
 	}
 	
 	public function edit()
 	{
-		$this->load->library('form_validation');
-
 		if($this->session->userdata('id') === FALSE)
 			redirect(HOME);
 		else
@@ -210,35 +250,22 @@ class User extends CI_Controller {
 				redirect(HOME.'/user');
 			}
 
-			//Talentos del usuario
 		
 				
 			$args["content"]="applicants/applicants_template";
 			$inner_args["applicant_content"]="applicants/new";
 			$args["inner_args"]=$inner_args;
-
-	
-			if(isset($user_id) && is_numeric($user_id))
-			{
-				$id = $this->session->userdata('id');
-				$temp= array();
-				$temp=$this->user_model->select($user_id);
-				$args = array_merge ( $args, $temp);
-		
-				
-				$args["user_id"] = $this->session->userdata('id');
-				
-				$args["update_values"]=$this->user_model->select($user_id);
-
-				if($args['update_values']['image_profile'] != 0)
-					$args['image_profile_name'] = $this->photos_model->get_name($args['update_values']['image_profile']);
-				else
-					$args['image_profile_name'] = 0;
-
-
-			}
 			
+			$args["user_id"] = $this->session->userdata('id');
+			$args["update_values"] = $this->user_model->select($user_id);
+			$args = array_merge ( $args, $args["update_values"]);		
 
+			if($args['image_profile'] != 0)
+				$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+			else
+				$args['image_profile_name'] = 0;
+
+			
 			//Cargar el formulario(sino se ve desde área publica)
 			$this->load->view('template', $args);
 		}
@@ -293,5 +320,30 @@ class User extends CI_Controller {
 		$this->load->view('template', $args);
 		
 	}
+
+	public function _rut_check($rut)
+    {
+
+        if (preg_match("/^\d{7,8}-[0-9kK]$/", $rut))
+		{
+			$data = explode("-", $rut);
+			$s=1;
+		    for($m=0;$data[0]!=0;$data[0]/=10)
+		         $s=($s+$data[0]%10*(9-$m++%6))%11;
+		   
+		    if(strtolower(chr($s?$s+47:75)) == strtolower($data[1]))
+		   		return TRUE;
+			else
+			{
+				$this->form_validation->set_message('_rut_check', 'El rut no es válido');	
+				return FALSE;
+			}
+		}
+		else
+		{
+			$this->form_validation->set_message('_rut_check', 'El rut no es válido');
+			return FALSE;
+		}
+    }
 
 }

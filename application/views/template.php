@@ -43,7 +43,7 @@
 
 	<link rel="icon" type="image/png" href="<?php echo HOME ?>/favicon.ico">
 
-	<link href="<?php echo base_url()?>style/main.css?v=1.1" rel="stylesheet">
+	<link href="<?php echo base_url()?>style/main.css?v=1.2" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/flat-ui.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/chosen.css" rel="stylesheet"/>
@@ -66,7 +66,7 @@
 	</div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> 
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script> 
 	<script src="<?php echo base_url()?>js/chosen.jquery.min.js" type="text/javascript"></script>
 	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>	
 	<script src="<?php echo base_url()?>js/jquery.countdown.js" type="text/javascript"></script>
@@ -147,15 +147,15 @@
 		            	   	<?php
 								if($id)
 								{
-									echo "<li>".anchor('user', "<span style='margin-right:10px; color: #3b5998;' class='fui-user'></span>".$user)."</li>";
-									echo "<li>".anchor('user/logout','Cerrar sesi&oacuten')."</li>";
+									echo "<li class='user-menu user-menu-left'>".anchor('user', "<span style='margin-right:10px; color: #ECF0F1;' class='fui-user'></span>".$user)."</li>";
+									echo "<li class='user-menu'>".anchor('user/logout','Cerrar sesi&oacuten')."</li>";
 
 								}
 								
 								elseif ($id_h) 
 								{	
-									echo "<li>".anchor('hunter', "<span style='color: white;'>¡Bienvenido! </span>".$name)."</li>";
-									echo "<li>".anchor('hunter/logout','Cerrar sesi&oacuten')."</li>";				
+									echo "<li class='user-menu user-menu-left'>".anchor('hunter', "<span style='color: white;'>¡Bienvenido! </span>".$name)."</li>";
+									echo "<li class='user-menu'>".anchor('hunter/logout','Cerrar sesi&oacuten')."</li>";				
 								}
 							
 								if(!$id && !$id_h)
@@ -218,8 +218,6 @@
     if($(".chzn-select").length > 0)
 		$(".chzn-select").chosen({no_results_text: "No se encontraron resultados"});
 	
-
-
 	$(function(){
 		$("#dp1").datepicker({ dateFormat: "dd/mm/yy" });
 	});
@@ -228,13 +226,6 @@
 		$("#dp2").datepicker({ dateFormat: "dd/mm/yy" });
 	});
 		    
-
-	$('.menu').css({
-		'height': $('#headercontent').outerHeight()
-	});
-		    	
-
-	
 	var function_clean_select_all = function () 
 	{
 		
@@ -267,18 +258,6 @@
 
 	$(".chosen_filter").change(function_clean_select_all);
 	$('.chosen_filter').trigger('change');
-
-
-		
-	(function(d, s, id) 
-	{
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-
 	
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

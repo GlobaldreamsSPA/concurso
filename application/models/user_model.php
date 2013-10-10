@@ -38,11 +38,12 @@ class User_model extends CI_Model
 		$this->db->update('users', $data);
 	}
 
-	function update_on_login($data,$id)
+	function update_detail($data,$id)
 	{
 		$this->db->where('id', $id);
 		$this->db->update('users', $data);
 	}
+
 
 	function select($id)
 	{
@@ -134,11 +135,22 @@ class User_model extends CI_Model
 		
 		if($query->num_rows == 0)
 			return 0;
-
 		else
 			return $query->result_array();
 				
 
+	}
+
+	function has_rut($id_user)
+	{
+		$this->db->select("rut");
+		$this->db->where("id",$id_user);
+		$query = $this->db->get("users")->result_array();
+
+		if(is_null($query[0]["rut"]))
+			return false;
+		else
+			return true;
 	}
 
 

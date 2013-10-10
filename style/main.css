@@ -88,6 +88,7 @@ html, body {
 	text-shadow: -2px 0 #D35400, 0 2px #D35400, 2px 0 #D35400, 0 -2px #D35400;
 }
 
+
 .navbar .nav li a:hover img
 {
 	opacity: 1 !important;
@@ -111,6 +112,27 @@ html, body {
 	border-style: solid;
 	border-width: 0 0 40px 40px;
 	border-color: transparent transparent #e67e22 transparent;
+}
+
+.user-menu a
+{
+	text-shadow: -1px 0 #D35400, 0 1px #D35400, 1px 0 #D35400, 0 -1px #D35400 !important;
+}
+
+.user-menu a:hover
+{
+	text-shadow: -1px 0 #853500, 0 1px #853500, 1px 0 #853500, 0 -1px #853500 !important;
+}
+
+.user-menu-left
+{
+	border-right: 1px solid #E67E22;
+}
+
+.user-menu
+{
+	background-color: #F1C40F;
+	margin-top: -6px;
 }
 
 /* perfil usuario*/
