@@ -132,7 +132,7 @@ html, body {
 .user-menu
 {
 	background-color: #F1C40F;
-	margin-top: -6px;
+	padding-top: 1px;
 }
 
 /* perfil usuario*/

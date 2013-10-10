@@ -43,7 +43,7 @@
 
 	<link rel="icon" type="image/png" href="<?php echo HOME ?>/favicon.ico">
 
-	<link href="<?php echo base_url()?>style/main.css?v=1.2" rel="stylesheet">
+	<link href="<?php echo base_url()?>style/main.css?v=1.125" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/flat-ui.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/chosen.css" rel="stylesheet"/>
