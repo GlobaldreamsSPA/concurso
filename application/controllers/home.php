@@ -24,6 +24,8 @@ class Home extends CI_Controller {
 		$args = array();
 		$args["get_uri"] ="";
 		
+		/*** Codigo utilizada para el buscador oculto, para la creacion de los **/
+
 		if(isset($_GET["search_terms"]))
 		{
 			$args["get_uri"] = "/?search_terms=".str_replace(' ', '+', $_GET["search_terms"])."&prize=".$_GET["prize"]."&category=".$_GET["category"];
@@ -50,10 +52,13 @@ class Home extends CI_Controller {
 			$counter = $counter + 1;
 		}
 
-		$args["bottom_contest"] = $this->castings_model->get_castings(null,null,null,0,array(0));
-
 		$args["prizes"] = array(""=>"Elige: tipo de premio") + $args["prizes"];
 		$args['categories'] = array(""=>"Elige: tipo de concurso")+$this->casting_categories_model->get_casting_categories();
+		
+		/*----*/
+
+		$args["bottom_contest"] = $this->castings_model->get_castings(null,null,null,0,array(0));
+
 		
 		if(!is_null($success_message))
 			$args["success_message"] = $success_message;
@@ -127,13 +132,11 @@ class Home extends CI_Controller {
 			$args['category_id'] = $_GET['category'];
 			$args['d_photo_contest'] = $_GET['d_photo_contest'];
 			$args['status'] = $_GET['status'];
-
 			$args['logged_in'] = $this->session->userdata('id');
-
 			$args['entity_id'] = $_GET['entity_id'];	
 			$args['prizes'] = explode("-", $_GET['prizes']);	
-			$prizes_id = $args['prizes'];
 			
+			$prizes_id = $args['prizes'];
 			$prizes =  $this->prize_categories_model->select("name");
 			$prizes_temp= array();
 			
