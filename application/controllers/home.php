@@ -20,18 +20,15 @@ class Home extends CI_Controller {
 			$success_message = NULL;
 		else
 			$success_message = $this->input->get('success_message');
-		$args = array();
 		
+		$args = array();
 		$args["get_uri"] ="";
 		
 		if(isset($_GET["search_terms"]))
 		{
-
 			$args["get_uri"] = "/?search_terms=".str_replace(' ', '+', $_GET["search_terms"])."&prize=".$_GET["prize"]."&category=".$_GET["category"];
 			$args["search_values"]=$_GET;
-
 			$args["contest_list"] = $this->castings_model->get_castings_search($_GET, $page, 6);
-			
 			$args["chunks"]=ceil(count($this->castings_model->get_castings_search($_GET)) / 6);
 		}
 		else
@@ -45,13 +42,6 @@ class Home extends CI_Controller {
     	
 		$args["page"]=$page;
 
-		foreach ($args["contest_list"] as &$element) {
-			if(!in_array($element["category"],array(1,2,3,4)))
-				$element["info_only"]= true;
-			else
-				$element["info_only"]= false;
-
-		}
 		$prizes =  $this->prize_categories_model->select("name");
 		$counter=0;
 
@@ -69,11 +59,8 @@ class Home extends CI_Controller {
 			$args["success_message"] = $success_message;
 
 		$args["ganando_promo"] = true;
-
 		$args["inner_args"] = NULL;
-
 		$args["content"] = "home/home_view";
-
 
 		$this->load->view('template',$args);
 	}
@@ -287,7 +274,7 @@ class Home extends CI_Controller {
 				foreach($this->input->post() as $post_data_name => $post_data_answ)
 				{
 					$data = explode("_", $post_data_name);
-					echo "<br>";
+					
 					if(strcmp($data[1], "text") == 0 || strcmp($data[1], "select") == 0)
 					{
 						$answers['custom_questions_id'] = $data[3];

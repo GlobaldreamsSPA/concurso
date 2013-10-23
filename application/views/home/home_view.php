@@ -178,16 +178,6 @@ $(document).ready(function() {
 											}
 										?>
 									</div>
-									<div class="span1">
-									<?php 
-										if($contest["info_only"])
-										{
-									?>
-											<img style="position:absolute; bottom:-33%; right:0; height:156%; width:30%;" src="<?php echo HOME.'/img/info.png'; ?>"/>
-									<?php
-										}
-									?>
-									</div>
 								</div>
 							</div>
 						</div>

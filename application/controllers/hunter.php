@@ -273,10 +273,26 @@ class Hunter extends CI_Controller {
 			else
 				$args["casting_state"] = 0;
 
-			$args["chunks"]=ceil($this->castings_model->count_castings($hunter_id, $args["casting_state"])/5);						
-			$args["castings"]= $this->castings_model->get_castings($hunter_id, 5, $page, $args["casting_state"]);
+
+			/*FiX Momentaneo para separar concursos externos de los propios*/
+			if($args["casting_state"] != 4)
+			{
+				$contest_type=array(1,2,3,4);
+				$args["chunks"]=ceil($this->castings_model->count_castings($hunter_id, $args["casting_state"],$contest_type)/5);						
+				$args["castings"]= $this->castings_model->get_castings($hunter_id, 5, $page, $args["casting_state"],$contest_type);
+			}
+			else
+			{
+				$contest_type=array(0);
+				$args["chunks"]=ceil($this->castings_model->count_castings($hunter_id, 3,$contest_type)/5);						
+				$args["castings"]= $this->castings_model->get_castings($hunter_id, 5, $page, 3,$contest_type);
+			}
 			
-			$args["status"]=array(0=>"Activo",1=>"Revisi&oacute;n",2=>"Finalizado",3=>"Todos");
+			$args["status"]=array(0=>"Activo",1=>"Revisión",2=>"Finalizado",3=>"Todos",4=>"Externos");
+			
+			/********/
+
+
 			$args["page"]=$page;
 			
 	   	 	//Rescatar las personas que postularon a cada uno de los castings
@@ -958,20 +974,20 @@ class Hunter extends CI_Controller {
 
 	private function _dashboard($hunter_id)
 	{
-	   	
-		 	$castings = $this->castings_model->get_castings($hunter_id,4,1,0);	   	 			
+	   		/*Fix momentaneo para que no aparescan castings externos*/
+	   		$castings_type= array(1,2,3,4);
+		 	$castings = $this->castings_model->get_castings($hunter_id,4,1,0,$castings_type);	   	 			
+			
 			$numberc_review = 8 - count($castings);
 						
-			if($numberc_review == 4 && count($this->castings_model->get_castings($hunter_id,$numberc_review,1,1)) < 4)
+			if($numberc_review == 4 && count($this->castings_model->get_castings($hunter_id,$numberc_review,1,1,$castings_type)) < 4)
 			{
-				$numberc_active = 8 - count($this->castings_model->get_castings($hunter_id,$numberc_review,1,1));
-				$castings = $this->castings_model->get_castings($hunter_id,$numberc_active,1,0);	   	 
+				$numberc_active = 8 - count($this->castings_model->get_castings($hunter_id,$numberc_review,1,1,$castings_type));
+				$castings = $this->castings_model->get_castings($hunter_id,$numberc_active,1,0,$castings_type);	   	 
 			}
 			
-		
-			
-			$castings = array_merge($castings,$this->castings_model->get_castings($hunter_id,$numberc_review,1,1));
-			
+			$castings = array_merge($castings,$this->castings_model->get_castings($hunter_id,$numberc_review,1,1,$castings_type));
+			/*****/
 			
 			
 	   	 	foreach ($castings as &$casting) {
@@ -982,8 +998,6 @@ class Hunter extends CI_Controller {
 				else 
 					$casting['target_applies'] = 100;
 								
-									
-				
 				$casting['target_applies_color'] = $this->_color_bar((int) $casting['target_applies']);
 				
 				$casting['label_color'] = $this->_color_label($casting['status']);
