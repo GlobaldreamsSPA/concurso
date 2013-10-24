@@ -18,7 +18,7 @@ class Hunter extends CI_Controller {
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
-			$args["castings"]= $this->castings_model->get_castings($hunter_id, null, null, 0);
+			$args["castings"]= $this->castings_model->get_castings($hunter_id, null, null, 0, array(1,2,3,4));
 
 			$args["castings_dash"]= $this->_dashboard($hunter_id);
 	
